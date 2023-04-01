@@ -2,15 +2,17 @@
 
 ## Backend
 
-# Iniciar proyecto node con typescript
+# Initialize the project with node and typescript
 
-1.  Ejecutar los comandos:
+To configure an node project with typescript and mongo you may perform the following steps:
+
+1.  Execute the commands:
 `npm init -y`
 `npm install --save-dev typescript`
 
-2.  Crear archivo tsconfig.json
+2.  Create tsconfig.json file
 
-3.  Añadir las siguientes lineas al archivo tsconfig.json
+3.  Add this lines to tsconfig.json
 
 {
   "compilerOptions": {
@@ -24,8 +26,9 @@
   "lib": ["es2015"]
 }
 
-4.  Crear carpeta src y en su interior el archivo app.ts y añadir la configuración básica
+4.  Create src folder and inside put the file app.ts and add this basic configuration
 
+`
 import express from 'express';
 const app = express();
 const port = 3000;
@@ -37,15 +40,16 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });
+`
 
 
-5.  Ejecutar el comando `npx tsc`
+5.  Execute the command `npx tsc`
 
-6.  Ejecutar el comando `node dist/app.js`
+6.  Execute the command `node dist/app.js`
 
-7.  Ejecutar el comando `npm install --save-dev eslint`
+7.  Execute the command `npm install --save-dev eslint`
 
-8.  Ejecutar el comando `npx eslint --init`
+8.  Execute the command `npx eslint --init`
   * How would you like to use ESLint?: To check syntax and find problems
   * What type of modules does your project use?: JavaScript modules (import/export)
   * Which framework does your project use?: None of these
@@ -55,11 +59,11 @@ app.listen(port, () => {
   * Would you like to install them now? Yes
   * Which package manager do you want to use? npm
 
-9.  Ejecutar el comando `npx eslint . --ext .ts`
+9.  Execute the command `npx eslint . --ext .ts`
 
-10. Ejecutar el comando `npm install --save-dev ts-node`
+10. Execute the command `npm install --save-dev ts-node`
 
-11. Modificar las siguientes lineas del archivo package.json para arrancar con nodemon y typescript
+11. Modify this lines in package.json file to run the project with nodemon and typescript
 
   "main": "dist/app.js",
   "scripts": {
@@ -69,67 +73,73 @@ app.listen(port, () => {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 
-## Librerias
-### Encriptacion de contraseñas
-npm install bcrypt-nodejs
+## Libraries
+### Password encriptation 
+`npm install bcrypt-nodejs`
 
-### Parseador de informacion en formato json
-npm install body-parser
+### JSON data parser
+`npm install body-parser`
 
-### Permite guardar imagenes y videos en el backend
-npm install connect-multiparty
+### Permit save file and videos in the server
+`npm install connect-multiparty`
 
-### Lenguaje base del backend
-npm install express
+### Web framework from node
+`npm install express`
 
-### Manejador de fecha
-npm install moment
+### Data managing
+`npm install moment`
 
-### Modelador de mongodb
-npm install mongoose@6.10.0
+### Mongo db modeler
+`npm install mongoose@6.10.0`
 
-### Generador de tokens de usuario
-npm install jsonwebtoken
+### Token generator
+`npm install jsonwebtoken`
 
-### Decodificador de token
-npm install jwt-simple
+### Token decodifier
+`npm install jwt-simple`
 
-### Reinicializador de node para cambios en el backend
-npm install --save-dev nodemon
+### Change dev server restarter
+`npm install --save-dev nodemon`
 
 
-### Carpetas
+### Folders
 
 #### Controllers
-Carpeta que contendra los controladores
+Controler folder container
 
 #### Helpers
-Carpeta que codificara los tokens que se van a generar
+Generated token folder codificator container
 
 #### Middlewares
-Carpeta que contendra el validador del token
+Token folder validator container
 
 #### Models
-Carpeta que contendra los modelos
+Aplication models container
 
 #### Routes
-Carpeta que contendra las rutas del api
+Api routes container
 
 #### Uploads
-Carpeta que contendra los archivos subidos al servidor
+Folder containing the uploaded files  and videos
+
 
 ## MongoDB
-### Instalacion
+### Macos Instalation
 
-xcode-select --install
-brew install mongodb-community@6.0
-brew services start mongodb-community@6.0
+Execute this commands in bash:
 
-#### Url de conexion a mongo
+`xcode-select --install`
+
+`brew install mongodb-community@6.0`
+
+`brew services start mongodb-community@6.0`
+
+#### Mongo url connection
+
 mongodb://localhost:27017
 
 https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
 
 
-## Arranque
-Ejecutar el comando `npm run dev`
+## Start the server in dev mode
+Execute the command `npm run dev`
