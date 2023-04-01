@@ -14,6 +14,7 @@ To configure a node project with typescript and mongo you may perform the follow
 
 3.  Add this lines to tsconfig.json
 
+```
 {
   "compilerOptions": {
     "module": "commonjs",
@@ -25,6 +26,7 @@ To configure a node project with typescript and mongo you may perform the follow
   },
   "lib": ["es2015"]
 }
+```
 
 4.  Create src folder and inside put the file app.ts and add this basic configuration
 
