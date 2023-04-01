@@ -4,7 +4,7 @@
 
 # Initialize the project with node and typescript
 
-To configure an node project with typescript and mongo you may perform the following steps:
+To configure a node project with typescript and mongo you may perform the following steps:
 
 1.  Execute the commands:
 `npm init -y`
@@ -28,7 +28,7 @@ To configure an node project with typescript and mongo you may perform the follo
 
 4.  Create src folder and inside put the file app.ts and add this basic configuration
 
-`
+```
 import express from 'express';
 const app = express();
 const port = 3000;
@@ -40,8 +40,7 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });
-`
-
+```
 
 5.  Execute the command `npx tsc`
 
@@ -65,6 +64,7 @@ app.listen(port, () => {
 
 11. Modify this lines in package.json file to run the project with nodemon and typescript
 
+```
   "main": "dist/app.js",
   "scripts": {
     "start": "tsc && node dist/app.js",
@@ -72,6 +72,7 @@ app.listen(port, () => {
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+```
 
 ## Libraries
 ### Password encriptation 
@@ -103,9 +104,8 @@ app.listen(port, () => {
 
 
 ### Folders
-
 #### Controllers
-Controler folder container
+Controller folder container
 
 #### Helpers
 Generated token folder codificator container
@@ -136,10 +136,10 @@ Execute this commands in bash:
 
 #### Mongo url connection
 
-mongodb://localhost:27017
+`mongodb://localhost:27017`
 
-https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
-
+#### Mongo guide
+`https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x`
 
 ## Start the server in dev mode
-Execute the command `npm run dev`
+Execute the command: `npm run dev`
