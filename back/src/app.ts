@@ -1,13 +1,13 @@
 "use strict";
 // Importacion de librerias
-var express = require("express");
-var app = express();
-var bodyparser = require("body-parser");
-var mongoose = require("mongoose");
+let express = require("express");
+let app = express();
+let bodyparser = require("body-parser");
+let mongoose = require("mongoose");
 // Configuracion de puerto. Si no existe se establece el 4201
-var port = process.env.PORT || 4201;
+let port = process.env.PORT || 4201;
 
-var bodyParser = require("body-parser");
+let client_route = require("./routes/cliente");
 
 // Conexion a la base de datos
 mongoose.connect("mongodb://127.0.0.1:27017/store", function () {
@@ -26,19 +26,25 @@ function init() {
 app.use(bodyparser.urlencoded({
     extended: true,
 }));
+
 // Analiza el json
 app.use(bodyparser.json({
     limit: '50mb',
     extended: true,
 }));
+
 // CORS configuration
-app.use(function (res, next) {
+app.use(function (req, res, nextFunc) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method');
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
     res.header('Allow', 'GET, PUT, POST, DELETE, OPTIONS');
-    next();
+    nextFunc();
 });
+
+
+app.use('/api', client_route)
+
 
 // Exportacion del modulo
 module.exports = app;
