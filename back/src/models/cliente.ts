@@ -20,7 +20,7 @@ export interface ICliente {
 } 
 
 // Creacion de clase cliente a traves de la interfaz 
-const clienteSchema = new Schema<ICliente>({
+const Cliente = new Schema<ICliente>({
   nombres: { type: String, required: true },
   apellidos: { type: String, required: true },
   pais: { type: String, required: false },
@@ -34,4 +34,4 @@ const clienteSchema = new Schema<ICliente>({
 })
 
 // Exportacion de la clase
-module.exports = mongoose.model('cliente', clienteSchema);
+module.exports = mongoose.model('cliente', Cliente);

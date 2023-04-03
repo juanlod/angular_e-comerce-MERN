@@ -1,20 +1,26 @@
 "use strict";
-// Importacion de librerias
-let express = require("express");
+import express, {Request, Response} from 'express';
+import bodyparser from 'body-parser'
+import mongoose from 'mongoose';
+
+
 let app = express();
-let bodyparser = require("body-parser");
-let mongoose = require("mongoose");
 // Configuracion de puerto. Si no existe se establece el 4201
 let port = process.env.PORT || 4201;
-
 let client_route = require("./routes/cliente");
+let admin_route = require("./routes/admin");
 
 // Conexion a la base de datos
-mongoose.connect("mongodb://127.0.0.1:27017/store", function () {
-    init();
-})
-    .catch(function (error) { return console.log(error); });
-;
+mongoose.set('strictQuery', false);
+try {
+    mongoose.connect("mongodb://127.0.0.1:27017/store",  () => {
+        init();
+    });
+} catch (error) {
+    console.log(error);
+}
+
+
 function init() {
     console.log("Servidor iniciando");
     // Variable que inicialice el framework
@@ -34,7 +40,7 @@ app.use(bodyparser.json({
 }));
 
 // CORS configuration
-app.use(function (req, res, nextFunc) {
+app.use(function (req: Request, res: Response, nextFunc) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method');
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
@@ -44,6 +50,7 @@ app.use(function (req, res, nextFunc) {
 
 
 app.use('/api', client_route)
+app.use('/api', admin_route)
 
 
 // Exportacion del modulo

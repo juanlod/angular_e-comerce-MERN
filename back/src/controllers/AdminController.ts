@@ -1,25 +1,33 @@
-import bcrypt from "bcrypt-nodejs";
+
+import bcrypt from 'bcrypt-nodejs';
 import express, { Request, Response } from "express";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const cliente = require("../models/cliente");
+const admin = require("../models/admin");
 
-const registro_cliente = async function (req: any, res: any, next: any) {
+/**
+ * Registro de un admin
+ * @param req 
+ * @param res 
+ * @param next 
+ */
+const registro_admin = async function (req: any, res: any, next: any) {
   //Se reciben los datos del usuario
   let data = req.body;
 
-  let clientes = [];
-  clientes = await cliente.find({ email: data.email });
+  let admins = [];
+  admins = await admin.find({ email: data.email });
 
-  if (clientes.length === 0) {
-    // Se almacenan los datos del cliente
+  if (admins.length === 0) {
+    // Se almacenan los datos del admin
 
     if (data.password) {
-      // Se encripta la contraseña
+        // Se encripta la contraseña
       bcrypt.hash(data.password, null, null, async (err, hash) => {
         if (hash) {
+          console.log(hash);
           data.password = hash;
-          let reg = await cliente.create(data);
+          let reg = await admin.create(data);
           res.status(200).send({ data: reg });
         }
       });
@@ -38,18 +46,18 @@ const registro_cliente = async function (req: any, res: any, next: any) {
  * @param req
  * @param res
  */
-const login_cliente = async (req: Request, res: Response) => {
+const login_admin = async (req: Request, res: Response) => {
   let result = req.body;
-  let clientes = [];
+  let admins = [];
 
-  clientes = await cliente.find({ email: result.email });
+  admins = await admin.find({ email: result.email });
 
-  if (clientes.length == 0) {
+  if (admins.length == 0) {
     res
       .status(400)
       .send({ error: "Usuario o contraseña incorrectos", data: undefined });
   } else {
-    let user = clientes[0];
+    let user = admins[0];
 
     /**
      * Se compara la contraseña hasheada. Check true si coincide, false si no coincide
@@ -67,7 +75,6 @@ const login_cliente = async (req: Request, res: Response) => {
 };
 
 module.exports = {
-  registro_cliente,
-  login_cliente,
+  registro_admin,
+  login_admin
 };
-
