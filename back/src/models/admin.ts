@@ -1,12 +1,13 @@
 "use strict";
 import mongoose from "mongoose";
+import { IUser } from "./user";
 
 const Schema = mongoose.Schema;
 
 /**
  * Interfaz de admin. Necesario para implementacion
  */
-export interface IAdmin{
+export interface IAdmin extends IUser {
   nombres: string,
   apellidos:  string,
   email:  string,

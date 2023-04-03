@@ -1,12 +1,14 @@
 "use strict";
 import mongoose from "mongoose";
+import { IUser } from "./user";
 
 const Schema = mongoose.Schema;
 
 /**
  * Interfaz de cliente. Necesario para implementacion
  */
-export interface ICliente {
+export interface ICliente extends IUser{
+  id: string,
   nombres: string,
   apellidos:  string,
   pais?: string,
