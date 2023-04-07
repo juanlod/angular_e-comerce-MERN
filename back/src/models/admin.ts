@@ -13,7 +13,7 @@ export interface IAdmin extends IUser {
   email:  string,
   password: string,
   telefono?: string,
-  rol?: string,
+  rol: string,
   f_nacimiento?: string,
   dni?: string,
 } 

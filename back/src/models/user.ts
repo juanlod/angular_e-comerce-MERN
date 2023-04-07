@@ -9,4 +9,5 @@ export interface IUser {
   apellidos:  string,
   email:  string,
   password: string,
+  rol: string;
 } 

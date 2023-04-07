@@ -1,7 +1,7 @@
 
 import bcrypt from 'bcrypt-nodejs';
 import express, { Request, Response } from "express";
-import { createToken } from '../helpers/jwt';
+import { createAdminToken } from '../helpers/jwt';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const admin = require("../models/admin");
@@ -65,7 +65,7 @@ const login_admin = async (req: Request, res: Response) => {
      */
     bcrypt.compare(result.password, user.password, async (error, check) => {
       if (check) {
-        res.status(200).send({ user: user, token: createToken(user)});
+        res.status(200).send({ user: user, token: createAdminToken(user)});
       } else {
         res
         .status(400)
