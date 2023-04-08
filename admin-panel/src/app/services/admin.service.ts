@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class AdminService {
     'application/json'
   );
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login_admin(user: User): Observable<any> {
     return this.http.post(`${this.API_URL}/login_admin`, user, {
@@ -56,6 +57,7 @@ export class AdminService {
       }).then((result) => {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
+        this.router.navigate(['login'])
         return !token || !decode ? false : true;
       });
     }
