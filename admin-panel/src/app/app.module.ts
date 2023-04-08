@@ -13,13 +13,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
-import { InicioComponent } from './pages/inicio/inicio.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NgZorroAntdModule } from './ng-zorro-antd.module';
-import { AngularMaterialModule } from './angular-material.module';
+import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(es);
@@ -42,7 +42,7 @@ registerLocaleData(es);
     NzButtonModule,
     ReactiveFormsModule,
     NgZorroAntdModule,
-    AngularMaterialModule,
+    MaterialModule,
     NgbModule
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
