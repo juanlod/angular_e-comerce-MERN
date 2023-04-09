@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     this.token = this.adminService.getToken();
     if (this.token) {
-      this.router.navigate(['inicio'])
+      this.router.navigate(['dashboard'])
     }
 
     setInterval(() => {
@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
       if (response) {
         localStorage.setItem('token', response.token)
         localStorage.setItem('id', response.user._id)
-        this.router.navigate(['inicio'])
+        this.router.navigate(['dashboard'])
       }
 
   }

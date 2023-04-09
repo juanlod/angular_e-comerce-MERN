@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,10 +18,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NgZorroAntdModule } from './ng-zorro-antd.module';
+import { NgZorroModule } from './ng-zorro.module';
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { ClienteModule } from './pages/clientes/cliente.module';
 registerLocaleData(es);
 
 
@@ -41,9 +41,10 @@ registerLocaleData(es);
     NzFormModule,
     NzButtonModule,
     ReactiveFormsModule,
-    NgZorroAntdModule,
+    NgZorroModule,
     MaterialModule,
-    NgbModule
+    NgbModule,
+    ClienteModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent],

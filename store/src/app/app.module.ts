@@ -17,7 +17,7 @@ import { LoginComponent } from './components/login/login.component';
     InicioComponent,
     NavComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
 
