@@ -4,6 +4,7 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { ClienteRoutingModule } from './cliente-routing.module';
 import { NgZorroModule } from '../../../app/ng-zorro.module';
 import { MaterialModule } from '../../../app/material.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { MaterialModule } from '../../../app/material.module';
     CommonModule,
     ClienteRoutingModule,
     NgZorroModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   exports: [
     ClienteRoutingModule

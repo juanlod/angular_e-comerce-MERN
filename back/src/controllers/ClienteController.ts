@@ -68,8 +68,39 @@ const login_cliente = async (req: Request, res: Response) => {
   }
 };
 
+// const listar_clientes_admin_rol = async (req: Request, res: Response) => {
+//   console.log('este')
+//   let results = await cliente.find();
+//   res.status(200).send({ data: results });
+  
+// }
+
+const listar_clientes_admin_rol = async (req: Request, res: Response) => {
+
+  const { filtro, pagina, pageSize } = req.query;
+  const regex = filtro ? new RegExp(filtro, "i") : /.*/; // Si el filtro está vacío, usamos una expresión regular que coincida con todo
+  const offset = (pagina - 1) * pageSize;
+
+  const resultados = await cliente
+    .find({ ayn: regex })
+    .skip(offset)
+    .limit(pageSize)
+    .exec();
+
+  const total_resultados = await cliente.countDocuments({ ayn: regex });
+
+  res.status(200).send({ 
+    data: resultados,
+    pagina_actual: pagina,
+    total_paginas: Math.ceil(total_resultados / pageSize),
+    total_resultados: total_resultados
+  });
+}
+
+
 module.exports = {
   registro_cliente,
   login_cliente,
+  listar_clientes_admin_rol
 };
 
