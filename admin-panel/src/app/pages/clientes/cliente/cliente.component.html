@@ -1,1 +1,40 @@
-<p>cliente works!</p>
+<div>
+  <nz-table #basicTable [nzData]="listOfData" [nzLoading]="loading" [nzFrontPagination]="true" (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="pageSizeChange($event)" nzTableLayout="auto">
+    <!-- Encabezado de la tabla -->
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <!-- Cuerpo de la tabla -->
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.age }}</td>
+        <td>{{ data.address }}</td>
+        <td>
+          <a>Action 一 {{ data.name }}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Delete</a>
+        </td>
+      </tr>
+    </tbody>
+    <!-- Pie de la tabla -->
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          <!-- Paginación -->
+          <nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="total" [nzPageSizeOptions]="[10, 20, 50, 100]" [nzShowTotal]="totalTpl" [(nzPageSize)]="pageSize"></nz-pagination>
+          <!-- Template para el total de resultados -->
+          <ng-template #totalTpl let-total let-range="range">
+            Mostrando {{ range[0] }} - {{ range[1] }} de {{ total }} resultados
+          </ng-template>
+        </td>
+      </tr>
+    </tfoot>
+  </nz-table>
+</div>
+

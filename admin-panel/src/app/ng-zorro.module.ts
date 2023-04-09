@@ -76,7 +76,7 @@ import { NzGraphModule } from 'ng-zorro-antd/graph';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+  CommonModule
   ],
   exports: [
     NzAffixModule,
@@ -150,6 +150,7 @@ import { NzGraphModule } from 'ng-zorro-antd/graph';
     NzResizableModule,
     NzPipesModule,
     NzGraphModule,
+
   ]
 })
 export class NgZorroModule { }
