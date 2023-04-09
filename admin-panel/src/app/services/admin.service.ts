@@ -42,7 +42,6 @@ export class AdminService {
 
     try {
       decode = this.helper.decodeToken(token!) as any;
-      console.log(decode)
     } catch (error) {
       decode = false;
 

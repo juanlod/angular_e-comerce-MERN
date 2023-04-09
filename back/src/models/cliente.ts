@@ -1,6 +1,7 @@
 "use strict";
 import mongoose from "mongoose";
 import { IUser } from "./user";
+import { IMascota } from "./mascota";
 
 const Schema = mongoose.Schema;
 
@@ -8,7 +9,7 @@ const Schema = mongoose.Schema;
  * Interfaz de cliente. Necesario para implementacion
  */
 export interface ICliente extends IUser{
-  id: string,
+  _id: string,
   idc: number,
   ayn: string,
   dir: string,
@@ -38,10 +39,12 @@ export interface ICliente extends IUser{
   codt2: string,
   codp2: string,
   Identif: string,
+  mascotas: mongoose.Schema.Types.ObjectId[];
 }
 
 // Creacion de clase cliente a traves de la interfaz 
 const Cliente = new Schema<ICliente>({
+  _id: { type: String, required: true },
   idc: { type: Number, required: true },
   ayn: { type: String, required: true },
   dir: { type: String, required: true },
@@ -71,6 +74,7 @@ const Cliente = new Schema<ICliente>({
   codt2: { type: String, required: false },
   codp2: { type: String, required: false },
   Identif: { type: String, required: true },
+  mascotas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'mascota' }],
 })
 
 // Exportacion de la clase
