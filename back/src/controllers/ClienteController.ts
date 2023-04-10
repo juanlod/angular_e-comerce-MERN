@@ -96,6 +96,12 @@ const listar_clientes_admin_rol = async (req: Request, res: Response) => {
       }
     },
     {
+      "$sort": {
+          "mascotas.nom": 1,
+          ayn: 1
+      }
+  },
+    {
       "$skip": offset
     },
     {
@@ -111,12 +117,13 @@ const listar_clientes_admin_rol = async (req: Request, res: Response) => {
 
   const total_resultadosCliente = await cliente.countDocuments(queryCliente);
   const total_resultadosMascota= await mascota.countDocuments(queryMascota);
+  const total_resultados = total_resultadosCliente ? total_resultadosCliente : total_resultadosMascota;
 
   res.status(200).send({ 
     data: resultados,
     pagina_actual: pagina,
-    total_paginas: Math.ceil((total_resultadosCliente + total_resultadosMascota) / pageSize),
-    total_resultados: (total_resultadosCliente + total_resultadosMascota)
+    total_paginas: Math.ceil((total_resultados) / pageSize),
+    total_resultados: (total_resultados)
   });
 }
 

@@ -19,3 +19,7 @@ nz-layout {
 .search-button {
   margin-right: 8px;
 }
+
+.contains-pet {
+  color: rgb(23, 179, 23);
+}

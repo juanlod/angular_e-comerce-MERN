@@ -67,4 +67,16 @@ export class ClienteComponent implements OnInit {
       this.expandSet.delete(id);
     }
   }
+
+
+  checkFiltro(cliente: any): boolean {
+    if (cliente.mascotas) {
+      for (const mascota of cliente.mascotas) {
+        if (mascota.nom.toLowerCase().includes(this.filtro.toLowerCase())) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }

@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <ng-container *ngFor="let cliente of basicTable.data">
-    <tr >
+    <tr [ngClass]="{'contains-pet': checkFiltro(cliente) && filtro}">
       <td [nzExpand]="expandSet.has(cliente.idc)" (nzExpandChange)="onExpandChange(cliente.idc, $event)"></td>
       <td>{{ cliente.ayn }}</td>
       <td>{{ cliente.dir }}</td>
@@ -25,7 +25,7 @@
     <tr [nzExpand]="expandSet.has(cliente.idc)">
         <th>Mascotas </th>
       <ng-container *ngFor="let mascota of cliente.mascotas">
-        <a>{{ mascota.nom }}</a> <nz-divider nzType="vertical"></nz-divider>
+        <a [ngClass]="{'contains-pet' : mascota.nom.toLowerCase().includes(filtro.toLowerCase()) }">{{ mascota.nom }}</a> <nz-divider nzType="vertical"></nz-divider>
       </ng-container>
     </tr>
     </ng-container>
