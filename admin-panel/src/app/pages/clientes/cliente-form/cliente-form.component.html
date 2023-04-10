@@ -1,1 +1,78 @@
-<p>cliente-form works!</p>
+
+<h2>Nuevo cliente</h2>
+<nz-breadcrumb>
+  <nz-breadcrumb-item>
+    <span nz-icon nzType="home" ></span>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a routerLink="/dashboard/clientes">
+      <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+      <span>Listado de clientes</span>
+    </a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <span nz-icon nzType="user"></span>
+    Nuevo cliente
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<br>
+<br>
+<form nz-form (submit)="saveClient()">
+
+  <!-- NOMBRE -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3" nzFor="ayn">Nombre</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input name="ayn" type="text" id="ayn" [(ngModel)]="cliente.ayn">
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- DIRECCION -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3" nzFor="dir">Dirección</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input name="dir" type="text" id="dir" [(ngModel)]="cliente.dir">
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- CODIGO POSTAL -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3" nzFor="codp">Código postal</nz-form-label>
+    <nz-form-control [nzSpan]="5">
+      <input nz-input name="codp" type="text" id="codp" [(ngModel)]="cliente.codp">
+    </nz-form-control>
+  </nz-form-item>
+
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3" nzFor="codt">Código de ciudad</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input name="codt" type="text" id="codt" [(ngModel)]="cliente.codt">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3" nzFor="tel">Teléfono</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input name="tel" type="text" id="tel" [(ngModel)]="cliente.tel">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3" nzFor="telC">Teléfono de contacto</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input name="telC" type="text" id="telC" [(ngModel)]="cliente.telC">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="3" nzFor="email">Correo electrónico</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input name="email" type="email" id="email" [(ngModel)]="cliente.email">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary">Guardar</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

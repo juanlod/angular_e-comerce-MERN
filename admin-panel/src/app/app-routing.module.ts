@@ -5,6 +5,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteComponent } from './pages/clientes/cliente/cliente.component';
+import { ClienteFormComponent } from './pages/clientes/cliente-form/cliente-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -18,17 +19,12 @@ const routes: Routes = [
     children: [
       {
         path: 'clientes',
-        loadChildren: () =>
-          import('./pages/clientes/cliente-routing.module').then(
-            (m) => m.ClienteRoutingModule
-          ),
-      },{
-        path: 'clientes/form',
-        loadChildren: () =>
-          import('./pages/clientes/cliente-routing.module').then(
-            (m) => m.ClienteRoutingModule
-          ),
-      },
+          children: [
+            {path: '', component: ClienteComponent},
+            {path: 'form', component: ClienteFormComponent},
+            {path: 'form/:id', component: ClienteFormComponent},
+          ]
+      }
     ],
   },
   {

@@ -3,8 +3,8 @@ import jwt from "jwt-simple";
 import moment from "moment";
 import { IUser } from "../models/user";
 import { IAdmin } from "../models/admin";
+import { environment } from "../environments/environment";
 
-const secret = "F4DBBEDD9239B919FF24B2D75BCA8";
 
 export function createUserToken(user: IUser) {
   let payload = {
@@ -15,7 +15,7 @@ export function createUserToken(user: IUser) {
     created_date: moment().unix(),
     expiration_date: moment().add(7, "days").unix(), // 7 dias de duracion
   };
-  return jwt.encode(payload, secret);
+  return jwt.encode(payload, environment.secret);
 }
 
 export function createAdminToken(user: IAdmin) {
@@ -29,5 +29,5 @@ export function createAdminToken(user: IAdmin) {
     rol: user.rol,
   };
 
-  return jwt.encode(payload, secret);
+  return jwt.encode(payload, environment.secret);
 }

@@ -2,7 +2,6 @@ import bcrypt from "bcrypt-nodejs";
 import express, { Request, Response } from "express";
 import { createUserToken } from "../helpers/jwt";
 
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const cliente = require("../models/cliente");
 const mascota = require("../models/mascota");
@@ -37,7 +36,7 @@ const registro_cliente = async function (req: any, res: any, next: any) {
 };
 
 /**
- * Login 
+ * Login
  * @param req
  * @param res
  */
@@ -59,23 +58,29 @@ const login_cliente = async (req: Request, res: Response) => {
      */
     bcrypt.compare(result.password, user.password, async (error, check) => {
       if (check) {
-        res.status(200).send({ user: user, token:  createUserToken(user) });
+        res.status(200).send({ user: user, token: createUserToken(user) });
       } else {
         res
-        .status(400)
-        .send({ error: "Usuario o contraseña incorrectos", data: undefined });
+          .status(400)
+          .send({ error: "Usuario o contraseña incorrectos", data: undefined });
       }
-    })
+    });
   }
 };
 
-
 /**
  * Lista clientes y mascotas. Busca cliente y mascota por nombre, Permite filtro multiple cliente,mascota
- * @param req 
- * @param res 
+ * @param req
+ * @param res
  */
 const listar_clientes_admin_rol = async (req: Request, res: Response) => {
+  
+
+  //Validador de rutas
+  if (!req.user || (req.user.rol !== "admin" && req.user.rol !== "user")) {
+    res.status(400).send({ error: "NoAccess" });
+    return;
+  }
 
   const { filtro, pagina, pageSize } = req.query;
   let regex = filtro ? new RegExp(filtro, "i") : /.*/; // Si el filtro está vacío, usamos una expresión regular que coincida con todo
@@ -83,63 +88,57 @@ const listar_clientes_admin_rol = async (req: Request, res: Response) => {
   let palabras = [];
 
   if (filtro) {
-    palabras = filtro.split(",").map(palabra => palabra.trim());
+    palabras = filtro.split(",").map((palabra) => palabra.trim());
     regex = new RegExp(palabras.join("|"), "i");
   }
 
+  // Se crea la query de mongo
   const pipeline = [
     {
-      "$lookup": {
-        "localField": "idc",
-        "from": "mascotas",
-        "foreignField": "idc",
-        "as": "mascotas"
-      }
+      $lookup: {
+        localField: "idc",
+        from: "mascotas",
+        foreignField: "idc",
+        as: "mascotas",
+      },
     },
     {
-      "$match": { 
-        $or: [
-          { "ayn": regex },
-          { "mascotas.nom": regex }
-        ]
-      }
+      $match: {
+        $or: [{ ayn: regex }, { "mascotas.nom": regex }],
+      },
     },
     {
-      "$sort": {
-          "mascotas.nom": 1,
-          ayn: 1
-      }
-  },
-    {
-      "$skip": offset
+      $sort: {
+        "mascotas.nom": 1,
+        ayn: 1,
+      },
     },
     {
-      "$limit":  parseInt(pageSize),
-    }
-  
+      $skip: offset,
+    },
+    {
+      $limit: parseInt(pageSize),
+    },
   ];
 
+    // Se cuentan los resultados
   const resultados = await cliente.aggregate(pipeline);
+  const total_resultadosCliente = await cliente.countDocuments({ ayn: regex });
+  const total_resultadosMascota = await mascota.countDocuments({ nom: regex });
+  const total_resultados = total_resultadosCliente
+    ? total_resultadosCliente
+    : total_resultadosMascota;
 
-  const queryCliente =  { ayn: regex };
-  const queryMascota = { nom:  regex };
-
-  const total_resultadosCliente = await cliente.countDocuments(queryCliente);
-  const total_resultadosMascota= await mascota.countDocuments(queryMascota);
-  const total_resultados = total_resultadosCliente ? total_resultadosCliente : total_resultadosMascota;
-
-  res.status(200).send({ 
+  res.status(200).send({
     data: resultados,
     pagina_actual: pagina,
-    total_paginas: Math.ceil((total_resultados) / pageSize),
-    total_resultados: (total_resultados)
+    total_paginas: Math.ceil(total_resultados / pageSize),
+    total_resultados: total_resultados,
   });
-}
-
+};
 
 module.exports = {
   registro_cliente,
   login_cliente,
-  listar_clientes_admin_rol
+  listar_clientes_admin_rol,
 };
-

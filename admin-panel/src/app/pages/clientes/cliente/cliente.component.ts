@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { Observable, Subscription, lastValueFrom, of } from 'rxjs';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-cliente',
@@ -19,12 +21,14 @@ export class ClienteComponent implements OnInit {
   visible = false;
   expandSet = new Set<number>();
 
-  constructor(private clienteService: ClienteService) {}
+  constructor(
+    private clienteService: ClienteService,
+    private router: Router,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
-    // this.listarClientes();
   }
-
 
   /**
    * Obtiene la lista de clientes
@@ -32,17 +36,26 @@ export class ClienteComponent implements OnInit {
   async listarClientes() {
     this.loading = true;
     this.clientes = [];
-    const response = (await lastValueFrom(
-      this.clienteService.listar_clientes_admin_rol(
+    const response = await lastValueFrom(
+      this.clienteService.listar_clientes(
         this.filtro,
         this.pageIndex,
         this.pageSize
       )
-    )) as any;
-    this.clientes = response.data;
-    this.totalResults = response.total_resultados;
-    this.totalPages = response.total_paginas > 0 ? response.total_paginas : 1;
-    this.loading = false;
+    ).catch((error) => {
+      this.clientes = [];
+      this.totalResults = 0;
+      this.totalPages = 0;
+      this.loading = false;
+    });
+
+    if (response) {
+      this.clientes = response.data;
+      this.totalResults = response.total_resultados;
+      this.totalPages = response.total_paginas > 0 ? response.total_paginas : 1;
+      this.loading = false;
+    }
+
   }
 
   /**
@@ -71,7 +84,6 @@ export class ClienteComponent implements OnInit {
    * Realiza la busqueda
    */
   search(): void {
-
     this.visible = false;
     this.listarClientes();
   }
@@ -89,18 +101,19 @@ export class ClienteComponent implements OnInit {
     }
   }
 
-/**
- * Comprueba si existe el nombre del cliente en el filtro de palabras
- * @param cliente
- * @returns
- */
+  /**
+   * Comprueba si existe el nombre del cliente en el filtro de palabras
+   * @param cliente
+   * @returns
+   */
   checkFiltro(cliente: any): boolean {
-
     if (!this.filtro) {
       return false;
     }
     const palabras = this.filtro.split(',').map((p) => p.trim());
-    return palabras.some((p) => cliente.ayn.toLowerCase().includes(p.toLowerCase()));
+    return palabras.some((p) =>
+      cliente.ayn.toLowerCase().includes(p.toLowerCase())
+    );
   }
 
   /**
@@ -118,8 +131,7 @@ export class ClienteComponent implements OnInit {
     return palabrasClave.some((p) => mascotaNombre.includes(p.toLowerCase()));
   }
 
-
   addClient() {
-    console.log('add')
+    this.router.navigate(['dashboard/clientes/form']);
   }
 }
