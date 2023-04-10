@@ -22,6 +22,12 @@ const routes: Routes = [
           import('./pages/clientes/cliente-routing.module').then(
             (m) => m.ClienteRoutingModule
           ),
+      },{
+        path: 'clientes/form',
+        loadChildren: () =>
+          import('./pages/clientes/cliente-routing.module').then(
+            (m) => m.ClienteRoutingModule
+          ),
       },
     ],
   },

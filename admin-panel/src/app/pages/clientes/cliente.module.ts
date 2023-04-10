@@ -5,12 +5,14 @@ import { ClienteRoutingModule } from './cliente-routing.module';
 import { NgZorroModule } from '../../../app/ng-zorro.module';
 import { MaterialModule } from '../../../app/material.module';
 import { FormsModule } from '@angular/forms';
+import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 
 
 
 @NgModule({
   declarations: [
-    ClienteComponent
+    ClienteComponent,
+    ClienteFormComponent
   ],
   imports: [
     CommonModule,

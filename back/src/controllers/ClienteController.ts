@@ -70,13 +70,22 @@ const login_cliente = async (req: Request, res: Response) => {
 };
 
 
-
+/**
+ * Lista clientes y mascotas. Busca cliente y mascota por nombre, Permite filtro multiple cliente,mascota
+ * @param req 
+ * @param res 
+ */
 const listar_clientes_admin_rol = async (req: Request, res: Response) => {
 
   const { filtro, pagina, pageSize } = req.query;
-  const regex = filtro ? new RegExp(filtro, "i") : /.*/; // Si el filtro está vacío, usamos una expresión regular que coincida con todo
+  let regex = filtro ? new RegExp(filtro, "i") : /.*/; // Si el filtro está vacío, usamos una expresión regular que coincida con todo
   const offset = (pagina - 1) * pageSize;
+  let palabras = [];
 
+  if (filtro) {
+    palabras = filtro.split(",").map(palabra => palabra.trim());
+    regex = new RegExp(palabras.join("|"), "i");
+  }
 
   const pipeline = [
     {

@@ -1,3 +1,7 @@
+
+<button nz-button (click)="addClient()" nzType="primary">Nuevo cliente</button>
+<br>
+<br>
 <nz-table #basicTable nzShowSizeChanger [nzData]="clientes" [nzFrontPagination]="false" [nzLoading]="loading"
   [nzTotal]="totalResults" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
   (nzQueryParams)="onQueryParamsChange($event)" nzTableLayout="fixed">
@@ -12,20 +16,42 @@
       </th>
       <th nzColumnKey="dir" [nzSortFn]="true">Dirección</th>
       <th nzColumnKey="email" [nzSortFn]="true">Email</th>
+      <th nzColumnKey="email" [nzSortFn]="true">Teléfono</th>
+      <th nzWidth="100px">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <ng-container *ngFor="let cliente of basicTable.data">
-    <tr [ngClass]="{'contains-pet': checkFiltro(cliente) && filtro}">
-      <td [nzExpand]="expandSet.has(cliente.idc)" (nzExpandChange)="onExpandChange(cliente.idc, $event)"></td>
-      <td>{{ cliente.ayn }}</td>
+    <tr >
+      <td *ngIf="cliente?.mascotas?.length > 0" [nzExpand]="expandSet.has(cliente.idc)" (nzExpandChange)="onExpandChange(cliente.idc, $event)"></td>
+      <td *ngIf="cliente?.mascotas?.length === 0"></td>
+      <td [ngClass]="{'contains-pet': checkFiltro(cliente)}">{{ cliente.ayn }}</td>
       <td>{{ cliente.dir }}</td>
       <td>{{ cliente.email }}</td>
+      <td>
+        <span *ngIf="cliente.tel">
+        {{ cliente.tel }}  <nz-divider nzType="vertical"></nz-divider>
+      </span>
+      <!-- <span *ngIf="cliente.tel2">
+        {{ cliente.tel2 }}  <nz-divider nzType="vertical"></nz-divider>
+      </span> -->
+      <span *ngIf="cliente.telC">
+        {{ cliente.telC }}  <nz-divider nzType="vertical"></nz-divider>
+      </span>
+      <span *ngIf="cliente.telC2">
+        {{ cliente.telC2 }}  <nz-divider nzType="vertical"></nz-divider>
+      </span>
+    </td>
+      <td>
+        <a class="table-icon"><span nz-icon nzType="edit" nzTheme="outline"></span></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a class="table-icon"><span nz-icon nzType="delete" nzTheme="outline"></span></a>
+      </td>
     </tr>
-    <tr [nzExpand]="expandSet.has(cliente.idc)">
+    <tr  [nzExpand]="expandSet.has(cliente.idc)">
         <th>Mascotas </th>
       <ng-container *ngFor="let mascota of cliente.mascotas">
-        <a [ngClass]="{'contains-pet' : mascota.nom.toLowerCase().includes(filtro.toLowerCase()) }">{{ mascota.nom }}</a> <nz-divider nzType="vertical"></nz-divider>
+        <a [ngClass]="{'contains-pet' : checkFiltroMascota(mascota) }">{{ mascota.nom }}</a> <nz-divider nzType="vertical"></nz-divider>
       </ng-container>
     </tr>
     </ng-container>
