@@ -92,8 +92,40 @@ const listar_clientes_admin_rol = async (req: Request, res: Response) => {
     regex = new RegExp(palabras.join("|"), "i");
   }
 
-  // Se crea la query de mongo
-  const pipeline = [
+   // Se crea la pipeline de mongo
+
+
+  
+   const pipeline = palabras.length > 1 ? [
+    {
+      $lookup: {
+        localField: "idc",
+        from: "mascotas",
+        foreignField: "idc",
+        as: "mascotas",
+      },
+    },
+  
+    {
+      $match: {
+        ayn: regex,
+        "mascotas.nom": regex,
+      },
+    },
+    {
+      $sort: {
+        "mascotas.nom": 1,
+        ayn: 1,
+      },
+    },
+    {
+      $skip: offset,
+    },
+    {
+      $limit: parseInt(pageSize),
+    },
+  ] : 
+  [
     {
       $lookup: {
         localField: "idc",
@@ -123,11 +155,15 @@ const listar_clientes_admin_rol = async (req: Request, res: Response) => {
 
     // Se cuentan los resultados
   const resultados = await cliente.aggregate(pipeline);
-  const total_resultadosCliente = await cliente.countDocuments({ ayn: regex });
-  const total_resultadosMascota = await mascota.countDocuments({ nom: regex });
-  const total_resultados = total_resultadosCliente
-    ? total_resultadosCliente
-    : total_resultadosMascota;
+  let total_resultados = 0;
+
+  if (palabras.length <= 1) {
+    const total_resultadosCliente = await cliente.countDocuments({ ayn: regex });
+    const total_resultadosMascota = await mascota.countDocuments({ nom: regex });
+    total_resultados = total_resultadosCliente ? total_resultadosCliente : total_resultadosMascota;
+  } else {
+    total_resultados = resultados.length;
+  }
 
   res.status(200).send({
     data: resultados,

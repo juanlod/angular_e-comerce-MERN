@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { Observable, Subscription, lastValueFrom, of } from 'rxjs';
+import { lastValueFrom} from 'rxjs';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Mascota } from '../../../models/mascota';
 
 @Component({
   selector: 'app-cliente',
@@ -27,8 +28,7 @@ export class ClienteComponent implements OnInit {
     private notificationService: NotificationService
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   /**
    * Obtiene la lista de clientes
@@ -55,7 +55,6 @@ export class ClienteComponent implements OnInit {
       this.totalPages = response.total_paginas > 0 ? response.total_paginas : 1;
       this.loading = false;
     }
-
   }
 
   /**
@@ -102,7 +101,7 @@ export class ClienteComponent implements OnInit {
   }
 
   /**
-   * Comprueba si existe el nombre del cliente en el filtro de palabras
+   * Comprueba si existe el nombre del cliente o la mascota en el filtro de palabras
    * @param cliente
    * @returns
    */
@@ -111,9 +110,31 @@ export class ClienteComponent implements OnInit {
       return false;
     }
     const palabras = this.filtro.split(',').map((p) => p.trim());
-    return palabras.some((p) =>
-      cliente.ayn.toLowerCase().includes(p.toLowerCase())
-    );
+    // Si existe nombre de cliente y mascota
+    if (palabras.length > 1 && cliente.mascotas) {
+
+      cliente.mascotas.forEach(mascota => {
+       return (mascota.nom.toLowerCase().includes(this.filtro.toLowerCase() && palabras.some((p) =>
+        cliente.ayn.toLowerCase().includes(p.toLowerCase()))))
+      });
+
+      return palabras.some((p) =>
+        cliente.ayn.toLowerCase().includes(p.toLowerCase())
+      );
+    } else {
+      // Si solo existe nombre de mascota
+      if (cliente.mascotas) {
+
+          for (const mascota of cliente.mascotas) {
+            if (mascota.nom.toLowerCase().includes(this.filtro.toLowerCase())) {
+              return true;
+            }
+
+          }
+
+      }
+    }
+    return false;
   }
 
   /**
