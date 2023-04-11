@@ -109,8 +109,8 @@ const getClients = async (req: Request, res: Response) => {
   res.status(200).send({
     data: results,
     pagina_actual: pagina,
-    total_paginas: Math.ceil(count_values / pageSize),
-    total_resultados: count_values,
+    total_paginas: Math.ceil(count_values.length / pageSize),
+    total_resultados: count_values.length,
   });
 };
 
