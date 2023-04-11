@@ -10,13 +10,13 @@ const api = express.Router();
 
 
 // Url vinculada a la funcion registro_cliente del controlador cliente controller
-api.post('/registro_cliente', clienteController.registro_cliente)
+api.post('/save_client', clienteController.saveClient)
 
 // Login
-api.post('/login_cliente', clienteController.login_cliente)
+api.post('/login_client', clienteController.loginClient)
 
 // Se protege la ruta con la funcion auth
-api.get('/listar_clientes_admin_rol', auth, clienteController.listar_clientes_admin_rol)
+api.get('/get_clients', auth, clienteController.getClients)
 
 module.exports = api;
 

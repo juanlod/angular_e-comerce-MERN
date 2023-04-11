@@ -29,7 +29,7 @@ export class ClienteService {
       .set('filtro', filtro)
       .set('pagina', pagina?.toString())
       .set('pageSize', pageSize?.toString());
-    return this.http.get(`${this.API_URL}/listar_clientes_admin_rol`, {headers: this.getHttpHeaders(),  params: params });
+    return this.http.get(`${this.API_URL}/get_clients`, {headers: this.getHttpHeaders(),  params: params });
   }
 
 

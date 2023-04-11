@@ -1,12 +1,16 @@
 import bcrypt from "bcrypt-nodejs";
 import express, { Request, Response } from "express";
 import { createUserToken } from "../helpers/jwt";
+import {
+  countValues, getMultiFilterClients, getSingleFilterClients,
+} from "../repositories/clienteRepository";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const cliente = require("../models/cliente");
 const mascota = require("../models/mascota");
 
-const registro_cliente = async function (req: any, res: any, next: any) {
+
+const saveClient = async function (req: any, res: any, next: any) {
   //Se reciben los datos del usuario
   let data = req.body;
 
@@ -40,7 +44,7 @@ const registro_cliente = async function (req: any, res: any, next: any) {
  * @param req
  * @param res
  */
-const login_cliente = async (req: Request, res: Response) => {
+const loginClient = async (req: Request, res: Response) => {
   let result = req.body;
   let clientes = [];
 
@@ -73,108 +77,45 @@ const login_cliente = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const listar_clientes_admin_rol = async (req: Request, res: Response) => {
-  
-
-  //Validador de rutas
+const getClients = async (req: Request, res: Response) => {
+  // Route validatoe
   if (!req.user || (req.user.rol !== "admin" && req.user.rol !== "user")) {
     res.status(400).send({ error: "NoAccess" });
     return;
   }
 
   const { filtro, pagina, pageSize } = req.query;
-  let regex = filtro ? new RegExp(filtro, "i") : /.*/; // Si el filtro está vacío, usamos una expresión regular que coincida con todo
+  // If the filter is empty, we use a regular expression that matches everything
+  let regex = filtro ? new RegExp(filtro, "i") : /.*/;
   const offset = (pagina - 1) * pageSize;
-  let palabras = [];
+  let words = [];
 
   if (filtro) {
-    palabras = filtro.split(",").map((palabra) => palabra.trim());
-    regex = new RegExp(palabras.join("|"), "i");
+    words = filtro.split(",").map((word) => word.trim());
+    regex = new RegExp(words.join("|"), "i");
   }
 
-   // Se crea la pipeline de mongo
+  // Build the pipeline
+  const pipeline =
+    words.length > 1
+      ? getMultiFilterClients(regex, offset, pageSize)
+      : getSingleFilterClients(regex, offset, pageSize);
 
+  // Count the results
+  const results = await cliente.aggregate(pipeline);
 
-  
-   const pipeline = palabras.length > 1 ? [
-    {
-      $lookup: {
-        localField: "idc",
-        from: "mascotas",
-        foreignField: "idc",
-        as: "mascotas",
-      },
-    },
-  
-    {
-      $match: {
-        ayn: regex,
-        "mascotas.nom": regex,
-      },
-    },
-    {
-      $sort: {
-        "mascotas.nom": 1,
-        ayn: 1,
-      },
-    },
-    {
-      $skip: offset,
-    },
-    {
-      $limit: parseInt(pageSize),
-    },
-  ] : 
-  [
-    {
-      $lookup: {
-        localField: "idc",
-        from: "mascotas",
-        foreignField: "idc",
-        as: "mascotas",
-      },
-    },
-    {
-      $match: {
-        $or: [{ ayn: regex }, { "mascotas.nom": regex }],
-      },
-    },
-    {
-      $sort: {
-        "mascotas.nom": 1,
-        ayn: 1,
-      },
-    },
-    {
-      $skip: offset,
-    },
-    {
-      $limit: parseInt(pageSize),
-    },
-  ];
-
-    // Se cuentan los resultados
-  const resultados = await cliente.aggregate(pipeline);
-  let total_resultados = 0;
-
-  if (palabras.length <= 1) {
-    const total_resultadosCliente = await cliente.countDocuments({ ayn: regex });
-    const total_resultadosMascota = await mascota.countDocuments({ nom: regex });
-    total_resultados = total_resultadosCliente ? total_resultadosCliente : total_resultadosMascota;
-  } else {
-    total_resultados = resultados.length;
-  }
+  const count_values = await cliente.aggregate(countValues(regex));
 
   res.status(200).send({
-    data: resultados,
+    data: results,
     pagina_actual: pagina,
-    total_paginas: Math.ceil(total_resultados / pageSize),
-    total_resultados: total_resultados,
+    total_paginas: Math.ceil(count_values / pageSize),
+    total_resultados: count_values,
   });
 };
 
 module.exports = {
-  registro_cliente,
-  login_cliente,
-  listar_clientes_admin_rol,
+  saveClient,
+  loginClient,
+  getClients,
 };

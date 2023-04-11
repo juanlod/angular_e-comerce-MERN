@@ -84,6 +84,7 @@ export class ClienteComponent implements OnInit {
    */
   search(): void {
     this.visible = false;
+    this.pageIndex = 1;
     this.listarClientes();
   }
 
