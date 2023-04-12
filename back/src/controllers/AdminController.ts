@@ -12,7 +12,7 @@ const admin = require("../models/admin");
  * @param res 
  * @param next 
  */
-const registro_admin = async function (req: any, res: any, next: any) {
+export async function registro_admin (req: any, res: any, next: any) {
   //Se reciben los datos del usuario
   let data = req.body;
 
@@ -26,7 +26,7 @@ const registro_admin = async function (req: any, res: any, next: any) {
         // Se encripta la contraseña
       bcrypt.hash(data.password, null, null, async (err, hash) => {
         if (hash) {
-          console.log(hash);
+
           data.password = hash;
           let reg = await admin.create(data);
           res.status(200).send({ data: reg });
@@ -47,7 +47,7 @@ const registro_admin = async function (req: any, res: any, next: any) {
  * @param req
  * @param res
  */
-const login_admin = async (req: Request, res: Response) => {
+export async function login_admin(req: Request, res: Response) {
   let result = req.body;
   let admins = [];
 
@@ -73,9 +73,4 @@ const login_admin = async (req: Request, res: Response) => {
       }
     })
   }
-};
-
-module.exports = {
-  registro_admin,
-  login_admin
 };

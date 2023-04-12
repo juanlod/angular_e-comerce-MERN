@@ -61,4 +61,4 @@ const Mascota = new Schema<IMascota>({
 
 
 // Exportacion de la clase
-module.exports = mongoose.model('mascota', Mascota);
+module.exports = mongoose.model('mascotas', Mascota);

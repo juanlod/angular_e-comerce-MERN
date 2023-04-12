@@ -9,6 +9,8 @@ let app = express();
 let port = process.env.PORT || 4201;
 let client_route = require("./routes/cliente");
 let admin_route = require("./routes/admin");
+let provincia_route = require("./routes/provincia");
+let localidad_route = require("./routes/localidad");
 
 // Conexion a la base de datos
 mongoose.set('strictQuery', false);
@@ -51,6 +53,8 @@ app.use(function (req: Request, res: Response, nextFunc) {
 
 app.use('/api', client_route)
 app.use('/api', admin_route)
+app.use('/api', provincia_route)
+app.use('/api', localidad_route)
 
 
 // Exportacion del modulo

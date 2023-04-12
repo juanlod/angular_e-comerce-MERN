@@ -50,7 +50,9 @@
     <nz-form-item>
       <nz-form-label [nzSpan]="7" nzFor="codt">Localidad</nz-form-label>
       <nz-form-control [nzSpan]="15">
-        <input nz-input name="codt" type="text" id="codt" [(ngModel)]="cliente.codt">
+        <nz-select nzShowSearch  nzAllowClear nzPlaceHolder="Seleccione localidad" [(ngModel)]="cliente.Loc" name="loc">
+          <nz-option *ngFor="let option of localidades" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
+        </nz-select>
       </nz-form-control>
     </nz-form-item>
   </div>
@@ -63,6 +65,8 @@
         <input nz-input name="tel" type="text" id="tel" [(ngModel)]="cliente.tel">
       </nz-form-control>
     </nz-form-item>
+
+
 
     <!-- TELEFONO CONTACTO -->
     <nz-form-item>
@@ -83,13 +87,15 @@
     </nz-form-item>
 
 
-    <!-- MARK -->
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzFor="mark">Marca</nz-form-label>
-      <nz-form-control [nzSpan]="15">
-        <input nz-input name="mark" type="number" id="mark" [(ngModel)]="cliente.mark">
-      </nz-form-control>
-    </nz-form-item>
+   <!-- PROVINCIA -->
+   <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzFor="codt">Provincia</nz-form-label>
+    <nz-form-control [nzSpan]="15">
+      <nz-select nzShowSearch  nzAllowClear nzPlaceHolder="Seleccione provincia" [(ngModel)]="cliente.Dep" name="dep">
+        <nz-option *ngFor="let option of provincias" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
 
   </div>
 
@@ -97,26 +103,9 @@
   <div class="column-2">
     <!-- FECI -->
     <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzFor="feci">Fecha de Nacimiento</nz-form-label>
+      <nz-form-label [nzSpan]="7" nzFor="feci">Fecha de registro</nz-form-label>
       <nz-form-control [nzSpan]="15">
-        <input nz-input name="feci" type="date" id="feci" [(ngModel)]="cliente.feci">
-      </nz-form-control>
-    </nz-form-item>
-
-    <!-- FECU -->
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzFor="fecu">Fecha indeterminada</nz-form-label>
-      <nz-form-control [nzSpan]="15">
-        <input nz-input name="fecu" type="date" id="fecu" [(ngModel)]="cliente.fecu">
-      </nz-form-control>
-    </nz-form-item>
-  </div>
-  <div class="column-2">
-    <!-- MOTUV -->
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzFor="motuv">Motivo de Actualización</nz-form-label>
-      <nz-form-control [nzSpan]="15">
-        <textarea nz-input name="motuv" id="motuv" [(ngModel)]="cliente.motuv"></textarea>
+        <input nz-input name="feci" type="date" id="feci" [(ngModel)]="cliente.feci" [disabled]="true">
       </nz-form-control>
     </nz-form-item>
 
@@ -131,109 +120,77 @@
 
   <div class="column-2">
     <!-- OBRA -->
-    <nz-form-item>
+    <!-- <nz-form-item>
       <nz-form-label [nzSpan]="7" nzFor="obra">Obra</nz-form-label>
       <nz-form-control [nzSpan]="15">
         <input nz-input name="obra" type="number" id="obra" [(ngModel)]="cliente.obra">
       </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> -->
 
     <!-- FALTA MAIL -->
-    <nz-form-item>
+    <!-- <nz-form-item>
       <nz-form-label [nzSpan]="7" nzFor="faltaMail">¿Falta Correo Electrónico?</nz-form-label>
       <nz-form-control [nzSpan]="15">
         <nz-switch name="faltaMail" id="faltaMail" [(ngModel)]="cliente.FaltaMail"></nz-switch>
       </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> -->
   </div>
 
   <!-- FaltaDir -->
   <div class="column-2">
-  <nz-form-item>
+  <!-- <nz-form-item>
     <nz-form-label [nzSpan]="7" nzFor="FaltaDir">FaltaDir</nz-form-label>
     <nz-form-control [nzSpan]="15">
       <nz-switch id="FaltaDir" [(ngModel)]="cliente.FaltaDir" name="faltaDir"></nz-switch>
     </nz-form-control>
-  </nz-form-item>
+  </nz-form-item> -->
 
   <!-- Perfil1 -->
-  <nz-form-item>
+  <!-- <nz-form-item>
     <nz-form-label [nzSpan]="7" nzFor="Perfil1">Perfil1</nz-form-label>
     <nz-form-control [nzSpan]="15">
       <nz-switch id="Perfil1" [(ngModel)]="cliente.Perfil1" name="perfil1"></nz-switch>
     </nz-form-control>
-  </nz-form-item>
+  </nz-form-item> -->
 </div>
 
 <div class="column-2">
   <!-- Perfil2 -->
-  <nz-form-item>
+  <!-- <nz-form-item>
     <nz-form-label [nzSpan]="7" nzFor="Perfil2">Perfil2</nz-form-label>
     <nz-form-control [nzSpan]="15">
       <nz-switch id="Perfil2" [(ngModel)]="cliente.Perfil2" name="perfil2"></nz-switch>
     </nz-form-control>
-  </nz-form-item>
+  </nz-form-item> -->
 
   <!-- Perfil3 -->
-  <nz-form-item>
+  <!-- <nz-form-item>
     <nz-form-label [nzSpan]="7" nzFor="Perfil3">Perfil3</nz-form-label>
     <nz-form-control [nzSpan]="15">
       <nz-switch id="Perfil3" [(ngModel)]="cliente.Perfil3" name="perfil3"></nz-switch>
     </nz-form-control>
-  </nz-form-item>
+  </nz-form-item> -->
 </div>
 
 <div class="column-2">
   <!-- Perfil4 -->
-  <nz-form-item>
+  <!-- <nz-form-item>
     <nz-form-label [nzSpan]="7" nzFor="Perfil4">Perfil4</nz-form-label>
     <nz-form-control [nzSpan]="15">
       <nz-switch id="Perfil4" [(ngModel)]="cliente.Perfil4" name="perfil4"></nz-switch>
     </nz-form-control>
-  </nz-form-item>
+  </nz-form-item> -->
 
   <!-- Perfil5 -->
-  <nz-form-item>
+  <!-- <nz-form-item>
     <nz-form-label [nzSpan]="7" nzFor="Perfil5">Perfil5</nz-form-label>
     <nz-form-control [nzSpan]="15">
       <nz-switch id="Perfil5" [(ngModel)]="cliente.Perfil5" name="perfil5"></nz-switch>
     </nz-form-control>
-  </nz-form-item>
+  </nz-form-item> -->
 </div>
 
-<div class="column-2">
-  <!-- Localidad -->
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzFor="Loc">Loc</nz-form-label>
-    <nz-form-control [nzSpan]="15">
-      <input nz-input name="Loc" type="number" id="Loc" [(ngModel)]="cliente.Loc" name="loc">
-    </nz-form-control>
-  </nz-form-item>
 
-  <!-- Dep -->
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzFor="Dep">Dep</nz-form-label>
-    <nz-form-control [nzSpan]="15">
-      <input nz-input name="Dep" type="number" id="Dep" [(ngModel)]="cliente.Dep" name="dep">
-    </nz-form-control>
-  </nz-form-item>
-</div>
-
-<div class="column-2">
-  <!-- tel2 -->
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzFor="tel2">Telefono 2</nz-form-label>
-    <nz-form-control [nzSpan]="15">
-      <input nz-input name="tel2" type="text" id="tel2" [(ngModel)]="cliente.tel2" name="tel2">
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-
-      <nz-form-control></nz-form-control>
-
-    </nz-form-item>
-</div>
   <div class="column-2 obs">
     <nz-form-item>
       <nz-form-label [nzSpan]="3" nzFor="obs">Observaciones </nz-form-label>

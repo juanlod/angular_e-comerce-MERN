@@ -10,33 +10,8 @@ const cliente = require("../models/cliente");
 const mascota = require("../models/mascota");
 
 
-const saveClient = async function (req: any, res: any, next: any) {
-  //Se reciben los datos del usuario
-  let data = req.body;
+export async function saveClient(req: any, res: any, next: any) {
 
-  let clientes = [];
-  clientes = await cliente.find({ email: data.email });
-
-  if (clientes.length === 0) {
-    // Se almacenan los datos del cliente
-
-    if (data.password) {
-      // Se encripta la contraseña
-      bcrypt.hash(data.password, null, null, async (err, hash) => {
-        if (hash) {
-          data.password = hash;
-          let reg = await cliente.create(data);
-          res.status(200).send({ data: reg });
-        }
-      });
-    } else {
-      res
-        .status(400)
-        .send({ error: "Debe especificar una contraseña", data: undefined });
-    }
-  } else {
-    res.status(400).send({ error: "El correo ya existe", data: undefined });
-  }
 };
 
 /**
@@ -44,7 +19,7 @@ const saveClient = async function (req: any, res: any, next: any) {
  * @param req
  * @param res
  */
-const loginClient = async (req: Request, res: Response) => {
+export async function loginClient(req: Request, res: Response) {
   let result = req.body;
   let clientes = [];
 
@@ -77,7 +52,7 @@ const loginClient = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const getClients = async (req: Request, res: Response) => {
+export async function getClients(req: Request, res: Response) {
   // Route validatoe
   if (!req.user || (req.user.rol !== "admin" && req.user.rol !== "user")) {
     res.status(400).send({ error: "NoAccess" });
@@ -106,10 +81,4 @@ const getClients = async (req: Request, res: Response) => {
     total_paginas: Math.ceil(count_values.length / pageSize),
     total_resultados: count_values.length
   });
-};
-
-module.exports = {
-  saveClient,
-  loginClient,
-  getClients,
 };

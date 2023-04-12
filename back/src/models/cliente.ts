@@ -74,8 +74,8 @@ const Cliente = new Schema<ICliente>({
   codt2: { type: String, required: false },
   codp2: { type: String, required: false },
   Identif: { type: String, required: true },
-  mascotas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'mascota' }],
+  mascotas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'mascotas' }],
 })
 
 // Exportacion de la clase
-module.exports = mongoose.model('cliente', Cliente);
+module.exports = mongoose.model('clientes', Cliente);

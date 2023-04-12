@@ -1,5 +1,7 @@
 'use strict'
 import express from 'express';
+import { auth } from '../middlewares/authenticate';
+import { login_admin, registro_admin } from '../controllers/AdminController';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 
@@ -7,9 +9,9 @@ import express from 'express';
 const adminController = require('../controllers/AdminController');
 const api = express.Router();
 // Url vinculada a la funcion registro_admin del controlador admin controller
-api.post('/registro_admin', adminController.registro_admin)
+api.post('/registro_admin', auth , registro_admin)
 // Login
-api.post('/login_admin', adminController.login_admin)
+api.post('/login_admin', login_admin)
 
 
 module.exports = api;

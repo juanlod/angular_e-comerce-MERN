@@ -9,7 +9,7 @@ import { AdminService } from './admin.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ClienteService {
+export class LocalidadService {
   private API_URL = environment.apiUrl;
   private helper = new JwtHelperService();
 
@@ -24,14 +24,28 @@ export class ClienteService {
    * @param pageSize
    * @returns
    */
-  listar_clientes(filtro?: string, pagina?: number, pageSize?: number): Observable<any> {
+  getPagingLocalidades(filtro?: string, pagina?: number, pageSize?: number): Observable<any> {
     const params = new HttpParams()
       .set('filtro', filtro)
       .set('pagina', pagina?.toString())
       .set('pageSize', pageSize?.toString());
-    return this.http.get(`${this.API_URL}/get_clients`, {headers: this.getHttpHeaders(),  params: params });
+    return this.http.get(`${this.API_URL}/localidades/get_localidades`, {headers: this.getHttpHeaders(),  params: params });
   }
 
+  /**
+   * Lista clientes y sus mascotas
+   * @param filtro
+   * @param pagina
+   * @param pageSize
+   * @returns
+   */
+  getAllLocalidades(): Observable<any> {
+    const params = new HttpParams()
+      .set('filtro', '')
+      .set('pagina', '0')
+      .set('pageSize', '9999');
+    return this.http.get(`${this.API_URL}/localidades/get_localidades`, {headers: this.getHttpHeaders(),  params: params });
+  }
 
 
   /**

@@ -24,9 +24,15 @@ const Errors = {
       error = Errors.NO_HEADERS;
     }
   
-    let token = req.headers.authorization.replace('Bearer ', '').replace(new RegExp(/['"]+/g, ""));
-    let segment = token.split(".");
-  
+    let token = req.headers.authorization?.replace('Bearer ', '').replace(new RegExp(/['"]+/g, ""));
+
+    if (!token) {
+      isValid = false;
+      error = Errors.INVALID_TOKEN;
+      return res.status(403).send({ error });
+    }
+
+    let segment = token?.split(".");
     if (segment.length !== 3) {
       isValid = false;
       error = Errors.INVALID_TOKEN;
