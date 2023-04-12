@@ -6,9 +6,9 @@
  * @param pageSize 
  * @returns 
  */
-export function getMultiFilterClients(regex, offset, pageSize) {
+export function getClientListPipeline(regex, offset, pageSize, wordsLength) {
 
-    return [
+    return wordsLength > 1 ? 
         [
             {
               $lookup: {
@@ -38,6 +38,35 @@ export function getMultiFilterClients(regex, offset, pageSize) {
               $limit: parseInt(pageSize),
             },
           ]
+    : [
+      {
+        $lookup: {
+          localField: "idc",
+          from: "mascotas",
+          foreignField: "idc",
+          as: "mascotas",
+        },
+      },
+      {
+        $match: {
+          $or: [
+            { ayn: regex },
+            { "mascotas": { $elemMatch: { nom: regex } } }
+          ],
+        },
+      },
+      {
+        $sort: {
+          "mascotas.nom": 1,
+          ayn: 1,
+        },
+      },
+      {
+        $skip: offset,
+      },
+      {
+        $limit: parseInt(pageSize),
+      },
     ]
   };
   
@@ -49,66 +78,64 @@ export function getMultiFilterClients(regex, offset, pageSize) {
  * @param pageSize 
  * @returns 
  */
-export function getSingleFilterClients(regex, offset, pageSize) {
+// export function getSingleFilterClients(regex, offset, pageSize) {
 
-  return [
-    {
-      $lookup: {
-        localField: "idc",
-        from: "mascotas",
-        foreignField: "idc",
-        as: "mascotas",
-      },
-    },
-    {
-      $match: {
-        $or: [
-          { ayn: regex },
-          { "mascotas": { $elemMatch: { nom: regex } } }
-        ],
-      },
-    },
-    {
-      $sort: {
-        "mascotas.nom": 1,
-        ayn: 1,
-      },
-    },
-    {
-      $skip: offset,
-    },
-    {
-      $limit: parseInt(pageSize),
-    },
-  ];
-};
+//   return ;
+// };
 
 /**
  * Count the matches
  * @param regex 
  * @returns 
  */
-export function countValues(regex) {
+export function countValues(regex, wordsLength) {
 
-  return [
-    {
-      "$lookup": {
-        "localField": "idc",
-        "from": "mascotas",
-        "foreignField": "idc",
-        "as": "mascotas"
-      }
-    },
-    {
-      "$match": {
-        $or: [{ ayn: regex }, { "mascotas.nom": regex }],
+  return wordsLength > 1 ? 
+  [
+      {
+        $lookup: {
+          localField: "idc",
+          from: "mascotas",
+          foreignField: "idc",
+          as: "mascotas",
+        },
       },
-    },
-    {
-      "$group": {
-        "_id": "$_id",
-        "count": { "$sum": 1 }
-      }
-    }
-  ];
+    
+      {
+        $match: {
+          ayn: regex,
+          "mascotas.nom": regex,
+        },
+      },
+      {
+        $sort: {
+          "mascotas.nom": 1,
+          ayn: 1,
+        },
+      },
+    ]
+: [
+{
+  $lookup: {
+    localField: "idc",
+    from: "mascotas",
+    foreignField: "idc",
+    as: "mascotas",
+  },
+},
+{
+  $match: {
+    $or: [
+      { ayn: regex },
+      { "mascotas": { $elemMatch: { nom: regex } } }
+    ],
+  },
+},
+{
+  $sort: {
+    "mascotas.nom": 1,
+    ayn: 1,
+  },
+}
+];
 };

@@ -2,7 +2,7 @@ import bcrypt from "bcrypt-nodejs";
 import express, { Request, Response } from "express";
 import { createUserToken } from "../helpers/jwt";
 import {
-  countValues, getMultiFilterClients, getSingleFilterClients,
+  countValues, getClientListPipeline
 } from "../repositories/clienteRepository";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -95,22 +95,16 @@ const getClients = async (req: Request, res: Response) => {
     regex = new RegExp(words.join("|"), "i");
   }
 
-  // Build the pipeline
-  const pipeline =
-    words.length > 1
-      ? getMultiFilterClients(regex, offset, pageSize)
-      : getSingleFilterClients(regex, offset, pageSize);
 
-  // Count the results
-  const results = await cliente.aggregate(pipeline);
-
-  const count_values = await cliente.aggregate(countValues(regex));
+  // Get and count the results
+  const results = await cliente.aggregate(getClientListPipeline(regex, offset, pageSize, words.length));
+  const count_values = await cliente.aggregate(countValues(regex, words.length));
 
   res.status(200).send({
     data: results,
     pagina_actual: pagina,
     total_paginas: Math.ceil(count_values.length / pageSize),
-    total_resultados: count_values.length,
+    total_resultados: count_values.length
   });
 };
 

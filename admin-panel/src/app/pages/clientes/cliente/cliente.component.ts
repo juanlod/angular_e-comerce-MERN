@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { lastValueFrom} from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { Mascota } from '../../../models/mascota';
 
 @Component({
   selector: 'app-cliente',
@@ -113,26 +112,26 @@ export class ClienteComponent implements OnInit {
     const palabras = this.filtro.split(',').map((p) => p.trim());
     // Si existe nombre de cliente y mascota
     if (palabras.length > 1 && cliente.mascotas) {
-
-      cliente.mascotas.forEach(mascota => {
-       return (mascota.nom.toLowerCase().includes(this.filtro.toLowerCase() && palabras.some((p) =>
-        cliente.ayn.toLowerCase().includes(p.toLowerCase()))))
-      });
-
-      return palabras.some((p) =>
-        cliente.ayn.toLowerCase().includes(p.toLowerCase())
-      );
+      for (const mascota of cliente.mascotas) {
+        if (
+          palabras.some((p) =>
+              mascota.nom.toLowerCase().includes(p.toLowerCase()) &&
+          palabras.some((p) =>
+              cliente.ayn.toLowerCase().includes(p.toLowerCase())
+            )
+          )
+        ) {
+          return true;
+        }
+      }
     } else {
       // Si solo existe nombre de mascota
       if (cliente.mascotas) {
-
-          for (const mascota of cliente.mascotas) {
-            if (mascota.nom.toLowerCase().includes(this.filtro.toLowerCase())) {
-              return true;
-            }
-
+        for (const mascota of cliente.mascotas) {
+          if (mascota.nom.toLowerCase().includes(this.filtro.toLowerCase())) {
+            return true;
           }
-
+        }
       }
     }
     return false;
