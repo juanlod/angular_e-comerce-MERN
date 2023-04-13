@@ -6,4 +6,5 @@ export class Localidad {
   dep: number;
   cp: string;
   ran: number;
+  provincia: number;
 }

@@ -38,7 +38,7 @@ export class LocalidadService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  saveLocality$Response(params: {
+  private saveLocality$Response(params: {
     body: Localidad
   }): Observable<StrictHttpResponse<Localidad>> {
 
@@ -92,7 +92,7 @@ export class LocalidadService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllPagingLocalities$Response(params: {
+  private  findAllPagingLocalities$Response(params: {
 
     /**
      * filtro

@@ -46,11 +46,26 @@
       </nz-form-control>
     </nz-form-item>
 
+    <nz-form-item>
+      </nz-form-item>
+  </div>
+
+   <div class="column-2">
+       <!-- PROVINCIA -->
+   <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzFor="codt">Provincia</nz-form-label>
+    <nz-form-control [nzSpan]="15">
+      <nz-select nzShowSearch  nzAllowClear nzPlaceHolder="Seleccione provincia" [(ngModel)]="cliente.Dep" name="dep" (ngModelChange)="changeLocalities()">
+        <nz-option *ngFor="let option of provincias" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
     <!-- LOCALIDAD -->
     <nz-form-item>
       <nz-form-label [nzSpan]="7" nzFor="codt">Localidad</nz-form-label>
       <nz-form-control [nzSpan]="15">
-        <nz-select nzShowSearch  nzAllowClear nzPlaceHolder="Seleccione localidad" [(ngModel)]="cliente.Loc" name="loc">
+        <nz-select nzShowSearch  nzAllowClear nzPlaceHolder="Seleccione localidad" [(ngModel)]="cliente.Loc" name="loc" (ngModelChange)="changeProvince()">
           <nz-option *ngFor="let option of localidades" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
         </nz-select>
       </nz-form-control>
@@ -65,7 +80,6 @@
         <input nz-input name="tel" type="text" id="tel" [(ngModel)]="cliente.tel">
       </nz-form-control>
     </nz-form-item>
-
 
 
     <!-- TELEFONO CONTACTO -->
@@ -87,20 +101,20 @@
     </nz-form-item>
 
 
-   <!-- PROVINCIA -->
-   <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzFor="codt">Provincia</nz-form-label>
-    <nz-form-control [nzSpan]="15">
-      <nz-select nzShowSearch  nzAllowClear nzPlaceHolder="Seleccione provincia" [(ngModel)]="cliente.Dep" name="dep">
-        <nz-option *ngFor="let option of provincias" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
-      </nz-select>
-    </nz-form-control>
-  </nz-form-item>
-
+    <nz-form-item>
+      </nz-form-item>
   </div>
 
 
   <div class="column-2">
+  <!-- DEUDA -->
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzFor="deuda">¿Tiene Deuda?</nz-form-label>
+      <nz-form-control [nzSpan]="15">
+        <nz-switch name="deuda" id="deuda" [(ngModel)]="cliente.deuda"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+
     <!-- FECI -->
     <nz-form-item>
       <nz-form-label [nzSpan]="7" nzFor="feci">Fecha de registro</nz-form-label>
@@ -109,13 +123,8 @@
       </nz-form-control>
     </nz-form-item>
 
-    <!-- DEUDA -->
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzFor="deuda">¿Tiene Deuda?</nz-form-label>
-      <nz-form-control [nzSpan]="15">
-        <nz-switch name="deuda" id="deuda" [(ngModel)]="cliente.deuda"></nz-switch>
-      </nz-form-control>
-    </nz-form-item>
+
+
   </div>
 
   <div class="column-2">

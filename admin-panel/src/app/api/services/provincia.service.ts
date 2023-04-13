@@ -37,7 +37,7 @@ export class ProvinciaService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  saveProvince$Response(params: {
+  private  saveProvince$Response(params: {
     body: Provincia
   }): Observable<StrictHttpResponse<Provincia>> {
 
@@ -91,7 +91,7 @@ export class ProvinciaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllPagingProvince$Response(params: {
+  private findAllPagingProvince$Response(params: {
 
     /**
      * filtro
