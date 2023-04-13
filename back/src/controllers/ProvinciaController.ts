@@ -31,7 +31,7 @@ export async function saveProvince(req: Request, res: Response) {
  * @param req
  * @param res
  */
-export async function getProvinces(req: Request, res: Response) {
+export async function getProvinces(req: any, res: any) {
   // Route validatoe
   if (!req.user || (req.user.rol !== "admin" && req.user.rol !== "user")) {
     res.status(400).send({ error: "NoAccess" });

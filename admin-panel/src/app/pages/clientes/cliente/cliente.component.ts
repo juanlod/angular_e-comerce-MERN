@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { lastValueFrom } from 'rxjs';
-import { ClienteService } from 'src/app/services/cliente.service';
-import { NotificationService } from 'src/app/services/notification.service';
+import { ClienteService } from 'src/app/api/services/cliente.service';
+import { NotificationService } from 'src/app/api/services/notification.service';
 
 @Component({
   selector: 'app-cliente',
@@ -36,17 +36,14 @@ export class ClienteComponent implements OnInit {
     this.loading = true;
     this.clientes = [];
     const response = await lastValueFrom(
-      this.clienteService.listar_clientes(
-        this.filtro,
-        this.pageIndex,
-        this.pageSize
+      this.clienteService.findAllPagingClients( {filtro: this.filtro, pagina: this.pageIndex.toString(), pageSize: this.pageSize.toString()}
       )
     ).catch((error) => {
       this.clientes = [];
       this.totalResults = 0;
       this.totalPages = 0;
       this.loading = false;
-    });
+    }) as any;
 
     if (response) {
       this.clientes = response.data;

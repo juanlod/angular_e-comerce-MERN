@@ -7,15 +7,16 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { AdminService } from '../services/admin.service';
+
 import { Observable } from 'rxjs';
+import { AuthService } from '../api/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
   constructor(
-    private adminService: AdminService,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -26,7 +27,7 @@ export class AdminGuard implements CanActivate {
 
     let roles = route.data['roles'] as Array<string>;
 
-    if (!this.adminService.isAuthenticated(roles)) {
+    if (!this.authService.isAuthenticated(roles)) {
       this.router.navigate(['/login']);
       return false;
     }

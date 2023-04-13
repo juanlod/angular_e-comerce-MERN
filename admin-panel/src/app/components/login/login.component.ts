@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
 import { User } from '../../models/user';
-import { NotificationService } from 'src/app/services/notification.service';
-import { AdminService } from '../../services/admin.service';
 import { Observable, async, lastValueFrom, map, switchMap, timer } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from 'src/app/api/services/admin.service';
+import { NotificationService } from 'src/app/api/services/notification.service';
+import { AuthService } from 'src/app/api/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -29,14 +30,14 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private notificationService: NotificationService,
-    private adminService: AdminService,
+    private authService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private adminService: AdminService
   ) {}
 
   ngOnInit(): void {
 
-    this.token = this.adminService.getToken();
+    this.token = this.authService.getToken();
     if (this.token) {
       this.router.navigate(['dashboard'])
     }
@@ -74,11 +75,11 @@ export class LoginComponent implements OnInit {
 
       // Enviamos la peticion al backend
       let response = await lastValueFrom(
-        this.adminService.login_admin(this.user)
+        this.adminService.loginAdmin({body : this.user})
       ).catch((error) => {
         // Si se produce algun error enviamos un mensaje
         this.notificationService.showError(error.error.error);
-      });
+      }) as any;
 
       console.log(response)
       // Si la respuesta es correcta almacenamos los datos en el localstorage

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { LocalidadService } from 'src/app/api/services/localidad.service';
+import { ProvinciaService } from 'src/app/api/services/provincia.service';
 import { Cliente } from 'src/app/models/cliente';
 import { Localidad } from 'src/app/models/localidad';
 import { Provincia } from 'src/app/models/provincia';
-import { LocalidadService } from 'src/app/services/localidad.service';
-import { ProvinciaService } from 'src/app/services/provincia.service';
+
 
 @Component({
   selector: 'app-cliente-form',
@@ -34,13 +35,14 @@ export class ClienteFormComponent implements OnInit {
 
 
   async getProvincias() {
-    const results = await lastValueFrom(this.provinciaService.getAllProvincias())
+    const results = await lastValueFrom(this.provinciaService.findAllPagingProvince({filtro: '', pagina: '0', pageSize: '99999'})) as  any;
     this.provincias = results.data;
+
   }
 
   async getLocalidades() {
-    const results = await lastValueFrom(this.localidadService.getAllLocalidades())
+    const results = await lastValueFrom(this.localidadService.findAllPagingLocalities({filtro: '', pagina: '0', pageSize: '99999'})) as any;
     this.localidades = results.data;
-    console.log(results)
+
   }
 }

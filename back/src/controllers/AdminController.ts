@@ -48,6 +48,7 @@ export async function registro_admin (req: any, res: any, next: any) {
  * @param res
  */
 export async function login_admin(req: Request, res: Response) {
+  console.log(req)
   let result = req.body;
   let admins = [];
 
@@ -74,3 +75,5 @@ export async function login_admin(req: Request, res: Response) {
     })
   }
 };
+
+

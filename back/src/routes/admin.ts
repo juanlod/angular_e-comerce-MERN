@@ -9,7 +9,7 @@ import { login_admin, registro_admin } from '../controllers/AdminController';
 const adminController = require('../controllers/AdminController');
 const api = express.Router();
 // Url vinculada a la funcion registro_admin del controlador admin controller
-api.post('/registro_admin', auth , registro_admin)
+api.post('/save_admin', auth , registro_admin)
 // Login
 api.post('/login_admin', login_admin)
 
