@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  secret : "F4DBBEDD9239B919FF24B2D75BCA8"
+  secret: 'F4DBBEDD9239B919FF24B2D75BCA8',
 };
 
 /*

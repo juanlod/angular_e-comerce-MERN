@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, lastValueFrom } from "rxjs";
-import { ProvinciaService } from "../services/provincia.service";
-import { LocalidadService } from "../services/localidad.service";
-import { Provincia } from "../models/provincia";
-import { Localidad } from "../models/localidad";
+import { ProvinceService } from "../services/province.service";
+import { LocalityService } from "../services/locality.service";
+import { Province } from "../models/province";
+import { Locality } from "../models/locality";
 
 
 
@@ -16,8 +16,8 @@ export class MasterCacheService {
     private pendingProvince = new BehaviorSubject(null);
     private pendingLocality = new BehaviorSubject(null);
 
-    constructor(private provinciaService: ProvinciaService,
-      private localidadService: LocalidadService
+    constructor(private provinceService: ProvinceService,
+      private localityService: LocalityService
     ) {
     }
 
@@ -65,12 +65,12 @@ export class MasterCacheService {
 
     }
 
-    getLocalidades() {
-        return this.getCacheAndUpdate('localidades', this.localidadService.findAllPagingLocalities({filtro: '', pagina: '0', pageSize: '99999'}));
+    getLocalities() {
+        return this.getCacheAndUpdate('localities', this.localityService.findAllLocality());
     }
 
-    getProvincias() {
-        return this.getCacheAndUpdate('provincias', this.provinciaService.findAllPagingProvince({filtro: '', pagina: '0', pageSize: '99999'}));
+    getProvinces() {
+        return this.getCacheAndUpdate('provinces', this.provinceService.findAllProvince());
     }
 
 
@@ -94,7 +94,7 @@ export class MasterCacheService {
      * @returns
      */
     sendNewProvince(item) {
-        return lastValueFrom(this.provinciaService.saveProvince({ body: item }));
+        return lastValueFrom(this.provinceService.createProvince({ body: item }));
     }
 
     /**
@@ -103,7 +103,7 @@ export class MasterCacheService {
      * @returns
      */
     sendNewLocality(item) {
-        return lastValueFrom(this.localidadService.saveLocality({ body: item }));
+        return lastValueFrom(this.localityService.createLocality({ body: item }));
     }
 
 
@@ -111,7 +111,7 @@ export class MasterCacheService {
      * Almacena una provincia para ser enviada
      * @param itemData
      */
-    async newProvince(itemData: Provincia) {
+    async newProvince(itemData: Province) {
         this.storeItemToSend('newProvince', itemData);
         this.syncPending();
 
@@ -121,7 +121,7 @@ export class MasterCacheService {
      * Almacena una localidad para ser enviada
      * @param itemData
      */
-    async newLocality(itemData: Localidad) {
+    async newLocality(itemData: Locality) {
         this.storeItemToSend('newLocality', itemData);
         this.syncPending();
 

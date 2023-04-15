@@ -1,1 +1,718 @@
-{"openapi":"3.0.0","info":{"title":"API Documentation","version":"1.0.0"},"paths":{"/provincias/save_provincia":{"post":{"summary":"Save a province","operationId":"saveProvince","tags":["Provincia"],"security":[{"bearerAuth":[]}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Provincia"}}}},"responses":{"200":{"description":"Province saved successfully","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Provincia"}}}},"401":{"$ref":"#/components/responses/UnauthorizedError"}}}},"/provincias/get_provincias":{"get":{"summary":"Get all provinces","operationId":"findAllPagingProvince","tags":["Provincia"],"security":[{"bearerAuth":[]}],"parameters":[{"name":"filtro","in":"query","description":"filtro","required":true,"schema":{"type":"string"}},{"name":"pagina","in":"query","description":"Pagina","required":true,"schema":{"type":"string"}},{"name":"pageSize","in":"query","description":"Estado del cliente","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"List of provinces","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Provincia"}}}}},"401":{"$ref":"#/components/responses/UnauthorizedError"}}}},"/localidades/save_localidad":{"post":{"summary":"Save a locality","operationId":"saveLocality","tags":["Localidad"],"security":[{"bearerAuth":[]}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Localidad"}}}},"responses":{"200":{"description":"Locality saved successfully","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Localidad"}}}},"401":{"$ref":"#/components/responses/UnauthorizedError"}}}},"/localidades/get_localidades":{"get":{"summary":"Get all localities","operationId":"findAllPagingLocalities","tags":["Localidad"],"security":[{"bearerAuth":[]}],"parameters":[{"name":"filtro","in":"query","description":"filtro","required":true,"schema":{"type":"string"}},{"name":"pagina","in":"query","description":"Pagina","required":true,"schema":{"type":"string"}},{"name":"pageSize","in":"query","description":"Estado del cliente","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"List of localities","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Localidad"}}}}},"401":{"$ref":"#/components/responses/UnauthorizedError"}}}},"/save_client":{"post":{"summary":"Save a client","operationId":"saveClient","tags":["Cliente"],"security":[{"bearerAuth":[]}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Cliente"}}}},"responses":{"200":{"description":"Client saved successfully","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Cliente"}}}},"401":{"$ref":"#/components/responses/UnauthorizedError"}}}},"/login_client":{"post":{"summary":"Log in as a client","operationId":"loginClient","tags":["Cliente"],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/ClienteLogin"}}}},"responses":{"200":{"description":"Login successful","content":{"application/json":{"schema":{"type":"object","properties":{"token":{"type":"string"}}}}}},"401":{"$ref":"#/components/responses/UnauthorizedError"}}}},"/get_clients":{"get":{"summary":"Get all clients","operationId":"findAllPagingClients","tags":["Cliente"],"security":[{"bearerAuth":[]}],"parameters":[{"name":"filtro","in":"query","description":"filtro","required":true,"schema":{"type":"string"}},{"name":"pagina","in":"query","description":"Pagina","required":true,"schema":{"type":"string"}},{"name":"pageSize","in":"query","description":"Estado del cliente","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"List of clients","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Cliente"}}}}},"401":{"$ref":"#/components/responses/UnauthorizedError"}}}},"/save_admin":{"post":{"summary":"Register a new admin","operationId":"saveAdministrator","tags":["Admin"],"security":[{"bearerAuth":[]}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Admin"}}}},"responses":{"200":{"description":"Admin registered successfully","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Admin"}}}},"401":{"$ref":"#/components/responses/UnauthorizedError"}}}},"/login_admin":{"post":{"summary":"Admin login","operationId":"loginAdmin","tags":["Admin"],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/AdminLogin"}}}},"responses":{"200":{"description":"Admin logged in successfully","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Token"}}}},"401":{"$ref":"#/components/responses/UnauthorizedError"}}}}},"components":{"securitySchemes":{"bearerAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}},"schemas":{"Provincia":{"type":"object","properties":{"_id":{"type":"string"},"id":{"type":"integer"},"nom":{"type":"string"},"Ctel":{"type":"string"},"ran":{"type":"integer"}},"required":["_id","id","nom","Ctel","ran"]},"Localidad":{"type":"object","properties":{"_id":{"type":"string"},"id":{"type":"integer"},"nom":{"type":"string"},"dep":{"type":"integer"},"cp":{"type":"string"},"ran":{"type":"integer"}},"required":["_id","id","nom","dep","cp","ran"]},"Cliente":{"type":"object","properties":{"_id":{"type":"string"},"idc":{"type":"integer"},"ayn":{"type":"string"},"dir":{"type":"string"},"codp":{"type":"string"},"codt":{"type":"string"},"tel":{"type":"string"},"telC":{"type":"string"},"email":{"type":"string"},"obs":{"type":"string"},"mark":{"type":"number"},"feci":{"type":"string","format":"date-time"},"fecu":{"type":"string","format":"date-time"},"motuv":{"type":"string"},"deuda":{"type":"boolean"},"obra":{"type":"integer"},"Loc":{"type":"integer"},"Dep":{"type":"integer"},"tel2":{"type":"string"},"telC2":{"type":"string"},"codt2":{"type":"string"},"codp2":{"type":"string"},"Identif":{"type":"string"},"mascotas":{"type":"array","items":{"type":"string"}}},"required":["idc","ayn","dir","codp","tel","email"]},"ClienteLogin":{"type":"object","properties":{"email":{"type":"string"},"password":{"type":"string"}},"required":["email","password"]},"Admin":{"type":"object","properties":{"nombres":{"type":"string"},"apellidos":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"},"telefono":{"type":"string"},"rol":{"type":"string"},"f_nacimiento":{"type":"string"},"dni":{"type":"string"}},"required":["nombres","apellidos","email","password","rol"]},"AdminLogin":{"type":"object","properties":{"email":{"type":"string"},"password":{"type":"string"}},"required":["email","password"]},"Token":{"type":"object","properties":{"token":{"type":"string"}}}},"responses":{"UnauthorizedError":{"description":"Unauthorized access"}}}}
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/user/login": {
+      "post": {
+        "operationId": "loginUser",
+        "summary": "Create an User",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "The User has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/User" }
+              }
+            }
+          },
+          "400": { "description": "Bad request." }
+        },
+        "tags": ["User"]
+      }
+    },
+    "/api/user/save": {
+      "post": {
+        "operationId": "createUser",
+        "summary": "Create an User",
+        "parameters": [],
+        "responses": {
+          "201": { "description": "The User has been successfully created." },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/User" }
+              }
+            }
+          }
+        },
+        "tags": ["User"]
+      }
+    },
+    "/api/user/find_all": {
+      "get": {
+        "operationId": "findAllUser",
+        "summary": "Get all Users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Return all Users.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/User" }
+                }
+              }
+            }
+          },
+          "400": { "description": "Bad request." }
+        },
+        "tags": ["User"]
+      }
+    },
+    "/api/user/find_one/{id}": {
+      "get": {
+        "operationId": "findOneUser",
+        "summary": "Get an User by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return an User.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/User" }
+              }
+            }
+          },
+          "400": { "description": "Bad request." }
+        },
+        "tags": ["User"]
+      }
+    },
+    "/api/user/update/{id}": {
+      "patch": {
+        "operationId": "updateUser",
+        "summary": "Update an User by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The User has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/User" }
+              }
+            }
+          },
+          "400": { "description": "Bad request." }
+        },
+        "tags": ["User"]
+      }
+    },
+    "/api/user/delete/{id}": {
+      "delete": {
+        "operationId": "deleteUser",
+        "summary": "Delete an User by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "The User has been successfully deleted." },
+          "400": { "description": "Bad request." }
+        },
+        "tags": ["User"]
+      }
+    },
+    "/api/clients/save": {
+      "post": {
+        "operationId": "createClient",
+        "summary": "Create a new client",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Client" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "The client has been successfully created." },
+          "400": { "description": "Bad Request." }
+        },
+        "tags": ["Clients"]
+      }
+    },
+    "/api/clients/find_all": {
+      "get": {
+        "operationId": "findAllClient",
+        "summary": "Obtener todos los clientes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Lista de todos los clientes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Client" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Clients"]
+      }
+    },
+    "/api/clients/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingClient",
+        "summary": "Obtener clientes paginados",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "description": "Filtro para buscar clientes",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Número de página",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Número de elementos por página",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de clientes paginados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Client" }
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" }
+        },
+        "tags": ["Clients"]
+      }
+    },
+    "/api/clients/find_one/{id}": {
+      "get": {
+        "operationId": "findOneClient",
+        "summary": "Obtener un cliente por id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "El ID del cliente a buscar",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "El cliente ha sido encontrado satisfactoriamente",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Client" }
+              }
+            }
+          },
+          "404": { "description": "El cliente no ha sido encontrado" }
+        },
+        "tags": ["Clients"]
+      }
+    },
+    "/api/clients/update/{id}": {
+      "patch": {
+        "operationId": "updateClient",
+        "summary": "Actualizar un cliente por id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "El ID del cliente a actualizar",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Client" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "El cliente ha sido actualizado satisfactoriamente"
+          },
+          "404": { "description": "El cliente no ha sido encontrado" }
+        },
+        "tags": ["Clients"]
+      }
+    },
+    "/api/clients/delete/{id}": {
+      "delete": {
+        "operationId": "removeClient",
+        "summary": "Eliminar un cliente por id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "El ID del cliente a eliminar",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "El cliente ha sido eliminado satisfactoriamente"
+          },
+          "404": { "description": "El cliente no ha sido encontrado" }
+        },
+        "tags": ["Clients"]
+      }
+    },
+    "/api/locality/save": {
+      "post": {
+        "operationId": "createLocality",
+        "summary": "Create a new locality",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "The locality has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Locality" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["locality"]
+      }
+    },
+    "/api/locality/find_all": {
+      "get": {
+        "operationId": "findAllLocality",
+        "summary": "Retrieve a list of all localities",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all localities successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Locality" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["locality"]
+      }
+    },
+    "/api/locality/{id}": {
+      "get": {
+        "operationId": "findOneLocality",
+        "summary": "Retrieve a locality by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved locality successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Locality" }
+              }
+            }
+          },
+          "404": { "description": "Locality not found." }
+        },
+        "tags": ["locality"]
+      },
+      "patch": {
+        "operationId": "updateLocality",
+        "summary": "Update a locality by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The locality has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Locality" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "Locality not found." }
+        },
+        "tags": ["locality"]
+      },
+      "delete": {
+        "operationId": "removeLocality",
+        "summary": "Remove a locality by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The locality has been successfully removed."
+          },
+          "404": { "description": "Locality not found." }
+        },
+        "tags": ["locality"]
+      }
+    },
+    "/api/locality": {
+      "get": {
+        "operationId": "findAllPagingLocality",
+        "summary": "Get all localities with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all localities paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Locality" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["locality"]
+      }
+    },
+    "/api/province/save": {
+      "post": {
+        "operationId": "createProvince",
+        "summary": "Create a new province",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "The province has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Province" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["province"]
+      }
+    },
+    "/api/province/find_all": {
+      "get": {
+        "operationId": "findAllProvince",
+        "summary": "Retrieve a list of all provinces",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all provinces successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Province" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["province"]
+      }
+    },
+    "/api/province/find_one/{id}": {
+      "get": {
+        "operationId": "findOneProvince",
+        "summary": "Retrieve a province by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved province successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Province" }
+              }
+            }
+          },
+          "404": { "description": "Province not found." }
+        },
+        "tags": ["province"]
+      }
+    },
+    "/api/province/update/{id}": {
+      "patch": {
+        "operationId": "updateProvince",
+        "summary": "Update a province by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The province has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Province" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "province not found." }
+        },
+        "tags": ["province"]
+      }
+    },
+    "/api/province/delete/{id}": {
+      "delete": {
+        "operationId": "removeProvince",
+        "summary": "Remove a province by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The province has been successfully removed."
+          },
+          "404": { "description": "province not found." }
+        },
+        "tags": ["province"]
+      }
+    },
+    "/api/province/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingProvince",
+        "summary": "Get all provinces with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all provinces paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Province" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["province"]
+      }
+    }
+  },
+  "info": { "title": "", "description": "", "version": "1.0.0", "contact": {} },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "nombres": { "type": "string" },
+          "apellidos": { "type": "string" },
+          "email": { "type": "string" },
+          "password": { "type": "string" },
+          "telefono": { "type": "string" },
+          "rol": { "type": "string" },
+          "f_nacimiento": { "type": "string" },
+          "dni": { "type": "string" }
+        },
+        "required": [
+          "_id",
+          "nombres",
+          "apellidos",
+          "email",
+          "password",
+          "telefono",
+          "rol",
+          "f_nacimiento",
+          "dni"
+        ]
+      },
+      "Client": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "idc": { "type": "number" },
+          "ayn": { "type": "string" },
+          "dir": { "type": "string" },
+          "codp": { "type": "string" },
+          "codt": { "type": "string" },
+          "tel": { "type": "string" },
+          "telC": { "type": "string" },
+          "email": { "type": "string" },
+          "obs": { "type": "string" },
+          "mark": { "type": "number" },
+          "feci": { "format": "date-time", "type": "string" },
+          "fecu": { "format": "date-time", "type": "string" },
+          "motuv": { "type": "string" },
+          "deuda": { "type": "boolean" },
+          "problematico": { "type": "boolean" },
+          "cantidadDeuda": { "type": "string" },
+          "obra": { "type": "number" },
+          "Loc": { "type": "number" },
+          "Dep": { "type": "number" },
+          "tel2": { "type": "string" },
+          "telC2": { "type": "string" },
+          "codt2": { "type": "string" },
+          "codp2": { "type": "string" },
+          "Identif": { "type": "string" },
+          "mascotas": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": [
+          "_id",
+          "idc",
+          "ayn",
+          "dir",
+          "codp",
+          "codt",
+          "tel",
+          "telC",
+          "email",
+          "obs",
+          "mark",
+          "feci",
+          "fecu",
+          "motuv",
+          "deuda",
+          "problematico",
+          "cantidadDeuda",
+          "obra",
+          "Loc",
+          "Dep",
+          "tel2",
+          "telC2",
+          "codt2",
+          "codp2",
+          "Identif",
+          "mascotas"
+        ]
+      },
+      "Locality": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "nom": { "type": "string" },
+          "dep": { "type": "number" },
+          "cp": { "type": "string" },
+          "ran": { "type": "number" }
+        },
+        "required": ["_id", "id", "nom", "dep", "cp", "ran"]
+      },
+      "Province": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "nom": { "type": "string" },
+          "Ctel": { "type": "string" },
+          "ran": { "type": "number" }
+        },
+        "required": ["_id", "id", "nom", "Ctel", "ran"]
+      }
+    }
+  }
+}

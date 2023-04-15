@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { lastValueFrom } from 'rxjs';
-import { ClienteService } from 'src/app/api/services/cliente.service';
+import { ClientsService } from 'src/app/api/services/clients.service';
 import { NotificationService } from 'src/app/api/services/notification.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class ClienteComponent implements OnInit {
   expandSet = new Set<number>();
 
   constructor(
-    private clienteService: ClienteService,
+    private clienteService: ClientsService,
     private router: Router,
     private notificationService: NotificationService
   ) {}
@@ -36,7 +37,7 @@ export class ClienteComponent implements OnInit {
     this.loading = true;
     this.clientes = [];
     const response = await lastValueFrom(
-      this.clienteService.findAllPagingClients( {filtro: this.filtro, pagina: this.pageIndex.toString(), pageSize: this.pageSize.toString()}
+      this.clienteService.findAllPagingClient( {filter: this.filtro, page: this.pageIndex, pageSize: this.pageSize}
       )
     ).catch((error) => {
       this.clientes = [];

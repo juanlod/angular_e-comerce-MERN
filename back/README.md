@@ -1,147 +1,73 @@
-# angular_udemy_course_e-comerce
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-## Backend
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-# Initialize the project with node and typescript
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-To configure a node project with typescript and mongo you may perform the following steps:
+## Description
 
-1.  Execute the commands:
-`npm init -y`
-`npm install --save-dev typescript`
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-2.  Create tsconfig.json file
+## Installation
 
-3.  Add this lines to tsconfig.json
-
-```
-{
-  "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es6",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist"
-  },
-  "lib": ["es2015"]
-}
-```
-
-4.  Create src folder and inside put the file app.ts and add this basic configuration
-
-```
-import express from 'express';
-const app = express();
-const port = 3000;
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
-});
+```bash
+$ npm install
 ```
 
-5.  Execute the command `npx tsc`
+## Running the app
 
-6.  Execute the command `node dist/app.js`
+```bash
+# development
+$ npm run start
 
-7.  Execute the command `npm install --save-dev eslint`
+# watch mode
+$ npm run start:dev
 
-8.  Execute the command `npx eslint --init`
-  * How would you like to use ESLint?: To check syntax and find problems
-  * What type of modules does your project use?: JavaScript modules (import/export)
-  * Which framework does your project use?: None of these
-  * Does your project use TypeScript?: Yes
-  * Where does your code run?: Node
-  * What format do you want your config file to be in?: JavaScript
-  * Would you like to install them now? Yes
-  * Which package manager do you want to use? npm
-
-9.  Execute the command `npx eslint . --ext .ts`
-
-10. Execute the command `npm install --save-dev ts-node`
-
-11. Modify this lines in package.json file to run the project with nodemon and typescript
-
-```
-  "main": "dist/app.js",
-  "scripts": {
-    "start": "tsc && node dist/app.js",
-    "lint": "eslint . --ext .ts",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+# production mode
+$ npm run start:prod
 ```
 
-## Libraries
-### Password encriptation 
-`npm install bcrypt-nodejs`
+## Test
 
-### JSON data parser
-`npm install body-parser`
+```bash
+# unit tests
+$ npm run test
 
-### Permit save file and videos in the server
-`npm install connect-multiparty`
+# e2e tests
+$ npm run test:e2e
 
-### Web framework from node
-`npm install express`
+# test coverage
+$ npm run test:cov
+```
 
-### Data managing
-`npm install moment`
+## Support
 
-### Mongo db modeler
-`npm install mongoose@6.10.0`
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-### Token generator
-`npm install jsonwebtoken`
+## Stay in touch
 
-### Token decodifier
-`npm install jwt-simple`
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-### Change dev server restarter
-`npm install --save-dev nodemon`
+## License
 
-
-### Folders
-#### Controllers
-Controller folder container
-
-#### Helpers
-Generated token folder codificator container
-
-#### Middlewares
-Token folder validator container
-
-#### Models
-Aplication models container
-
-#### Routes
-Api routes container
-
-#### Uploads
-Folder containing the uploaded files  and videos
-
-
-## MongoDB
-### Macos Instalation
-
-Execute this commands in bash:
-
-`xcode-select --install`
-
-`brew install mongodb-community@6.0`
-
-`brew services start mongodb-community@6.0`
-
-#### Mongo url connection
-
-`mongodb://localhost:27017`
-
-#### Mongo guide
-`https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x`
-
-## Start the server in dev mode
-Execute the command: `npm run dev`
+Nest is [MIT licensed](LICENSE).

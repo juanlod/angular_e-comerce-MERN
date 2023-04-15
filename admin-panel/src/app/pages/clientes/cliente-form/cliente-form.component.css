@@ -14,3 +14,7 @@
 .obs {
   margin-left: 1.7rem;
 }
+
+.app-content {
+  border:red 1px solid ;
+}

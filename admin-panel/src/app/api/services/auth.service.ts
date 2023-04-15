@@ -6,23 +6,15 @@ import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private API_URL = environment.apiUrl;
   private helper = new JwtHelperService();
 
-  private HTTP_HEADERS = new HttpHeaders().set(
-    'Content-Type',
-    'application/json'
-  );
-
   constructor(private http: HttpClient, private router: Router) {}
-
 
   public getToken(): string | null {
     return localStorage.getItem('token');
