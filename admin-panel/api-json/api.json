@@ -33,6 +33,14 @@
         "operationId": "createUser",
         "summary": "Create an User",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/User" }
+            }
+          }
+        },
         "responses": {
           "201": { "description": "The User has been successfully created." },
           "400": {
@@ -107,6 +115,14 @@
             "schema": { "type": "string" }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/User" }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The User has been successfully updated.",
@@ -145,6 +161,14 @@
         "operationId": "createClient",
         "summary": "Create a new client",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Client" }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "The client has been successfully created.",
@@ -237,6 +261,10 @@
             "schema": { "type": "string" }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "string" } } }
+        },
         "responses": {
           "200": {
             "description": "El cliente ha sido encontrado satisfactoriamente",
@@ -264,6 +292,14 @@
             "schema": { "type": "string" }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Client" }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "El cliente ha sido actualizado satisfactoriamente"
@@ -286,6 +322,10 @@
             "schema": { "type": "string" }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "string" } } }
+        },
         "responses": {
           "200": {
             "description": "El cliente ha sido eliminado satisfactoriamente"
@@ -295,11 +335,75 @@
         "tags": ["Clients"]
       }
     },
+    "/api/clients/find_by_identif/{identif}": {
+      "get": {
+        "operationId": "findByIdentifClient",
+        "summary": "Find client by identif",
+        "parameters": [
+          {
+            "name": "identif",
+            "required": true,
+            "in": "path",
+            "description": "Client identification number",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "string" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns true if client exists, false otherwise",
+            "content": {
+              "application/json": { "schema": { "type": "boolean" } }
+            }
+          }
+        },
+        "tags": ["Clients"]
+      }
+    },
+    "/api/clients/find_by_email/{email}": {
+      "get": {
+        "operationId": "findByEmailClient",
+        "summary": "Find client by email",
+        "parameters": [
+          {
+            "name": "email",
+            "required": true,
+            "in": "path",
+            "description": "Client email",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "string" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns true if client exists, false otherwise",
+            "content": {
+              "application/json": { "schema": { "type": "boolean" } }
+            }
+          }
+        },
+        "tags": ["Clients"]
+      }
+    },
     "/api/locality/save": {
       "post": {
         "operationId": "createLocality",
         "summary": "Create a new locality",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Locality" }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "The locality has been successfully created.",
@@ -311,7 +415,7 @@
           },
           "400": { "description": "The request body is invalid." }
         },
-        "tags": ["locality"]
+        "tags": ["Locality"]
       }
     },
     "/api/locality/find_all": {
@@ -332,10 +436,10 @@
             }
           }
         },
-        "tags": ["locality"]
+        "tags": ["Locality"]
       }
     },
-    "/api/locality/{id}": {
+    "/api/locality/find_one/{id}": {
       "get": {
         "operationId": "findOneLocality",
         "summary": "Retrieve a locality by ID",
@@ -358,8 +462,10 @@
           },
           "404": { "description": "Locality not found." }
         },
-        "tags": ["locality"]
-      },
+        "tags": ["Locality"]
+      }
+    },
+    "/api/locality/update/{id}": {
       "patch": {
         "operationId": "updateLocality",
         "summary": "Update a locality by ID",
@@ -371,6 +477,14 @@
             "schema": { "type": "string" }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Locality" }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The locality has been successfully updated.",
@@ -383,8 +497,10 @@
           "400": { "description": "The request body is invalid." },
           "404": { "description": "Locality not found." }
         },
-        "tags": ["locality"]
-      },
+        "tags": ["Locality"]
+      }
+    },
+    "/api/locality/delete/{id}": {
       "delete": {
         "operationId": "removeLocality",
         "summary": "Remove a locality by ID",
@@ -402,10 +518,10 @@
           },
           "404": { "description": "Locality not found." }
         },
-        "tags": ["locality"]
+        "tags": ["Locality"]
       }
     },
-    "/api/locality": {
+    "/api/locality/find_all/paging": {
       "get": {
         "operationId": "findAllPagingLocality",
         "summary": "Get all localities with pagination",
@@ -442,7 +558,7 @@
             }
           }
         },
-        "tags": ["locality"]
+        "tags": ["Locality"]
       }
     },
     "/api/province/save": {
@@ -461,7 +577,7 @@
           },
           "400": { "description": "The request body is invalid." }
         },
-        "tags": ["province"]
+        "tags": ["Province"]
       }
     },
     "/api/province/find_all": {
@@ -482,7 +598,7 @@
             }
           }
         },
-        "tags": ["province"]
+        "tags": ["Province"]
       }
     },
     "/api/province/find_one/{id}": {
@@ -508,7 +624,7 @@
           },
           "404": { "description": "Province not found." }
         },
-        "tags": ["province"]
+        "tags": ["Province"]
       }
     },
     "/api/province/update/{id}": {
@@ -523,6 +639,14 @@
             "schema": { "type": "string" }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Province" }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "The province has been successfully updated.",
@@ -535,7 +659,7 @@
           "400": { "description": "The request body is invalid." },
           "404": { "description": "province not found." }
         },
-        "tags": ["province"]
+        "tags": ["Province"]
       }
     },
     "/api/province/delete/{id}": {
@@ -556,7 +680,7 @@
           },
           "404": { "description": "province not found." }
         },
-        "tags": ["province"]
+        "tags": ["Province"]
       }
     },
     "/api/province/find_all/paging": {
@@ -596,7 +720,7 @@
             }
           }
         },
-        "tags": ["province"]
+        "tags": ["Province"]
       }
     }
   },

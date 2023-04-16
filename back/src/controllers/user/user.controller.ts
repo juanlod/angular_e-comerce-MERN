@@ -6,12 +6,11 @@ import {
   Patch,
   Param,
   Delete,
-  Query,
   Logger,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
-import { IUser, LoginDto, User } from 'src/mongodb/schemas/User';
+import { LoginDto, User } from 'src/mongodb/schemas/User';
 
 @ApiTags('User')
 @Controller('/api/user')
@@ -19,7 +18,7 @@ export class UserController {
   private readonly logger = new Logger(UserController.name);
 
   constructor(private readonly userService: UserService) {}
-  
+
   @ApiOperation({ summary: 'Create an User', operationId: 'loginUser' })
   @ApiResponse({
     status: 201,
@@ -28,6 +27,7 @@ export class UserController {
   })
   @ApiResponse({ status: 400, description: 'Bad request.' })
   @Post('/login')
+  @ApiBody({ type: LoginDto })
   login(@Body() loginDto: LoginDto) {
     const { email, password } = loginDto;
     return this.userService.login(email, password);
@@ -40,7 +40,8 @@ export class UserController {
   })
   @ApiResponse({ status: 400, description: 'Bad request.', type: User })
   @Post('/save')
-  create(@Body() user: IUser) {
+  @ApiBody({ type: User })
+  create(@Body() user: User) {
     return this.userService.create(user);
   }
 
@@ -75,7 +76,8 @@ export class UserController {
   })
   @ApiResponse({ status: 400, description: 'Bad request.' })
   @Patch('update/:id')
-  update(@Param('id') id: string, @Body() User: IUser) {
+  @ApiBody({ type: User })
+  update(@Param('id') id: string, @Body() User: User) {
     return this.userService.update(+id, User);
   }
 

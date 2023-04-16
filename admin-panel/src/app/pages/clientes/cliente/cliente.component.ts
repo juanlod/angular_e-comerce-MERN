@@ -51,6 +51,7 @@ export class ClienteComponent implements OnInit {
       this.totalResults = response.total_resultados;
       this.totalPages = response.total_paginas > 0 ? response.total_paginas : 1;
       this.loading = false;
+      console.log(this.clientes)
     }
   }
 
@@ -152,5 +153,9 @@ export class ClienteComponent implements OnInit {
 
   addClient() {
     this.router.navigate(['dashboard/clientes/form']);
+  }
+
+  editClient(id: string) {
+    this.router.navigate(['dashboard/clientes/form', id]);
   }
 }

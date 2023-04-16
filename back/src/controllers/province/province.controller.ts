@@ -19,10 +19,11 @@ import {
   ApiQuery,
   ApiResponse,
   ApiTags,
+  ApiBody,
 } from '@nestjs/swagger';
 import { IProvince, Province } from 'src/mongodb/schemas/province';
 
-@ApiTags('province')
+@ApiTags('Province')
 @Controller('/api/province')
 export class ProvinceController {
   constructor(private readonly provinceService: ProvinceService) {}
@@ -79,7 +80,8 @@ export class ProvinceController {
   @ApiNotFoundResponse({ description: 'province not found.' })
   @ApiBadRequestResponse({ description: 'The request body is invalid.' })
   @Patch('update/:id')
-  update(@Param('id') id: string, @Body() province: IProvince) {
+  @ApiBody({ type: Province })
+  update(@Param('id') id: string, @Body() province: Province) {
     return this.provinceService.update(+id, province);
   }
 

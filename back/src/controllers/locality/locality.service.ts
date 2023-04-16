@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { ILocality } from 'src/mongodb/schemas/locality';
+import { ILocality, Locality } from 'src/mongodb/schemas/locality';
 
 @Injectable()
 export class LocalityService {
@@ -9,7 +9,7 @@ export class LocalityService {
     private localityModel: Model<ILocality>,
   ) {}
 
-  create(locality: ILocality): ILocality {
+  create(locality: Locality): ILocality {
     return Object.assign({});
   }
 
@@ -17,11 +17,11 @@ export class LocalityService {
     return this.localityModel.find();
   }
 
-  findOne(id: number): ILocality {
+  findOne(id: number): Locality {
     return Object.assign({});
   }
 
-  update(id: number, locality: ILocality): ILocality {
+  update(id: number, locality: Locality): ILocality {
     return Object.assign({});
   }
 

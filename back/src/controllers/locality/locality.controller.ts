@@ -18,10 +18,11 @@ import {
   ApiOkResponse,
   ApiCreatedResponse,
   ApiBadRequestResponse,
+  ApiBody,
 } from '@nestjs/swagger';
 import { ILocality, Locality } from 'src/mongodb/schemas/locality';
 
-@ApiTags('locality')
+@ApiTags('Locality')
 @Controller('/api/locality')
 export class LocalityController {
   constructor(private readonly localityService: LocalityService) {}
@@ -38,7 +39,8 @@ export class LocalityController {
   @ApiBadRequestResponse({
     description: 'The request body is invalid.',
   })
-  create(@Body() locality: ILocality) {
+  @ApiBody({ type: Locality })
+  create(@Body() locality: Locality) {
     return this.localityService.create(locality);
   }
 
@@ -64,7 +66,7 @@ export class LocalityController {
     type: Locality,
   })
   @ApiNotFoundResponse({ description: 'Locality not found.' })
-  @Get(':id')
+  @Get('find_one/:id')
   findOne(@Param('id') id: string) {
     return this.localityService.findOne(+id);
   }
@@ -79,8 +81,9 @@ export class LocalityController {
   })
   @ApiNotFoundResponse({ description: 'Locality not found.' })
   @ApiBadRequestResponse({ description: 'The request body is invalid.' })
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() locality: ILocality) {
+  @Patch('update/:id')
+  @ApiBody({ type: Locality })
+  update(@Param('id') id: string, @Body() locality: Locality) {
     return this.localityService.update(+id, locality);
   }
 
@@ -90,12 +93,12 @@ export class LocalityController {
   })
   @ApiOkResponse({ description: 'The locality has been successfully removed.' })
   @ApiNotFoundResponse({ description: 'Locality not found.' })
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.localityService.remove(+id);
   }
 
-  @Get()
+  @Get('find_all/paging')
   @ApiOperation({
     summary: 'Get all localities with pagination',
     operationId: 'findAllPagingLocality',

@@ -1,7 +1,16 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { countValues, getClientListPipeline } from './client.repository';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
+import {
+  countValues,
+  getClientListPipeline,
+  getLastClientIdPipeline,
+} from './client.repository';
 import { Model } from 'mongoose';
-import { IClient } from 'src/mongodb/schemas/client';
+import { Client, IClient } from 'src/mongodb/schemas/client';
 
 @Injectable()
 export class ClientsService {
@@ -12,15 +21,50 @@ export class ClientsService {
     private clientModel: Model<IClient>,
   ) {}
 
-  create(client: IClient) {
-    const result = this.clientModel.findOne({ indentif: client.Identif });
-    return client;
+  /**
+   * Find by identif
+   * @param client
+   */
+  async findByIdentif(identif: string): Promise<boolean> {
+    const result = await this.clientModel.findOne({ Identif: identif }).exec();
+    return result ? true : false;
   }
 
-  findAll(): IClient[] {
-    return new Array<IClient>();
+  /**
+   * Find by email
+   * @param client
+   */
+  async findByEmail(email: string): Promise<boolean> {
+    const result = await this.clientModel.findOne({ email: email }).exec();
+    return result ? true : false;
   }
 
+  /**
+   * Save and user
+   * @param client
+   * @returns
+   */
+  async create(client: Client): Promise<Client> {
+    const idc = (
+      await this.clientModel.aggregate(getLastClientIdPipeline()).exec()
+    )[0].idc;
+    client.idc = idc ? idc + 1 : 0;
+
+    console.log(idc);
+    return this.clientModel.create(client);
+  }
+
+  findAll(): Promise<Client[]> {
+    return this.clientModel.find().exec();
+  }
+
+  /**
+   * Get all clients paginated
+   * @param filter : ;
+   * @param page
+   * @param pageSize
+   * @returns
+   */
   async findAllPaging(filter?: string, page?: number, pageSize?: number) {
     // If the filter is empty, we use a regular expression that matches everything
 
@@ -54,15 +98,33 @@ export class ClientsService {
     };
   }
 
-  findOne(id: number): IClient {
-    return Object.assign({});
+  /**
+   * find Client
+   * @param id
+   * @returns
+   */
+  findOne(id: string): Promise<Client> {
+    return this.clientModel.findOne({ _id: id });
   }
 
-  update(id: number, client: any): IClient {
-    return Object.assign({});
+  /**
+   * Update client
+   * @param id
+   * @param client
+   * @returns
+   */
+  update(id: string, client: Client) {
+    const filter = { _id: id };
+    const updateData = { $set: client };
+    return this.clientModel.updateOne(filter, updateData).exec();
   }
 
+  /**
+   * Remove client
+   * @param id
+   * @returns
+   */
   remove(id: number) {
-    return 'User deleted';
+    return this.clientModel.deleteOne({ _id: id });
   }
 }

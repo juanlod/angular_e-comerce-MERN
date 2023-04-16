@@ -19,6 +19,9 @@ import {
   ApiBearerAuth,
   ApiQuery,
   ApiParam,
+  ApiOkResponse,
+  ApiProduces,
+  ApiBody,
 } from '@nestjs/swagger';
 import { Client, IClient } from 'src/mongodb/schemas/client';
 
@@ -29,6 +32,11 @@ export class ClientsController {
 
   constructor(private readonly clientsService: ClientsService) {}
 
+  /**
+   * save
+   * @param client
+   * @returns
+   */
   @Post('save')
   @ApiOperation({ summary: 'Create a new client', operationId: 'createClient' })
   @ApiResponse({
@@ -37,10 +45,17 @@ export class ClientsController {
     type: Client,
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
-  create(@Body() client: IClient): IClient {
+  @ApiBody({ type: Client })
+  @ApiProduces('application/json')
+  create(@Body() client: Client): Promise<Client> {
+    console.log(client);
     return this.clientsService.create(client);
   }
 
+  /**
+   * findAllClient
+   * @returns
+   */
   @ApiOperation({
     summary: 'Obtener todos los clientes',
     operationId: 'findAllClient',
@@ -51,10 +66,18 @@ export class ClientsController {
     type: [Client],
   })
   @Get('find_all')
-  findAll(): Client[] {
+  @ApiProduces('application/json')
+  findAll(): Promise<Client[]> {
     return this.clientsService.findAll();
   }
 
+  /**
+   * findAllPagingClient
+   * @param filter : ;
+   * @param page
+   * @param pageSize
+   * @returns
+   */
   @ApiOperation({
     summary: 'Obtener clientes paginados',
     operationId: 'findAllPagingClient',
@@ -78,6 +101,7 @@ export class ClientsController {
   })
   @Get('find_all/paging')
   @Auth(Role.Admin)
+  @ApiProduces('application/json')
   findAllPaging(
     @Query('filter') filter?: string,
     @Query('page') page?: number,
@@ -86,6 +110,11 @@ export class ClientsController {
     return this.clientsService.findAllPaging(filter, page, pageSize);
   }
 
+  /**
+   * findOne
+   * @param id
+   * @returns
+   */
   @ApiOperation({
     summary: 'Obtener un cliente por id',
     operationId: 'findOneClient',
@@ -102,10 +131,18 @@ export class ClientsController {
   })
   @ApiResponse({ status: 404, description: 'El cliente no ha sido encontrado' })
   @Get('find_one/:id')
-  findOne(@Param('id') id: string) {
-    return this.clientsService.findOne(+id);
+  @ApiProduces('application/json')
+  @ApiBody({ type: String })
+  findOne(@Param('id') id: string): Promise<Client> {
+    return this.clientsService.findOne(id);
   }
 
+  /**
+   * update
+   * @param id
+   * @param client
+   * @returns
+   */
   @Patch('update/:id')
   @ApiOperation({
     summary: 'Actualizar un cliente por id',
@@ -120,10 +157,17 @@ export class ClientsController {
     description: 'El cliente ha sido actualizado satisfactoriamente',
   })
   @ApiResponse({ status: 404, description: 'El cliente no ha sido encontrado' })
-  update(@Param('id') id: string, @Body() client: IClient) {
-    return this.clientsService.update(+id, client);
+  @ApiBody({ type: Client })
+  @ApiProduces('application/json')
+  update(@Param('id') id: string, @Body() client: Client) {
+    return this.clientsService.update(id, client);
   }
 
+  /**
+   * delete
+   * @param id
+   * @returns
+   */
   @Delete('delete/:id')
   @ApiOperation({
     summary: 'Eliminar un cliente por id',
@@ -138,7 +182,57 @@ export class ClientsController {
     description: 'El cliente ha sido eliminado satisfactoriamente',
   })
   @ApiResponse({ status: 404, description: 'El cliente no ha sido encontrado' })
+  @ApiBody({ type: String })
+  @ApiProduces('application/json')
   remove(@Param('id') id: string) {
     return this.clientsService.remove(+id);
+  }
+
+  /**
+   * findByIdentif
+   * @param identif
+   * @returns
+   */
+  @Get('find_by_identif/:identif')
+  @ApiOperation({
+    summary: 'Find client by identif',
+    operationId: 'findByIdentifClient',
+  })
+  @ApiParam({
+    name: 'identif',
+    description: 'Client identification number',
+  })
+  @ApiOkResponse({
+    description: 'Returns true if client exists, false otherwise',
+    type: Boolean,
+  })
+  @ApiBody({ type: String })
+  @ApiProduces('application/json')
+  async findByIdentif(@Param('identif') identif: string): Promise<boolean> {
+    return this.clientsService.findByIdentif(identif);
+  }
+
+  /**
+   * findByEmail
+   * @param email
+   * @returns
+   */
+  @Get('find_by_email/:email')
+  @ApiOperation({
+    summary: 'Find client by email',
+    operationId: 'findByEmailClient',
+  })
+  @ApiParam({
+    name: 'email',
+    description: 'Client email',
+  })
+  @ApiOkResponse({
+    description: 'Returns true if client exists, false otherwise',
+    type: Boolean,
+  })
+  @ApiBody({ type: String })
+  @ApiProduces('application/json')
+  async findByEmail(@Param('email') email: string): Promise<boolean> {
+    return this.clientsService.findByEmail(email);
   }
 }

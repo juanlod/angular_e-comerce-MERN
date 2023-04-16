@@ -9,7 +9,7 @@ export class ProvinceService {
     private provinceModel: Model<IProvince>,
   ) {}
 
-  create(province: IProvince): IProvince {
+  create(province: Province): Province {
     return Object.assign({});
   }
 
@@ -17,11 +17,11 @@ export class ProvinceService {
     return this.provinceModel.find();
   }
 
-  findOne(id: number): IProvince {
+  findOne(id: number): Province {
     return Object.assign({});
   }
 
-  update(id: number, province: IProvince): IProvince {
+  update(id: number, province: Province): Province {
     return Object.assign({});
   }
 

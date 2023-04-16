@@ -1,15 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
+import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { Client } from '../models/client';
-import { ApiConfiguration } from '../api-configuration';
-import { BaseService } from '../base-service';
-import { RequestBuilder } from '../request-builder';
-import { StrictHttpResponse } from '../strict-http-response';
 
 @Injectable({
   providedIn: 'root',
@@ -32,26 +32,33 @@ export class ClientsService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createClient()` instead.
    *
-   * This method sends `application/json` and handles request body of type `application/json`.
+   * This method doesn't expect any request body.
    */
-  createClient$Response(params: {
-    body: Client
+  private createClient$Response(params?: {
+    body: Client;
   }): Observable<StrictHttpResponse<Client>> {
-
-    const rb = new RequestBuilder(this.rootUrl, ClientsService.CreateClientPath, 'post');
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ClientsService.CreateClientPath,
+      'post'
+    );
     if (params) {
       rb.body(params.body, 'application/json');
     }
 
-    return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<Client>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<Client>;
+        })
+      );
   }
 
   /**
@@ -62,17 +69,13 @@ export class ClientsService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createClient$Response()` instead.
    *
-   * This method sends `application/json` and handles request body of type `application/json`.
+   * This method doesn't expect any request body.
    */
-  createClient(params: {
-    body: Client
-  }): Observable<Client> {
-
+  createClient(params: { body: Client }): Observable<Client> {
     return this.createClient$Response(params).pipe(
       map((r: StrictHttpResponse<Client>) => r.body as Client)
     );
   }
-
 
   /**
    * Path part for operation findAllClient
@@ -300,7 +303,7 @@ export class ClientsService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  private updateClient$Response(params: {
+  updateClient$Response(params: {
     /**
      * El ID del cliente a actualizar
      */
@@ -320,7 +323,7 @@ export class ClientsService extends BaseService {
     return this.http
       .request(
         rb.build({
-          responseType: 'text',
+          responseType: 'json',
           accept: '*/*',
         })
       )
@@ -421,6 +424,143 @@ export class ClientsService extends BaseService {
   }): Observable<void> {
     return this.removeClient$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
+    );
+  }
+
+  /**
+   * Path part for operation findByIdentifClient
+   */
+  static readonly FindByIdentifClientPath =
+    '/api/clients/find_by_identif/{identif}';
+
+  /**
+   * Find client by identif.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findByIdentifClient()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  private findByIdentifClient$Response(params: {
+    /**
+     * Client identification number
+     */
+    identif: string;
+  }): Observable<StrictHttpResponse<boolean>> {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ClientsService.FindByIdentifClientPath,
+      'get'
+    );
+    if (params) {
+      rb.path('identif', params.identif, {});
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: String((r as HttpResponse<any>).body) === 'true',
+          }) as StrictHttpResponse<boolean>;
+        })
+      );
+  }
+
+  /**
+   * Find client by identif.
+   *
+   *
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `findByIdentifClient$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findByIdentifClient(params: {
+    /**
+     * Client identification number
+     */
+    identif: string;
+  }): Observable<boolean> {
+    return this.findByIdentifClient$Response(params).pipe(
+      map((r: StrictHttpResponse<boolean>) => r.body as boolean)
+    );
+  }
+
+  /**
+   * Path part for operation findByEmailClient
+   */
+  static readonly FindByEmailClientPath = '/api/clients/find_by_email/{email}';
+
+  /**
+   * Find client by email.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findByEmailClient()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  private findByEmailClient$Response(params: {
+    /**
+     * Client email
+     */
+    email: string;
+  }): Observable<StrictHttpResponse<boolean>> {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      ClientsService.FindByEmailClientPath,
+      'get'
+    );
+    if (params) {
+      rb.path('email', params.email, {});
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: String((r as HttpResponse<any>).body) === 'true',
+          }) as StrictHttpResponse<boolean>;
+        })
+      );
+  }
+
+  /**
+   * Find client by email.
+   *
+   *
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `findByEmailClient$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findByEmailClient(params: {
+    /**
+     * Client email
+     */
+    email: string;
+  }): Observable<boolean> {
+    return this.findByEmailClient$Response(params).pipe(
+      map((r: StrictHttpResponse<boolean>) => r.body as boolean)
     );
   }
 }

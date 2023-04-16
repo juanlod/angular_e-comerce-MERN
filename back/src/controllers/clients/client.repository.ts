@@ -71,69 +71,10 @@ export function getClientListPipeline(
 }
 
 /**
- * Get clients and pets by single word filter
- * @param regex
- * @param offset
- * @param pageSize
- * @returns
- */
-// export function getSingleFilterClients(regex, offset, pageSize) {
-
-//   return ;
-// };
-
-/**
  * Count the matches
  * @param regex
  * @returns
  */
-// export function countValues(regex, wordsLength) {
-//   return wordsLength > 1
-//     ? [
-//         {
-//           $lookup: {
-//             localField: 'idc',
-//             from: 'mascotas',
-//             foreignField: 'idc',
-//             as: 'mascotas',
-//           },
-//         },
-
-//         {
-//           $match: {
-//             ayn: regex,
-//             'mascotas.nom': regex,
-//           },
-//         },
-//         {
-//           $sort: {
-//             'mascotas.nom': 1,
-//             ayn: 1,
-//           },
-//         },
-//       ]
-//     : [
-//         {
-//           $lookup: {
-//             localField: 'idc',
-//             from: 'mascotas',
-//             foreignField: 'idc',
-//             as: 'mascotas',
-//           },
-//         },
-//         {
-//           $match: {
-//             $or: [{ ayn: regex }, { mascotas: { $elemMatch: { nom: regex } } }],
-//           },
-//         },
-//         {
-//           $sort: {
-//             'mascotas.nom': 1,
-//             ayn: 1,
-//           },
-//         },
-//       ];
-// }
 export function countValues(regex, wordsLength): any {
   return wordsLength > 1
     ? [
@@ -180,4 +121,23 @@ export function countValues(regex, wordsLength): any {
           },
         },
       ];
+}
+
+export function getLastClientIdPipeline(): any {
+  return [
+    {
+      $group: {
+        _id: {},
+        'MAX(idc)': {
+          $max: '$idc',
+        },
+      },
+    },
+    {
+      $project: {
+        idc: '$MAX(idc)',
+        _id: 0,
+      },
+    },
+  ];
 }

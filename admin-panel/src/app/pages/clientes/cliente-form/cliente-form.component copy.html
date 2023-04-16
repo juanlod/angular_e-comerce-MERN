@@ -1,4 +1,8 @@
-<h2 class="flex-container">{{ !client.idc ? 'Nuevo cliente' : 'Editar cliente' }}</h2>
+<h2 class="ant-row-space-between">
+  <span>{{ !client.idc ? 'Nuevo cliente' : 'Editar cliente' }} </span>
+  <button nz-button nzType="primary" *ngIf="client.idc" (click)="editing = !editing"> {{ editing ? 'Cancelar' :
+    'Editar'}}</button>
+</h2>
 <nz-breadcrumb>
   <nz-breadcrumb>
     <nz-breadcrumb-item>
@@ -27,12 +31,15 @@
           <nz-form-label [nzSpan]="7" nzFor="ayn">Nombre y Apellidos &nbsp;<span class="error">*</span></nz-form-label>
           <nz-form-control [nzSpan]="15">
             <div nzFlex nzFlex="auto">
-
-              <input nz-input name="ayn" type="text" id="ayn" [(ngModel)]="client.ayn">
-              <div nzStatus="error" *ngIf="submitted && !client.ayn">
-                <small class="error">El nombre es obligatorio</small>
-              </div>
-
+              <ng-container *ngIf="!editing; else editNameInput">
+                {{ client.ayn }}
+              </ng-container>
+              <ng-template #editNameInput>
+                <input nz-input name="ayn" type="text" id="ayn" [(ngModel)]="client.ayn">
+                <div nzStatus="error" *ngIf="submitted && !client.ayn">
+                  <small class="error">El nombre es obligatorio</small>
+                </div>
+              </ng-template>
             </div>
           </nz-form-control>
         </nz-form-item>
@@ -42,7 +49,12 @@
           <nz-form-label [nzSpan]="7" nzFor="dir">Dirección</nz-form-label>
           <nz-form-control [nzSpan]="15">
             <div nzFlex nzFlex="auto">
-              <input nz-input name="dir" type="text" id="dir" [(ngModel)]="client.dir">
+              <ng-container *ngIf="!editing; else editDirInput">
+                {{ client.dir }}
+              </ng-container>
+              <ng-template #editDirInput>
+                <input nz-input name="dir" type="text" id="dir" [(ngModel)]="client.dir">
+              </ng-template>
             </div>
           </nz-form-control>
         </nz-form-item>
@@ -53,19 +65,30 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="codp">Código postal</nz-form-label>
           <nz-form-control [nzSpan]="7">
-            <input nz-input name="codp" type="text" id="codp" [(ngModel)]="client.codp">
+            <ng-container *ngIf="!editing; else editCodpInput">
+              {{ client.codp }}
+            </ng-container>
+            <ng-template #editCodpInput>
+              <input nz-input name="codp" type="text" id="codp" [(ngModel)]="client.codp">
+            </ng-template>
           </nz-form-control>
         </nz-form-item>
 
         <!-- DNI -->
+
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="identif">DNI</nz-form-label>
           <nz-form-control [nzSpan]="15">
             <div nzFlex nzFlex="auto">
-              <input nz-input name="identif" type="text" id="identif" [(ngModel)]="client.Identif">
-              <div nzStatus="error" *ngIf="identifExist">
-                <small class="error">El DNI seleccionado ya está en uso</small>
-              </div>
+              <ng-container *ngIf="!editing; else editIdentifInput">
+                {{ client.Identif }}
+              </ng-container>
+              <ng-template #editIdentifInput>
+                <input nz-input name="identif" type="text" id="identif" [(ngModel)]="client.Identif">
+                <div nzStatus="error" *ngIf="identifExist">
+                  <small class="error">El DNI seleccionado ya está en uso</small>
+                </div>
+              </ng-template>
             </div>
           </nz-form-control>
         </nz-form-item>
@@ -76,10 +99,15 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="codt">Provincia</nz-form-label>
           <nz-form-control [nzSpan]="15">
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleccione provincia" [(ngModel)]="client.Dep"
-              name="dep" (ngModelChange)="changeLocalities()">
-              <nz-option *ngFor="let option of provinces" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
-            </nz-select>
+            <ng-container *ngIf="!editing; else editDepInput">
+              {{ getProvinceName(client.Dep) }}
+            </ng-container>
+            <ng-template #editDepInput>
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleccione provincia" [(ngModel)]="client.Dep"
+                name="dep" (ngModelChange)="changeLocalities()">
+                <nz-option *ngFor="let option of provinces" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
+              </nz-select>
+            </ng-template>
           </nz-form-control>
         </nz-form-item>
 
@@ -87,10 +115,16 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="codt">Localidad</nz-form-label>
           <nz-form-control [nzSpan]="15">
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleccione localidad" [(ngModel)]="client.Loc"
-              name="loc" (ngModelChange)="changeProvince()">
-              <nz-option *ngFor="let option of localities" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
-            </nz-select>
+
+            <ng-container *ngIf="!editing; else editLocInput">
+              {{ getLocalityName(client.Loc) }}
+            </ng-container>
+            <ng-template #editLocInput>
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Seleccione localidad" [(ngModel)]="client.Loc"
+                name="loc" (ngModelChange)="changeProvince()">
+                <nz-option *ngFor="let option of localities" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
+              </nz-select>
+            </ng-template>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -100,7 +134,12 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="tel">Teléfono</nz-form-label>
           <nz-form-control [nzSpan]="15">
-            <input nz-input name="tel" type="text" id="tel" [(ngModel)]="client.tel2">
+            <ng-container *ngIf="!editing; else editTel2Input">
+              {{ client.tel2 }}
+            </ng-container>
+            <ng-template #editTel2Input>
+              <input nz-input name="tel" type="text" id="tel" [(ngModel)]="client.tel2">
+            </ng-template>
           </nz-form-control>
         </nz-form-item>
 
@@ -109,7 +148,12 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="telC">Teléfono móvil</nz-form-label>
           <nz-form-control [nzSpan]="15">
-            <input nz-input name="telC" type="text" id="telC" [(ngModel)]="client.telC2">
+            <ng-container *ngIf="!editing; else editTelC2Input">
+              {{ client.telC2 }}
+            </ng-container>
+            <ng-template #editTelC2Input>
+              <input nz-input name="telC" type="text" id="telC" [(ngModel)]="client.telC2">
+            </ng-template>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -119,25 +163,30 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="email">Correo electrónico</nz-form-label>
           <nz-form-control [nzSpan]="15">
-            <div nzFlex nzFlex="auto">
-              <input nz-input name="email" type="email" id="email" [(ngModel)]="client.email">
-              <div nzStatus="error" *ngIf="emailExist">
-                <small class="error">El correo seleccionado ya está en uso</small>
+            <ng-container *ngIf="!editing; else editEmailInput">
+              {{ client.email }}
+            </ng-container>
+            <ng-template #editEmailInput>
+              <div nzFlex nzFlex="auto">
+                <input nz-input name="email" type="email" id="email" [(ngModel)]="client.email">
+                <div nzStatus="error" *ngIf="emailExist">
+                  <small class="error">El correo seleccionado ya está en uso</small>
+                </div>
               </div>
-            </div>
+            </ng-template>
           </nz-form-control>
         </nz-form-item>
-
         <nz-form-item>
         </nz-form-item>
       </div>
+
 
       <div class="column-2">
         <!-- DEUDA -->
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="deuda">¿Tiene Deuda?</nz-form-label>
           <nz-form-control [nzSpan]="15">
-            <nz-switch name="deuda" id="deuda" [(ngModel)]="client.deuda"></nz-switch>
+            <nz-switch name="deuda" id="deuda" [(ngModel)]="client.deuda" [disabled]="client._id && !editing"></nz-switch>
           </nz-form-control>
         </nz-form-item>
 
@@ -146,18 +195,24 @@
           <ng-container *ngIf="client.deuda">
             <nz-form-label [nzSpan]="7" nzFor="cantidadDeuda">Cantidad Deuda</nz-form-label>
             <nz-form-control [nzSpan]="15">
-              <input nz-input name="cantidadDeuda" type="text" id="cantidadDeuda" [(ngModel)]="client.cantidadDeuda">
+              <ng-container *ngIf="!editing; else editCantDeudaInput">
+                {{ client.cantidadDeuda }}
+              </ng-container>
+              <ng-template #editCantDeudaInput>
+                  <input nz-input name="cantidadDeuda" type="text" id="cantidadDeuda" [(ngModel)]="client.cantidadDeuda">
+              </ng-template>
             </nz-form-control>
           </ng-container>
         </nz-form-item>
       </div>
+
 
       <div class="column-2">
         <!-- PROBLEMATICO -->
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="problematico">¿Es problemático?</nz-form-label>
           <nz-form-control [nzSpan]="15">
-            <nz-switch name="problematico" id="problematico" [(ngModel)]="client.problematico"></nz-switch>
+            <nz-switch name="problematico" id="problematico" [(ngModel)]="client.problematico" [disabled]="client._id && !editing"></nz-switch>
           </nz-form-control>
         </nz-form-item>
 
@@ -165,19 +220,29 @@
         <nz-form-item>
         </nz-form-item>
       </div>
+
 
       <div class="column-2">
         <!-- FECI -->
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="feci">Fecha de registro</nz-form-label>
           <nz-form-control [nzSpan]="15">
-            <input nz-input name="feci" type="date" id="feci" [(ngModel)]="client.feci " [disabled]="true">
+            <nz-form-control [nzSpan]="15">
+              <ng-container *ngIf="!editing; else editFeciInput">
+                {{ client.feci |date: 'dd-MM-yyyy' }}
+              </ng-container>
+              <ng-template #editFeciInput>
+                <input nz-input name="feci" type="date" id="feci" [(ngModel)]="client.feci " [disabled]="true">
+              </ng-template>
+            </nz-form-control>
           </nz-form-control>
         </nz-form-item>
+
         <!--  -->
         <nz-form-item>
         </nz-form-item>
       </div>
+
 
       <div class="column-2 obs">
         <nz-form-item>
@@ -188,7 +253,7 @@
         </nz-form-item>
       </div>
 
-      <div class="flex-button">
+      <div class="flex-button" *ngIf="!client._id || editing">
         <!-- BOTON GUARDAR -->
         <nz-form-item>
           <nz-form-control [nzOffset]="7" [nzSpan]="15">
