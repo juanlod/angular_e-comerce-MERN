@@ -6,6 +6,7 @@ import { NgZorroModule } from '../../../app/ng-zorro.module';
 import { MaterialModule } from '../../../app/material.module';
 import { FormsModule } from '@angular/forms';
 import { ClienteFormComponent } from './cliente-form/cliente-form.component';
+import { TranslationModule } from 'src/app/translation.module';
 
 
 
@@ -19,7 +20,8 @@ import { ClienteFormComponent } from './cliente-form/cliente-form.component';
     ClienteRoutingModule,
     NgZorroModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    TranslationModule
   ],
   exports: [
     ClienteRoutingModule

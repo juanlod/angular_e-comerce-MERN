@@ -17,6 +17,9 @@
 }
 
 .header-trigger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 64px;
   padding: 20px 24px;
   font-size: 20px;
@@ -62,11 +65,11 @@ nz-header {
 }
 
 .app-header {
-  position: relative;
+  /* position: relative;
   height: 64px;
   padding: 0;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  box-shadow: 0 1px 4px rgba(0,21,41,.08); */
 }
 
 nz-content {
@@ -77,4 +80,19 @@ nz-content {
   padding: 24px;
   background: #fff;
   height: 100%;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  background: #fff;
+  padding: 0 24px;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+
+.app-language {
+  margin-left: 16px;
+  width: 120px;
 }

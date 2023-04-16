@@ -9,6 +9,7 @@ import { Locality } from 'src/app/api/models/locality';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Utils } from 'src/app/utils';
+import { NotificationService } from 'src/app/api/services/notification.service';
 
 @Component({
   selector: 'app-cliente-form',
@@ -32,7 +33,8 @@ export class ClienteFormComponent implements OnInit {
   constructor(
     private clientService: ClientsService,
     private masterCacheService: MasterCacheService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notificationService: NotificationService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -93,11 +95,13 @@ export class ClienteFormComponent implements OnInit {
       return;
     }
 
+    this.notificationService.showInfo('Guardando cliente...')
     // Wait to save a client
     const result = (await lastValueFrom(
       this.clientService.createClient({ body: this.client })
     ).catch((error: any) => {
       this.submitted = false;
+      this.notificationService.showError('Ocurrió un error al guardar el cliente')
     })) as any;
 
     if (result) {
@@ -108,18 +112,26 @@ export class ClienteFormComponent implements OnInit {
         '',
         `/#/dashboard/clientes/form/${this.client._id}`
       );
+      this.notificationService.showSuccess('Cliente guardado correctamente')
     }
   }
 
+  /**
+   * Update a client
+   */
   async updateClient() {
+    this.notificationService.showInfo('Actualizando cliente...')
     const result = (await lastValueFrom(
       this.clientService.updateClient({ id: this.client._id,  body: this.client })
     ).catch((error: any) => {
       this.submitted = false;
+      this.notificationService.showError('Ocurrió un error al actualizar el cliente')
     })) as any;
 
+    if (result) {
+      this.notificationService.showSuccess('Cliente actualizado correctamente.')
+    }
 
-    console.log(result);
   }
 
   async mapLocalitiesProvinces() {

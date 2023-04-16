@@ -1,5 +1,5 @@
 
-<h2>Listado de clientes y mascotas</h2>
+<h2>{{ 'CLIENTS.LIST.TITLE' | translate}}</h2>
 <nz-breadcrumb>
   <nz-breadcrumb-item>
     <span nz-icon nzType="home" routerLink="/"></span>
@@ -7,13 +7,13 @@
   <nz-breadcrumb-item>
     <a>
       <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
-      <span>Listado de clientes</span>
+      <span>{{ 'CLIENTS.LIST.TITLE.BREADCRUMB' | translate }}</span>
     </a>
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 <br>
 <br>
-<button nz-button (click)="addClient()" nzType="primary">Nuevo cliente</button>
+<button nz-button (click)="addClient()" nzType="primary">{{ 'CLIENTS.LIST.NEW.BUTTON' | translate }}</button>
 <br>
 <br>
 <nz-table #basicTable nzShowSizeChanger [nzData]="clientes" [nzFrontPagination]="false" [nzLoading]="loading"
@@ -23,15 +23,15 @@
     <tr>
       <th nzWidth="60px"></th>
       <th  nzCustomFilter>
-        Nombre
+         {{ 'CLIENTS.LIST.TABLE.NAME' | translate }}
         <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="filtro.length > 0" [nzDropdownMenu]="menu">
           <span style="font-size: 15px;" nz-icon nzType="search"></span>
         </nz-filter-trigger>
       </th>
-      <th nzColumnKey="dir" [nzSortFn]="true">Dirección</th>
-      <th nzColumnKey="email" [nzSortFn]="true">Email</th>
-      <th nzColumnKey="email" [nzSortFn]="true">Teléfono</th>
-      <th nzWidth="100px">Acciones</th>
+      <th nzColumnKey="dir" [nzSortFn]="true">{{ 'CLIENTS.LIST.TABLE.DIRECTION' | translate}}</th>
+      <th nzColumnKey="email" [nzSortFn]="true">{{ 'CLIENTS.LIST.TABLE.EMAIL' | translate }}</th>
+      <th nzColumnKey="email" [nzSortFn]="true">{{ 'CLIENTS.LIST.TABLE.TELEPHONE' | translate }}</th>
+      <th nzWidth="100px">{{ 'CLIENTS.LIST.TABLE.ACTIONS' | translate }}</th>
     </tr>
   </thead>
   <tbody>
@@ -46,9 +46,6 @@
         <span *ngIf="cliente.tel">
         {{ cliente.tel }}  <nz-divider nzType="vertical"></nz-divider>
       </span>
-      <!-- <span *ngIf="cliente.tel2">
-        {{ cliente.tel2 }}  <nz-divider nzType="vertical"></nz-divider>
-      </span> -->
       <span *ngIf="cliente.telC">
         {{ cliente.telC }}  <nz-divider nzType="vertical"></nz-divider>
       </span>

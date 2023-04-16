@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { es_ES } from 'ng-zorro-antd/i18n';
+
 import { CommonModule, registerLocaleData } from '@angular/common';
-import es from '@angular/common/locales/es';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -22,7 +21,17 @@ import { NgZorroModule } from './ng-zorro.module';
 import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClienteModule } from './pages/clientes/cliente.module';
+
+import es from '@angular/common/locales/es';
+import en from '@angular/common/locales/en';
+import gl from '@angular/common/locales/gl';
+
+import { es_ES, NZ_I18N, gl_ES, en_GB } from 'ng-zorro-antd/i18n';
+import { TranslationModule } from './translation.module';
+
 registerLocaleData(es);
+registerLocaleData(en);
+registerLocaleData(gl);
 
 
 @NgModule({
@@ -45,8 +54,10 @@ registerLocaleData(es);
     MaterialModule,
     NgbModule,
     ClienteModule,
+    TranslationModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: es_ES }],
+  exports: [],
+  providers: [{ provide: NZ_I18N, useValue: [es_ES, en_GB, gl_ES]}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
