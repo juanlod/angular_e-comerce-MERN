@@ -7,16 +7,19 @@ import {
   Param,
   Delete,
   Query,
+  Logger,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
-import { IUser, User } from 'src/mongodb/schemas/User';
+import { IUser, LoginDto, User } from 'src/mongodb/schemas/User';
 
 @ApiTags('User')
 @Controller('/api/user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  private readonly logger = new Logger(UserController.name);
 
+  constructor(private readonly userService: UserService) {}
+  
   @ApiOperation({ summary: 'Create an User', operationId: 'loginUser' })
   @ApiResponse({
     status: 201,
@@ -25,8 +28,9 @@ export class UserController {
   })
   @ApiResponse({ status: 400, description: 'Bad request.' })
   @Post('/login')
-  login(@Body() User: IUser) {
-    return this.userService.login(User);
+  login(@Body() loginDto: LoginDto) {
+    const { email, password } = loginDto;
+    return this.userService.login(email, password);
   }
 
   @ApiOperation({ summary: 'Create an User', operationId: 'createUser' })
@@ -36,8 +40,8 @@ export class UserController {
   })
   @ApiResponse({ status: 400, description: 'Bad request.', type: User })
   @Post('/save')
-  create(@Body() User: IUser) {
-    return this.userService.create(User);
+  create(@Body() user: IUser) {
+    return this.userService.create(user);
   }
 
   @ApiOperation({ summary: 'Get all Users', operationId: 'findAllUser' })

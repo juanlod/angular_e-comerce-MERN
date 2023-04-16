@@ -10,6 +10,7 @@ import { ApiConfiguration } from '../api-configuration';
 import { BaseService } from '../base-service';
 import { RequestBuilder } from '../request-builder';
 import { StrictHttpResponse } from '../strict-http-response';
+import { LoginDto } from '../models/login-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -32,15 +33,18 @@ export class UserService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `loginUser()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  private loginUser$Response(params?: {}): Observable<StrictHttpResponse<User>> {
+  private loginUser$Response(params: {
+    body: LoginDto;
+  }): Observable<StrictHttpResponse<User>> {
     const rb = new RequestBuilder(
       this.rootUrl,
       UserService.LoginUserPath,
       'post'
     );
     if (params) {
+      rb.body(params.body, 'application/json');
     }
 
     return this.http
@@ -66,9 +70,9 @@ export class UserService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `loginUser$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  loginUser(params?: {}): Observable<User> {
+  loginUser(params: { body: LoginDto }): Observable<User> {
     return this.loginUser$Response(params).pipe(
       map((r: StrictHttpResponse<User>) => r.body as User)
     );
@@ -89,7 +93,9 @@ export class UserService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  private createUser$Response(params?: {}): Observable<StrictHttpResponse<void>> {
+  private createUser$Response(params?: {}): Observable<
+    StrictHttpResponse<void>
+  > {
     const rb = new RequestBuilder(
       this.rootUrl,
       UserService.CreateUserPath,
@@ -101,7 +107,7 @@ export class UserService extends BaseService {
     return this.http
       .request(
         rb.build({
-          responseType: 'text',
+          responseType: 'json',
           accept: '*/*',
         })
       )
@@ -334,7 +340,7 @@ export class UserService extends BaseService {
     return this.http
       .request(
         rb.build({
-          responseType: 'text',
+          responseType: 'json',
           accept: '*/*',
         })
       )

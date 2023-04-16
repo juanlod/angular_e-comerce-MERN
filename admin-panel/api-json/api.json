@@ -6,6 +6,14 @@
         "operationId": "loginUser",
         "summary": "Create an User",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginDto" }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "The User has been successfully created.",
@@ -137,16 +145,15 @@
         "operationId": "createClient",
         "summary": "Create a new client",
         "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Client" }
-            }
-          }
-        },
         "responses": {
-          "201": { "description": "The client has been successfully created." },
+          "201": {
+            "description": "The client has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Client" }
+              }
+            }
+          },
           "400": { "description": "Bad Request." }
         },
         "tags": ["Clients"]
@@ -257,14 +264,6 @@
             "schema": { "type": "string" }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Client" }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "El cliente ha sido actualizado satisfactoriamente"
@@ -606,6 +605,14 @@
   "servers": [],
   "components": {
     "schemas": {
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["email", "password"]
+      },
       "User": {
         "type": "object",
         "properties": {

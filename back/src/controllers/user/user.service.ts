@@ -1,4 +1,9 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
 import { Model } from 'mongoose';
 import { IUser, User } from 'src/mongodb/schemas/user';
 import * as moment from 'moment';
@@ -7,6 +12,8 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UserService {
+  private readonly logger = new Logger(UserService.name);
+
   constructor(
     @Inject('USER_MODEL')
     private userModel: Model<IUser>,
@@ -18,17 +25,15 @@ export class UserService {
    * @param user
    * @returns
    */
-  async login(user: User) {
-    const result = await this.userModel.findOne({ email: user.email });
+  async login(email: string, password: string) {
+    const result = await this.userModel.findOne({ email: email });
+    this.logger.debug(result);
 
     if (!result) {
       throw new BadRequestException('Usuario o contraseña incorrectos');
     }
 
-    const isPasswordCorrect = await bcrypt.compare(
-      user.password,
-      result.password,
-    );
+    const isPasswordCorrect = await bcrypt.compare(password, result.password);
     if (!isPasswordCorrect) {
       throw new BadRequestException('Usuario o contraseña incorrectos');
     }

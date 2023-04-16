@@ -77,14 +77,13 @@ export class LoginComponent implements OnInit {
    */
   async login() {
     // Enviamos la peticion al backend
+    console.log(this.user)
     let response = (await lastValueFrom(
       this.userService.loginUser({ body: this.user })
     ).catch((error) => {
       // Si se produce algun error enviamos un mensaje
-      this.notificationService.showError(error.error.error);
+      this.notificationService.showError(error.error.message);
     })) as any;
-
-    console.log(response);
     // Si la respuesta es correcta almacenamos los datos en el localstorage
     if (response) {
       localStorage.setItem('token', response.token);

@@ -42,6 +42,14 @@ export class User {
   dni?: string;
 }
 
+export class LoginDto {
+  @ApiProperty()
+  email: string;
+
+  @ApiProperty()
+  password: string;
+}
+
 // Creacion de clase User a traves de la interfaz
 export const UserSchema = new Schema<IUser>({
   nombres: { type: String, required: true },

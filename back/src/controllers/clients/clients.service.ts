@@ -13,6 +13,7 @@ export class ClientsService {
   ) {}
 
   create(client: IClient) {
+    const result = this.clientModel.findOne({ indentif: client.Identif });
     return client;
   }
 
