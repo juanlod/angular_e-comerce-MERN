@@ -28,6 +28,7 @@ import gl from '@angular/common/locales/gl';
 
 import { es_ES, NZ_I18N, gl_ES, en_GB } from 'ng-zorro-antd/i18n';
 import { TranslationModule } from './translation.module';
+import { PetModule } from './pages/pets/pet/pet.module';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -54,7 +55,8 @@ registerLocaleData(gl);
     MaterialModule,
     NgbModule,
     ClienteModule,
-    TranslationModule
+    TranslationModule,
+    PetModule
   ],
   exports: [],
   providers: [{ provide: NZ_I18N, useValue: [es_ES, en_GB, gl_ES]}],

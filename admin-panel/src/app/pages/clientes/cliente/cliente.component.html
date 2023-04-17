@@ -1,4 +1,3 @@
-
 <h2>{{ 'CLIENTS.LIST.TITLE' | translate}}</h2>
 <nz-breadcrumb>
   <nz-breadcrumb-item>
@@ -13,7 +12,7 @@
 </nz-breadcrumb>
 <br>
 <br>
-<button nz-button (click)="addClient()" nzType="primary">{{ 'CLIENTS.LIST.NEW.BUTTON' | translate }}</button>
+<button nz-button (click)="showModal()" nzType="primary">{{ 'CLIENTS.LIST.NEW.BUTTON' | translate }}</button>
 <br>
 <br>
 <nz-table #basicTable nzShowSizeChanger [nzData]="clientes" [nzFrontPagination]="false" [nzLoading]="loading"
@@ -22,49 +21,64 @@
   <thead>
     <tr>
       <th nzWidth="60px"></th>
-      <th  nzCustomFilter>
-         {{ 'CLIENTS.LIST.TABLE.NAME' | translate }}
+      <th nzCustomFilter>
+        {{ 'CLIENTS.LIST.TABLE.NAME' | translate }}
         <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="filtro.length > 0" [nzDropdownMenu]="menu">
           <span style="font-size: 15px;" nz-icon nzType="search"></span>
         </nz-filter-trigger>
       </th>
-      <th nzColumnKey="dir" [nzSortFn]="true">{{ 'CLIENTS.LIST.TABLE.DIRECTION' | translate}}</th>
+      <th nzColumnKey="dir" [nzSortFn]="true">{{ 'CLIENTS.LIST.TABLE.DIRECTION' | translate}} </th>
       <th nzColumnKey="email" [nzSortFn]="true">{{ 'CLIENTS.LIST.TABLE.EMAIL' | translate }}</th>
       <th nzColumnKey="email" [nzSortFn]="true">{{ 'CLIENTS.LIST.TABLE.TELEPHONE' | translate }}</th>
-      <th nzWidth="100px">{{ 'CLIENTS.LIST.TABLE.ACTIONS' | translate }}</th>
+      <!-- <th nzWidth="100px">{{ 'CLIENTS.LIST.TABLE.ALERTS' | translate }}</th> -->
+      <th>{{ 'CLIENTS.LIST.TABLE.ALERTS' | translate }}</th>
     </tr>
   </thead>
   <tbody>
     <ng-container *ngFor="let cliente of basicTable.data">
-    <tr >
-      <td *ngIf="cliente?.mascotas?.length > 0" [nzExpand]="expandSet.has(cliente.idc)" (nzExpandChange)="onExpandChange(cliente.idc, $event)"></td>
-      <td *ngIf="cliente?.mascotas?.length === 0"></td>
-      <td [ngClass]="{'contains-pet': checkFiltro(cliente)}">{{ cliente.ayn }}</td>
-      <td>{{ cliente.dir }}</td>
-      <td>{{ cliente.email }}</td>
-      <td>
-        <span *ngIf="cliente.tel">
-        {{ cliente.tel }}  <nz-divider nzType="vertical"></nz-divider>
-      </span>
-      <span *ngIf="cliente.telC">
-        {{ cliente.telC }}  <nz-divider nzType="vertical"></nz-divider>
-      </span>
-      <span *ngIf="cliente.telC2">
-        {{ cliente.telC2 }}  <nz-divider nzType="vertical"></nz-divider>
-      </span>
-    </td>
-      <td>
-        <a class="table-icon"><span nz-icon nzType="edit" nzTheme="outline" (click)="editClient(cliente._id)"></span></a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a class="table-icon"><span nz-icon nzType="delete" nzTheme="outline"></span></a>
+      <tr >
+        <td *ngIf="cliente?.mascotas?.length > 0" [nzExpand]="expandSet.has(cliente.idc)"
+          (nzExpandChange)="onExpandChange(cliente.idc, $event)"></td>
+        <td *ngIf="cliente?.mascotas?.length === 0"></td>
+
+        <!-- CLIENT NAME -->
+        <td class="client-name" [ngClass]="{'contains-pet': checkFiltro(cliente)}">
+          <a (click)="clientDetail(cliente._id)"><span [ngClass]="{'contains-pet': checkFiltro(cliente)}">{{ cliente.ayn }}</span></a>
+          <!-- <span class="client-name-pet" nz-icon nzType="plus" nzTheme="outline"></span> -->
+        </td>
+        <!-- CLIENT DIRECTION -->
+        <td>{{ cliente.dir }}</td>
+
+        <!-- CLIENT EMAIL -->
+        <td>{{ cliente.email }}</td>
+
+        <!-- CLIENT PHONE -->
+        <td>
+          <span *ngIf="cliente.tel">
+            {{ cliente.tel }} <nz-divider nzType="vertical"></nz-divider>
+          </span>
+          <span *ngIf="cliente.telC">
+            {{ cliente.telC }} <nz-divider nzType="vertical"></nz-divider>
+          </span>
+          <span *ngIf="cliente.telC2">
+            {{ cliente.telC2 }} <nz-divider nzType="vertical"></nz-divider>
+          </span>
+        </td>
+        <!-- CLIENT ALERTS -->
+        <td>
+          <span  class="table-icon warning" *ngIf="cliente.problematico" nz-icon nzType="warning" nzTheme="outline"></span>
+          <nz-divider *ngIf="client.problematico" nzType="vertical"></nz-divider>
+          <span class="table-icon dollar"  *ngIf="cliente.deuda" nz-icon nzType="dollar" nzTheme="outline"></span>
       </td>
-    </tr>
-    <tr  [nzExpand]="expandSet.has(cliente.idc)">
-        <th>Mascotas </th>
+      </tr>
+      <!-- CLIENT PETS -->
       <ng-container *ngFor="let mascota of cliente.mascotas">
-        <a [ngClass]="{'contains-pet' : checkFiltroMascota(mascota) }">{{ mascota.nom }}</a> <nz-divider nzType="vertical"></nz-divider>
+        <tr  [nzExpand]="expandSet.has(cliente.idc)">
+          <td [nzIndentSize]="80">
+            <a (click)="petDetail(mascota._id)" [ngClass]="{'contains-pet' : checkFiltroMascota(mascota) }">{{ mascota.nom }}</a>
+          </td>
+        </tr>
       </ng-container>
-    </tr>
     </ng-container>
   </tbody>
 </nz-table>
@@ -79,3 +93,13 @@
     </div>
   </div>
 </nz-dropdown-menu>
+
+
+<nz-modal [nzContent]="modalContent" [nzStyle]="{ top: '20px' }" [nzMaskClosable]="false" [nzFooter]="null"
+  [nzWidth]="'70%'" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
+</nz-modal>
+
+
+<ng-template #modalContent>
+  <app-cliente-form [client]="client"></app-cliente-form>
+</ng-template>

@@ -37,57 +37,82 @@ export interface IClient extends Document {
 }
 
 export class Client {
-  @ApiProperty()
+  @ApiProperty({name:'mongo id'})
   _id: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'sql id'})
   idc: number;
-  @ApiProperty()
+
+  @ApiProperty({name:'full name'})
   ayn: string;
-  @ApiProperty()
+  
+  @ApiProperty({name:'address'})
   dir: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'postal code'})
   codp: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'mongo id'})
   codt: string;
+
   @ApiProperty()
   tel: string;
+
   @ApiProperty()
   telC: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'email'})
   email: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'client observations'})
   obs: string;
+
   @ApiProperty()
   mark: number;
-  @ApiProperty()
+
+  @ApiProperty({name:'register date'})
   feci: Date;
+
   @ApiProperty()
   fecu: Date;
+
   @ApiProperty()
   motuv: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'indicates if the client have debt'})
   deuda: boolean;
-  @ApiProperty()
+
+  @ApiProperty({name:'Indicates if the client is dangerous'})
   problematico: boolean;
-  @ApiProperty()
+
+  @ApiProperty({name:'debt quantity'})
   cantidadDeuda: string;
+
   @ApiProperty()
   obra: number;
-  @ApiProperty()
+
+  @ApiProperty({name:'locality id reference'})
   Loc: number;
-  @ApiProperty()
+
+  @ApiProperty({name:'province id reference'})
   Dep: number;
-  @ApiProperty()
+
+  @ApiProperty({name:'phone'})
   tel2: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'movile phone'})
   telC2: string;
+
   @ApiProperty()
   codt2: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'postal code'})
   codp2: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'country identification number'})
   Identif: string;
-  @ApiProperty()
+
+  @ApiProperty({name:'list of pets'})
   mascotas: mongoose.Schema.Types.ObjectId[];
 }
 

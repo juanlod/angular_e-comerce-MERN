@@ -23,3 +23,34 @@ nz-layout {
 .contains-pet {
   color: rgb(23, 179, 23);
 }
+
+.dollar {
+  color: green;
+}
+
+.warning {
+
+}
+
+.table-icon {
+  font-size: 22px;
+}
+
+.client-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor:  pointer;
+}
+
+.client-name-pet {
+  cursor: pointer;
+  color: black;
+}
+
+.client-name-pet:hover {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.2s ease;
+}

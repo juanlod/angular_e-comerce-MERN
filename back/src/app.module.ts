@@ -8,6 +8,7 @@ import { LocalityModule } from './controllers/locality/locality.module';
 import { ProvinceModule } from './controllers/province/province.module';
 import { JwtModule } from '@nestjs/jwt';
 import { environment } from './environments/environment';
+import { PetsModule } from './controllers/pets/pets.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { environment } from './environments/environment';
     ClientsModule,
     LocalityModule,
     ProvinceModule,
+    PetsModule,
     JwtModule.register({
       secret: environment.secret, // reemplaza esto con tu propia clave secreta
       signOptions: { expiresIn: '7d' }, // cambia según tus necesidades

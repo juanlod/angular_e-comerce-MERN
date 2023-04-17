@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { lastValueFrom } from 'rxjs';
+import { Client } from 'src/app/api/models/client';
 import { ClientsService } from 'src/app/api/services/clients.service';
 import { NotificationService } from 'src/app/api/services/notification.service';
 
@@ -21,6 +22,10 @@ export class ClienteComponent implements OnInit {
   totalPages = 0;
   visible = false;
   expandSet = new Set<number>();
+
+  isVisible = false;
+  isEdit = false;
+  client: Client = new Client();
 
   constructor(
     private clienteService: ClientsService,
@@ -145,17 +150,36 @@ export class ClienteComponent implements OnInit {
     if (!this.filtro) {
       return false;
     }
-
     const palabrasClave = this.filtro.split(',').map((p) => p.trim());
     const mascotaNombre = mascota.nom.toLowerCase();
     return palabrasClave.some((p) => mascotaNombre.includes(p.toLowerCase()));
   }
 
-  addClient() {
-    this.router.navigate(['dashboard/clientes/form']);
+
+  async clientDetail(id: string) {
+    this.router.navigate(['dashboard/clientes/detail', id]);
   }
 
-  editClient(id: string) {
-    this.router.navigate(['dashboard/clientes/form', id]);
+
+  async petDetail(id: string) {
+    this.router.navigate(['dashboard/pets/detail', id]);
+  }
+
+
+  async editClient(id: string) {
+    this.client = await lastValueFrom(this.clienteService.findOneClient({id: id})) as Client;
+    this.showModal()
+  }
+
+
+  showModal(): void {
+    this.isEdit = false;
+    this.isVisible = true;
+  }
+
+
+  handleCancel(): void {
+    this.isVisible = false;
+    this.client = new Client()
   }
 }

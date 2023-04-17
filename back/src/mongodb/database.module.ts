@@ -4,6 +4,7 @@ import { userProviders } from './providers/user.provider';
 import { clientProviders } from './providers/client.provider';
 import { localityProviders } from './providers/locality.provider';
 import { provinceProviders } from './providers/province.provider';
+import { petProviders } from './providers/pet.provider';
 
 @Module({
   imports: [],
@@ -13,6 +14,7 @@ import { provinceProviders } from './providers/province.provider';
     ...clientProviders,
     ...localityProviders,
     ...provinceProviders,
+    ...petProviders,
   ],
   exports: [
     ...databaseProviders,
@@ -20,6 +22,7 @@ import { provinceProviders } from './providers/province.provider';
     ...clientProviders,
     ...localityProviders,
     ...provinceProviders,
+    ...petProviders,
   ],
 })
 export class DatabaseModule {}

@@ -1,0 +1,37 @@
+<form action="">
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Nombre de mascota</nz-form-label>
+      <nz-form-control>
+        <input nz-input placeholder="Ingrese el nombre de la mascota">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired>Tipo de mascota</nz-form-label>
+      <nz-form-control>
+        <nz-select  nzPlaceHolder="Seleccione el tipo de mascota">
+          <nz-option nzValue="perro">Perro</nz-option>
+          <nz-option nzValue="gato">Gato</nz-option>
+          <nz-option nzValue="otro">Otro</nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Descripción</nz-form-label>
+      <nz-form-control>
+        <textarea nz-input placeholder="Ingrese una descripción de la mascota"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Imagen</nz-form-label>
+      <nz-form-control>
+        <input type="file" nz-upload >
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <button nz-button nzType="primary">Guardar</button>
+      <button nz-button nzType="default">Cancelar</button>
+    </nz-form-item>
+
+
+</form>

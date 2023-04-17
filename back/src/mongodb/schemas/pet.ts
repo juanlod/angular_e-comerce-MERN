@@ -33,7 +33,7 @@ export interface IPet extends Document {
   Chip: null | string;
 }
 
-export class Pet extends Document {
+export class Pet {
   @ApiProperty()
   _id: string;
   @ApiProperty()

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { lastValueFrom, of } from 'rxjs';
 
 import { MasterCacheService } from '../../../api/cache/master-cache-service';
@@ -17,7 +17,10 @@ import { NotificationService } from 'src/app/api/services/notification.service';
   styleUrls: ['./cliente-form.component.css'],
 })
 export class ClienteFormComponent implements OnInit {
-  client: Client = new Client();
+
+  @Input() isEdit: boolean = false;
+
+  @Input() client: Client = new Client();
 
   provinces: Province[] = [];
   provincesBackup: Province[] = [];

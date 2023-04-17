@@ -27,4 +27,5 @@ export class Client {
   tel2: string;
   telC: string;
   telC2: string;
+  lopd: boolean;
 }
