@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, lastValueFrom } from "rxjs";
-import { ProvinceService } from "../services/province.service";
-import { LocalityService } from "../services/locality.service";
+
 import { Province } from "../models/province";
 import { Locality } from "../models/locality";
+import { LocalityService } from "../services/master/locality.service";
+import { ProvinceService } from "../services/master/province.service";
 
 
 

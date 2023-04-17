@@ -4,12 +4,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
+import { ApiConfiguration } from '../../api-configuration';
+import { BaseService } from '../../base-service';
+import { Province } from '../../models/province';
+import { RequestBuilder } from '../../request-builder';
+import { StrictHttpResponse } from '../../strict-http-response';
 
-import { Province } from '../models/province';
-import { ApiConfiguration } from '../api-configuration';
-import { BaseService } from '../base-service';
-import { RequestBuilder } from '../request-builder';
-import { StrictHttpResponse } from '../strict-http-response';
+
 
 @Injectable({
   providedIn: 'root',

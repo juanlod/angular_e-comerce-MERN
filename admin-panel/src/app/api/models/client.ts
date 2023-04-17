@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface Client {
+export class Client {
 
   /**
    * province id reference
