@@ -34,51 +34,73 @@ export interface IPet extends Document {
 }
 
 export class Pet {
-  @ApiProperty()
+  @ApiProperty({ description: 'mongo id' })
   _id: string;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'sql id' })
   idm: number;
-  @ApiProperty()
-  idc: mongoose.Schema.Types.ObjectId;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'client id' })
+  idc: number;
+
+  @ApiProperty({ description: 'pet description' })
   nom: string;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'race id' })
   raz: number;
+
   @ApiProperty()
   esp: number;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'birth date' })
   fecn: string;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'coat id' })
   pel: number;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'weight' })
   pes: number;
+
   @ApiProperty()
   car: null | string;
+
   @ApiProperty()
   ser: number;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'comments' })
   obs: null | string;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'register date' })
   feci: string;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'sex id' })
   sex: number;
+
   @ApiProperty()
   ped: boolean;
+
   @ApiProperty()
   rep: boolean;
+
   @ApiProperty()
   dec: boolean;
+
   @ApiProperty()
   fot: boolean;
+
   @ApiProperty()
   int: boolean;
+
   @ApiProperty()
   hos: number;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'last date in clinic' })
   fult: string;
+
   @ApiProperty()
   tarea: boolean;
-  @ApiProperty()
+
+  @ApiProperty({ description: 'pet chip number' })
   Chip: null | string;
 }
 

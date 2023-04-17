@@ -5,6 +5,10 @@ import { clientProviders } from './providers/client.provider';
 import { localityProviders } from './providers/locality.provider';
 import { provinceProviders } from './providers/province.provider';
 import { petProviders } from './providers/pet.provider';
+import { sexProviders } from './providers/sex.provider';
+import { raceProviders } from './providers/race.provider';
+import { speciesProviders } from './providers/species.provider';
+import { coatProviders } from './providers/coat.provider';
 
 @Module({
   imports: [],
@@ -15,6 +19,10 @@ import { petProviders } from './providers/pet.provider';
     ...localityProviders,
     ...provinceProviders,
     ...petProviders,
+    ...sexProviders,
+    ...raceProviders,
+    ...speciesProviders,
+    ...coatProviders,
   ],
   exports: [
     ...databaseProviders,
@@ -23,6 +31,10 @@ import { petProviders } from './providers/pet.provider';
     ...localityProviders,
     ...provinceProviders,
     ...petProviders,
+    ...sexProviders,
+    ...raceProviders,
+    ...speciesProviders,
+    ...coatProviders,
   ],
 })
 export class DatabaseModule {}

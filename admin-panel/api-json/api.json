@@ -722,6 +722,827 @@
         },
         "tags": ["Province"]
       }
+    },
+    "/api/pets/save": {
+      "post": {
+        "operationId": "createPet",
+        "summary": "Create a new pet",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Pet" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The pet has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Pet" }
+              }
+            }
+          },
+          "400": { "description": "Bad Request." }
+        },
+        "tags": ["Pets"]
+      }
+    },
+    "/api/pets/find_all": {
+      "get": {
+        "operationId": "findAllPet",
+        "summary": "Obtener todos los petes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Lista de todos los petes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Pet" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Pets"]
+      }
+    },
+    "/api/pets/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingPet",
+        "summary": "Obtener petes paginados",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "description": "Filtro para buscar petes",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Número de página",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Número de elementos por página",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de petes paginados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Pet" }
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" }
+        },
+        "tags": ["Pets"]
+      }
+    },
+    "/api/pets/find_one/{id}": {
+      "get": {
+        "operationId": "findOnePet",
+        "summary": "Obtener un pete por id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "El ID del pete a buscar",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "string" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "El pete ha sido encontrado satisfactoriamente",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Pet" }
+              }
+            }
+          },
+          "404": { "description": "El pete no ha sido encontrado" }
+        },
+        "tags": ["Pets"]
+      }
+    },
+    "/api/pets/update/{id}": {
+      "patch": {
+        "operationId": "updatePet",
+        "summary": "Actualizar un pete por id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "El ID del pete a actualizar",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Pet" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "El pete ha sido actualizado satisfactoriamente"
+          },
+          "404": { "description": "El pete no ha sido encontrado" }
+        },
+        "tags": ["Pets"]
+      }
+    },
+    "/api/pets/delete/{id}": {
+      "delete": {
+        "operationId": "removePet",
+        "summary": "Eliminar un pete por id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "El ID del pete a eliminar",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "string" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "El pete ha sido eliminado satisfactoriamente"
+          },
+          "404": { "description": "El pete no ha sido encontrado" }
+        },
+        "tags": ["Pets"]
+      }
+    },
+    "/api/sex/save": {
+      "post": {
+        "operationId": "createSex",
+        "summary": "Create a new sex",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "The sex has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Sex" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["Sex"]
+      }
+    },
+    "/api/sex/find_all": {
+      "get": {
+        "operationId": "findAllSex",
+        "summary": "Retrieve a list of all sexs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all sexs successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Sex" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Sex"]
+      }
+    },
+    "/api/sex/find_one/{id}": {
+      "get": {
+        "operationId": "findOneSex",
+        "summary": "Retrieve a sex by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved sex successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Sex" }
+              }
+            }
+          },
+          "404": { "description": "Sex not found." }
+        },
+        "tags": ["Sex"]
+      }
+    },
+    "/api/sex/update/{id}": {
+      "patch": {
+        "operationId": "updateSex",
+        "summary": "Update a sex by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Sex" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The sex has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Sex" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "sex not found." }
+        },
+        "tags": ["Sex"]
+      }
+    },
+    "/api/sex/delete/{id}": {
+      "delete": {
+        "operationId": "removeSex",
+        "summary": "Remove a sex by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "The sex has been successfully removed." },
+          "404": { "description": "sex not found." }
+        },
+        "tags": ["Sex"]
+      }
+    },
+    "/api/sex/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingSex",
+        "summary": "Get all sexs with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all sexs paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Sex" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Sex"]
+      }
+    },
+    "/api/race/save": {
+      "post": {
+        "operationId": "createRace",
+        "summary": "Create a new race",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "The race has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Race" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["Race"]
+      }
+    },
+    "/api/race/find_all": {
+      "get": {
+        "operationId": "findAllRace",
+        "summary": "Retrieve a list of all races",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all races successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Race" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Race"]
+      }
+    },
+    "/api/race/find_one/{id}": {
+      "get": {
+        "operationId": "findOneRace",
+        "summary": "Retrieve a race by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved race successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Race" }
+              }
+            }
+          },
+          "404": { "description": "Race not found." }
+        },
+        "tags": ["Race"]
+      }
+    },
+    "/api/race/update/{id}": {
+      "patch": {
+        "operationId": "updateRace",
+        "summary": "Update a race by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Race" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The race has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Race" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "race not found." }
+        },
+        "tags": ["Race"]
+      }
+    },
+    "/api/race/delete/{id}": {
+      "delete": {
+        "operationId": "removeRace",
+        "summary": "Remove a race by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "The race has been successfully removed." },
+          "404": { "description": "race not found." }
+        },
+        "tags": ["Race"]
+      }
+    },
+    "/api/race/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingRace",
+        "summary": "Get all races with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all races paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Race" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Race"]
+      }
+    },
+    "/api/coat/save": {
+      "post": {
+        "operationId": "createCoat",
+        "summary": "Create a new coat",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "The coat has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Coat" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["Coat"]
+      }
+    },
+    "/api/coat/find_all": {
+      "get": {
+        "operationId": "findAllCoat",
+        "summary": "Retrieve a list of all coats",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all coats successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Coat" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Coat"]
+      }
+    },
+    "/api/coat/find_one/{id}": {
+      "get": {
+        "operationId": "findOneCoat",
+        "summary": "Retrieve a coat by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved coat successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Coat" }
+              }
+            }
+          },
+          "404": { "description": "Coat not found." }
+        },
+        "tags": ["Coat"]
+      }
+    },
+    "/api/coat/update/{id}": {
+      "patch": {
+        "operationId": "updateCoat",
+        "summary": "Update a coat by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Coat" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The coat has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Coat" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "coat not found." }
+        },
+        "tags": ["Coat"]
+      }
+    },
+    "/api/coat/delete/{id}": {
+      "delete": {
+        "operationId": "removeCoat",
+        "summary": "Remove a coat by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "The coat has been successfully removed." },
+          "404": { "description": "coat not found." }
+        },
+        "tags": ["Coat"]
+      }
+    },
+    "/api/coat/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingCoat",
+        "summary": "Get all coats with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all coats paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Coat" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Coat"]
+      }
+    },
+    "/api/species/save": {
+      "post": {
+        "operationId": "createSpecies",
+        "summary": "Create a new species",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "The species has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Species" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["Species"]
+      }
+    },
+    "/api/species/find_all": {
+      "get": {
+        "operationId": "findAllSpecies",
+        "summary": "Retrieve a list of all speciess",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all speciess successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Species" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Species"]
+      }
+    },
+    "/api/species/find_one/{id}": {
+      "get": {
+        "operationId": "findOneSpecies",
+        "summary": "Retrieve a species by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved species successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Species" }
+              }
+            }
+          },
+          "404": { "description": "Species not found." }
+        },
+        "tags": ["Species"]
+      }
+    },
+    "/api/species/update/{id}": {
+      "patch": {
+        "operationId": "updateSpecies",
+        "summary": "Update a species by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Species" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The species has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Species" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "species not found." }
+        },
+        "tags": ["Species"]
+      }
+    },
+    "/api/species/delete/{id}": {
+      "delete": {
+        "operationId": "removeSpecies",
+        "summary": "Remove a species by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The species has been successfully removed."
+          },
+          "404": { "description": "species not found." }
+        },
+        "tags": ["Species"]
+      }
+    },
+    "/api/species/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingSpecies",
+        "summary": "Get all speciess with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all speciess paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Species" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Species"]
+      }
     }
   },
   "info": { "title": "", "description": "", "version": "1.0.0", "contact": {} },
@@ -765,32 +1586,53 @@
       "Client": {
         "type": "object",
         "properties": {
-          "_id": { "type": "string" },
-          "idc": { "type": "number" },
-          "ayn": { "type": "string" },
-          "dir": { "type": "string" },
-          "codp": { "type": "string" },
-          "codt": { "type": "string" },
+          "_id": { "type": "string", "description": "mongo id" },
+          "idc": { "type": "number", "description": "sql id" },
+          "ayn": { "type": "string", "description": "full description" },
+          "dir": { "type": "string", "description": "address" },
+          "codp": { "type": "string", "description": "postal code" },
+          "codt": { "type": "string", "description": "mongo id" },
           "tel": { "type": "string" },
           "telC": { "type": "string" },
-          "email": { "type": "string" },
-          "obs": { "type": "string" },
+          "email": { "type": "string", "description": "email" },
+          "obs": { "type": "string", "description": "client observations" },
           "mark": { "type": "number" },
-          "feci": { "format": "date-time", "type": "string" },
+          "feci": {
+            "format": "date-time",
+            "type": "string",
+            "description": "register date"
+          },
           "fecu": { "format": "date-time", "type": "string" },
           "motuv": { "type": "string" },
-          "deuda": { "type": "boolean" },
-          "problematico": { "type": "boolean" },
-          "cantidadDeuda": { "type": "string" },
+          "deuda": {
+            "type": "boolean",
+            "description": "indicates if the client have debt"
+          },
+          "problematico": {
+            "type": "boolean",
+            "description": "Indicates if the client is dangerous"
+          },
+          "cantidadDeuda": { "type": "string", "description": "debt quantity" },
           "obra": { "type": "number" },
-          "Loc": { "type": "number" },
-          "Dep": { "type": "number" },
-          "tel2": { "type": "string" },
-          "telC2": { "type": "string" },
+          "Loc": { "type": "number", "description": "locality id reference" },
+          "Dep": { "type": "number", "description": "province id reference" },
+          "tel2": { "type": "string", "description": "phone" },
+          "telC2": { "type": "string", "description": "movile phone" },
           "codt2": { "type": "string" },
-          "codp2": { "type": "string" },
-          "Identif": { "type": "string" },
-          "mascotas": { "type": "array", "items": { "type": "string" } }
+          "codp2": { "type": "string", "description": "postal code" },
+          "Identif": {
+            "type": "string",
+            "description": "country identification number"
+          },
+          "mascotas": {
+            "description": "list of pets",
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "lopd": {
+            "type": "boolean",
+            "description": "Indicates if the client has writed lopd document"
+          }
         },
         "required": [
           "_id",
@@ -818,7 +1660,8 @@
           "codt2",
           "codp2",
           "Identif",
-          "mascotas"
+          "mascotas",
+          "lopd"
         ]
       },
       "Locality": {
@@ -843,6 +1686,100 @@
           "ran": { "type": "number" }
         },
         "required": ["_id", "id", "nom", "Ctel", "ran"]
+      },
+      "Pet": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string", "description": "mongo id" },
+          "idm": { "type": "number", "description": "sql id" },
+          "idc": { "type": "number", "description": "client id" },
+          "nom": { "type": "string", "description": "pet description" },
+          "raz": { "type": "number", "description": "race id" },
+          "esp": { "type": "number" },
+          "fecn": { "type": "string", "description": "birth date" },
+          "pel": { "type": "number", "description": "coat id" },
+          "pes": { "type": "number", "description": "weight" },
+          "car": { "type": "string" },
+          "ser": { "type": "number" },
+          "obs": { "type": "string", "description": "comments" },
+          "feci": { "type": "string", "description": "register date" },
+          "sex": { "type": "number", "description": "sex id" },
+          "ped": { "type": "boolean" },
+          "rep": { "type": "boolean" },
+          "dec": { "type": "boolean" },
+          "fot": { "type": "boolean" },
+          "int": { "type": "boolean" },
+          "hos": { "type": "number" },
+          "fult": { "type": "string", "description": "last date in clinic" },
+          "tarea": { "type": "boolean" },
+          "Chip": { "type": "string", "description": "pet chip number" }
+        },
+        "required": [
+          "_id",
+          "idm",
+          "idc",
+          "nom",
+          "raz",
+          "esp",
+          "fecn",
+          "pel",
+          "pes",
+          "car",
+          "ser",
+          "obs",
+          "feci",
+          "sex",
+          "ped",
+          "rep",
+          "dec",
+          "fot",
+          "int",
+          "hos",
+          "fult",
+          "tarea",
+          "Chip"
+        ]
+      },
+      "Sex": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "ids": { "type": "number" },
+          "value": { "type": "string" }
+        },
+        "required": ["_id", "ids", "value"]
+      },
+      "Race": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "nom": { "type": "string" },
+          "esp": { "type": "number" },
+          "ori": { "type": "string" },
+          "des": { "type": "string" },
+          "ran": { "type": "number" }
+        },
+        "required": ["_id", "id", "nom", "esp", "ori", "des", "ran"]
+      },
+      "Coat": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "nom": { "type": "string" }
+        },
+        "required": ["_id", "id", "nom"]
+      },
+      "Species": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "nom": { "type": "string" },
+          "ali": { "type": "number" }
+        },
+        "required": ["_id", "id", "nom", "ali"]
       }
     }
   }

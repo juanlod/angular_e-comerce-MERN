@@ -34,25 +34,26 @@ export interface IClient extends Document {
   codp2: string;
   Identif: string;
   mascotas: mongoose.Schema.Types.ObjectId[];
+  lopd: boolean;
 }
 
 export class Client {
-  @ApiProperty({name:'mongo id'})
+  @ApiProperty({description:'mongo id'})
   _id: string;
 
-  @ApiProperty({name:'sql id'})
+  @ApiProperty({description:'sql id'})
   idc: number;
 
-  @ApiProperty({name:'full name'})
+  @ApiProperty({description:'full description'})
   ayn: string;
   
-  @ApiProperty({name:'address'})
+  @ApiProperty({description:'address'})
   dir: string;
 
-  @ApiProperty({name:'postal code'})
+  @ApiProperty({description:'postal code'})
   codp: string;
 
-  @ApiProperty({name:'mongo id'})
+  @ApiProperty({description:'mongo id'})
   codt: string;
 
   @ApiProperty()
@@ -61,16 +62,16 @@ export class Client {
   @ApiProperty()
   telC: string;
 
-  @ApiProperty({name:'email'})
+  @ApiProperty({description:'email'})
   email: string;
 
-  @ApiProperty({name:'client observations'})
+  @ApiProperty({description:'client observations'})
   obs: string;
 
   @ApiProperty()
   mark: number;
 
-  @ApiProperty({name:'register date'})
+  @ApiProperty({description:'register date'})
   feci: Date;
 
   @ApiProperty()
@@ -79,41 +80,44 @@ export class Client {
   @ApiProperty()
   motuv: string;
 
-  @ApiProperty({name:'indicates if the client have debt'})
+  @ApiProperty({description:'indicates if the client have debt'})
   deuda: boolean;
 
-  @ApiProperty({name:'Indicates if the client is dangerous'})
+  @ApiProperty({description:'Indicates if the client is dangerous'})
   problematico: boolean;
 
-  @ApiProperty({name:'debt quantity'})
+  @ApiProperty({description:'debt quantity'})
   cantidadDeuda: string;
 
   @ApiProperty()
   obra: number;
 
-  @ApiProperty({name:'locality id reference'})
+  @ApiProperty({description:'locality id reference'})
   Loc: number;
 
-  @ApiProperty({name:'province id reference'})
+  @ApiProperty({description:'province id reference'})
   Dep: number;
 
-  @ApiProperty({name:'phone'})
+  @ApiProperty({description:'phone'})
   tel2: string;
 
-  @ApiProperty({name:'movile phone'})
+  @ApiProperty({description:'movile phone'})
   telC2: string;
 
   @ApiProperty()
   codt2: string;
 
-  @ApiProperty({name:'postal code'})
+  @ApiProperty({description:'postal code'})
   codp2: string;
 
-  @ApiProperty({name:'country identification number'})
+  @ApiProperty({description:'country identification number'})
   Identif: string;
 
-  @ApiProperty({name:'list of pets'})
+  @ApiProperty({description:'list of pets'})
   mascotas: mongoose.Schema.Types.ObjectId[];
+
+  @ApiProperty({description:'Indicates if the client has writed lopd document'})
+  lopd: boolean;
 }
 
 // Creacion de clase cliente a traves de la interfaz
@@ -131,7 +135,7 @@ export const ClientSchema = new Schema<IClient>({
   feci: { type: Date, required: false },
   fecu: { type: Date, required: false },
   motuv: { type: String, required: false },
-  deuda: { type: Boolean, required: false },
+  deuda: { type: Boolean, required: false }, 
   problematico: { type: Boolean, required: false },
   cantidadDeuda: { type: String, required: false },
   obra: { type: Number, required: false },
@@ -145,4 +149,5 @@ export const ClientSchema = new Schema<IClient>({
   mascotas: [
     { type: mongoose.Schema.Types.ObjectId, ref: 'mascotas', required: false },
   ],
+  lopd: { type: Boolean, required: false },
 });

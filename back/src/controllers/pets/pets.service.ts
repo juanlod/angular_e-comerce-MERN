@@ -21,23 +21,20 @@ export class PetService {
     private petModel: Model<IPet>,
   ) {}
 
-
   /**
    * Save and user
    * @param Pet
    * @returns
    */
-  async create(Pet: Pet): Promise<Pet> {
+  async create(Pet: Pet): Promise<any> {
     const idc = (
       await this.petModel.aggregate(getLastPetIdPipeline()).exec()
     )[0].idc;
     Pet.idc = idc ? idc + 1 : 0;
-
-    console.log(idc);
     return this.petModel.create(Pet);
   }
 
-  findAll(): Promise<Pet[]> {
+  findAll(): Promise<any> {
     return this.petModel.find().exec();
   }
 

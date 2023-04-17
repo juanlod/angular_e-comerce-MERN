@@ -124,13 +124,13 @@ export function getLastPetIdPipeline(): any {
       $group: {
         _id: {},
         'MAX(idc)': {
-          $max: '$idc',
+          $max: '$idm',
         },
       },
     },
     {
       $project: {
-        idc: '$MAX(idc)',
+        idc: '$MAX(idm)',
         _id: 0,
       },
     },
