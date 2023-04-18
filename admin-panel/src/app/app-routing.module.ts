@@ -20,21 +20,18 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'clientes',
-          children: [
-            {path: '', component: ClienteComponent},
-            {path: 'form', component: ClienteFormComponent},
-            {path: 'form/:id', component: ClienteFormComponent},
-            {path: 'detail/:id', component: ClientDetailComponent},
-          ]
+        path: 'clients',
+        children: [
+          { path: '', component: ClienteComponent },
+          { path: 'form', component: ClienteFormComponent },
+          { path: 'form/:id', component: ClienteFormComponent },
+          { path: 'detail/:id', component: ClientDetailComponent },
+          {
+            path: 'pets',
+            children: [{ path: 'detail/:id', component: PetComponent }],
+          },
+        ],
       },
-      {
-        path: 'pets',
-          children: [
-            {path: 'detail/:id', component: PetComponent},
-
-          ]
-      }
     ],
   },
   {

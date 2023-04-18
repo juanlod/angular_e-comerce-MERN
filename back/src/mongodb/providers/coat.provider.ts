@@ -5,7 +5,7 @@ export const coatProviders = [
   {
     provide: 'COAT_MODEL',
     useFactory: (connection: Connection) =>
-      connection.model('pelaje', CoatSchema),
+      connection.model('coats', CoatSchema),
     inject: ['DATABASE_CONNECTION'],
   },
 ];

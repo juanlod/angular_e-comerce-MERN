@@ -2,14 +2,14 @@
 /* eslint-disable */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
-import { RequestBuilder } from '../request-builder';
-import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { ApiConfiguration } from '../../api-configuration';
+import { BaseService } from '../../base-service';
+import { Sex } from '../../models/sex';
+import { RequestBuilder } from '../../request-builder';
+import { StrictHttpResponse } from '../../strict-http-response';
 
-import { Sex } from '../models/sex';
 
 @Injectable({
   providedIn: 'root',

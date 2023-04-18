@@ -11,7 +11,6 @@
   "CLIENTS.LIST.TABLE.ALERTS": "Alertas",
   "CLIENTS.FORM.BREADCRUMB.NEW": "Novo cliente",
   "CLIENTS.FORM.BREADCRUMB.EDIT": "Editar cliente",
-  "CLIENTS.FORM.BREADCRUMB.DETAIL": "Arquivo do cliente",
   "CLIENTS.FORM.NAME": "Nome e apelidos",
   "CLIENTS.FORM.NAME.MANDATORY": "O nome é obligatorio",
   "CLIENTS.FORM.DIRECTION": "Dirección",
@@ -31,6 +30,21 @@
   "CLIENTS.FORM.PROBLEMATIC": "¿É problemático?",
   "CLIENTS.FORM.REGISTER_DATE": "Data rexistro",
   "CLIENTS.FORM.OBSERVATIONS": "Observacións",
+
+  "CLIENTS.DETAIL.TITLE": "Arquivo do cliente",
+  "CLIENTS.DETAIL.BREADCRUMB": "Arquivo do cliente",
+  "CLIENTS.DETAIL.EDIT.BUTTON": "Editar",
+
+  "PET.FORM.TITLE.DETAIL": "Historial do paciente",
+  "PET.FORM.BREADCRUMB.DETAIL": "Historial do paciente",
+
+  "CLIENT.SAVE.MESSAGE.OK" : "Cliente gardado correctamente",
+  "CLIENT.SAVE.MESSAGE.INFO" : "Gardando cliente...",
+  "CLIENT.SAVE.MESSAGE.ERROR" : "Ocorreu un erro ó gardar o cliente",
+
+  "CLIENT.UPDATE.MESSAGE.OK" : "Cliente actualizado correctamente",
+  "CLIENT.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
+  "CLIENT.UPDATE.MESSAGE.ERROR" : "Ocorreu un erro ó actualizar o cliente",
 
   "BUTTON.SAVE" : "Gardar"
 }

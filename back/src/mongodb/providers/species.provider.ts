@@ -5,7 +5,7 @@ export const speciesProviders = [
   {
     provide: 'SPECIES_MODEL',
     useFactory: (connection: Connection) =>
-      connection.model('especie', SexSchema),
+      connection.model('species', SexSchema),
     inject: ['DATABASE_CONNECTION'],
   },
 ];

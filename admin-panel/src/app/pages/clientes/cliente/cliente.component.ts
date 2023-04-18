@@ -3,7 +3,12 @@ import { Router } from '@angular/router';
 
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { lastValueFrom } from 'rxjs';
+import { MasterCacheService } from 'src/app/api/cache/master-cache-service';
 import { Client } from 'src/app/api/models/client';
+import { Coat } from 'src/app/api/models/coat';
+import { Race } from 'src/app/api/models/race';
+import { Sex } from 'src/app/api/models/sex';
+import { Species } from 'src/app/api/models/species';
 import { ClientsService } from 'src/app/api/services/clients.service';
 import { NotificationService } from 'src/app/api/services/notification.service';
 
@@ -27,13 +32,32 @@ export class ClienteComponent implements OnInit {
   isEdit = false;
   client: Client = new Client();
 
+  petsSex: Sex[] = [];
+  petsRace: Race[] = [];
+  petsSpecies: Species[] = [];
+  petsCoat: Coat[] = [];
+
   constructor(
     private clienteService: ClientsService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private masterCacheService: MasterCacheService
   ) {}
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    const [petsSex, petsRace, petsSpecies, petsCoat] = await Promise.all([
+      this.masterCacheService.getSex(),
+      this.masterCacheService.getRace(),
+      this.masterCacheService.getSpecies(),
+      this.masterCacheService.getCoat(),
+    ]);
+
+    this.petsSex = petsSex;
+    this.petsRace = petsRace;
+    this.petsSpecies = petsSpecies;
+    this.petsCoat = petsCoat;
+  }
+
 
   /**
    * Obtiene la lista de clientes
@@ -157,12 +181,12 @@ export class ClienteComponent implements OnInit {
 
 
   async clientDetail(id: string) {
-    this.router.navigate(['dashboard/clientes/detail', id]);
+    this.router.navigate(['dashboard/clients/detail', id]);
   }
 
 
   async petDetail(id: string) {
-    this.router.navigate(['dashboard/pets/detail', id]);
+    this.router.navigate(['dashboard/clients/pets/detail', id]);
   }
 
 
@@ -181,5 +205,17 @@ export class ClienteComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
     this.client = new Client()
+  }
+
+  getPetSex(id: number) {
+    return  id && id !== 0 ? this.petsSex.filter(sex => sex.ids === id)[0]?.value : '';
+  }
+
+  getPetRace(id: number) {
+    return  id && id !== 0 ? this.petsRace.filter(race => race.id === id)[0]?.nom : '';
+  }
+
+  getPetSpecie(id: number) {
+    return  id && id !== 0 ? this.petsSpecies.filter(specie => specie.id === id)[0]?.nom : '';
   }
 }

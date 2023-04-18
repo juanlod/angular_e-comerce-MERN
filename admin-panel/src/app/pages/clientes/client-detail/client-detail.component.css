@@ -1,0 +1,36 @@
+.column-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+}
+
+.column-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+
+.ant-form-item {
+  margin: 0 0 10px !important;
+}
+
+.label-detail {
+  color: #303030 !important;
+  font-weight:500;
+}
+
+.edit-button {
+  position: absolute;
+  top: -16px;
+  left: -14px;
+  font-size: 30px;
+}
+
+.edit-button2 {
+  position: absolute;
+  top: 9px;
+  right: 30px;
+}
+
+.client-title {
+  margin-bottom: 22px;
+}

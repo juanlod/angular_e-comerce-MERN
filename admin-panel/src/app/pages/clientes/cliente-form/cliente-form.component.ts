@@ -7,9 +7,10 @@ import { Client } from 'src/app/api/models/client';
 import { Province } from 'src/app/api/models/province';
 import { Locality } from 'src/app/api/models/locality';
 import { environment } from 'src/environments/environment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Utils } from 'src/app/utils';
 import { NotificationService } from 'src/app/api/services/notification.service';
+import { translate } from '@angular/localize/src/translate';
 
 @Component({
   selector: 'app-cliente-form',
@@ -19,7 +20,7 @@ import { NotificationService } from 'src/app/api/services/notification.service';
 export class ClienteFormComponent implements OnInit {
 
   @Input() isEdit: boolean = false;
-
+  @Input() isDetail: boolean = false;
   @Input() client: Client = new Client();
 
   provinces: Province[] = [];
@@ -34,10 +35,11 @@ export class ClienteFormComponent implements OnInit {
   editing = false;
 
   constructor(
-    private clientService: ClientsService,
-    private masterCacheService: MasterCacheService,
-    private route: ActivatedRoute,
-    private notificationService: NotificationService
+    public clientService: ClientsService,
+    public masterCacheService: MasterCacheService,
+    public route: ActivatedRoute,
+    public notificationService: NotificationService,
+    private router: Router,
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -58,7 +60,6 @@ export class ClienteFormComponent implements OnInit {
           this.clientService.findOneClient({ id: id })
         );
         if (this.client) {
-          console.log(this.client);
           this.client.feci = Utils.transformDate(
             this.client.feci,
             'yyyy-MM-dd',
@@ -98,13 +99,13 @@ export class ClienteFormComponent implements OnInit {
       return;
     }
 
-    this.notificationService.showInfo('Guardando cliente...')
+    this.notificationService.showInfo('CLIENT.SAVE.MESSAGE.INFO')
     // Wait to save a client
     const result = (await lastValueFrom(
       this.clientService.createClient({ body: this.client })
     ).catch((error: any) => {
       this.submitted = false;
-      this.notificationService.showError('Ocurrió un error al guardar el cliente')
+      this.notificationService.showError('CLIENT.SAVE.MESSAGE.ERROR')
     })) as any;
 
     if (result) {
@@ -115,7 +116,11 @@ export class ClienteFormComponent implements OnInit {
         '',
         `/#/dashboard/clientes/form/${this.client._id}`
       );
-      this.notificationService.showSuccess('Cliente guardado correctamente')
+      this.notificationService.showSuccess('CLIENT.SAVE.MESSAGE.OK')
+
+      if (!this.isDetail) {
+        this.router.navigate(['dashboard/clients/detail', this.client._id]);
+      }
     }
   }
 
@@ -123,16 +128,16 @@ export class ClienteFormComponent implements OnInit {
    * Update a client
    */
   async updateClient() {
-    this.notificationService.showInfo('Actualizando cliente...')
+    this.notificationService.showInfo('CLIENT.UPDATE.MESSAGE.INFO')
     const result = (await lastValueFrom(
       this.clientService.updateClient({ id: this.client._id,  body: this.client })
     ).catch((error: any) => {
       this.submitted = false;
-      this.notificationService.showError('Ocurrió un error al actualizar el cliente')
+      this.notificationService.showError('CLIENT.UPDATE.MESSAGE.ERROR')
     })) as any;
 
     if (result) {
-      this.notificationService.showSuccess('Cliente actualizado correctamente.')
+      this.notificationService.showSuccess('CLIENT.UPDATE.MESSAGE.OK')
     }
 
   }

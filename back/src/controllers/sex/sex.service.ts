@@ -13,8 +13,9 @@ export class SexService {
     return Object.assign({});
   }
 
-  findAll() {
-    return this.sexModel.find();
+  async findAll() {
+    console.log(await this.sexModel.find().exec());
+    return await this.sexModel.find().exec();
   }
 
   findOne(id: number): Sex {

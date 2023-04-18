@@ -5,6 +5,14 @@ import { Province } from "../models/province";
 import { Locality } from "../models/locality";
 import { LocalityService } from "../services/master/locality.service";
 import { ProvinceService } from "../services/master/province.service";
+import { SexService } from "../services/master/sex.service";
+import { SpeciesService } from "../services/master/species.service";
+import { RaceService } from "../services/master/race.service";
+import { CoatService } from "../services/master/coat.service";
+import { Sex } from "../models/sex";
+import { Species } from "../models/species";
+import { Race } from "../models/race";
+import { Coat } from "../models/coat";
 
 
 
@@ -16,9 +24,17 @@ export class MasterCacheService {
     private interval;
     private pendingProvince = new BehaviorSubject(null);
     private pendingLocality = new BehaviorSubject(null);
+    private pendingSex = new BehaviorSubject(null);
+    private pendingSpecies = new BehaviorSubject(null);
+    private pendingRace = new BehaviorSubject(null);
+    private pendingCoat = new BehaviorSubject(null);
 
     constructor(private provinceService: ProvinceService,
-      private localityService: LocalityService
+      private localityService: LocalityService,
+      private sexService: SexService,
+      private speciesService: SpeciesService,
+      private raceService: RaceService,
+      private coatService: CoatService
     ) {
     }
 
@@ -74,6 +90,22 @@ export class MasterCacheService {
         return this.getCacheAndUpdate('provinces', this.provinceService.findAllProvince());
     }
 
+    getSex() {
+        return this.getCacheAndUpdate('sexes', this.sexService.findAllSex());
+    }
+
+    getCoat() {
+        return this.getCacheAndUpdate('coats', this.coatService.findAllCoat());
+    }
+
+    getSpecies() {
+        return this.getCacheAndUpdate('species', this.speciesService.findAllSpecies());
+    }
+
+    getRace() {
+        return this.getCacheAndUpdate('races', this.raceService.findAllRace());
+    }
+
 
 
     storeItemToSend(key, itemData) {
@@ -107,6 +139,41 @@ export class MasterCacheService {
         return lastValueFrom(this.localityService.createLocality({ body: item }));
     }
 
+    /**
+     * Send the object to the backend
+     * @param item
+     * @returns
+     */
+    sendNewSex(item) {
+        return lastValueFrom(this.sexService.createSex({ body: item }));
+    }
+    /**
+     * Send the object to the backend
+     * @param item
+     * @returns
+     */
+    sendNewCoat(item) {
+        return lastValueFrom(this.coatService.createCoat({ body: item }));
+    }
+
+    /**
+     * Send the object to the backend
+     * @param item
+     * @returns
+     */
+    sendNewSpecies(item) {
+        return lastValueFrom(this.speciesService.createSpecies({ body: item }));
+    }
+
+    /**
+     * Send the object to the backend
+     * @param item
+     * @returns
+     */
+    sendNewRace(item) {
+        return lastValueFrom(this.raceService.createRace({ body: item }));
+    }
+
 
     /**
      * Almacena una provincia para ser enviada
@@ -124,6 +191,47 @@ export class MasterCacheService {
      */
     async newLocality(itemData: Locality) {
         this.storeItemToSend('newLocality', itemData);
+        this.syncPending();
+
+    }
+
+    /**
+     * Save an object in localstorage to send to the backend
+     * @param itemData
+     */
+    async newSex(itemData: Sex) {
+        this.storeItemToSend('newSex', itemData);
+        this.syncPending();
+
+    }
+
+    /**
+     * Save an object in localstorage to send to the backend
+     * @param itemData
+     */
+    async newSpecies(itemData: Species) {
+        this.storeItemToSend('newSpecies', itemData);
+        this.syncPending();
+
+    }
+
+
+    /**
+     * Save an object in localstorage to send to the backend
+     * @param itemData
+     */
+    async newRace(itemData: Race) {
+        this.storeItemToSend('newRace', itemData);
+        this.syncPending();
+
+    }
+
+    /**
+     * Save an object in localstorage to send to the backend
+     * @param itemData
+     */
+    async newCoat(itemData: Coat) {
+        this.storeItemToSend('newCoat', itemData);
         this.syncPending();
 
     }
@@ -148,6 +256,46 @@ export class MasterCacheService {
     }
 
 
+    /**
+    * Get the pending registries to send
+    * @returns pending element
+    */
+    getPendingSex() {
+        this.checkPending();
+        return this.pendingSex;
+    }
+
+    /**
+    * Get the pending registries to send
+    * @returns pending element
+    */
+    getPendingSpecies() {
+        this.checkPending();
+        return this.pendingSpecies;
+    }
+
+
+
+    /**
+    * Get the pending registries to send
+    * @returns pending element
+    */
+    getPendingRace() {
+        this.checkPending();
+        return this.pendingRace;
+    }
+
+
+    /**
+    * Get the pending registries to send
+    * @returns pending element
+    */
+    getPendingCoat() {
+        this.checkPending();
+        return this.pendingCoat;
+    }
+
+
 
 
 
@@ -155,18 +303,27 @@ export class MasterCacheService {
         const sendMethods = {
             newProvince : (item) => this.sendNewProvince(item),
             newLocality: (item) => this.sendNewLocality(item),
+            newSex: (item) => this.sendNewSex(item),
+            newSpecies: (item) => this.sendNewSpecies(item),
+            newCoat: (item) => this.sendNewCoat(item),
+            newRace: (item) => this.sendNewRace(item),
+
 
 
         };
         const pendingObservable = {
           newProvince: this.pendingProvince,
           newLocality: this.pendingLocality,
+          newSex: this.pendingSex,
+          newRace: this.pendingRace,
+          newSpecies: this.pendingSpecies,
+          newCoat: this.pendingCoat,
         };
 
         if (!this.lock) {
             this.lock = true;
             try {
-                for (const key of [ 'newProvince', 'newLocality']) {
+                for (const key of [ 'newProvince', 'newLocality', 'newSex', 'newRace', 'newSpecies', 'newCoat']) {
                     const cachedData = localStorage.getItem(key);
                     if (cachedData) {
                         const parsedData = JSON.parse(cachedData);

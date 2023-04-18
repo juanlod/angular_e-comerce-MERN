@@ -11,7 +11,6 @@
   "CLIENTS.LIST.TABLE.ALERTS": "Alerts",
   "CLIENTS.FORM.BREADCRUMB.NEW": "New client",
   "CLIENTS.FORM.BREADCRUMB.EDIT": "Edit client",
-  "CLIENTS.FORM.BREADCRUMB.DETAIL": "Client detail",
   "CLIENTS.FORM.NAME": "Full name",
   "CLIENTS.FORM.NAME.MANDATORY": "Full name is mandatory",
   "CLIENTS.FORM.DIRECTION": "Address",
@@ -31,6 +30,21 @@
   "CLIENTS.FORM.PROBLEMATIC": "Is it problematic?",
   "CLIENTS.FORM.REGISTER_DATE": "Registration date",
   "CLIENTS.FORM.OBSERVATIONS": "Observations",
+
+  "CLIENTS.DETAIL.TITLE": "Client detail",
+  "CLIENTS.DETAIL.BREADCRUMB": "Client detail",
+  "CLIENTS.DETAIL.EDIT.BUTTON": "Edit",
+
+  "PET.FORM.TITLE.DETAIL": "Patient history",
+  "PET.FORM.BREADCRUMB.DETAIL": "Patient history",
+
+  "CLIENT.SAVE.MESSAGE.OK" : "Cliente saved properly",
+  "CLIENT.SAVE.MESSAGE.INFO" : "Saving client...",
+  "CLIENT.SAVE.MESSAGE.ERROR" : "An error occurred while saving the client.",
+
+  "CLIENT.UPDATE.MESSAGE.OK" : "Client updated properly",
+  "CLIENT.UPDATE.MESSAGE.INFO" : "Updating client...",
+  "CLIENT.UPDATE.MESSAGE.ERROR" : "An error occurred while updating the client.",
 
   "BUTTON.SAVE" : "Save"
 }

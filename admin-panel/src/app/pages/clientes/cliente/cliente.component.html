@@ -76,6 +76,14 @@
         <tr  [nzExpand]="expandSet.has(cliente.idc)">
           <td [nzIndentSize]="80">
             <a (click)="petDetail(mascota._id)" [ngClass]="{'contains-pet' : checkFiltroMascota(mascota) }">{{ mascota.nom }}</a>
+
+            <nz-divider nzType="vertical"></nz-divider>
+            {{ getPetSpecie(mascota.esp)}}
+
+            <nz-divider nzType="vertical"></nz-divider>
+            {{ getPetSex(mascota.sex)}}
+            <nz-divider nzType="vertical"></nz-divider>
+            {{ getPetRace(mascota.raz)}}
           </td>
         </tr>
       </ng-container>

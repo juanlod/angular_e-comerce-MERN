@@ -1,22 +1,125 @@
-<h2 class="flex-container">{{ client.ayn}}</h2>
+<h2 class="flex-container">{{ "CLIENTS.DETAIL.TITLE" | translate }}</h2>
+
 <nz-breadcrumb>
-  <nz-breadcrumb>
-    <nz-breadcrumb-item>
-      <span nz-icon nzType="home" routerLink="/"></span>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-      <a routerLink="/dashboard/clientes">
-        <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
-        <span>{{ 'CLIENTS.LIST.TITLE.BREADCRUMB' | translate }}</span>
-      </a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-      <span nz-icon nzType="user"></span>
-      <span> {{ 'CLIENTS.FORM.BREADCRUMB.DETAIL' | translate}}</span>
-    </nz-breadcrumb-item>
-  </nz-breadcrumb>
+  <nz-breadcrumb-item>
+    <span nz-icon nzType="home" routerLink="/"></span>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a routerLink="/dashboard/clients">
+      <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+      <span>{{ 'CLIENTS.LIST.TITLE.BREADCRUMB' | translate }}</span>
+    </a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <span nz-icon nzType="user"></span>
+    <span> {{ 'CLIENTS.DETAIL.BREADCRUMB' | translate}}</span>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
 
 
+<nz-card style="width: 100%;margin-top: 25px" [nzActions]="[]" nzFlex nzFlex="auto">
+  <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
 
 
+      <legend>{{client.ayn}}</legend>
+      <div>
+        <button (click)="showModal()" class="edit-button2" nz-button  nzType="primary">{{ 'CLIENTS.DETAIL.EDIT.BUTTON' | translate }}</button>
+        <a (click)="showModal()" class="edit-button">
+          <!-- <span nz-icon nzType="edit" nzTheme="outline"></span> -->
+          <i class="bi bi-pencil-square"></i>
+        </a>
+
+      </div>
+
+
+    <div class="column-2">
+      <!-- DIRECCION -->
+      <nz-form-item>
+        <nz-form-label class="label-detail" class="label-detail" nzFor="dir">{{ 'CLIENTS.FORM.DIRECTION' | translate }}</nz-form-label>
+        <nz-form-control>{{ client.dir }}</nz-form-control>
+      </nz-form-item>
+
+      <!-- CODIGO POSTAL -->
+      <nz-form-item>
+        <nz-form-label class="label-detail" nzFor="codp">{{ 'CLIENTS.FORM.POSTAL_CODE' | translate}}</nz-form-label>
+        <nz-form-control>{{client.codp}}</nz-form-control>
+      </nz-form-item>
+
+      <!-- DNI -->
+      <nz-form-item>
+        <nz-form-label class="label-detail" nzFor="codp">{{ 'CLIENTS.FORM.DNI' | translate}}</nz-form-label>
+        <nz-form-control>{{client.Identif}}</nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="column-2">
+      <!-- PROVINCIA -->
+      <nz-form-item>
+        <nz-form-label class="label-detail" nzFor="codp">{{ 'CLIENTS.FORM.PROVINCE' | translate}}</nz-form-label>
+        <nz-form-control>{{ getProvinceName(client.Dep) }}</nz-form-control>
+      </nz-form-item>
+
+      <!-- LOCALIDAD -->
+      <nz-form-item>
+        <nz-form-label class="label-detail" nzFor="codp">{{ 'CLIENTS.FORM.LOCALITY' | translate}}</nz-form-label>
+        <nz-form-control>{{ getLocalityName(client.Loc) }}</nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+      </nz-form-item>
+    </div>
+
+    <div class="column-2">
+      <!-- TELEFONO -->
+      <nz-form-item>
+        <nz-form-label class="label-detail" nzFor="tel">{{ 'CLIENTS.FORM.TELEPHONE' | translate }}</nz-form-label>
+        <nz-form-control> {{client.tel2}}</nz-form-control>
+      </nz-form-item>
+
+      <!-- TELEFONO MOVIL -->
+      <nz-form-item>
+        <nz-form-label class="label-detail" nzFor="telC">{{ 'CLIENTS.FORM.MOBILE_PHONE' | translate }}</nz-form-label>
+        <nz-form-control>{{client.telC2}}</nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+      </nz-form-item>
+    </div>
+
+
+    <!-- EMAIL -->
+    <nz-form-item>
+      <nz-form-label class="label-detail" nzFor="email">{{ 'CLIENTS.FORM.EMAIL' | translate }}</nz-form-label>
+      <nz-form-control>{{client.email}}
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label class="label-detail" nzFor="feci">{{ 'CLIENTS.FORM.REGISTER_DATE' | translate}}</nz-form-label>
+      <nz-form-control>
+        {{client.feci}}
+      </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
+      <nz-form-label class="label-detail" nzFor="obs">{{ 'CLIENTS.FORM.OBSERVATIONS' | translate }} </nz-form-label>
+      <div nzFlex nzFlex="auto" style="width: 100%;">
+        <nz-form-control >
+          <textarea nz-input name="obs" id="obs" [(ngModel)]="client.obs"></textarea>
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+
+  </nz-skeleton>
+</nz-card>
+
+<nz-modal [nzContent]="modalContent" [nzStyle]="{ top: '20px' }" [nzMaskClosable]="false" [nzFooter]="null"
+  [nzWidth]="'70%'" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
+</nz-modal>
+
+
+<ng-template #modalContent>
+  <app-cliente-form [client]="client" [isDetail]="true"></app-cliente-form>
+</ng-template>
 

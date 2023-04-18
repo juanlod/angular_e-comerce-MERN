@@ -11,7 +11,6 @@
   "CLIENTS.LIST.TABLE.ALERTS": "Alertas",
   "CLIENTS.FORM.BREADCRUMB.NEW": "Nuevo cliente",
   "CLIENTS.FORM.BREADCRUMB.EDIT": "Editar cliente",
-  "CLIENTS.FORM.BREADCRUMB.DETAIL": "Ficha cliente",
   "CLIENTS.FORM.NAME": "Nombre y apellidos",
   "CLIENTS.FORM.NAME.MANDATORY": "El nombre es obligatorio",
   "CLIENTS.FORM.DIRECTION": "Dirección",
@@ -31,6 +30,22 @@
   "CLIENTS.FORM.PROBLEMATIC": "¿Es problemático?",
   "CLIENTS.FORM.REGISTER_DATE": "Fecha registro",
   "CLIENTS.FORM.OBSERVATIONS": "Observaciones",
+
+  "CLIENTS.DETAIL.TITLE": "Ficha del cliente",
+  "CLIENTS.DETAIL.BREADCRUMB": "Ficha del cliente",
+  "CLIENTS.DETAIL.EDIT.BUTTON": "Editar",
+
+  "PET.FORM.TITLE.DETAIL": "Historial del paciente",
+  "PET.FORM.BREADCRUMB.DETAIL": "Historial del paciente",
+
+  "CLIENT.SAVE.MESSAGE.OK" : "Cliente guardado correctamente",
+  "CLIENT.SAVE.MESSAGE.INFO" : "Guardando cliente...",
+  "CLIENT.SAVE.MESSAGE.ERROR" : "Ha sucedido un error al guardar el cliente",
+
+  "CLIENT.UPDATE.MESSAGE.OK" : "Cliente actualizado correctamente",
+  "CLIENT.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
+  "CLIENT.UPDATE.MESSAGE.ERROR" : "Ha sucedido un error al actualizar el cliente",
+
 
   "BUTTON.SAVE" : "Guardar"
 }
