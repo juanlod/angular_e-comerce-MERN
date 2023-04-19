@@ -34,9 +34,12 @@
   "CLIENTS.DETAIL.TITLE": "Ficha del cliente",
   "CLIENTS.DETAIL.BREADCRUMB": "Ficha del cliente",
   "CLIENTS.DETAIL.EDIT.BUTTON": "Editar",
-
-  "PET.FORM.TITLE.DETAIL": "Historial del paciente",
-  "PET.FORM.BREADCRUMB.DETAIL": "Historial del paciente",
+  "CLIENT.DETAIL.PET.LIST.TABLE.NAME": "Nombre",
+  "CLIENT.DETAIL.PET.LIST.TABLE.SPECIES": "Especie",
+  "CLIENT.DETAIL.PET.LIST.TABLE.SEX": "Sexo",
+  "CLIENT.DETAIL.PET.LIST.TABLE.RACE": "Raza",
+  "CLIENT.DETAIL.PET.LEGEND": "Mascotas",
+  "CLIENT.DETAIL.DEBT.LEGEND": "Deudas",
 
   "CLIENT.SAVE.MESSAGE.OK" : "Cliente guardado correctamente",
   "CLIENT.SAVE.MESSAGE.INFO" : "Guardando cliente...",
@@ -45,6 +48,9 @@
   "CLIENT.UPDATE.MESSAGE.OK" : "Cliente actualizado correctamente",
   "CLIENT.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
   "CLIENT.UPDATE.MESSAGE.ERROR" : "Ha sucedido un error al actualizar el cliente",
+
+  "PET.FORM.TITLE.DETAIL": "Historial del paciente",
+  "PET.FORM.BREADCRUMB.DETAIL": "Historial del paciente",
 
 
   "BUTTON.SAVE" : "Guardar"

@@ -1,9 +1,4 @@
-import {
-  BadRequestException,
-  Inject,
-  Injectable,
-  Logger,
-} from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import {
   countValues,
   getClientListPipeline,
@@ -11,6 +6,9 @@ import {
 } from './client.repository';
 import { Model } from 'mongoose';
 import { Client, IClient } from 'src/mongodb/schemas/client';
+import { PetService } from '../pets/pets.service';
+import * as bcrypt from 'bcrypt';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ClientsService {
@@ -19,6 +17,7 @@ export class ClientsService {
   constructor(
     @Inject('CLIENT_MODEL')
     private clientModel: Model<IClient>,
+    private petService: PetService,
   ) {}
 
   /**
@@ -49,8 +48,7 @@ export class ClientsService {
       await this.clientModel.aggregate(getLastClientIdPipeline()).exec()
     )[0].idc;
     client.idc = idc ? idc + 1 : 0;
-
-    console.log(idc);
+    client.password = await bcrypt.hash('12345678', 10);
     return this.clientModel.create(client);
   }
 
@@ -103,8 +101,10 @@ export class ClientsService {
    * @param id
    * @returns
    */
-  findOne(id: string): Promise<Client> {
-    return this.clientModel.findOne({ _id: id });
+  async findOne(id: string): Promise<Client> {
+    const client = await this.clientModel.findOne({ _id: id }).exec();
+    client.mascotas = await this.petService.findAllByClientId(client.idc);
+    return client;
   }
 
   /**

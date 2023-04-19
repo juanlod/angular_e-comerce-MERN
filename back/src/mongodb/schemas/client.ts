@@ -35,6 +35,7 @@ export interface IClient extends Document {
   Identif: string;
   mascotas: mongoose.Schema.Types.ObjectId[];
   lopd: boolean;
+  password: string;
 }
 
 export class Client {
@@ -118,6 +119,9 @@ export class Client {
 
   @ApiProperty({description:'Indicates if the client has writed lopd document'})
   lopd: boolean;
+
+  @ApiProperty({description:'password'})
+  password: string;
 }
 
 // Creacion de clase cliente a traves de la interfaz
@@ -150,4 +154,5 @@ export const ClientSchema = new Schema<IClient>({
     { type: mongoose.Schema.Types.ObjectId, ref: 'mascotas', required: false },
   ],
   lopd: { type: Boolean, required: false },
+  password: { type: String, required: false },
 });

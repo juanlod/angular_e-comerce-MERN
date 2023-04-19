@@ -19,7 +19,6 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NgZorroModule } from './ng-zorro.module';
 import { MaterialModule } from './material.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClienteModule } from './pages/clientes/cliente.module';
 
 import es from '@angular/common/locales/es';
@@ -29,6 +28,8 @@ import gl from '@angular/common/locales/gl';
 import { es_ES, NZ_I18N, gl_ES, en_GB } from 'ng-zorro-antd/i18n';
 import { TranslationModule } from './translation.module';
 import { PetModule } from './pages/pets/pet/pet.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -56,7 +57,8 @@ registerLocaleData(gl);
     NgbModule,
     ClienteModule,
     TranslationModule,
-    PetModule
+    PetModule,
+    FontAwesomeModule
   ],
   exports: [],
   providers: [{ provide: NZ_I18N, useValue: [es_ES, en_GB, gl_ES]}],

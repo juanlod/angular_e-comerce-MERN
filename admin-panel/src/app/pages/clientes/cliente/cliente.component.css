@@ -34,6 +34,7 @@ nz-layout {
 
 .table-icon {
   font-size: 22px;
+  padding: 0 !important;
 }
 
 .client-name {
@@ -53,4 +54,8 @@ nz-layout {
   font-size: 18px;
   font-weight: bold;
   transition: 0.2s ease;
+}
+
+.ant-table-cell {
+  min-height: 65px !important;
 }

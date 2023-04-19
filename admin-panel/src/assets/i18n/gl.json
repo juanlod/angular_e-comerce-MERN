@@ -34,9 +34,12 @@
   "CLIENTS.DETAIL.TITLE": "Arquivo do cliente",
   "CLIENTS.DETAIL.BREADCRUMB": "Arquivo do cliente",
   "CLIENTS.DETAIL.EDIT.BUTTON": "Editar",
-
-  "PET.FORM.TITLE.DETAIL": "Historial do paciente",
-  "PET.FORM.BREADCRUMB.DETAIL": "Historial do paciente",
+  "CLIENT.DETAIL.PET.LIST.TABLE.NAME": "Nome",
+  "CLIENT.DETAIL.PET.LIST.TABLE.SPECIES": "Especie",
+  "CLIENT.DETAIL.PET.LIST.TABLE.SEX": "Sexo",
+  "CLIENT.DETAIL.PET.LIST.TABLE.RACE": "Raza",
+  "CLIENT.DETAIL.PET.LEGEND": "Mascotas",
+  "CLIENT.DETAIL.DEBT.LEGEND": "Deudas",
 
   "CLIENT.SAVE.MESSAGE.OK" : "Cliente gardado correctamente",
   "CLIENT.SAVE.MESSAGE.INFO" : "Gardando cliente...",
@@ -45,6 +48,12 @@
   "CLIENT.UPDATE.MESSAGE.OK" : "Cliente actualizado correctamente",
   "CLIENT.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
   "CLIENT.UPDATE.MESSAGE.ERROR" : "Ocorreu un erro ó actualizar o cliente",
+
+
+
+  "PET.FORM.TITLE.DETAIL": "Historial do paciente",
+  "PET.FORM.BREADCRUMB.DETAIL": "Historial do paciente",
+
 
   "BUTTON.SAVE" : "Gardar"
 }

@@ -8,6 +8,7 @@ import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 import { TranslationModule } from 'src/app/translation.module';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -15,7 +16,6 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     ClienteComponent,
     ClienteFormComponent,
     ClientDetailComponent
-
   ],
   imports: [
     CommonModule,
@@ -23,7 +23,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     MaterialModule,
     FormsModule,
     TranslationModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   exports: [
   ]

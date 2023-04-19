@@ -141,3 +141,21 @@ export function getLastClientIdPipeline(): any {
     },
   ];
 }
+
+export function findById(id: string): any {
+  return [
+    {
+      $lookup: {
+        localField: 'idc',
+        from: 'mascotas',
+        foreignField: 'idc',
+        as: 'mascotas',
+      },
+    },
+    {
+      $match: {
+        idc: parseInt(id),
+      },
+    },
+  ];
+}

@@ -107,4 +107,13 @@ export class PetService {
   remove(id: number) {
     return this.petModel.deleteOne({ _id: id });
   }
+
+  /**
+   * Get pets by client id
+   * @param idc
+   * @returns
+   */
+  async findAllByClientId(idc: number): Promise<any> {
+    return await this.petModel.find({ idc: idc }).exec();
+  }
 }

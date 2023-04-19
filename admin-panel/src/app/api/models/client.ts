@@ -1,7 +1,9 @@
 /* tslint:disable */
-/* eslint-disable */
-export class  Client {
 
+import { Pet } from './pet';
+
+/* eslint-disable */
+export class Client {
   /**
    * province id reference
    */
@@ -83,7 +85,7 @@ export class  Client {
   /**
    * list of pets
    */
-  mascotas: Array<string>;
+  mascotas: Array<Pet>;
   motuv: string;
   obra: number;
 
@@ -108,4 +110,9 @@ export class  Client {
    * movile phone
    */
   telC2: string;
+
+  /**
+   * Client debts
+   */
+  debts: Array<any>;
 }

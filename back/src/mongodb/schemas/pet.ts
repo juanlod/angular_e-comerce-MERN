@@ -108,7 +108,7 @@ export class Pet {
 export const PetSchema = new Schema<IPet>({
   _id: { type: String, required: true },
   idm: { type: Number, required: true },
-  idc: { type: mongoose.Schema.Types.ObjectId, ref: 'cliente', required: true },
+  idc: { type: Number, required: true },
   nom: { type: String, required: true },
   raz: { type: Number, required: true },
   esp: { type: Number, required: true },

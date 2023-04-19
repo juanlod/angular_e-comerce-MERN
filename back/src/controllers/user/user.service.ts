@@ -27,7 +27,6 @@ export class UserService {
    */
   async login(email: string, password: string) {
     const result = await this.userModel.findOne({ email: email });
-    this.logger.debug(result);
 
     if (!result) {
       throw new BadRequestException('Usuario o contraseña incorrectos');

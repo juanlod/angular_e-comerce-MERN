@@ -5,4 +5,5 @@ export interface Species {
   ali: number;
   id: number;
   nom: string;
+  icon: string;
 }

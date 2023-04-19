@@ -18,6 +18,7 @@ import { NotificationService } from 'src/app/api/services/notification.service';
   styleUrls: ['./cliente.component.css'],
 })
 export class ClienteComponent implements OnInit {
+
   clientes: any[] = [];
   loading = true;
   filtro: string = '';

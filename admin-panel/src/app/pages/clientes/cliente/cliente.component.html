@@ -17,10 +17,10 @@
 <br>
 <nz-table #basicTable nzShowSizeChanger [nzData]="clientes" [nzFrontPagination]="false" [nzLoading]="loading"
   [nzTotal]="totalResults" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
-  (nzQueryParams)="onQueryParamsChange($event)" nzTableLayout="fixed">
+  (nzQueryParams)="onQueryParamsChange($event)" nzTableLayout="auto">
   <thead>
     <tr>
-      <th nzWidth="60px"></th>
+      <th nzWidth="5%"></th>
       <th nzCustomFilter>
         {{ 'CLIENTS.LIST.TABLE.NAME' | translate }}
         <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="filtro.length > 0" [nzDropdownMenu]="menu">
@@ -31,19 +31,21 @@
       <th nzColumnKey="email" [nzSortFn]="true">{{ 'CLIENTS.LIST.TABLE.EMAIL' | translate }}</th>
       <th nzColumnKey="email" [nzSortFn]="true">{{ 'CLIENTS.LIST.TABLE.TELEPHONE' | translate }}</th>
       <!-- <th nzWidth="100px">{{ 'CLIENTS.LIST.TABLE.ALERTS' | translate }}</th> -->
-      <th>{{ 'CLIENTS.LIST.TABLE.ALERTS' | translate }}</th>
+      <th nzWidth="10%">{{ 'CLIENTS.LIST.TABLE.ALERTS' | translate }}</th>
     </tr>
   </thead>
   <tbody>
     <ng-container *ngFor="let cliente of basicTable.data">
-      <tr >
+      <tr>
         <td *ngIf="cliente?.mascotas?.length > 0" [nzExpand]="expandSet.has(cliente.idc)"
-          (nzExpandChange)="onExpandChange(cliente.idc, $event)"></td>
+          (nzExpandChange)="onExpandChange(cliente.idc, $event)">
+        </td>
         <td *ngIf="cliente?.mascotas?.length === 0"></td>
 
         <!-- CLIENT NAME -->
         <td class="client-name" [ngClass]="{'contains-pet': checkFiltro(cliente)}">
-          <a (click)="clientDetail(cliente._id)"><span [ngClass]="{'contains-pet': checkFiltro(cliente)}">{{ cliente.ayn }}</span></a>
+          <a (click)="clientDetail(cliente._id)"><span [ngClass]="{'contains-pet': checkFiltro(cliente)}">{{ cliente.ayn
+              }}</span></a>
           <!-- <span class="client-name-pet" nz-icon nzType="plus" nzTheme="outline"></span> -->
         </td>
         <!-- CLIENT DIRECTION -->
@@ -66,10 +68,10 @@
         </td>
         <!-- CLIENT ALERTS -->
         <td>
-          <span  class="table-icon warning" *ngIf="cliente.problematico" nz-icon nzType="warning" nzTheme="outline"></span>
+          <span class="table-icon warning" *ngIf="cliente.problematico" nz-icon nzType="warning" nzTheme="outline"></span>
           <nz-divider *ngIf="client.problematico" nzType="vertical"></nz-divider>
-          <span class="table-icon dollar"  *ngIf="cliente.deuda" nz-icon nzType="dollar" nzTheme="outline"></span>
-      </td>
+          <span class="table-icon dollar" *ngIf="cliente.deuda" nz-icon nzType="dollar" nzTheme="outline"></span>
+        </td>
       </tr>
       <!-- CLIENT PETS -->
       <ng-container *ngFor="let mascota of cliente.mascotas">

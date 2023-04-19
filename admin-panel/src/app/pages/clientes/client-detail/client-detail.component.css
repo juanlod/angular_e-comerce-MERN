@@ -1,3 +1,4 @@
+
 .column-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
@@ -15,22 +16,66 @@
 
 .label-detail {
   color: #303030 !important;
-  font-weight:500;
+  font-weight: 500;
 }
 
-.edit-button {
+.card-icon {
   position: absolute;
-  top: -16px;
-  left: -14px;
+  top: -20px;
+  left: -15px;
   font-size: 30px;
 }
 
 .edit-button2 {
-  position: absolute;
-  top: 9px;
-  right: 30px;
+  font-size: 30px;
+}
+
+.fa-circle {
+  font-size: 32px;
+}
+
+.pet-icon {
+  font-size: 30px;
+}
+
+.fa-paw {
+  font-size: 23px;
+  font-size: 21px;
+  left: -9.5px;
+  top: -15px;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .client-title {
   margin-bottom: 22px;
 }
+
+.search-box {
+  padding: 8px;
+}
+
+.search-box input {
+  width: 250px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.search-box button {
+  width: 90px;
+}
+
+.search-button {
+  margin-right: 8px;
+}
+
+@media screen and (max-width: 1199px) {
+  .pet-list {
+margin-top: 40px;
+  }
+}
+

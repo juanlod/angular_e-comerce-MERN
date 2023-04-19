@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Utils } from 'src/app/utils';
 import { NotificationService } from 'src/app/api/services/notification.service';
-import { translate } from '@angular/localize/src/translate';
 
 @Component({
   selector: 'app-cliente-form',
@@ -18,7 +17,6 @@ import { translate } from '@angular/localize/src/translate';
   styleUrls: ['./cliente-form.component.css'],
 })
 export class ClienteFormComponent implements OnInit {
-
   @Input() isEdit: boolean = false;
   @Input() isDetail: boolean = false;
   @Input() client: Client = new Client();
@@ -39,7 +37,7 @@ export class ClienteFormComponent implements OnInit {
     public masterCacheService: MasterCacheService,
     public route: ActivatedRoute,
     public notificationService: NotificationService,
-    private router: Router,
+    public router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -99,13 +97,13 @@ export class ClienteFormComponent implements OnInit {
       return;
     }
 
-    this.notificationService.showInfo('CLIENT.SAVE.MESSAGE.INFO')
+    this.notificationService.showInfo('CLIENT.SAVE.MESSAGE.INFO');
     // Wait to save a client
     const result = (await lastValueFrom(
       this.clientService.createClient({ body: this.client })
     ).catch((error: any) => {
       this.submitted = false;
-      this.notificationService.showError('CLIENT.SAVE.MESSAGE.ERROR')
+      this.notificationService.showError('CLIENT.SAVE.MESSAGE.ERROR');
     })) as any;
 
     if (result) {
@@ -116,7 +114,7 @@ export class ClienteFormComponent implements OnInit {
         '',
         `/#/dashboard/clientes/form/${this.client._id}`
       );
-      this.notificationService.showSuccess('CLIENT.SAVE.MESSAGE.OK')
+      this.notificationService.showSuccess('CLIENT.SAVE.MESSAGE.OK');
 
       if (!this.isDetail) {
         this.router.navigate(['dashboard/clients/detail', this.client._id]);
@@ -128,18 +126,20 @@ export class ClienteFormComponent implements OnInit {
    * Update a client
    */
   async updateClient() {
-    this.notificationService.showInfo('CLIENT.UPDATE.MESSAGE.INFO')
+    this.notificationService.showInfo('CLIENT.UPDATE.MESSAGE.INFO');
     const result = (await lastValueFrom(
-      this.clientService.updateClient({ id: this.client._id,  body: this.client })
+      this.clientService.updateClient({
+        id: this.client._id,
+        body: this.client,
+      })
     ).catch((error: any) => {
       this.submitted = false;
-      this.notificationService.showError('CLIENT.UPDATE.MESSAGE.ERROR')
+      this.notificationService.showError('CLIENT.UPDATE.MESSAGE.ERROR');
     })) as any;
 
     if (result) {
-      this.notificationService.showSuccess('CLIENT.UPDATE.MESSAGE.OK')
+      this.notificationService.showSuccess('CLIENT.UPDATE.MESSAGE.OK');
     }
-
   }
 
   async mapLocalitiesProvinces() {

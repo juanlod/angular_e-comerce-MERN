@@ -34,9 +34,12 @@
   "CLIENTS.DETAIL.TITLE": "Client detail",
   "CLIENTS.DETAIL.BREADCRUMB": "Client detail",
   "CLIENTS.DETAIL.EDIT.BUTTON": "Edit",
-
-  "PET.FORM.TITLE.DETAIL": "Patient history",
-  "PET.FORM.BREADCRUMB.DETAIL": "Patient history",
+  "CLIENT.DETAIL.PET.LIST.TABLE.NAME": "Name",
+  "CLIENT.DETAIL.PET.LIST.TABLE.SPECIES": "Species",
+  "CLIENT.DETAIL.PET.LIST.TABLE.SEX": "Sex",
+  "CLIENT.DETAIL.PET.LIST.TABLE.RACE": "Race",
+  "CLIENT.DETAIL.PET.LEGEND": "Pets",
+  "CLIENT.DETAIL.DEBT.LEGEND": "Debts",
 
   "CLIENT.SAVE.MESSAGE.OK" : "Cliente saved properly",
   "CLIENT.SAVE.MESSAGE.INFO" : "Saving client...",
@@ -45,6 +48,13 @@
   "CLIENT.UPDATE.MESSAGE.OK" : "Client updated properly",
   "CLIENT.UPDATE.MESSAGE.INFO" : "Updating client...",
   "CLIENT.UPDATE.MESSAGE.ERROR" : "An error occurred while updating the client.",
+
+
+
+
+  "PET.FORM.TITLE.DETAIL": "Patient history",
+  "PET.FORM.BREADCRUMB.DETAIL": "Patient history",
+
 
   "BUTTON.SAVE" : "Save"
 }
