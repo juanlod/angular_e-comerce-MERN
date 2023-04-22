@@ -1,9 +1,4 @@
-import {
-  BadRequestException,
-  Inject,
-  Injectable,
-  Logger,
-} from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import {
   countValues,
   getPetListPipeline,
@@ -11,6 +6,7 @@ import {
 } from './pets.repository';
 import { Model } from 'mongoose';
 import { Pet, IPet } from 'src/mongodb/schemas/Pet';
+// import { ClientsService } from '../clients/clients.service';
 
 @Injectable()
 export class PetService {
@@ -19,19 +15,21 @@ export class PetService {
   constructor(
     @Inject('PET_MODEL')
     private petModel: Model<IPet>,
-  ) {}
+  ) // private clientService: ClientsService,
+  {}
 
   /**
    * Save and user
    * @param Pet
    * @returns
    */
-  async create(Pet: Pet): Promise<any> {
-    const idc = (
+  async create(pet: Pet): Promise<any> {
+    const idm = (
       await this.petModel.aggregate(getLastPetIdPipeline()).exec()
     )[0].idc;
-    Pet.idc = idc ? idc + 1 : 0;
-    return this.petModel.create(Pet);
+    console.log(idm);
+    pet.idm = idm ? idm + 1 : 0;
+    return this.petModel.create(pet);
   }
 
   findAll(): Promise<any> {

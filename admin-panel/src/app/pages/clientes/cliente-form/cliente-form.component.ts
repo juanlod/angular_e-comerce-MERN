@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { lastValueFrom, of } from 'rxjs';
 
 import { MasterCacheService } from '../../../api/cache/master-cache-service';
@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Utils } from 'src/app/utils';
 import { NotificationService } from 'src/app/api/services/notification.service';
 
+
 @Component({
   selector: 'app-cliente-form',
   templateUrl: './cliente-form.component.html',
@@ -20,6 +21,7 @@ export class ClienteFormComponent implements OnInit {
   @Input() isEdit: boolean = false;
   @Input() isDetail: boolean = false;
   @Input() client: Client = new Client();
+  @Output() clientEmmiter = new EventEmitter<Client>();
 
   provinces: Province[] = [];
   provincesBackup: Province[] = [];
@@ -120,6 +122,8 @@ export class ClienteFormComponent implements OnInit {
         this.router.navigate(['dashboard/clients/detail', this.client._id]);
       }
     }
+
+
   }
 
   /**
@@ -140,8 +144,12 @@ export class ClienteFormComponent implements OnInit {
     if (result) {
       this.notificationService.showSuccess('CLIENT.UPDATE.MESSAGE.OK');
     }
+    this.clientEmmiter.emit(this.client);
   }
 
+  /**
+   * Set id province to locality
+   */
   async mapLocalitiesProvinces() {
     if (this.localities?.length > 0 && this.provinces?.length > 0) {
       this.localities = this.localities.map((locality) => {

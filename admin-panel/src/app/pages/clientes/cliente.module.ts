@@ -9,6 +9,7 @@ import { TranslationModule } from 'src/app/translation.module';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PetModule } from '../pets/pet-history/pet.module';
 
 
 @NgModule({
@@ -24,9 +25,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     TranslationModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    PetModule
   ],
   exports: [
+    ClienteFormComponent
   ]
 })
 export class ClienteModule { }

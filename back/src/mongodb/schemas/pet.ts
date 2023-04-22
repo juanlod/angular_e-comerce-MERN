@@ -1,6 +1,7 @@
 'use strict';
 import { ApiProperty } from '@nestjs/swagger';
 import mongoose from 'mongoose';
+import { Client } from './client';
 
 const Schema = mongoose.Schema;
 
@@ -10,7 +11,7 @@ const Schema = mongoose.Schema;
 export interface IPet extends Document {
   _id: string;
   idm: number;
-  idc: mongoose.Schema.Types.ObjectId;
+  idc: number;
   nom: string;
   raz: number;
   esp: number;
@@ -102,32 +103,34 @@ export class Pet {
 
   @ApiProperty({ description: 'pet chip number' })
   Chip: null | string;
+
+  @ApiProperty({ description: 'client relation' })
+  client: Client;
 }
 
 // Creacion de clase mascota a traves de la interfaz
 export const PetSchema = new Schema<IPet>({
-  _id: { type: String, required: true },
   idm: { type: Number, required: true },
   idc: { type: Number, required: true },
   nom: { type: String, required: true },
-  raz: { type: Number, required: true },
-  esp: { type: Number, required: true },
-  fecn: { type: String, required: true },
-  pel: { type: Number, required: true },
-  pes: { type: Number, required: true },
+  raz: { type: Number, required: false },
+  esp: { type: Number, required: false },
+  fecn: { type: String, required: false },
+  pel: { type: Number, required: false },
+  pes: { type: Number, required: false },
   car: { type: String, required: false },
-  ser: { type: Number, required: true },
+  ser: { type: Number, required: false },
   obs: { type: String, required: false },
-  feci: { type: String, required: true },
-  sex: { type: Number, required: true },
-  ped: { type: Boolean, required: true },
-  rep: { type: Boolean, required: true },
-  dec: { type: Boolean, required: true },
-  fot: { type: Boolean, required: true },
-  int: { type: Boolean, required: true },
-  hos: { type: Number, required: true },
-  fult: { type: String, required: true },
-  tarea: { type: Boolean, required: true },
+  feci: { type: String, required: false },
+  sex: { type: Number, required: false },
+  ped: { type: Boolean, required: false },
+  rep: { type: Boolean, required: false },
+  dec: { type: Boolean, required: false },
+  fot: { type: Boolean, required: false },
+  int: { type: Boolean, required: false },
+  hos: { type: Number, required: false },
+  fult: { type: String, required: false },
+  tarea: { type: Boolean, required: false },
   Chip: { type: String, required: false },
 });
 

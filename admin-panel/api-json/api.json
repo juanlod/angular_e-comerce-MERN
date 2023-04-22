@@ -250,7 +250,7 @@
     },
     "/api/clients/find_one/{id}": {
       "get": {
-        "operationId": "findOneClient",
+        "operationId": "findOneByIdcClient",
         "summary": "Obtener un cliente por id",
         "parameters": [
           {
@@ -258,13 +258,9 @@
             "required": true,
             "in": "path",
             "description": "El ID del cliente a buscar",
-            "schema": { "type": "string" }
+            "schema": { "type": "number" }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": { "application/json": { "schema": { "type": "string" } } }
-        },
         "responses": {
           "200": {
             "description": "El cliente ha sido encontrado satisfactoriamente",
@@ -828,10 +824,6 @@
             "schema": { "type": "string" }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": { "application/json": { "schema": { "type": "string" } } }
-        },
         "responses": {
           "200": {
             "description": "El pete ha sido encontrado satisfactoriamente",
@@ -1632,7 +1624,8 @@
           "lopd": {
             "type": "boolean",
             "description": "Indicates if the client has writed lopd document"
-          }
+          },
+          "password": { "type": "string", "description": "password" }
         },
         "required": [
           "_id",
@@ -1661,7 +1654,8 @@
           "codp2",
           "Identif",
           "mascotas",
-          "lopd"
+          "lopd",
+          "password"
         ]
       },
       "Locality": {
@@ -1777,9 +1771,10 @@
           "_id": { "type": "string" },
           "id": { "type": "number" },
           "nom": { "type": "string" },
-          "ali": { "type": "number" }
+          "ali": { "type": "number" },
+          "icon": { "type": "string" }
         },
-        "required": ["_id", "id", "nom", "ali"]
+        "required": ["_id", "id", "nom", "ali", "icon"]
       }
     }
   }

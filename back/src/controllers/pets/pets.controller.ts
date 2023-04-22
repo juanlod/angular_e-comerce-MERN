@@ -132,7 +132,6 @@ export class PetsController {
   @ApiResponse({ status: 404, description: 'El pete no ha sido encontrado' })
   @Get('find_one/:id')
   @ApiProduces('application/json')
-  @ApiBody({ type: String })
   findOne(@Param('id') id: string): Promise<Pet> {
     return this.petService.findOne(id);
   }

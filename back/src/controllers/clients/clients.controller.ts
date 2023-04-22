@@ -132,9 +132,34 @@ export class ClientsController {
   @ApiResponse({ status: 404, description: 'El cliente no ha sido encontrado' })
   @Get('find_one/:id')
   @ApiProduces('application/json')
-  @ApiBody({ type: String })
   findOne(@Param('id') id: string): Promise<Client> {
     return this.clientsService.findOne(id);
+  }
+
+  /**
+   * findOne
+   * @param id
+   * @returns
+   */
+  @ApiOperation({
+    summary: 'Obtener un cliente por id',
+    operationId: 'findOneByIdcClient',
+  })
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: 'El ID del cliente a buscar',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'El cliente ha sido encontrado satisfactoriamente',
+    type: Client,
+  })
+  @ApiResponse({ status: 404, description: 'El cliente no ha sido encontrado' })
+  @Get('find_one_by_idc/:id')
+  @ApiProduces('application/json')
+  findOneByIdc(@Param('id') id: number): Promise<Client> {
+    return this.clientsService.findOneByIdc(id);
   }
 
   /**

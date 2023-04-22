@@ -12,7 +12,7 @@
   "CLIENTS.FORM.BREADCRUMB.NEW": "Novo cliente",
   "CLIENTS.FORM.BREADCRUMB.EDIT": "Editar cliente",
   "CLIENTS.FORM.NAME": "Nome e apelidos",
-  "CLIENTS.FORM.NAME.MANDATORY": "O nome é obligatorio",
+  "CLIENTS.FORM.NAME.MANDATORY": "O nome é obrigatorio",
   "CLIENTS.FORM.DIRECTION": "Dirección",
   "CLIENTS.FORM.POSTAL_CODE": "Código postal",
   "CLIENTS.FORM.DNI": "DNI",
@@ -39,7 +39,7 @@
   "CLIENT.DETAIL.PET.LIST.TABLE.SEX": "Sexo",
   "CLIENT.DETAIL.PET.LIST.TABLE.RACE": "Raza",
   "CLIENT.DETAIL.PET.LEGEND": "Mascotas",
-  "CLIENT.DETAIL.DEBT.LEGEND": "Deudas",
+  "CLIENT.DETAIL.DEBT.LEGEND": "Débedas",
 
   "CLIENT.SAVE.MESSAGE.OK" : "Cliente gardado correctamente",
   "CLIENT.SAVE.MESSAGE.INFO" : "Gardando cliente...",
@@ -49,11 +49,42 @@
   "CLIENT.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
   "CLIENT.UPDATE.MESSAGE.ERROR" : "Ocorreu un erro ó actualizar o cliente",
 
+  "PET.FORM.TITLE.NEW": "Novo paciente",
+  "PET.FORM.TITLE.EDIT": "Editar paciente",
+  "PET.FORM.BREADCRUMB.NEW": "Novo paciente",
+  "PET.FORM.BREADCRUMB.EDIT": "Editar paciente",
+  "PET.FORM.NAME": "Nome paciente",
+  "PET.FORM.NAME.MANDATORY": "O nome do paciente é obrigatorio",
+  "PET.FORM.SPECIES": "Especie",
+  "PET.FORM.SPECIES.PLACEHOLDER": "Seleccione especie",
+  "PET.FORM.COAT": "Pelaxe",
+  "PET.FORM.COAT.PLACEHOLDER": "Seleccione pelaxe",
+  "PET.FORM.CHARACTERISTICS": "Características",
+  "PET.FORM.RACE": "Raza",
+  "PET.FORM.RACE.PLACEHOLDER": "Seleccione raza",
+  "PET.FORM.SEX": "Sexo",
+  "PET.FORM.SEX.PLACEHOLDER": "Seleccione sexo",
+  "PET.FORM.BIRTH_DATE": "Data nacemento",
+  "PET.FORM.LAST_REVISION_DATE": "Última revisión",
+  "PET.FORM.WEIGHT": "Peso",
+  "PET.FORM.MICROCHIP": "Chip",
+  "PET.FORM.DEAD": "¿Faleceu?",
+  "PET.FORM.DEAD_DATE": "Data falecemento",
+  "PET.FORM.BREEDER": "¿É reproductor?",
+  "PET.FORM.PEDIGREE": "¿Ten pedigree?",
+  "PET.FORM.OBSERVATIONS": "Observacións",
+
+  "PET.DETAIL.TITLE": "Historial do paciente",
+  "PET.DETAIL.BREADCRUMB": "Historial do paciente",
 
 
-  "PET.FORM.TITLE.DETAIL": "Historial do paciente",
-  "PET.FORM.BREADCRUMB.DETAIL": "Historial do paciente",
+  "PET.SAVE.MESSAGE.OK" : "Paciente gardado correctamente",
+  "PET.SAVE.MESSAGE.INFO" : "Gardando paciente...",
+  "PET.SAVE.MESSAGE.ERROR" : "Ocorreu un erro ó gardar o paciente",
 
+  "PET.UPDATE.MESSAGE.OK" : "Paciente actualizado correctamente",
+  "PET.UPDATE.MESSAGE.INFO" : "Actualizando paciente...",
+  "PET.UPDATE.MESSAGE.ERROR" : "Ocorreu un erro ó actualizar o paciente",
 
   "BUTTON.SAVE" : "Gardar"
 }

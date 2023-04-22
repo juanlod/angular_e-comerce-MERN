@@ -123,7 +123,7 @@ export function getLastPetIdPipeline(): any {
     {
       $group: {
         _id: {},
-        'MAX(idc)': {
+        'MAX(idm)': {
           $max: '$idm',
         },
       },

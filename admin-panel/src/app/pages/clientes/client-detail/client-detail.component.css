@@ -1,12 +1,6 @@
-
 .column-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
-}
-
-.column-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 
@@ -24,13 +18,14 @@
   top: -20px;
   left: -15px;
   font-size: 30px;
+  background-color: #fff;
 }
 
-.edit-button2 {
+.edit-button {
   font-size: 30px;
 }
 
-.fa-circle {
+.bi-circle {
   font-size: 32px;
 }
 
@@ -42,8 +37,10 @@
   font-size: 23px;
   font-size: 21px;
   left: -9.5px;
-  top: -15px;
+  top: -7px;
+  z-index: 1;
 }
+
 
 .legend {
   display: flex;
@@ -75,7 +72,6 @@
 
 @media screen and (max-width: 1199px) {
   .pet-list {
-margin-top: 40px;
+    margin-top: 40px;
   }
 }
-

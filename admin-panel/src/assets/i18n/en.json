@@ -41,20 +41,50 @@
   "CLIENT.DETAIL.PET.LEGEND": "Pets",
   "CLIENT.DETAIL.DEBT.LEGEND": "Debts",
 
-  "CLIENT.SAVE.MESSAGE.OK" : "Cliente saved properly",
-  "CLIENT.SAVE.MESSAGE.INFO" : "Saving client...",
-  "CLIENT.SAVE.MESSAGE.ERROR" : "An error occurred while saving the client.",
+  "CLIENT.SAVE.MESSAGE.OK": "Cliente saved properly",
+  "CLIENT.SAVE.MESSAGE.INFO": "Saving client...",
+  "CLIENT.SAVE.MESSAGE.ERROR": "An error occurred while saving the client.",
 
-  "CLIENT.UPDATE.MESSAGE.OK" : "Client updated properly",
-  "CLIENT.UPDATE.MESSAGE.INFO" : "Updating client...",
-  "CLIENT.UPDATE.MESSAGE.ERROR" : "An error occurred while updating the client.",
+  "CLIENT.UPDATE.MESSAGE.OK": "Client updated properly",
+  "CLIENT.UPDATE.MESSAGE.INFO": "Updating client...",
+  "CLIENT.UPDATE.MESSAGE.ERROR": "An error occurred while updating the client.",
+
+  "PET.FORM.TITLE.NEW": "New patient",
+  "PET.FORM.TITLE.EDIT": "Edit patient",
+  "PET.FORM.BREADCRUMB.NEW": "New patient",
+  "PET.FORM.BREADCRUMB.EDIT": "Edit patient",
+  "PET.FORM.NAME": "Patient name",
+  "PET.FORM.NAME.MANDATORY": "Patient name is mandatory",
+  "PET.FORM.SPECIES": "Species",
+  "PET.FORM.SPECIES.PLACEHOLDER": "Select species",
+  "PET.FORM.COAT": "Coat",
+  "PET.FORM.COAT.PLACEHOLDER": "Select coat",
+  "PET.FORM.CHARACTERISTICS": "Characteristics",
+  "PET.FORM.RACE": "Breed",
+  "PET.FORM.RACE.PLACEHOLDER": "Select breed",
+  "PET.FORM.SEX": "Sex",
+  "PET.FORM.SEX.PLACEHOLDER": "Select sex",
+  "PET.FORM.BIRTH_DATE": "Birth date",
+  "PET.FORM.LAST_REVISION_DATE": "Last review",
+  "PET.FORM.WEIGHT": "Weight",
+  "PET.FORM.MICROCHIP": "Microchip",
+  "PET.FORM.DEAD": "Deceased?",
+  "PET.FORM.DEAD_DATE": "Deceased date",
+  "PET.FORM.BREEDER": "Breeder?",
+  "PET.FORM.PEDIGREE": "Pedigree?",
+  "PET.FORM.OBSERVATIONS": "Observations",
+
+  "PET.DETAIL.TITLE": "Patient history",
+  "PET.DETAIL.BREADCRUMB": "Patient history",
+
+  "PET.SAVE.MESSAGE.OK": "Patient saved successfully",
+  "PET.SAVE.MESSAGE.INFO": "Saving patient...",
+  "PET.SAVE.MESSAGE.ERROR": "An error occurred while saving the patient",
+
+  "PET.UPDATE.MESSAGE.OK": "Patient updated successfully",
+  "PET.UPDATE.MESSAGE.INFO": "Updating patient...",
+  "PET.UPDATE.MESSAGE.ERROR": "An error occurred while updating the patient",
 
 
-
-
-  "PET.FORM.TITLE.DETAIL": "Patient history",
-  "PET.FORM.BREADCRUMB.DETAIL": "Patient history",
-
-
-  "BUTTON.SAVE" : "Save"
+  "BUTTON.SAVE": "Save"
 }

@@ -8,7 +8,6 @@ import { Model } from 'mongoose';
 import { Client, IClient } from 'src/mongodb/schemas/client';
 import { PetService } from '../pets/pets.service';
 import * as bcrypt from 'bcrypt';
-import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ClientsService {
@@ -105,6 +104,15 @@ export class ClientsService {
     const client = await this.clientModel.findOne({ _id: id }).exec();
     client.mascotas = await this.petService.findAllByClientId(client.idc);
     return client;
+  }
+
+  /**
+   * find Client
+   * @param id
+   * @returns
+   */
+  async findOneByIdc(id: number): Promise<Client> {
+    return await this.clientModel.findOne({ idc: id }).exec();
   }
 
   /**

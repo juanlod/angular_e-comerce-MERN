@@ -1,4 +1,8 @@
-<h2 class="flex-container">{{ !client.idc ? 'Nuevo cliente' : 'Editar cliente' }}</h2>
+<h2 class="flex-container">
+  <span *ngIf="!client.idc"> {{ 'CLIENTS.FORM.BREADCRUMB.NEW'  | translate }}</span>
+  <span *ngIf="client.idc"> {{ 'CLIENTS.FORM.BREADCRUMB.EDIT' | translate }}</span>
+
+</h2>
 <nz-breadcrumb>
   <nz-breadcrumb>
     <nz-breadcrumb-item>

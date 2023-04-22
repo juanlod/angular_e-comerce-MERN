@@ -37,7 +37,7 @@ export class PetsService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createPet$Response(params: {
+  private createPet$Response(params: {
     body: Pet
   }): Observable<StrictHttpResponse<Pet>> {
 
@@ -91,7 +91,7 @@ export class PetsService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllPet$Response(params?: {
+  private findAllPet$Response(params?: {
   }): Observable<StrictHttpResponse<Array<Pet>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PetsService.FindAllPetPath, 'get');
@@ -142,7 +142,7 @@ export class PetsService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllPagingPet$Response(params?: {
+  private findAllPagingPet$Response(params?: {
 
     /**
      * Filtro para buscar petes
@@ -226,19 +226,17 @@ export class PetsService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  findOnePet$Response(params: {
+  private findOnePet$Response(params: {
 
     /**
      * El ID del pete a buscar
      */
     id: string;
-    body: string
   }): Observable<StrictHttpResponse<Pet>> {
 
     const rb = new RequestBuilder(this.rootUrl, PetsService.FindOnePetPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
-      rb.body(params.body, 'application/json');
     }
 
     return this.http.request(rb.build({
@@ -268,7 +266,6 @@ export class PetsService extends BaseService {
      * El ID del pete a buscar
      */
     id: string;
-    body: string
   }): Observable<Pet> {
 
     return this.findOnePet$Response(params).pipe(
@@ -291,14 +288,14 @@ export class PetsService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updatePet$Response(params: {
+  private updatePet$Response(params: {
 
     /**
      * El ID del pete a actualizar
      */
     id: string;
     body: Pet
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<Pet>> {
 
     const rb = new RequestBuilder(this.rootUrl, PetsService.UpdatePetPath, 'patch');
     if (params) {
@@ -312,7 +309,7 @@ export class PetsService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<Pet>;
       })
     );
   }
@@ -334,10 +331,10 @@ export class PetsService extends BaseService {
      */
     id: string;
     body: Pet
-  }): Observable<void> {
+  }): Observable<Pet> {
 
     return this.updatePet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+      map((r: StrictHttpResponse<Pet>) => r.body as Pet)
     );
   }
 
@@ -356,7 +353,7 @@ export class PetsService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  removePet$Response(params: {
+  private removePet$Response(params: {
 
     /**
      * El ID del pete a eliminar

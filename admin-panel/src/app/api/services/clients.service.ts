@@ -303,7 +303,7 @@ export class ClientsService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateClient$Response(params: {
+  private updateClient$Response(params: {
     /**
      * El ID del cliente a actualizar
      */
@@ -563,4 +563,67 @@ export class ClientsService extends BaseService {
       map((r: StrictHttpResponse<boolean>) => r.body as boolean)
     );
   }
+
+
+  /**
+   * Path part for operation findOneByIdcClient
+   */
+  static readonly FindOneByIdcClientPath = '/api/clients/find_one_by_idc/{id}';
+
+  /**
+   * Obtener un cliente por id.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findOneByIdcClient()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+    private findOneByIdcClient$Response(params: {
+
+      /**
+       * El ID del cliente a buscar
+       */
+      id: number;
+    }): Observable<StrictHttpResponse<Client>> {
+
+      const rb = new RequestBuilder(this.rootUrl, ClientsService.FindOneByIdcClientPath, 'get');
+      if (params) {
+        rb.path('id', params.id, {});
+      }
+
+      return this.http.request(rb.build({
+        responseType: 'json',
+        accept: 'application/json'
+      })).pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<Client>;
+        })
+      );
+    }
+
+    /**
+     * Obtener un cliente por id.
+     *
+     *
+     *
+     * This method provides access to only to the response body.
+     * To access the full response (for headers, for example), `findOneByIdcClient$Response()` instead.
+     *
+     * This method doesn't expect any request body.
+     */
+    findOneByIdcClient(params: {
+
+      /**
+       * El ID del cliente a buscar
+       */
+      id: number;
+    }): Observable<Client> {
+
+      return this.findOneByIdcClient$Response(params).pipe(
+        map((r: StrictHttpResponse<Client>) => r.body as Client)
+      );
+    }
 }

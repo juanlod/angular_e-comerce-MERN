@@ -25,7 +25,8 @@
       <legend>{{client.ayn}}</legend>
       <!-- TOP ICON -->
       <i class="card-icon bi bi-person-circle"></i>
-      <a (click)="showModal()" class="edit-button2">
+
+      <a (click)="showModal()" class="edit-button">
         <i class="bi bi-pencil-square"></i>
       </a>
     </div>
@@ -108,19 +109,8 @@
     </nz-form-item>
   </nz-skeleton>
 </nz-card>
-
-<!-- CLIENT FORM MODAL -->
-<nz-modal [nzContent]="modalContent" [nzStyle]="{ top: '20px' }" [nzMaskClosable]="false" [nzFooter]="null"
-  [nzWidth]="'70%'" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
-</nz-modal>
-<ng-template #modalContent>
-  <app-cliente-form [client]="client" [isDetail]="true"></app-cliente-form>
-</ng-template>
-
-
 <br>
 <br>
-
 <nz-row nzGutter="16">
   <!-- PET LIST -->
   <nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="12">
@@ -132,10 +122,10 @@
           <!-- TOP PET ICON -->
           <div>
             <i class="card-icon fa-solid fa-paw"></i>
-            <i class="card-icon fa-regular fa-circle"></i>
+            <i class="card-icon bi bi-circle"></i>
           </div>
           <!-- EDIT BUTTON  -->
-          <a class="edit-button2">
+          <a class="edit-button" (click)="showPetModal()">
             <i class="bi bi-plus-circle"></i>
           </a>
         </div>
@@ -165,8 +155,10 @@
                   <a (click)="petDetail(pet._id)">{{ pet.nom }}</a>
                 </td>
                 <td>
-                  <span nz-tooltip [nzTooltipTitle]="getPetSpecie(pet.esp)" nzTooltipPlacement="top"
-                    [nzTooltipArrowPointAtCenter]="true" *ngIf="getPetSpecieIcon(pet.esp)" class="pet-icon fa-solid"
+                  <span nz-tooltip *ngIf="getPetSpecieIcon(pet.esp)"
+                    [nzTooltipTitle]="getPetSpecie(pet.esp)" nzTooltipPlacement="top"
+                    [nzTooltipArrowPointAtCenter]="true"
+                    class="pet-icon fa-solid"
                     [ngClass]="getPetSpecieIcon(pet.esp)"></span>
                   <span *ngIf="!getPetSpecieIcon(pet.esp)">{{ getPetSpecie(pet.esp)}}</span>
                 </td>
@@ -229,15 +221,13 @@
             <span class="card-icon" nz-icon nzType="dollar" nzTheme="outline"></span>
           </div>
           <!-- EDIT BUTTON  -->
-          <a class="edit-button2">
+          <a class="edit-button">
             <i class="bi bi-plus-circle"></i>
           </a>
         </div>
 
         <!-- SHOW IF PET LIST IS EMPTY -->
-
-        <p>{{client?.debts?.length}}</p>
-        <nz-empty *ngIf="client?.debts?.length == 0"></nz-empty>
+        <nz-empty *ngIf="!client.debts ||  client.debts?.length == 0"></nz-empty>
 
         <!-- LIST FORMAT -->
         <nz-list *ngIf="client?.debts?.length > 0" nzItemLayout="vertical">
@@ -257,3 +247,20 @@
     </nz-card>
   </nz-col>
 </nz-row>
+
+<!-- CLIENT FORM MODAL -->
+<nz-modal [nzContent]="modalContent" [nzStyle]="{ top: '20px' }" [nzMaskClosable]="false" [nzFooter]="null"
+  [nzWidth]="'70%'" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
+</nz-modal>
+<ng-template #modalContent>
+  <app-cliente-form [client]="client" [isDetail]="true"  (clientEmmiter)="onUpdateClient($event)" ></app-cliente-form>
+</ng-template>
+
+
+<!-- PET FORM MODAL -->
+<nz-modal [nzContent]="petModalContent" [nzStyle]="{ top: '20px' }" [nzMaskClosable]="false" [nzFooter]="null"
+  [nzWidth]="'70%'" [(nzVisible)]="isPetVisible" (nzOnCancel)="handleCancel()">
+</nz-modal>
+<ng-template #petModalContent>
+  <app-pet-form [client]="client"  (updateClient)="onUpdatePetClient($event)"  [isDetail]="true"></app-pet-form>
+</ng-template>

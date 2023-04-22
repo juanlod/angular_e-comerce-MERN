@@ -49,8 +49,44 @@
   "CLIENT.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
   "CLIENT.UPDATE.MESSAGE.ERROR" : "Ha sucedido un error al actualizar el cliente",
 
-  "PET.FORM.TITLE.DETAIL": "Historial del paciente",
-  "PET.FORM.BREADCRUMB.DETAIL": "Historial del paciente",
+
+  "PET.FORM.TITLE.NEW": "Nuevo paciente",
+  "PET.FORM.BREADCRUMB.NEW": "Nuevo paciente",
+  "PET.FORM.TITLE.EDIT": "Editar paciente",
+  "PET.FORM.BREADCRUMB.EDIT": "Editar paciente",
+  "PET.FORM.NAME": "Nombre paciente",
+  "PET.FORM.NAME.MANDATORY": "El nombre del paciente es obligatorio",
+  "PET.FORM.SPECIES": "Especie",
+  "PET.FORM.SPECIES.PLACEHOLDER": "Seleccione especie",
+  "PET.FORM.COAT": "Pelaje",
+  "PET.FORM.COAT.PLACEHOLDER": "Seleccione pelaje",
+  "PET.FORM.CHARACTERISTICS": "Características",
+  "PET.FORM.RACE": "Raza",
+  "PET.FORM.RACE.PLACEHOLDER": "Seleccione raza",
+  "PET.FORM.SEX": "Sexo",
+  "PET.FORM.SEX.PLACEHOLDER": "Seleccione sexo",
+  "PET.FORM.BIRTH_DATE": "Fecha nacimiento",
+  "PET.FORM.WEIGHT": "Peso",
+  "PET.FORM.MICROCHIP": "Chip",
+  "PET.FORM.DEAD": "¿Ha fallecido?",
+  "PET.FORM.DEAD_DATE": "Fecha fallecimiento",
+  "PET.FORM.LAST_REVISION_DATE": "Última revisión",
+  "PET.FORM.BREEDER": "¿Es reproductor?",
+  "PET.FORM.PEDIGREE": "¿Tiene pedigree?",
+  "PET.FORM.OBSERVATIONS": "Observaciones",
+
+  "PET.DETAIL.TITLE": "Historial del paciente",
+  "PET.DETAIL.BREADCRUMB": "Historial del paciente",
+
+
+  "PET.SAVE.MESSAGE.OK" : "Paciente guardado correctamente",
+  "PET.SAVE.MESSAGE.INFO" : "Guardando paciente...",
+  "PET.SAVE.MESSAGE.ERROR" : "Ha sucedido un error al guardar el paciente",
+
+  "PET.UPDATE.MESSAGE.OK" : "Paciente actualizado correctamente",
+  "PET.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
+  "PET.UPDATE.MESSAGE.ERROR" : "Ha sucedido un error al actualizar el paciente",
+
 
 
   "BUTTON.SAVE" : "Guardar"

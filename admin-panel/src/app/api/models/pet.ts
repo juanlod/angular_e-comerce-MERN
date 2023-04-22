@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface Pet {
+export class Pet {
 
   /**
    * pet chip number
@@ -24,6 +24,15 @@ export interface Pet {
    * birth date
    */
   fecn: string;
+
+  /**
+   * Dead date
+   */
+  fecDec: string;
+
+  /**
+   * Indicates if the pet has a image
+   */
   fot: boolean;
 
   /**

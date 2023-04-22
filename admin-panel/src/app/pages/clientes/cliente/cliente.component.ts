@@ -187,7 +187,7 @@ export class ClienteComponent implements OnInit {
 
 
   async petDetail(id: string) {
-    this.router.navigate(['dashboard/clients/pets/detail', id]);
+    this.router.navigate(['dashboard/clients/pets/history', id]);
   }
 
 
