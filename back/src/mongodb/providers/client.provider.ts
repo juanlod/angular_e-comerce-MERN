@@ -1,5 +1,5 @@
 import mongoose, { Connection } from 'mongoose';
-import { ClientSchema } from '../schemas/client';
+import { ClientSchema } from '../schemas/clinic/client';
 
 export const clientProviders = [
   {

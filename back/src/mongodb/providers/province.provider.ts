@@ -1,5 +1,5 @@
 import mongoose, { Connection } from 'mongoose';
-import { ProvinceSchema } from '../schemas/province';
+import { ProvinceSchema } from '../schemas/master/province';
 
 export const provinceProviders = [
   {

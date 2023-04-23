@@ -1,5 +1,5 @@
 import mongoose, { Connection } from 'mongoose';
-import { LocalitySchema } from '../schemas/locality';
+import { LocalitySchema } from '../schemas/master/locality';
 
 export const localityProviders = [
   {

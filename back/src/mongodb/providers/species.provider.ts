@@ -1,5 +1,5 @@
 import mongoose, { Connection } from 'mongoose';
-import { SexSchema } from '../schemas/sex';
+import { SexSchema } from '../schemas/master/sex';
 
 export const speciesProviders = [
   {

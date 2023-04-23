@@ -1,5 +1,5 @@
 import mongoose, { Connection } from 'mongoose';
-import { RaceSchema } from '../schemas/race';
+import { RaceSchema } from '../schemas/master/race';
 
 export const raceProviders = [
   {

@@ -7,8 +7,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ClienteComponent } from './pages/clientes/cliente/cliente.component';
 import { ClienteFormComponent } from './pages/clientes/cliente-form/cliente-form.component';
 import { ClientDetailComponent } from './pages/clientes/client-detail/client-detail.component';
-import { PetHistoryComponent } from './pages/pets/pet-history/pet-history.component';
 import { PetFormComponent } from './pages/pets/pet-form/pet-form.component';
+import { PetDetailComponent } from './pages/pets/pet-detail/pet-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -32,7 +32,7 @@ const routes: Routes = [
             children: [
               { path: 'form', component: PetFormComponent },
               { path: 'form/:id', component: PetFormComponent },
-              { path: 'history/:id', component: PetHistoryComponent },
+              { path: 'history/:id', component: PetDetailComponent },
             ],
           },
         ],

@@ -1,5 +1,5 @@
 import mongoose, { Connection } from 'mongoose';
-import { PetSchema } from '../schemas/pet';
+import { PetSchema } from '../schemas/clinic/pet';
 
 export const petProviders = [
   {

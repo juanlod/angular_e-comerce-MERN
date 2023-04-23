@@ -76,7 +76,16 @@
 
   "PET.DETAIL.TITLE": "Historial do paciente",
   "PET.DETAIL.BREADCRUMB": "Historial do paciente",
-
+  "PET.DETAIL.HISTORY": "Historial",
+  "PET.DETAIL.TREATMENTS": "Tratamentos",
+  "PET.DETAIL.RADIOLOGY": "Radioloxía",
+  "PET.DETAIL.FEEDING": "Alimentación",
+  "PET.DETAIL.HAIR_SALOON": "Perruquería",
+  "PET.DETAIL.DEWORMING": "Desparasitación",
+  "PET.DETAIL.VACCINATION": "Vacinación",
+  "PET.DETAIL.ANALYTICAL": "Análise",
+  "PET.DETAIL.HOSPITALIZATION": "Hospitalización",
+  "PET.DETAIL.ALERTS": "Alertas",
 
   "PET.SAVE.MESSAGE.OK" : "Paciente gardado correctamente",
   "PET.SAVE.MESSAGE.INFO" : "Gardando paciente...",

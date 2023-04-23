@@ -250,6 +250,33 @@
     },
     "/api/clients/find_one/{id}": {
       "get": {
+        "operationId": "findOneClient",
+        "summary": "Obtener un cliente por id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "El ID del cliente a buscar",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "El cliente ha sido encontrado satisfactoriamente",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Client" }
+              }
+            }
+          },
+          "404": { "description": "El cliente no ha sido encontrado" }
+        },
+        "tags": ["Clients"]
+      }
+    },
+    "/api/clients/find_one_by_idc/{id}": {
+      "get": {
         "operationId": "findOneByIdcClient",
         "summary": "Obtener un cliente por id",
         "parameters": [
@@ -1535,6 +1562,214 @@
         },
         "tags": ["Species"]
       }
+    },
+    "/api/history/save": {
+      "post": {
+        "operationId": "createHistory",
+        "summary": "Create a new history",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/History" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The history has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/History" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["History"]
+      }
+    },
+    "/api/history/find_all": {
+      "get": {
+        "operationId": "findAllHistory",
+        "summary": "Retrieve a list of all historys",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all historys successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/History" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["History"]
+      }
+    },
+    "/api/history/find_one/{id}": {
+      "get": {
+        "operationId": "findOneHistory",
+        "summary": "Retrieve a history by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved history successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/History" }
+              }
+            }
+          },
+          "404": { "description": "History not found." }
+        },
+        "tags": ["History"]
+      }
+    },
+    "/api/history/find_by_idm/{id}": {
+      "get": {
+        "operationId": "findByIdm",
+        "summary": "Retrieve a history list by idm",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "skip",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "loadedCount",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved history successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/History" }
+              }
+            }
+          },
+          "404": { "description": "History not found." }
+        },
+        "tags": ["History"]
+      }
+    },
+    "/api/history/update/{id}": {
+      "patch": {
+        "operationId": "updateHistory",
+        "summary": "Update a history by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/History" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The history has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/History" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "history not found." }
+        },
+        "tags": ["History"]
+      }
+    },
+    "/api/history/delete/{id}": {
+      "delete": {
+        "operationId": "removeHistory",
+        "summary": "Remove a history by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The history has been successfully removed."
+          },
+          "404": { "description": "history not found." }
+        },
+        "tags": ["History"]
+      }
+    },
+    "/api/history/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingHistory",
+        "summary": "Get all historys with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all historys paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/History" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["History"]
+      }
     }
   },
   "info": { "title": "", "description": "", "version": "1.0.0", "contact": {} },
@@ -1706,7 +1941,11 @@
           "hos": { "type": "number" },
           "fult": { "type": "string", "description": "last date in clinic" },
           "tarea": { "type": "boolean" },
-          "Chip": { "type": "string", "description": "pet chip number" }
+          "Chip": { "type": "string", "description": "pet chip number" },
+          "client": {
+            "description": "client relation",
+            "allOf": [{ "$ref": "#/components/schemas/Client" }]
+          }
         },
         "required": [
           "_id",
@@ -1731,7 +1970,8 @@
           "hos",
           "fult",
           "tarea",
-          "Chip"
+          "Chip",
+          "client"
         ]
       },
       "Sex": {
@@ -1775,6 +2015,35 @@
           "icon": { "type": "string" }
         },
         "required": ["_id", "id", "nom", "ali", "icon"]
+      },
+      "History": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string", "description": "mongo id" },
+          "idClinica": { "type": "number", "description": "sql id" },
+          "idm": { "type": "number", "description": "pet id" },
+          "fec": {
+            "format": "date-time",
+            "type": "string",
+            "description": "creation date"
+          },
+          "cli": { "type": "string", "description": "desease information" },
+          "tmp": { "type": "number", "description": "temperature" },
+          "pes": { "type": "number", "description": "weight" },
+          "idu": { "type": "number", "description": "" },
+          "cantFotos": { "type": "number", "description": "photography size" }
+        },
+        "required": [
+          "_id",
+          "idClinica",
+          "idm",
+          "fec",
+          "cli",
+          "tmp",
+          "pes",
+          "idu",
+          "cantFotos"
+        ]
       }
     }
   }

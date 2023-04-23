@@ -9,7 +9,7 @@ import { TranslationModule } from 'src/app/translation.module';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PetModule } from '../pets/pet-history/pet.module';
+import { PetModule } from '../pets/pet.module';
 
 
 @NgModule({

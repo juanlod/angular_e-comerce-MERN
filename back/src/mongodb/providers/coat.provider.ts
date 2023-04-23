@@ -1,5 +1,5 @@
 import mongoose, { Connection } from 'mongoose';
-import { CoatSchema } from '../schemas/coat';
+import { CoatSchema } from '../schemas/master/coat';
 
 export const coatProviders = [
   {

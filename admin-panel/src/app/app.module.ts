@@ -27,7 +27,7 @@ import gl from '@angular/common/locales/gl';
 
 import { es_ES, NZ_I18N, gl_ES, en_GB } from 'ng-zorro-antd/i18n';
 import { TranslationModule } from './translation.module';
-import { PetModule } from './pages/pets/pet-history/pet.module';
+import { PetModule } from './pages/pets/pet.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 

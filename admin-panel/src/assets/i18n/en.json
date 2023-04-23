@@ -76,6 +76,16 @@
 
   "PET.DETAIL.TITLE": "Patient history",
   "PET.DETAIL.BREADCRUMB": "Patient history",
+  "PET.DETAIL.HISTORY": "History",
+  "PET.DETAIL.TREATMENTS": "Treatments",
+  "PET.DETAIL.RADIOLOGY": "Radiology",
+  "PET.DETAIL.FEEDING": "Feeding",
+  "PET.DETAIL.HAIR_SALOON": "Grooming",
+  "PET.DETAIL.DEWORMING": "Deworming",
+  "PET.DETAIL.VACCINATION": "Vaccination",
+  "PET.DETAIL.ANALYTICAL": "Analysis",
+  "PET.DETAIL.HOSPITALIZATION": "Hospitalization",
+  "PET.DETAIL.ALERTS": "Alerts",
 
   "PET.SAVE.MESSAGE.OK": "Patient saved successfully",
   "PET.SAVE.MESSAGE.INFO": "Saving patient...",

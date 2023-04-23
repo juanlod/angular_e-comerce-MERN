@@ -2,7 +2,7 @@
 
 @import './assets/css/custom-icons/custom-icons.css';
 
-html, body { height: 100%; }
+
 body { margin: 0; padding: 0; font-family: Roboto, sans-serif; }
 
 .hidden {
