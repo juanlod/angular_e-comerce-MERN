@@ -96,3 +96,11 @@ nz-content {
   margin-left: 16px;
   width: 120px;
 }
+
+.icon {
+  font-size: 19px;
+}
+
+.title {
+  margin-left: 10px;
+}

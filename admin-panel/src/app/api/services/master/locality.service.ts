@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 import { ApiConfiguration } from '../../api-configuration';
 import { BaseService } from '../../base-service';
-import { Locality } from '../../models/locality';
+import { Locality } from '../../models/master/locality';
 import { RequestBuilder } from '../../request-builder';
 import { StrictHttpResponse } from '../../strict-http-response';
 

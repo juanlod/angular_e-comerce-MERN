@@ -1,4 +1,11 @@
 {
+  "SIDEBAR.INIT.TITLE": "Inicio",
+  "SIDEBAR.CLINIC.TITLE": "Clinica",
+  "SIDEBAR.CLINIC.CLIENTS.TITLE": "Clientes e mascotas",
+  "SIDEBAR.INVENTORY.TITLE": "Inventario",
+  "SIDEBAR.INVENTORY.PRODUCTS.TITLE": "Produtos",
+  "SIDEBAR.CONFIGURATION.TITLE": "Configuración",
+
   "CLIENTS.ROUTE": "Clientes",
   "CLIENTS.LIST.TITLE": "Listado de clientes e mascotas",
   "CLIENTS.LIST.TITLE.BREADCRUMB": "Listado de clientes e mascotas",
@@ -41,13 +48,13 @@
   "CLIENT.DETAIL.PET.LEGEND": "Mascotas",
   "CLIENT.DETAIL.DEBT.LEGEND": "Débedas",
 
-  "CLIENT.SAVE.MESSAGE.OK" : "Cliente gardado correctamente",
-  "CLIENT.SAVE.MESSAGE.INFO" : "Gardando cliente...",
-  "CLIENT.SAVE.MESSAGE.ERROR" : "Ocorreu un erro ó gardar o cliente",
+  "CLIENT.SAVE.MESSAGE.OK": "Cliente gardado correctamente",
+  "CLIENT.SAVE.MESSAGE.INFO": "Gardando cliente...",
+  "CLIENT.SAVE.MESSAGE.ERROR": "Ocorreu un erro ó gardar o cliente",
 
-  "CLIENT.UPDATE.MESSAGE.OK" : "Cliente actualizado correctamente",
-  "CLIENT.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
-  "CLIENT.UPDATE.MESSAGE.ERROR" : "Ocorreu un erro ó actualizar o cliente",
+  "CLIENT.UPDATE.MESSAGE.OK": "Cliente actualizado correctamente",
+  "CLIENT.UPDATE.MESSAGE.INFO": "Actualizando cliente...",
+  "CLIENT.UPDATE.MESSAGE.ERROR": "Ocorreu un erro ó actualizar o cliente",
 
   "PET.FORM.TITLE.NEW": "Novo paciente",
   "PET.FORM.TITLE.EDIT": "Editar paciente",
@@ -70,7 +77,7 @@
   "PET.FORM.MICROCHIP": "Chip",
   "PET.FORM.DEAD": "¿Faleceu?",
   "PET.FORM.DEAD_DATE": "Data falecemento",
-  "PET.FORM.BREEDER": "¿É reproductor?",
+  "PET.FORM.BREEDER": "¿É reprodutor?",
   "PET.FORM.PEDIGREE": "¿Ten pedigree?",
   "PET.FORM.OBSERVATIONS": "Observacións",
 
@@ -87,14 +94,52 @@
   "PET.DETAIL.HOSPITALIZATION": "Hospitalización",
   "PET.DETAIL.ALERTS": "Alertas",
 
-  "PET.SAVE.MESSAGE.OK" : "Paciente gardado correctamente",
-  "PET.SAVE.MESSAGE.INFO" : "Gardando paciente...",
-  "PET.SAVE.MESSAGE.ERROR" : "Ocorreu un erro ó gardar o paciente",
+  "PET.SAVE.MESSAGE.OK": "Paciente gardado correctamente",
+  "PET.SAVE.MESSAGE.INFO": "Gardando paciente...",
+  "PET.SAVE.MESSAGE.ERROR": "Ocorreu un erro ó gardar o paciente",
 
-  "PET.UPDATE.MESSAGE.OK" : "Paciente actualizado correctamente",
-  "PET.UPDATE.MESSAGE.INFO" : "Actualizando paciente...",
-  "PET.UPDATE.MESSAGE.ERROR" : "Ocorreu un erro ó actualizar o paciente",
+  "PET.UPDATE.MESSAGE.OK": "Paciente actualizado correctamente",
+  "PET.UPDATE.MESSAGE.INFO": "Actualizando paciente...",
+  "PET.UPDATE.MESSAGE.ERROR": "Ocorreu un erro ó actualizar o paciente",
 
-  "BUTTON.SAVE" : "Gardar"
+  "PRODUCTS.LIST.TITLE": "Listado de produtos",
+  "PRODUCTS.LIST.TITLE.BREADCRUMB": "Listado de produtos",
+  "PRODUCTS.LIST.NEW.BUTTON": "Novo produto",
+  "PRODUCTS.LIST.TABLE.NAME": "Nome",
+  "PRODUCTS.LIST.TABLE.PRODUCT_GROUP": "Grupo",
+  "PRODUCTS.LIST.TABLE.PRODUCT_TYPE": "Tipo de produto",
+  "PRODUCTS.LIST.TABLE.UNITY_TYPE": "Unidade",
+  "PRODUCTS.LIST.TABLE.PROVIDER": "Proveedor",
+
+  "PRODUCTS.FORM.TITLE.NEW": "Novo produto",
+  "PRODUCTS.FORM.BREADCRUMB.NEW": "Novo produto",
+  "PRODUCTS.FORM.TITLE.EDIT": "Editar produto",
+  "PRODUCTS.FORM.BREADCRUMB.EDIT": "Editar produto",
+  "PRODUCTS.FORM.NAME": "Nome",
+  "PRODUCTS.FORM.PROVIDERS": "Proveedor",
+  "PRODUCTS.FORM.PROVIDERS.PLACEHOLDER": "Seleccione proveedor",
+  "PRODUCTS.FORM.PRODUCT_TYPE": "Tipo de produto",
+  "PRODUCTS.FORM.PRODUCT_TYPE.PLACEHOLDER": "Seleccione tipo de produto",
+  "PRODUCTS.FORM.UNITY_TYPE": "Unidade do produto",
+  "PRODUCTS.FORM.UNITY_TYPE.PLACEHOLDER": "Seleccione unidade do produto",
+
+  "PRODUCTS.SAVE.MESSAGE.OK": "Produto gardado correctamente",
+  "PRODUCTS.SAVE.MESSAGE.INFO": "Gardando produto...",
+  "PRODUCTS.SAVE.MESSAGE.ERROR": "Ocorreu un erro ó gardar o produto",
+
+  "PRODUCTS.UPDATE.MESSAGE.OK": "Produto actualizado correctamente",
+  "PRODUCTS.UPDATE.MESSAGE.INFO": "Actualizando produto...",
+  "PRODUCTS.UPDATE.MESSAGE.ERROR": "Ocorreu un erro ó actualizar o produto",
+
+  "PRODUCTS.DETAIL.TITLE": "Arquivo do produto",
+  "PRODUCTS.DETAIL.BREADCRUMB": "Arquivo do produto",
+  "PRODUCTS.DETAIL.NAME": "Nome",
+  "PRODUCTS.DETAIL.PROVIDERS": "Proveedor",
+  "PRODUCTS.DETAIL.PRODUCT_TYPE": "Tipo de produto",
+  "PRODUCTS.DETAIL.UNITY_TYPE": "Unidade do produto",
+
+  "PRODUCTS.DETAIL.BATCHES.TITLE": "Lotes",
+
+
+  "BUTTON.SAVE": "Gardar"
 }
-

@@ -114,6 +114,6 @@ export class RaceController {
     @Query('page') page?: number,
     @Query('pageSize') pageSize?: number,
   ) {
-    return 'all de races paginated';
+    return this.raceService.findAllPaging(filter, page, pageSize);
   }
 }

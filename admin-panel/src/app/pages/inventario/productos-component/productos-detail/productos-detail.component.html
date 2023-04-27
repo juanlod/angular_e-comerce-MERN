@@ -1,0 +1,97 @@
+<h2 class="flex-container">
+  <span> {{ 'PRODUCTS.DETAIL.TITLE' | translate }}</span>
+</h2>
+<nz-breadcrumb>
+  <nz-breadcrumb>
+    <nz-breadcrumb-item>
+      <span nz-icon nzType="home" routerLink="/"></span>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a routerLink="/dashboard/inventory/products">
+        <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+        <span>{{ 'PRODUCTS.LIST.TITLE.BREADCRUMB' | translate }}</span>
+      </a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <span nz-icon nzType="user"></span>
+      <span> {{ 'PRODUCTS.DETAIL.BREADCRUMB' | translate}}</span>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <div>
+    <br>
+    <!-- PRODUCT CARD DETAIL -->
+    <nz-card style="width: 100%;margin-top: 25px" [nzActions]="[]" nzFlex nzFlex="auto">
+      <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
+
+        <div class="legend">
+          <legend>{{ product?.name}}</legend>
+          <!-- TOP ICON -->
+          <i class="card-icon" [ngClass]="findProductType(product?.typeProductId)?.icon"></i>
+
+          <a (click)="showModal()" class="edit-button">
+            <i class="bi bi-pencil-square"></i>
+          </a>
+        </div>
+
+        <div class="column-2">
+          <!-- PROVIDER -->
+          <nz-form-item>
+            <nz-form-label nzFor="providerId">{{ 'PRODUCTS.DETAIL.PROVIDERS' | translate }}</nz-form-label>
+            <nz-form-control>
+              {{ findProvider(product?.providerId)?.name }}
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- PRODUCT_TYPE -->
+          <nz-form-item>
+            <nz-form-label nzFor="typeProductId">{{ 'PRODUCTS.DETAIL.PRODUCT_TYPE' | translate }}</nz-form-label>
+            <nz-form-control>
+              {{ findProductType(product?.typeProductId)?.name }}
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- UNITY_TYPES -->
+          <nz-form-item>
+            <nz-form-label nzFor="unityTypeId">{{ 'PRODUCTS.DETAIL.UNITY_TYPE' | translate }}</nz-form-label>
+            <nz-form-control>
+              {{ findUnity(product?.unityTypeId)?.name }}
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+
+      </nz-skeleton>
+    </nz-card>
+  </div>
+
+  <div>
+        <!-- BATCHES CARD DETAIL -->
+        <nz-card style="width: 100%;margin-top: 25px" [nzActions]="[]" nzFlex nzFlex="auto">
+          <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
+
+            <div class="legend">
+              <legend>{{ 'PRODUCTS.DETAIL.BATCHES.TITLE' | translate  }}</legend>
+              <!-- TOP ICON -->
+              <i class="card-icon bi bi-journal-medical"></i>
+
+              <a (click)="showModal()" class="edit-button">
+                <i class="bi bi-plus-circle"></i>
+              </a>
+            </div>
+
+
+
+
+          </nz-skeleton>
+        </nz-card>
+  </div>
+
+  <nz-modal [nzContent]="modalContent" [nzStyle]="{ top: '20px' }" [nzMaskClosable]="false" [nzFooter]="null"
+  [nzWidth]="'70%'" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
+</nz-modal>
+
+
+<ng-template #modalContent>
+  <app-product-form (productoEvent)="onUpdateProduct($event)" [product]="product"></app-product-form>
+</ng-template>

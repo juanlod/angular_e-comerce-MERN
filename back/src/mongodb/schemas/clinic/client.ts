@@ -136,7 +136,7 @@ export const ClientSchema = new Schema<IClient>({
   email: { type: String, required: false },
   obs: { type: String, required: false },
   mark: { type: Number, required: false },
-  feci: { type: Date, required: false },
+  feci: { type: Date, required: false, default: new Date },
   fecu: { type: Date, required: false },
   motuv: { type: String, required: false },
   deuda: { type: Boolean, required: false }, 

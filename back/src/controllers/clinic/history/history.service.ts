@@ -1,6 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { IPetHistory, PetHistory } from 'src/mongodb/schemas/clinic/pet-history';
+import {
+  IPetHistory,
+  PetHistory,
+} from 'src/mongodb/schemas/clinic/pet-history';
 
 @Injectable()
 export class PetHistoryService {

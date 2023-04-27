@@ -114,6 +114,6 @@ export class ProvinceController {
     @Query('page') page?: number,
     @Query('pageSize') pageSize?: number,
   ) {
-    return 'all de provinces paginated';
+    return this.provinceService.findAllPaging(filter, page, pageSize);
   }
 }

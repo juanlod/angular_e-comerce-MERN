@@ -114,6 +114,6 @@ export class SexController {
     @Query('page') page?: number,
     @Query('pageSize') pageSize?: number,
   ) {
-    return 'all de sexs paginated';
+    return this.sexService.findAllPaging(filter, page, pageSize);
   }
 }

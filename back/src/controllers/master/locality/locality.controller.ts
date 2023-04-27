@@ -116,6 +116,6 @@ export class LocalityController {
     @Query('page') page?: number,
     @Query('pageSize') pageSize?: number,
   ) {
-    return 'all de localities paginated';
+    return this.localityService.findAllPaging(filter, page, pageSize);
   }
 }

@@ -1,18 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import './assets/css/custom-icons/custom-icons.css';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import './assets/css/table.css';
+@import './assets/css/detail.css';
 
-
-body { margin: 0; padding: 0; font-family: Roboto, sans-serif; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  width: 100%;
+}
 
 .hidden {
   display: none !important;
 }
-
-.error, .warning {
-  color: #ff4d4f;
-}
-
 
 .column-2 {
   display: grid;

@@ -1,18 +1,18 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, lastValueFrom } from "rxjs";
 
-import { Province } from "../models/province";
-import { Locality } from "../models/locality";
+import { Province } from "../models/master/province";
+import { Locality } from "../models/master/locality";
 import { LocalityService } from "../services/master/locality.service";
 import { ProvinceService } from "../services/master/province.service";
 import { SexService } from "../services/master/sex.service";
 import { SpeciesService } from "../services/master/species.service";
 import { RaceService } from "../services/master/race.service";
 import { CoatService } from "../services/master/coat.service";
-import { Sex } from "../models/sex";
-import { Species } from "../models/species";
-import { Race } from "../models/race";
-import { Coat } from "../models/coat";
+import { Sex } from "../models/master/sex";
+import { Species } from "../models/master/species";
+import { Race } from "../models/master/race";
+import { Coat } from "../models/master/coat";
 
 
 

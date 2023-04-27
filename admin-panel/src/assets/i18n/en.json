@@ -1,4 +1,11 @@
 {
+  "SIDEBAR.INIT.TITLE": "Home",
+  "SIDEBAR.CLINIC.TITLE": "Clinic",
+  "SIDEBAR.CLINIC.CLIENTS.TITLE": "Clients and pets",
+  "SIDEBAR.INVENTORY.TITLE": "Store",
+  "SIDEBAR.INVENTORY.PRODUCTS.TITLE": "Products",
+  "SIDEBAR.CONFIGURATION.TITLE": "Configuration",
+
   "CLIENTS.ROUTE": "Clients",
   "CLIENTS.LIST.TITLE": "Client and pet list",
   "CLIENTS.LIST.TITLE.BREADCRUMB": "Client and pet list",
@@ -95,6 +102,45 @@
   "PET.UPDATE.MESSAGE.INFO": "Updating patient...",
   "PET.UPDATE.MESSAGE.ERROR": "An error occurred while updating the patient",
 
+  "PRODUCTS.LIST.TITLE": "Product list",
+  "PRODUCTS.LIST.TITLE.BREADCRUMB": "Product list",
+  "PRODUCTS.LIST.NEW.BUTTON": "New product",
+  "PRODUCTS.LIST.TABLE.NAME": "Name",
+  "PRODUCTS.LIST.TABLE.PRODUCT_GROUP": "Group",
+  "PRODUCTS.LIST.TABLE.PRODUCT_TYPE": "Product type",
+  "PRODUCTS.LIST.TABLE.UNITY_TYPE": "Unit",
+  "PRODUCTS.LIST.TABLE.PROVIDER": "Provider",
+
+  "PRODUCTS.FORM.TITLE.NEW": "New product",
+  "PRODUCTS.FORM.BREADCRUMB.NEW": "New product",
+  "PRODUCTS.FORM.TITLE.EDIT": "Edit product",
+  "PRODUCTS.FORM.BREADCRUMB.EDIT": "Edit product",
+  "PRODUCTS.FORM.NAME": "Name",
+  "PRODUCTS.FORM.PROVIDERS": "Provider",
+  "PRODUCTS.FORM.PROVIDERS.PLACEHOLDER": "Select provider",
+  "PRODUCTS.FORM.PRODUCT_TYPE": "Product type",
+  "PRODUCTS.FORM.PRODUCT_TYPE.PLACEHOLDER": "Select product type",
+  "PRODUCTS.FORM.UNITY_TYPE": "Product unit",
+  "PRODUCTS.FORM.UNITY_TYPE.PLACEHOLDER": "Select product unit",
+
+  "PRODUCTS.SAVE.MESSAGE.OK": "Product saved successfully",
+  "PRODUCTS.SAVE.MESSAGE.INFO": "Saving product...",
+  "PRODUCTS.SAVE.MESSAGE.ERROR": "An error occurred while saving the product",
+
+  "PRODUCTS.UPDATE.MESSAGE.OK": "Product updated successfully",
+  "PRODUCTS.UPDATE.MESSAGE.INFO": "Updating product...",
+  "PRODUCTS.UPDATE.MESSAGE.ERROR": "An error occurred while updating the product",
+
+
+  "PRODUCTS.DETAIL.TITLE": "Product details",
+  "PRODUCTS.DETAIL.BREADCRUMB": "Product details",
+  "PRODUCTS.DETAIL.NAME": "Name",
+  "PRODUCTS.DETAIL.PROVIDERS": "Provider",
+  "PRODUCTS.DETAIL.PRODUCT_TYPE": "Product type",
+  "PRODUCTS.DETAIL.UNITY_TYPE": "Product unit",
+
+
+  "PRODUCTS.DETAIL.BATCHES.TITLE": "Batches",
 
   "BUTTON.SAVE": "Save"
 }

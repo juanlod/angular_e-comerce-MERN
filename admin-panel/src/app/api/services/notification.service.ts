@@ -23,7 +23,6 @@ export class NotificationService {
     } else {
       this.translate.get(message).subscribe((res: string) => {
         const message = res;
-        console.log(message)
         this.toastr.success(message, title != null ? title : '');
       });
     }

@@ -19,7 +19,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NgZorroModule } from './ng-zorro.module';
 import { MaterialModule } from './material.module';
-import { ClienteModule } from './pages/clientes/cliente.module';
+import { ClienteModule } from './pages/clinic/clientes/cliente.module';
 
 import es from '@angular/common/locales/es';
 import en from '@angular/common/locales/en';
@@ -27,9 +27,11 @@ import gl from '@angular/common/locales/gl';
 
 import { es_ES, NZ_I18N, gl_ES, en_GB } from 'ng-zorro-antd/i18n';
 import { TranslationModule } from './translation.module';
-import { PetModule } from './pages/pets/pet.module';
+import { PetModule } from './pages/clinic/pets/pet.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InventarioModule } from './pages/inventario/inventario.module';
+import { IconDirective } from './directives/icon.directive';
 
 registerLocaleData(es);
 registerLocaleData(en);
@@ -37,7 +39,7 @@ registerLocaleData(gl);
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, InicioComponent],
+  declarations: [AppComponent, LoginComponent, InicioComponent, IconDirective],
   imports: [
     CommonModule,
     BrowserModule,
@@ -58,7 +60,8 @@ registerLocaleData(gl);
     ClienteModule,
     TranslationModule,
     PetModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    InventarioModule
   ],
   exports: [],
   providers: [{ provide: NZ_I18N, useValue: [es_ES, en_GB, gl_ES]}],

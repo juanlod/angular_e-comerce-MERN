@@ -9,7 +9,7 @@ import { RequestBuilder } from '../../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { Species } from '../../models/species';
+import { Species } from '../../models/master/species';
 
 @Injectable({
   providedIn: 'root',

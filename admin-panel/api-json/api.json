@@ -1565,14 +1565,14 @@
     },
     "/api/history/save": {
       "post": {
-        "operationId": "createHistory",
+        "operationId": "createPetHistory",
         "summary": "Create a new history",
         "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/History" }
+              "schema": { "$ref": "#/components/schemas/PetHistory" }
             }
           }
         },
@@ -1581,18 +1581,18 @@
             "description": "The history has been successfully created.",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/History" }
+                "schema": { "$ref": "#/components/schemas/PetHistory" }
               }
             }
           },
           "400": { "description": "The request body is invalid." }
         },
-        "tags": ["History"]
+        "tags": ["PetHistory"]
       }
     },
     "/api/history/find_all": {
       "get": {
-        "operationId": "findAllHistory",
+        "operationId": "findAllPetHistory",
         "summary": "Retrieve a list of all historys",
         "parameters": [],
         "responses": {
@@ -1602,18 +1602,18 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/History" }
+                  "items": { "$ref": "#/components/schemas/PetHistory" }
                 }
               }
             }
           }
         },
-        "tags": ["History"]
+        "tags": ["PetHistory"]
       }
     },
     "/api/history/find_one/{id}": {
       "get": {
-        "operationId": "findOneHistory",
+        "operationId": "findOnePetHistory",
         "summary": "Retrieve a history by ID",
         "parameters": [
           {
@@ -1628,13 +1628,13 @@
             "description": "Retrieved history successfully.",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/History" }
+                "schema": { "$ref": "#/components/schemas/PetHistory" }
               }
             }
           },
-          "404": { "description": "History not found." }
+          "404": { "description": "PetHistory not found." }
         },
-        "tags": ["History"]
+        "tags": ["PetHistory"]
       }
     },
     "/api/history/find_by_idm/{id}": {
@@ -1649,13 +1649,13 @@
             "schema": { "type": "number" }
           },
           {
-            "name": "skip",
+            "name": "loadedCount",
             "required": true,
             "in": "query",
             "schema": { "type": "number" }
           },
           {
-            "name": "loadedCount",
+            "name": "skip",
             "required": true,
             "in": "query",
             "schema": { "type": "number" }
@@ -1666,18 +1666,18 @@
             "description": "Retrieved history successfully.",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/History" }
+                "schema": { "$ref": "#/components/schemas/PetHistory" }
               }
             }
           },
-          "404": { "description": "History not found." }
+          "404": { "description": "PetHistory not found." }
         },
-        "tags": ["History"]
+        "tags": ["PetHistory"]
       }
     },
     "/api/history/update/{id}": {
       "patch": {
-        "operationId": "updateHistory",
+        "operationId": "updatePetHistory",
         "summary": "Update a history by ID",
         "parameters": [
           {
@@ -1691,7 +1691,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/History" }
+              "schema": { "$ref": "#/components/schemas/PetHistory" }
             }
           }
         },
@@ -1700,19 +1700,19 @@
             "description": "The history has been successfully updated.",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/History" }
+                "schema": { "$ref": "#/components/schemas/PetHistory" }
               }
             }
           },
           "400": { "description": "The request body is invalid." },
           "404": { "description": "history not found." }
         },
-        "tags": ["History"]
+        "tags": ["PetHistory"]
       }
     },
     "/api/history/delete/{id}": {
       "delete": {
-        "operationId": "removeHistory",
+        "operationId": "removePetHistory",
         "summary": "Remove a history by ID",
         "parameters": [
           {
@@ -1728,12 +1728,12 @@
           },
           "404": { "description": "history not found." }
         },
-        "tags": ["History"]
+        "tags": ["PetHistory"]
       }
     },
     "/api/history/find_all/paging": {
       "get": {
-        "operationId": "findAllPagingHistory",
+        "operationId": "findAllPagingPetHistory",
         "summary": "Get all historys with pagination",
         "parameters": [
           {
@@ -1762,13 +1762,853 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/History" }
+                  "items": { "$ref": "#/components/schemas/PetHistory" }
                 }
               }
             }
           }
         },
-        "tags": ["History"]
+        "tags": ["PetHistory"]
+      }
+    },
+    "/api/product/save": {
+      "post": {
+        "operationId": "createProduct",
+        "summary": "Create a new product",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Product" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The product has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Product" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["Product"]
+      }
+    },
+    "/api/product/find_all": {
+      "get": {
+        "operationId": "findAllProduct",
+        "summary": "Retrieve a list of all products",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all products successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Product" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Product"]
+      }
+    },
+    "/api/product/find_one/{id}": {
+      "get": {
+        "operationId": "findOneProduct",
+        "summary": "Retrieve a product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved product successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Product" }
+              }
+            }
+          },
+          "404": { "description": "Product not found." }
+        },
+        "tags": ["Product"]
+      }
+    },
+    "/api/product/update/{id}": {
+      "patch": {
+        "operationId": "updateProduct",
+        "summary": "Update a product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Product" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The product has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Product" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "product not found." }
+        },
+        "tags": ["Product"]
+      }
+    },
+    "/api/product/delete/{id}": {
+      "delete": {
+        "operationId": "removeProduct",
+        "summary": "Remove a product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The product has been successfully removed."
+          },
+          "404": { "description": "product not found." }
+        },
+        "tags": ["Product"]
+      }
+    },
+    "/api/product/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingProduct",
+        "summary": "Get all products with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all products paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Product" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Product"]
+      }
+    },
+    "/api/batch/save": {
+      "post": {
+        "operationId": "createBatch",
+        "summary": "Create a new batch",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "The batch has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Batch" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["Batch"]
+      }
+    },
+    "/api/batch/find_all": {
+      "get": {
+        "operationId": "findAllBatch",
+        "summary": "Retrieve a list of all batchs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all batchs successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Batch" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Batch"]
+      }
+    },
+    "/api/batch/find_one/{id}": {
+      "get": {
+        "operationId": "findOneBatch",
+        "summary": "Retrieve a batch by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved batch successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Batch" }
+              }
+            }
+          },
+          "404": { "description": "Batch not found." }
+        },
+        "tags": ["Batch"]
+      }
+    },
+    "/api/batch/update/{id}": {
+      "patch": {
+        "operationId": "updateBatch",
+        "summary": "Update a batch by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Batch" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The batch has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Batch" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "batch not found." }
+        },
+        "tags": ["Batch"]
+      }
+    },
+    "/api/batch/delete/{id}": {
+      "delete": {
+        "operationId": "removeBatch",
+        "summary": "Remove a batch by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "The batch has been successfully removed." },
+          "404": { "description": "batch not found." }
+        },
+        "tags": ["Batch"]
+      }
+    },
+    "/api/batch/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingBatch",
+        "summary": "Get all batchs with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all batchs paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Batch" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Batch"]
+      }
+    },
+    "/api/productType/save": {
+      "post": {
+        "operationId": "createProductType",
+        "summary": "Create a new productType",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProductType" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The productType has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProductType" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["ProductType"]
+      }
+    },
+    "/api/productType/find_all": {
+      "get": {
+        "operationId": "findAllProductType",
+        "summary": "Retrieve a list of all productTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all productTypes successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ProductType" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["ProductType"]
+      }
+    },
+    "/api/productType/find_one/{id}": {
+      "get": {
+        "operationId": "findOneProductType",
+        "summary": "Retrieve a productType by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved productType successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProductType" }
+              }
+            }
+          },
+          "404": { "description": "ProductType not found." }
+        },
+        "tags": ["ProductType"]
+      }
+    },
+    "/api/productType/update/{id}": {
+      "patch": {
+        "operationId": "updateProductType",
+        "summary": "Update a productType by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProductType" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The productType has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProductType" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "productType not found." }
+        },
+        "tags": ["ProductType"]
+      }
+    },
+    "/api/productType/delete/{id}": {
+      "delete": {
+        "operationId": "removeProductType",
+        "summary": "Remove a productType by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The product type has been successfully removed."
+          },
+          "404": { "description": "productType not found." }
+        },
+        "tags": ["ProductType"]
+      }
+    },
+    "/api/productType/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingProductType",
+        "summary": "Get all productTypes with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all productTypes paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ProductType" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["ProductType"]
+      }
+    },
+    "/api/storeProvider/save": {
+      "post": {
+        "operationId": "createStoreProvider",
+        "summary": "Create a new storeProvider",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/StoreProvider" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The storeProvider has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/StoreProvider" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["StoreProvider"]
+      }
+    },
+    "/api/storeProvider/find_all": {
+      "get": {
+        "operationId": "findAllStoreProvider",
+        "summary": "Retrieve a list of all storeProviders",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all storeProviders successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StoreProvider" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["StoreProvider"]
+      }
+    },
+    "/api/storeProvider/find_one/{id}": {
+      "get": {
+        "operationId": "findOneStoreProvider",
+        "summary": "Retrieve a storeProvider by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved storeProvider successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/StoreProvider" }
+              }
+            }
+          },
+          "404": { "description": "StoreProvider not found." }
+        },
+        "tags": ["StoreProvider"]
+      }
+    },
+    "/api/storeProvider/update/{id}": {
+      "patch": {
+        "operationId": "updateStoreProvider",
+        "summary": "Update a storeProvider by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/StoreProvider" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The storeProvider has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/StoreProvider" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "storeProvider not found." }
+        },
+        "tags": ["StoreProvider"]
+      }
+    },
+    "/api/storeProvider/delete/{id}": {
+      "delete": {
+        "operationId": "removeStoreProvider",
+        "summary": "Remove a storeProvider by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The storeProvider has been successfully removed."
+          },
+          "404": { "description": "storeProvider not found." }
+        },
+        "tags": ["StoreProvider"]
+      }
+    },
+    "/api/storeProvider/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingStoreProvider",
+        "summary": "Get all storeProviders with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all storeProviders paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StoreProvider" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["StoreProvider"]
+      }
+    },
+    "/api/unityType/save": {
+      "post": {
+        "operationId": "createUnityType",
+        "summary": "Create a new unityType",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UnityType" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The unityType has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UnityType" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["UnityType"]
+      }
+    },
+    "/api/unityType/find_all": {
+      "get": {
+        "operationId": "findAllUnityType",
+        "summary": "Retrieve a list of all unityTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all unityTypes successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/UnityType" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["UnityType"]
+      }
+    },
+    "/api/unityType/find_one/{id}": {
+      "get": {
+        "operationId": "findOneUnityType",
+        "summary": "Retrieve a unityType by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved unityType successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UnityType" }
+              }
+            }
+          },
+          "404": { "description": "UnityType not found." }
+        },
+        "tags": ["UnityType"]
+      }
+    },
+    "/api/unityType/update/{id}": {
+      "patch": {
+        "operationId": "updateUnityType",
+        "summary": "Update a unityType by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UnityType" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The unityType has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UnityType" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "unityType not found." }
+        },
+        "tags": ["UnityType"]
+      }
+    },
+    "/api/unityType/delete/{id}": {
+      "delete": {
+        "operationId": "removeUnityType",
+        "summary": "Remove a unityType by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The product type has been successfully removed."
+          },
+          "404": { "description": "unityType not found." }
+        },
+        "tags": ["UnityType"]
+      }
+    },
+    "/api/unityType/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingUnityType",
+        "summary": "Get all unity types with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all unityTypes paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/UnityType" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["UnityType"]
       }
     }
   },
@@ -2016,7 +2856,7 @@
         },
         "required": ["_id", "id", "nom", "ali", "icon"]
       },
-      "History": {
+      "PetHistory": {
         "type": "object",
         "properties": {
           "_id": { "type": "string", "description": "mongo id" },
@@ -2044,6 +2884,98 @@
           "idu",
           "cantFotos"
         ]
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "name": { "type": "string" },
+          "deleted": { "type": "boolean" },
+          "active": { "type": "boolean" },
+          "providerId": { "type": "number" },
+          "typeProductId": { "type": "number" },
+          "unityTypeId": { "type": "number" },
+          "genericDrug": { "type": "boolean" },
+          "vaccine": { "type": "boolean" },
+          "deworming": { "type": "boolean" }
+        },
+        "required": [
+          "_id",
+          "id",
+          "name",
+          "deleted",
+          "active",
+          "providerId",
+          "typeProductId",
+          "unityTypeId",
+          "genericDrug",
+          "vaccine",
+          "deworming"
+        ]
+      },
+      "Batch": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "numero": { "type": "string" },
+          "fecha_caducidad": { "format": "date-time", "type": "string" },
+          "cantidad": { "type": "number" },
+          "id_producto": { "type": "number" },
+          "fecha_entrada": { "format": "date-time", "type": "string" },
+          "observaciones": { "type": "string" },
+          "albaran": { "type": "string" },
+          "cantidad_unidad": { "type": "number" },
+          "cantidad_total": { "type": "number" }
+        },
+        "required": [
+          "_id",
+          "id",
+          "numero",
+          "fecha_caducidad",
+          "cantidad",
+          "id_producto",
+          "fecha_entrada",
+          "observaciones",
+          "albaran",
+          "cantidad_unidad",
+          "cantidad_total"
+        ]
+      },
+      "ProductType": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "name": { "type": "string" },
+          "active": { "type": "boolean" },
+          "deleted": { "type": "boolean" }
+        },
+        "required": ["_id", "id", "name", "active", "deleted"]
+      },
+      "StoreProvider": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "name": { "type": "string" },
+          "deleted": { "type": "boolean" },
+          "active": { "type": "boolean" },
+          "phoneNumber": { "type": "string" }
+        },
+        "required": ["_id", "id", "name", "deleted", "active", "phoneNumber"]
+      },
+      "UnityType": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "name": { "type": "string" },
+          "deleted": { "type": "boolean" },
+          "active": { "type": "boolean" }
+        },
+        "required": ["_id", "id", "name", "deleted", "active"]
       }
     }
   }

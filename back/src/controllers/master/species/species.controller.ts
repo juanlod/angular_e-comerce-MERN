@@ -114,6 +114,6 @@ export class SpeciesController {
     @Query('page') page?: number,
     @Query('pageSize') pageSize?: number,
   ) {
-    return 'all de speciess paginated';
+    return this.speciesService.findAllPaging(filter, page, pageSize);
   }
 }

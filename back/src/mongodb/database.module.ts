@@ -1,40 +1,52 @@
 import { Module } from '@nestjs/common';
 import { databaseProviders } from './providers/database.provider';
 import { userProviders } from './providers/user.provider';
-import { clientProviders } from './providers/client.provider';
-import { localityProviders } from './providers/locality.provider';
-import { provinceProviders } from './providers/province.provider';
-import { petProviders } from './providers/pet.provider';
-import { sexProviders } from './providers/sex.provider';
-import { raceProviders } from './providers/race.provider';
-import { speciesProviders } from './providers/species.provider';
-import { coatProviders } from './providers/coat.provider';
+import { clientProviders } from './providers/clinic/client.provider';
+import { coatProviders } from './providers/master/coat.provider';
+import { petProviders } from './providers/clinic/pet.provider';
+import { localityProviders } from './providers/master/locality.provider';
+import { provinceProviders } from './providers/master/province.provider';
+import { raceProviders } from './providers/master/race.provider';
+import { sexProviders } from './providers/master/sex.provider';
+import { speciesProviders } from './providers/master/species.provider';
+import { storeProviderProviders } from './providers/store/store-provider.provider';
+import { productProviders } from './providers/store/product.provider';
+import { batchesProviders } from './providers/store/batches.provider';
+import { unityTypeProviders } from './providers/store/unity-type.provider';
+import { productTypeProviders } from './providers/store/product-type.provider';
+
+const clinicProviders = [...userProviders, ...clientProviders, ...petProviders];
+
+const masterProviders = [
+  ...localityProviders,
+  ...provinceProviders,
+  ...sexProviders,
+  ...raceProviders,
+  ...speciesProviders,
+  ...coatProviders,
+];
+
+const inventoryProviders = [
+  ...storeProviderProviders,
+  ...productProviders,
+  ...batchesProviders,
+  ...unityTypeProviders,
+  ...productTypeProviders,
+];
 
 @Module({
   imports: [],
   providers: [
     ...databaseProviders,
-    ...userProviders,
-    ...clientProviders,
-    ...localityProviders,
-    ...provinceProviders,
-    ...petProviders,
-    ...sexProviders,
-    ...raceProviders,
-    ...speciesProviders,
-    ...coatProviders,
+    ...masterProviders,
+    ...clinicProviders,
+    ...inventoryProviders,
   ],
   exports: [
     ...databaseProviders,
-    ...userProviders,
-    ...clientProviders,
-    ...localityProviders,
-    ...provinceProviders,
-    ...petProviders,
-    ...sexProviders,
-    ...raceProviders,
-    ...speciesProviders,
-    ...coatProviders,
+    ...masterProviders,
+    ...clinicProviders,
+    ...inventoryProviders,
   ],
 })
 export class DatabaseModule {}

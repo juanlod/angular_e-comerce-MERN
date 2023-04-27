@@ -114,6 +114,6 @@ export class CoatController {
     @Query('page') page?: number,
     @Query('pageSize') pageSize?: number,
   ) {
-    return 'all de coats paginated';
+    return this.coatService.findAllPaging(filter, page, pageSize);
   }
 }

@@ -5,17 +5,15 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 // Definición de la interfaz para el documento de product
-interface IProduct extends Document {
+export interface IProduct extends Document {
   id: number;
   name: string;
-  provider_id: number;
-  type_product_id: number;
+  providerId: number;
+  typeProductId: number;
   active: number;
-  unity_type_id: number;
+  unityTypeId: number;
   deleted: number;
-  generic_drug: boolean;
-  vacinne: boolean;
-  deworming: boolean;
+  showStore: false;
 }
 
 export class Product {
@@ -44,25 +42,17 @@ export class Product {
   unityTypeId: number;
 
   @ApiProperty()
-  genericDrug: boolean;
-
-  @ApiProperty()
-  vaccine: boolean;
-
-  @ApiProperty()
-  deworming: boolean;
+  showStore: boolean;
 }
 
 // Creacion de clase a traves de la interfaz
 export const ProductSchema = new Schema<IProduct>({
   id: { type: Number, required: true },
   name: { type: String, required: true },
-  provider_id: { type: Number, required: true },
-  type_product_id: { type: Number, required: true },
-  active: { type: Number, required: true },
-  unity_type_id: { type: Number, required: true },
-  deleted: { type: Number, required: true },
-  generic_drug: { type: Boolean, required: true },
-  vacinne: { type: Boolean, required: true },
-  deworming: { type: Boolean, required: true },
+  providerId: { type: Number, required: false },
+  typeProductId: { type: Number, required: false },
+  active: { type: Number, required: false, default: 1 },
+  unityTypeId: { type: Number, required: false },
+  deleted: { type: Number, required: true, default: 0 },
+  showStore: { type: Boolean, required: true, default: false },
 });

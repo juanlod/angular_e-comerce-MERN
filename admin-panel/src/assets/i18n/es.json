@@ -1,4 +1,11 @@
 {
+  "SIDEBAR.INIT.TITLE": "Inicio",
+  "SIDEBAR.CLINIC.TITLE": "Clínica",
+  "SIDEBAR.CLINIC.CLIENTS.TITLE": "Clientes y mascotas",
+  "SIDEBAR.INVENTORY.TITLE": "Inventario",
+  "SIDEBAR.INVENTORY.PRODUCTS.TITLE": "Productos",
+  "SIDEBAR.CONFIGURATION.TITLE": "Configuración",
+
   "CLIENTS.ROUTE": "Clientes",
   "CLIENTS.LIST.TITLE": "Listado de clientes y mascotas",
   "CLIENTS.LIST.TITLE.BREADCRUMB": "Listado de clientes y mascotas",
@@ -98,6 +105,45 @@
   "PET.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
   "PET.UPDATE.MESSAGE.ERROR" : "Ha sucedido un error al actualizar el paciente",
 
+
+  "PRODUCTS.LIST.TITLE": "Listado de productos",
+  "PRODUCTS.LIST.TITLE.BREADCRUMB": "Listado de productos",
+  "PRODUCTS.LIST.NEW.BUTTON": "Nuevo producto",
+  "PRODUCTS.LIST.TABLE.NAME": "Nombre",
+  "PRODUCTS.LIST.TABLE.PRODUCT_GROUP": "Grupo",
+  "PRODUCTS.LIST.TABLE.PRODUCT_TYPE": "Tipo de producto",
+  "PRODUCTS.LIST.TABLE.UNITY_TYPE": "Unidad",
+  "PRODUCTS.LIST.TABLE.PROVIDER": "Proveedor",
+
+  "PRODUCTS.FORM.TITLE.NEW": "Nuevo producto",
+  "PRODUCTS.FORM.BREADCRUMB.NEW": "Nuevo producto",
+  "PRODUCTS.FORM.TITLE.EDIT": "Editar producto",
+  "PRODUCTS.FORM.BREADCRUMB.EDIT": "Editar produtco",
+  "PRODUCTS.FORM.NAME": "Nombre",
+  "PRODUCTS.FORM.PROVIDERS": "Proveedor",
+  "PRODUCTS.FORM.PROVIDERS.PLACEHOLDER": "Seleccione proveedor",
+  "PRODUCTS.FORM.PRODUCT_TYPE": "Tipo de producto",
+  "PRODUCTS.FORM.PRODUCT_TYPE.PLACEHOLDER": "Seleccione tipo de producto",
+  "PRODUCTS.FORM.UNITY_TYPE": "Unidade del producto",
+  "PRODUCTS.FORM.UNITY_TYPE.PLACEHOLDER": "Seleccione unidad del produtco",
+
+  "PRODUCTS.SAVE.MESSAGE.OK": "Producto guardado correctamente",
+  "PRODUCTS.SAVE.MESSAGE.INFO": "Guardando producto...",
+  "PRODUCTS.SAVE.MESSAGE.ERROR": "Ha sucedido un error al guardar el producto",
+
+  "PRODUCTS.UPDATE.MESSAGE.OK": "Producto actualizado correctamente",
+  "PRODUCTS.UPDATE.MESSAGE.INFO": "Actualizando producto...",
+  "PRODUCTS.UPDATE.MESSAGE.ERROR": "Ha sucedido un error al actualizar el producto",
+
+
+  "PRODUCTS.DETAIL.TITLE": "Ficha del producto",
+  "PRODUCTS.DETAIL.BREADCRUMB": "Ficha del producto",
+  "PRODUCTS.DETAIL.NAME": "Nombre",
+  "PRODUCTS.DETAIL.PROVIDERS": "Proveedor",
+  "PRODUCTS.DETAIL.PRODUCT_TYPE": "Tipo de producto",
+  "PRODUCTS.DETAIL.UNITY_TYPE": "Unidad del producto",
+
+  "PRODUCTS.DETAIL.BATCHES.TITLE": "Lotes",
 
 
   "BUTTON.SAVE" : "Guardar"

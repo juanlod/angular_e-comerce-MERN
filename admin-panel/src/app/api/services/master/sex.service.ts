@@ -6,7 +6,7 @@ import { map, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ApiConfiguration } from '../../api-configuration';
 import { BaseService } from '../../base-service';
-import { Sex } from '../../models/sex';
+import { Sex } from '../../models/master/sex';
 import { RequestBuilder } from '../../request-builder';
 import { StrictHttpResponse } from '../../strict-http-response';
 
