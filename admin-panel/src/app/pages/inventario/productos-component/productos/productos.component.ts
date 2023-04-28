@@ -97,14 +97,6 @@ export class ProductosComponent implements OnInit {
     this.getProducts();
   }
 
-
-  verLotes(producto: Product): void {
-    this.router.navigate([
-      `inventario/productos/form/${producto.id}`,
-      { lote: 'lote' },
-    ]);
-  }
-
   showModal() {
     this.isVisible = true;
   }

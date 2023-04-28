@@ -17,7 +17,6 @@
       <span> {{ 'PRODUCTS.DETAIL.BREADCRUMB' | translate}}</span>
     </nz-breadcrumb-item>
   </nz-breadcrumb>
-
   <div>
     <br>
     <!-- PRODUCT CARD DETAIL -->
@@ -66,32 +65,92 @@
   </div>
 
   <div>
-        <!-- BATCHES CARD DETAIL -->
-        <nz-card style="width: 100%;margin-top: 25px" [nzActions]="[]" nzFlex nzFlex="auto">
-          <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
+    <!-- BATCHES CARD DETAIL -->
+    <nz-card style="width: 100%;margin-top: 25px" [nzActions]="[]" nzFlex nzFlex="auto">
+      <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
 
-            <div class="legend">
-              <legend>{{ 'PRODUCTS.DETAIL.BATCHES.TITLE' | translate  }}</legend>
-              <!-- TOP ICON -->
-              <i class="card-icon bi bi-journal-medical"></i>
+        <div class="legend">
+          <legend>{{ 'PRODUCTS.DETAIL.BATCHES.TITLE' | translate }}</legend>
+          <!-- TOP ICON -->
+          <i class="card-icon bi bi-journal-medical"></i>
 
-              <a (click)="showModal()" class="edit-button">
-                <i class="bi bi-plus-circle"></i>
-              </a>
+          <a (click)="showBatchModal()" class="edit-button">
+            <i class="bi bi-plus-circle"></i>
+          </a>
+        </div>
+
+        <!-- TABLE FORMAT -->
+        <nz-table #basicTable nzShowSizeChanger [nzData]="listOfDisplayData" [nzFrontPagination]="true"
+          [nzLoading]="loading" nzTableLayout="fixed">
+          <thead>
+            <tr>
+              <th nzCustomFilter>{{ 'BATCH.LIST.TABLE.NUMBER' | translate }}
+                <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="true" [nzDropdownMenu]="menu">
+                  <span style="font-size: 15px;" nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+              </th>
+              <th>{{ 'BATCH.LIST.TABLE.ENTRY_DATE' | translate}} </th>
+              <th>{{ 'BATCH.LIST.TABLE.EXPIRATION_DATE' | translate}} </th>
+              <th>{{ 'BATCH.LIST.TABLE.TOTAL_QUANTITY' | translate}} </th>
+              <th>{{ 'BATCH.LIST.TABLE.OBSERVATIONS' | translate}} </th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let batch of basicTable.data">
+              <tr>
+                <td>
+                  <a class="clickable" (click)="showBatchModal(batch)"><span>{{ batch.number }}</span></a>
+                </td>
+                <td>
+                  {{batch.entry_date | date: 'dd-MM-yyyy'}}
+                </td>
+                <td>
+                  {{batch.expiration_date | date: 'dd-MM-yyyy'}}
+                </td>
+                <td>
+                  {{batch.total_quantity}}
+                </td>
+
+                <td>
+                  {{batch.observations}}
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+
+        <!-- SEARCH DROPDOWN -->
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <div class="ant-table-filter-dropdown">
+            <div class="search-box">
+              <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+              <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+              <button nz-button nzSize="small" (click)="reset()">Reset</button>
             </div>
+          </div>
+        </nz-dropdown-menu>
 
-
-
-
-          </nz-skeleton>
-        </nz-card>
+      </nz-skeleton>
+    </nz-card>
   </div>
 
+
+  <!-- PRODUCT-MODAL -->
   <nz-modal [nzContent]="modalContent" [nzStyle]="{ top: '20px' }" [nzMaskClosable]="false" [nzFooter]="null"
-  [nzWidth]="'70%'" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
-</nz-modal>
+    [nzWidth]="'70%'" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
+  </nz-modal>
+
+  <ng-template #modalContent>
+    <app-product-form (productoEvent)="onUpdateProduct($event)" [product]="product"></app-product-form>
+  </ng-template>
 
 
-<ng-template #modalContent>
-  <app-product-form (productoEvent)="onUpdateProduct($event)" [product]="product"></app-product-form>
-</ng-template>
+  <!-- BATCH MODAL -->
+  <nz-modal [nzContent]="modalBatchContent" [nzStyle]="{ top: '20px' }" [nzMaskClosable]="false" [nzFooter]="null"
+    [nzWidth]="'70%'" [(nzVisible)]="isBatchVisible" (nzOnCancel)="handleCancel()">
+  </nz-modal>
+
+  <ng-template #modalBatchContent>
+    <app-lote-form (productoEvent)="onUpdateProduct($event)" (batchEmmiter)="updateBatch($event)" [product]="product"
+      [batch]="selectedBatch"></app-lote-form>
+  </ng-template>

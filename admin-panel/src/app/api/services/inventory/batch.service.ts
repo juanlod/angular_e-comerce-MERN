@@ -23,6 +23,7 @@ export class BatchService extends BaseService {
     super(config, http);
   }
 
+
   /**
    * Path part for operation createBatch
    */
@@ -36,13 +37,15 @@ export class BatchService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createBatch()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createBatch$Response(params?: {
+  private createBatch$Response(params: {
+    body: Batch
   }): Observable<StrictHttpResponse<Batch>> {
 
     const rb = new RequestBuilder(this.rootUrl, BatchService.CreateBatchPath, 'post');
     if (params) {
+      rb.body(params.body, 'application/json');
     }
 
     return this.http.request(rb.build({
@@ -64,15 +67,17 @@ export class BatchService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createBatch$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createBatch(params?: {
+  createBatch(params: {
+    body: Batch
   }): Observable<Batch> {
 
     return this.createBatch$Response(params).pipe(
       map((r: StrictHttpResponse<Batch>) => r.body as Batch)
     );
   }
+
 
   /**
    * Path part for operation findAllBatch

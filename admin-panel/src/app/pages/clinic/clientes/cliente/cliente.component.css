@@ -11,10 +11,7 @@ nz-layout {
 }
 
 
-.table-icon {
-  font-size: 22px;
-  padding: 0 !important;
-}
+
 
 .client-name {
   display: flex;
@@ -35,6 +32,4 @@ nz-layout {
   transition: 0.2s ease;
 }
 
-.ant-table-cell {
-  min-height: 65px !important;
-}
+

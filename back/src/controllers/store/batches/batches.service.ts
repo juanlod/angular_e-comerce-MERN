@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { IBatch, Batch } from 'src/mongodb/schemas/store/batches';
+import { getLastByIdPipeline } from './batches-repository';
+import { of } from 'rxjs';
 
 @Injectable()
 export class BatchService {
@@ -10,6 +12,11 @@ export class BatchService {
   ) {}
 
   async create(batch: Batch): Promise<Batch> {
+    const id = (
+      await this.batchModel.aggregate(getLastByIdPipeline()).exec()
+    )[0].id;
+    batch.id = id ? id + 1 : 1;
+
     return await this.batchModel.create(batch);
   }
 
@@ -17,11 +24,15 @@ export class BatchService {
     return this.batchModel.find();
   }
 
+  async findAllByProductId(id: number) {
+    return await this.batchModel.find({ product_id: id });
+  }
+
   findOne(id: string): Promise<Batch> {
     return this.batchModel.findOne({ _id: id });
   }
 
-  async update(id: number, batch: Batch) {
+  async update(id: string, batch: Batch) {
     const filter = { _id: id };
     const updateData = { $set: batch };
     return await this.batchModel.updateOne(filter, updateData);

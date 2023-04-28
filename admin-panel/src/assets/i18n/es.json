@@ -110,6 +110,7 @@
   "PRODUCTS.LIST.TITLE.BREADCRUMB": "Listado de productos",
   "PRODUCTS.LIST.NEW.BUTTON": "Nuevo producto",
   "PRODUCTS.LIST.TABLE.NAME": "Nombre",
+  "PRODUCTS.FORM.NAME.MANDATORY": "El nombre del producto es obligatorio",
   "PRODUCTS.LIST.TABLE.PRODUCT_GROUP": "Grupo",
   "PRODUCTS.LIST.TABLE.PRODUCT_TYPE": "Tipo de producto",
   "PRODUCTS.LIST.TABLE.UNITY_TYPE": "Unidad",
@@ -145,6 +146,23 @@
 
   "PRODUCTS.DETAIL.BATCHES.TITLE": "Lotes",
 
+  "BATCH.FORM.TITLE.NEW": "Nuevo lote",
+  "BATCH.FORM.BREADCRUMB.NEW": "Nuevo lote",
+  "BATCH.FORM.NUMBER": "Número de lote",
+  "BATCH.FORM.NUMBER.MANDATORY": "El número de lote es obligatorio",
+  "BATCH.FORM.DELIVERY_NOTE": "Albarán",
+  "BATCH.FORM.ENTRY_DATE": "Fecha de entrada",
+  "BATCH.FORM.EXPIRATION_DATE": "Fecha de caducidad",
+  "BATCH.FORM.PRODUCT_QUANTITY": "Cantidad",
+  "BATCH.FORM.QUANTITY_PER_UNIT": "Cantidad por unidad",
+  "BATCH.FORM.TOTAL_QUANTITY": "Cantidad total",
+  "BATCH.FORM.OBSERVATIONS": "Observaciones",
+
+  "BATCH.LIST.TABLE.NUMBER": "Número de lote",
+  "BATCH.LIST.TABLE.ENTRY_DATE": "Fecha entrada",
+  "BATCH.LIST.TABLE.EXPIRATION_DATE": "Fecha caducidad",
+  "BATCH.LIST.TABLE.TOTAL_QUANTITY": "Cantidad disponible",
+  "BATCH.LIST.TABLE.OBSERVATIONS": "Observaciones",
 
   "BUTTON.SAVE" : "Guardar"
 }

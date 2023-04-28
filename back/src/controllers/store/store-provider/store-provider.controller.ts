@@ -82,7 +82,7 @@ export class StoreProviderController {
   @Patch('update/:id')
   @ApiBody({ type: StoreProvider })
   update(@Param('id') id: string, @Body() storeProvider: StoreProvider) {
-    return this.storeProviderService.update(+id, storeProvider);
+    return this.storeProviderService.update(id, storeProvider);
   }
 
   @ApiOperation({

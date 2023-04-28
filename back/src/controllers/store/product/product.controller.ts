@@ -20,7 +20,7 @@ import {
   ApiTags,
   ApiBody,
 } from '@nestjs/swagger';
-import { Product } from 'src/mongodb/schemas/store/product';
+import { IProduct, Product } from 'src/mongodb/schemas/store/product';
 import { ProductService } from './product.service';
 
 @ApiTags('Product')
@@ -65,7 +65,7 @@ export class ProductController {
   })
   @ApiNotFoundResponse({ description: 'Product not found.' })
   @Get('find_one/:id')
-  findOne(@Param('id') id: string): Promise<Product> {
+  findOne(@Param('id') id: string): Promise<IProduct> {
     return this.productService.findOne(id);
   }
 

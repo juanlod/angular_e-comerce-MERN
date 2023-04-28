@@ -25,3 +25,20 @@
 .add-icon {
   font-size: 30px;
 }
+
+.table-icon {
+  font-size: 22px;
+  padding: 0 !important;
+}
+
+.ant-table-row {
+  min-height: 7rem !important;
+}
+
+.clickable {
+  color: #1890ff !important;
+}
+
+.clickable:hover {
+  color: #44ADFF !important;
+}

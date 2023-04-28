@@ -26,7 +26,7 @@ export class PetService {
     const idm = (
       await this.petModel.aggregate(getLastPetIdPipeline()).exec()
     )[0].idc;
-    pet.idm = idm ? idm + 1 : 0;
+    pet.idm = idm ? idm + 1 : 1;
     return this.petModel.create(pet);
   }
 

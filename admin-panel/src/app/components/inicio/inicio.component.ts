@@ -56,6 +56,11 @@ export class InicioComponent implements OnInit {
           title: 'SIDEBAR.INVENTORY.PRODUCTS.TITLE',
           link: '/dashboard/inventory/products',
           icon: 'bi bi-boxes'
+        },
+        {
+          title: 'SIDEBAR.INVENTORY.PROVIDERS.TITLE',
+          link: '/dashboard/inventory/providers',
+          icon: 'bi bi-boxes'
         }
       ]
     },

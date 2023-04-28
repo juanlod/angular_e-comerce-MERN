@@ -13,7 +13,7 @@ export interface IStoreProvider extends Document {
   name: string;
   active: number;
   deleted: number;
-  phoneNumber: string;
+  phone_number: string;
 }
 
 export class StoreProvider {
@@ -33,7 +33,10 @@ export class StoreProvider {
   active: boolean;
 
   @ApiProperty()
-  phoneNumber: string;
+  phone_number: string;
+
+  @ApiProperty()
+  address: string;
 }
 
 // Creacion de clase a traves de la interfaz
@@ -43,5 +46,5 @@ export const StoreProviderSchema = new Schema<IStoreProvider>({
   name: { type: String, required: false },
   active: { type: Number, required: false },
   deleted: { type: Number, required: false },
-  phoneNumber: { type: String, required: false },
+  phone_number: { type: String, required: false },
 });

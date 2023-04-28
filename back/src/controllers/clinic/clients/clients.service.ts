@@ -46,7 +46,7 @@ export class ClientsService {
     const idc = (
       await this.clientModel.aggregate(getLastClientIdPipeline()).exec()
     )[0].idc;
-    client.idc = idc ? idc + 1 : 0;
+    client.idc = idc ? idc + 1 : 1;
     client.password = await bcrypt.hash('12345678', 10);
     return this.clientModel.create(client);
   }

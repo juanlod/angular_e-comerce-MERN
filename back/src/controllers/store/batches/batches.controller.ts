@@ -38,7 +38,8 @@ export class BatchController {
     type: Batch,
   })
   @ApiBadRequestResponse({ description: 'The request body is invalid.' })
-  create(@Body() batch: IBatch) {
+  @ApiBody({ type: Batch })
+  create(@Body() batch: Batch) {
     return this.batchService.create(batch);
   }
 
@@ -82,7 +83,7 @@ export class BatchController {
   @Patch('update/:id')
   @ApiBody({ type: Batch })
   update(@Param('id') id: string, @Body() batch: Batch) {
-    return this.batchService.update(+id, batch);
+    return this.batchService.update(id, batch);
   }
 
   @ApiOperation({

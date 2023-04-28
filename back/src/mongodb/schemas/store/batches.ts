@@ -24,9 +24,9 @@ export interface IBatch {
 export const BatchSchema = new Schema<IBatch>({
   id: { type: Number, required: true },
   number: { type: String, required: true },
-  expiration_date: { type: Date, required: true },
+  expiration_date: { type: Date, required: false },
   product_quantity: { type: Number, required: false },
-  product_id: { type: Number, required: false },
+  product_id: { type: Number, required: true },
   entry_date: { type: Date, required: false },
   observations: { type: String, default: null, required: false },
   delivery_note: { type: String, required: false },

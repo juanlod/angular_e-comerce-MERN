@@ -1,13 +1,16 @@
-.mat-form-field {
-  margin-right: 20px;
-  margin-bottom: 20px;
+
+.flex-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
 }
 
-.mat-form-field {
-  min-width: 200px;
-  max-width: 350px !important;
+.column-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 16px;
 }
 
-.btn {
-  margin-top: 30px;
+.obs {
+  margin-left: 1.7rem;
 }

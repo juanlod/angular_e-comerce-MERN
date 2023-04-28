@@ -1922,7 +1922,7 @@
             "name": "pageSize",
             "required": false,
             "in": "query",
-            "schema": { "type": "number" }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -1946,6 +1946,14 @@
         "operationId": "createBatch",
         "summary": "Create a new batch",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Batch" }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "The batch has been successfully created.",
@@ -2896,9 +2904,8 @@
           "providerId": { "type": "number" },
           "typeProductId": { "type": "number" },
           "unityTypeId": { "type": "number" },
-          "genericDrug": { "type": "boolean" },
-          "vaccine": { "type": "boolean" },
-          "deworming": { "type": "boolean" }
+          "showStore": { "type": "boolean" },
+          "batches": { "type": "array", "items": { "type": "string" } }
         },
         "required": [
           "_id",
@@ -2909,9 +2916,8 @@
           "providerId",
           "typeProductId",
           "unityTypeId",
-          "genericDrug",
-          "vaccine",
-          "deworming"
+          "showStore",
+          "batches"
         ]
       },
       "Batch": {
@@ -2919,28 +2925,28 @@
         "properties": {
           "_id": { "type": "string" },
           "id": { "type": "number" },
-          "numero": { "type": "string" },
-          "fecha_caducidad": { "format": "date-time", "type": "string" },
-          "cantidad": { "type": "number" },
-          "id_producto": { "type": "number" },
-          "fecha_entrada": { "format": "date-time", "type": "string" },
-          "observaciones": { "type": "string" },
-          "albaran": { "type": "string" },
-          "cantidad_unidad": { "type": "number" },
-          "cantidad_total": { "type": "number" }
+          "delivery_note": { "type": "string" },
+          "product_quantity": { "type": "number" },
+          "total_quantity": { "type": "number" },
+          "quantity_per_unity": { "type": "number" },
+          "expiration_date": { "format": "date-time", "type": "string" },
+          "entry_date": { "format": "date-time", "type": "string" },
+          "product_id": { "type": "number" },
+          "number": { "type": "string" },
+          "observations": { "type": "string" }
         },
         "required": [
           "_id",
           "id",
-          "numero",
-          "fecha_caducidad",
-          "cantidad",
-          "id_producto",
-          "fecha_entrada",
-          "observaciones",
-          "albaran",
-          "cantidad_unidad",
-          "cantidad_total"
+          "delivery_note",
+          "product_quantity",
+          "total_quantity",
+          "quantity_per_unity",
+          "expiration_date",
+          "entry_date",
+          "product_id",
+          "number",
+          "observations"
         ]
       },
       "ProductType": {

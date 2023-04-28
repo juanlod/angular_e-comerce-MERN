@@ -10,7 +10,6 @@ import { Coat } from 'src/app/api/models/master/coat';
 import { Race } from 'src/app/api/models/master/race';
 import { Sex } from 'src/app/api/models/master/sex';
 import { Species } from 'src/app/api/models/master/species';
-import { faPaw } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-client-detail',
@@ -32,11 +31,9 @@ export class ClientDetailComponent
   searchValue = '';
   visible = false;
   listOfDisplayData: any[] = [];
-  faPaw = faPaw;
 
   isPetVisible = false;
   isDebtVisible = false;
-
 
   constructor(
     clientService: ClientsService,
@@ -55,7 +52,6 @@ export class ClientDetailComponent
   }
 
   async ngAfterViewInit(): Promise<void> {
-
     const [petsSex, petsRace, petsSpecies, petsCoat] = await Promise.all([
       this.masterCacheService.getSex(),
       this.masterCacheService.getRace(),
@@ -68,26 +64,28 @@ export class ClientDetailComponent
     this.petsSpecies = petsSpecies;
     this.petsCoat = petsCoat;
 
-
     this.route.paramMap.subscribe(async (params) => {
       const id: string = params.get('id')!;
 
       if (id) {
-        this.client = await lastValueFrom(
-          this.clientService.findOneClient({ id: id })
-        );
-        if (this.client) {
-          this.client.feci = Utils.transformDate(
-            this.client.feci,
-            'dd-MM-yyyy',
-            'en-US'
-          );
-          this.loading = false;
-          this.listOfDisplayData = [...this.client?.mascotas];
-
-        }
+        await this.getClient(id);
       }
     });
+  }
+
+  private async getClient(id: string) {
+    this.client = await lastValueFrom(
+      this.clientService.findOneClient({ id: id })
+    );
+    if (this.client) {
+      this.client.feci = Utils.transformDate(
+        this.client.feci,
+        'dd-MM-yyyy',
+        'en-US'
+      );
+      this.loading = false;
+      this.listOfDisplayData = [...this.client?.mascotas];
+    }
   }
 
   showModal(): void {
@@ -104,26 +102,34 @@ export class ClientDetailComponent
   }
 
   getPetSex(id: number) {
-    return  id && id !== 0 ? this.petsSex.filter(sex => sex.ids === id)[0]?.value : '';
+    return id && id !== 0
+      ? this.petsSex.filter((sex) => sex.ids === id)[0]?.value
+      : '';
   }
 
   getPetRace(id: number) {
-    return  id && id !== 0 ? this.petsRace.filter(race => race.id === id)[0]?.nom : '';
+    return id && id !== 0
+      ? this.petsRace.filter((race) => race.id === id)[0]?.nom
+      : '';
   }
 
   getPetSpecie(id: number) {
-    return  id && id !== 0 ? this.petsSpecies.filter(specie => specie.id === id)[0]?.nom : '';
+    return id && id !== 0
+      ? this.petsSpecies.filter((specie) => specie.id === id)[0]?.nom
+      : '';
   }
 
   getPetCoat(id: number) {
-    return  id && id !== 0 ? this.petsCoat.filter(coat => coat.id === id)[0]?.nom : '';
+    return id && id !== 0
+      ? this.petsCoat.filter((coat) => coat.id === id)[0]?.nom
+      : '';
   }
 
   getPetSpecieIcon(id: number) {
-    return  id && id !== 0 ? this.petsSpecies.filter(specie => specie.id === id)[0]?.icon : '';
+    return id && id !== 0
+      ? this.petsSpecies.filter((specie) => specie.id === id)[0]?.icon
+      : '';
   }
-
-
 
   async petDetail(id: string) {
     this.router.navigate(['dashboard/clients/pets/history', id]);
@@ -132,14 +138,16 @@ export class ClientDetailComponent
   reset(): void {
     this.searchValue = '';
     this.search();
-    this.listOfDisplayData = [...this.client.mascotas]
+    this.listOfDisplayData = [...this.client.mascotas];
   }
 
   search(): void {
     this.visible = false;
-    this.listOfDisplayData = this.listOfDisplayData.filter((item: any) => item.nom.toLowerCase().indexOf(this.searchValue.toLowerCase()) !== -1);
+    this.listOfDisplayData = this.listOfDisplayData.filter(
+      (item: any) =>
+        item.nom.toLowerCase().indexOf(this.searchValue.toLowerCase()) !== -1
+    );
   }
-
 
   /**
    * Suscribe update pets in pet form component
@@ -147,7 +155,7 @@ export class ClientDetailComponent
    */
   onUpdatePetClient(client: any) {
     // Update the pet list saved in the pet form modal
-    this.listOfDisplayData = [...client.mascotas]
+    this.getClient(this.client._id);
     this.isPetVisible = false;
   }
   /**
@@ -161,7 +169,4 @@ export class ClientDetailComponent
     this.client = client;
     this.isVisible = false;
   }
-
-
-
 }

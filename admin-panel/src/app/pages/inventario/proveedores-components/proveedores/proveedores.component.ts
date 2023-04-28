@@ -1,127 +1,122 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Provider } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+
+import { NotificationService } from 'src/app/api/services/notification.service';
+import { lastValueFrom } from 'rxjs';
+import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { InventoryCacheService } from 'src/app/api/cache/inventory-cache-service';
 import { StoreProviderService } from 'src/app/api/services/inventory/store-provider.service';
 import { StoreProvider } from 'src/app/api/models/inventory/store-provider';
-import { NotificationService } from 'src/app/api/services/notification.service';
 
 @Component({
-  selector: 'app-proveedores',
+  selector: 'app-providers',
   templateUrl: './proveedores.component.html',
   styleUrls: ['./proveedores.component.css'],
 })
-export class ProveedoresComponent
-  implements OnInit
-{
-  dataSource!: MatTableDataSource<StoreProvider>;
-  proveedores: Array<StoreProvider> = [];
-  numRegistros!: number;
-  formUrl = "";
-  loading = false;
-  page:any;
-  size: any;
-  filter:any;
-  totalPages: any;
-  totalRegistros: any;
-  order: string = 'nombre';
-  desc: boolean = false;
+export class ProveedoresComponent implements OnInit {
 
-  displayedColumns: string[] = [
-    'nombre',
-    'telefono',
-    'mobil',
-    'email',
-    'activo',
-    'acciones',
-  ];
+  loading = true;
+  filtro: string = '';
+  pageIndex = 1;
+  pageSize = 10;
+  totalResults = 0;
+  totalPages = 0;
+  visible = false;
+  expandSet = new Set<number>();
+  isVisible = false;
+  provider = new StoreProvider();
+  selectedProvider = new StoreProvider();
+
+  providers: StoreProvider[] = [];
+  page: any;
+  size: any;
+  filter: any;
 
   constructor(
-    private proveedorService: StoreProviderService,
-    router: Router,
-    private notificationService: NotificationService
-  ) {
-    this.formUrl = '/inventario/proveedores/form';
-  }
+    private router: Router,
+    private service: StoreProviderService,
+    private notificationService: NotificationService,
+    private inventoryCache: InventoryCacheService
+  ) {}
 
-   ngOnInit(): void {
-    this.getAll();
-  }
+  async ngOnInit(): Promise<void> {}
 
-   getAll() {
-
+  /**
+   * Obtiene la lista de providers
+   */
+  async getProviders() {
     this.loading = true;
-    let params = {
-      page: this.page,
-      size: this.size,
-      order: this.order,
-      desc: this.desc,
-      filter: this.filter,
-    };
-    this.proveedorService.findAllPagingStoreProvider(params).subscribe({
-      next: (result: any) => {
-        this.dataSource = new MatTableDataSource<StoreProvider>(result.content);
-        this.totalPages = new Array(result.totalPages);
-        this.totalRegistros = result.totalElements as number;
-        this.numRegistros = this.dataSource.filteredData.length;
-        this.loading = false;
-      },
-      error: (error: any) => {
-        this.notificationService.showError(
-          `No se han podido obtener datos en este momento.`
-        );
-        this.numRegistros = 0;
-        this.loading = false;
-      },
-    });
+    this.providers = [];
+    const response = (await lastValueFrom(
+      this.service.findAllPagingStoreProvider({
+        filter: this.filtro,
+        page: this.pageIndex,
+        pageSize: this.pageSize,
+      })
+    ).catch((error) => {
+      this.providers = [];
+      this.totalResults = 0;
+      this.totalPages = 0;
+      this.loading = false;
+    })) as any;
+
+    if (response) {
+      this.providers = response.data;
+      this.totalResults = response.total_resultados;
+      this.totalPages = response.total_paginas > 0 ? response.total_paginas : 1;
+      this.loading = false;
+    }
   }
 
-  change(activo: boolean, id: number) {
-    // activo = !activo;
-    // this.proveedorService
-    //   .changeActiveProvider({ id: id, activo: activo })
-    //   .subscribe({
-    //     next: (result: any) => {
-    //       this.getAll();
-    //     },
-    //     error: (error: any) => {
-    //       console.log(error);
-    //     },
-    //   });
+  /**
+   * Se ejecuta con los cambios de la tabla
+   * @param params
+   */
+  onQueryParamsChange(params: NzTableQueryParams): void {
+    const { pageSize, pageIndex, sort } = params;
+    this.pageSize = pageSize;
+    this.pageIndex = pageIndex;
+    const currentSort = sort.find((item) => item.value !== null);
+    const sortField = (currentSort && currentSort.key) || null;
+    const sortOrder = (currentSort && currentSort.value) || null;
+    this.getProviders();
   }
 
-  eliminar(proveedor: StoreProvider): void {
-    Swal.fire({
-      heightAuto: false,
-      title: '',
-      text: `¿Está seguro que desea eliminar el proveedor con nombre ${proveedor.name}?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#22bb33',
-      cancelButtonColor: '#bb2124',
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.proveedorService
-          .removeStoreProvider({ id: proveedor._id })
-          .subscribe({
-            next: () => {
-              this.getAll();
-              this.notificationService.showSuccess(
-                `El proveedor ${proveedor.name} se ha eliminado correctamente.`,
-                ''
-              );
-            },
-            error: (error) => {
-              this.notificationService.showError(
-                `No se ha podido eliminar el proveedor con nombre ${proveedor.name}`,
-                ''
-              );
-            },
-          });
-      }
-    });
+
+  showModal(provider?: StoreProvider) {
+    this.isVisible = true;
+
+    if (provider) {
+      this.selectedProvider = provider;
+    }
+
+  }
+
+  providerDetail(id: string) {
+    this.router.navigate(['dashboard/inventory/providers/detail', id]);
+  }
+
+  handleCancel() {
+    this.isVisible = false;
+  }
+
+  search() {
+    this.visible = false;
+    this.pageIndex = 1;
+    this.getProviders();
+  }
+
+  reset() {
+    this.filtro = '';
+    this.search();
+  }
+
+
+  onUpdateProvider(provider: any) {
+    console.log('provider')
+    this.isVisible = false;
+    this.getProviders();
   }
 }

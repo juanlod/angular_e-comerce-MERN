@@ -6,19 +6,21 @@ import {
   findAllPagingProducts,
   getLastByIdPipeline,
 } from './product-repository';
+import { BatchService } from '../batches/batches.service';
 
 @Injectable()
 export class ProductService {
   constructor(
     @Inject('PRODUCT_MODEL')
     private productModel: Model<IProduct>,
+    private batchesService: BatchService,
   ) {}
 
   async create(product: Product): Promise<any> {
     const id = (
       await this.productModel.aggregate(getLastByIdPipeline()).exec()
     )[0].id;
-    product.id = id ? id + 1 : 0;
+    product.id = id ? id + 1 : 1;
     return await this.productModel.create(product);
   }
 
@@ -26,8 +28,17 @@ export class ProductService {
     return this.productModel.find();
   }
 
-  findOne(id: string): Promise<Product> {
-    return this.productModel.findOne({ _id: id });
+  async findOne(id: string): Promise<IProduct> {
+    const product = (await this.productModel
+      .findOne({ _id: id })
+      .exec()) as any;
+
+    const batches = await this.batchesService.findAllByProductId(product.id);
+    const productWithBatches: IProduct = {
+      ...product.toObject(),
+      batches: [...batches],
+    };
+    return productWithBatches;
   }
 
   async update(id: string, product: Product) {

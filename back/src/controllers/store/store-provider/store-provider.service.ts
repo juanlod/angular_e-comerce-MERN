@@ -4,6 +4,11 @@ import {
   IStoreProvider,
   StoreProvider,
 } from 'src/mongodb/schemas/store/store-provider';
+import {
+  countValues,
+  findAllPaging,
+  getLastByIdPipeline,
+} from './store-provider-repository';
 
 @Injectable()
 export class StoreProviderService {
@@ -13,6 +18,10 @@ export class StoreProviderService {
   ) {}
 
   async create(storeProvider: StoreProvider): Promise<any> {
+    const id = (
+      await this.storeProviderModel.aggregate(getLastByIdPipeline()).exec()
+    )[0].id;
+    storeProvider.id = id ? id + 1 : 1;
     return await this.storeProviderModel.create(storeProvider);
   }
 
@@ -24,7 +33,7 @@ export class StoreProviderService {
     return this.storeProviderModel.findOne({ _id: id });
   }
 
-  async update(id: number, storeProvider: StoreProvider) {
+  async update(id: string, storeProvider: StoreProvider) {
     const filter = { _id: id };
     const updateData = { $set: storeProvider };
     return await this.storeProviderModel.updateOne(filter, updateData);
@@ -51,9 +60,14 @@ export class StoreProviderService {
     }
 
     // Get and count the results
-    const results = [];
+    // Get and count the results
+    const results = await this.storeProviderModel.aggregate(
+      findAllPaging(regex, offset, pageSize),
+    );
 
-    const count_values = [];
+    const count_values = await this.storeProviderModel.aggregate(
+      countValues(regex),
+    );
 
     return {
       data: results,

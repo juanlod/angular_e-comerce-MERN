@@ -113,6 +113,7 @@
 
   "PRODUCTS.FORM.TITLE.NEW": "New product",
   "PRODUCTS.FORM.BREADCRUMB.NEW": "New product",
+  "PRODUCTS.FORM.NAME.MANDATORY": "Product name is mandatory",
   "PRODUCTS.FORM.TITLE.EDIT": "Edit product",
   "PRODUCTS.FORM.BREADCRUMB.EDIT": "Edit product",
   "PRODUCTS.FORM.NAME": "Name",
@@ -138,9 +139,32 @@
   "PRODUCTS.DETAIL.PROVIDERS": "Provider",
   "PRODUCTS.DETAIL.PRODUCT_TYPE": "Product type",
   "PRODUCTS.DETAIL.UNITY_TYPE": "Product unit",
-
-
   "PRODUCTS.DETAIL.BATCHES.TITLE": "Batches",
+
+  "BATCH.FORM.TITLE.NEW": "New batch",
+  "BATCH.FORM.BREADCRUMB.NEW": "New batch",
+  "BATCH.FORM.NUMBER": "Batch number",
+  "BATCH.FORM.NUMBER.MANDATORY": "Batch number is mandatory",
+  "BATCH.FORM.DELIVERY_NOTE": "Delivery note",
+  "BATCH.FORM.ENTRY_DATE": "Entry date",
+  "BATCH.FORM.EXPIRATION_DATE": "Expiration date",
+  "BATCH.FORM.PRODUCT_QUANTITY": "Quantity",
+  "BATCH.FORM.QUANTITY_PER_UNIT": "Quantity per unit",
+  "BATCH.FORM.TOTAL_QUANTITY": "Total quantity",
+  "BATCH.FORM.OBSERVATIONS": "Observations",
+  "BATCH.SAVE.MESSAGE.INFO": "Saving batch...",
+  "BATCH.SAVE.MESSAGE.OK": "Batch saved successfully",
+  "BATCH.SAVE.MESSAGE.ERROR": "An error occurred while saving the batch",
+
+  "BATCH.UPDATE.MESSAGE.INFO": "Updating batch...",
+  "BATCH.UPDATE.MESSAGE.OK": "Batch updated successfully",
+  "BATCH.UPDATE.MESSAGE.ERROR": "An error occurred while updating the batch",
+
+  "BATCH.LIST.TABLE.NUMBER": "Batch number",
+  "BATCH.LIST.TABLE.ENTRY_DATE": "Entry date",
+  "BATCH.LIST.TABLE.EXPIRATION_DATE": "Expiration date",
+  "BATCH.LIST.TABLE.TOTAL_QUANTITY": "Available quantity",
+  "BATCH.LIST.TABLE.OBSERVATIONS": "Observations",
 
   "BUTTON.SAVE": "Save"
 }

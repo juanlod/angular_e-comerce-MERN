@@ -1,6 +1,7 @@
 'use strict';
 import { ApiProperty } from '@nestjs/swagger';
 import mongoose from 'mongoose';
+import { Batch, IBatch } from './batches';
 
 const Schema = mongoose.Schema;
 
@@ -14,6 +15,7 @@ export interface IProduct extends Document {
   unityTypeId: number;
   deleted: number;
   showStore: false;
+  batches: IBatch[];
 }
 
 export class Product {
@@ -43,6 +45,9 @@ export class Product {
 
   @ApiProperty()
   showStore: boolean;
+
+  @ApiProperty()
+  batches: Batch[];
 }
 
 // Creacion de clase a traves de la interfaz
@@ -55,4 +60,7 @@ export const ProductSchema = new Schema<IProduct>({
   unityTypeId: { type: Number, required: false },
   deleted: { type: Number, required: true, default: 0 },
   showStore: { type: Boolean, required: true, default: false },
+  batches: [
+    { type: mongoose.Schema.Types.ObjectId, ref: 'batches', required: false },
+  ],
 });
