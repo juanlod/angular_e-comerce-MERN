@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { IRace, Race } from 'src/mongodb/schemas/master/race';
+import { countValues, findAllPaging } from './race-repository';
 
 @Injectable()
 export class RaceService {
@@ -21,7 +22,7 @@ export class RaceService {
     return await this.raceModel.findOne({ _id: id });
   }
 
-  async update(id: number, race: Race) {
+  async update(id: string, race: Race) {
     const filter = { _id: id };
     const updateData = { $set: race };
     return await this.raceModel.updateOne(filter, updateData);
@@ -48,15 +49,17 @@ export class RaceService {
     }
 
     // Get and count the results
-    const results = [];
+    const results = await this.raceModel.aggregate(
+      findAllPaging(regex, offset, pageSize),
+    );
 
-    const count_values = [];
+    const count_values = (await this.raceModel.aggregate(countValues())) as any;
 
     return {
       data: results,
       pagina_actual: page,
-      total_paginas: Math.ceil(count_values.length / pageSize),
-      total_resultados: count_values.length,
+      total_paginas: Math.ceil(count_values[0]?.length / pageSize),
+      total_resultados: count_values[0]?.length,
     };
   }
 }

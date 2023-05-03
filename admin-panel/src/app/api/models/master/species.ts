@@ -6,4 +6,6 @@ export interface Species {
   id: number;
   nom: string;
   icon: string;
+  deleted: boolean;
+  active: boolean;
 }

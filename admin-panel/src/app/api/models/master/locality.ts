@@ -8,4 +8,6 @@ export class Locality {
   nom: string;
   ran: number;
   province: number;
+  deleted: boolean;
+  active: boolean;
 }

@@ -38,6 +38,7 @@ export class SpeciesController {
     type: Species,
   })
   @ApiBadRequestResponse({ description: 'The request body is invalid.' })
+  @ApiBody({ type: Species })
   create(@Body() species: ISpecies) {
     return this.speciesService.create(species);
   }
@@ -82,7 +83,7 @@ export class SpeciesController {
   @Patch('update/:id')
   @ApiBody({ type: Species })
   update(@Param('id') id: string, @Body() species: Species) {
-    return this.speciesService.update(+id, species);
+    return this.speciesService.update(id, species);
   }
 
   @ApiOperation({

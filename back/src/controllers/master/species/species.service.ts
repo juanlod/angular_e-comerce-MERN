@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ISpecies, Species } from 'src/mongodb/schemas/master/species';
+import { countValues, findAllPaging } from './species-repository';
 
 @Injectable()
 export class SpeciesService {
@@ -21,7 +22,7 @@ export class SpeciesService {
     return this.speciesModel.findOne({ _id: id });
   }
 
-  async update(id: number, species: Species) {
+  async update(id: string, species: Species) {
     const filter = { _id: id };
     const updateData = { $set: species };
     return await this.speciesModel.updateOne(filter, updateData);
@@ -48,15 +49,19 @@ export class SpeciesService {
     }
 
     // Get and count the results
-    const results = [];
+    const results = await this.speciesModel.aggregate(
+      findAllPaging(regex, offset, pageSize),
+    );
 
-    const count_values = [];
+    const count_values = (await this.speciesModel.aggregate(
+      countValues(),
+    )) as any;
 
     return {
       data: results,
       pagina_actual: page,
-      total_paginas: Math.ceil(count_values.length / pageSize),
-      total_resultados: count_values.length,
+      total_paginas: Math.ceil(count_values[0]?.length / pageSize),
+      total_resultados: count_values[0]?.length,
     };
   }
 }

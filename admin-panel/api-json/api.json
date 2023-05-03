@@ -589,6 +589,14 @@
         "operationId": "createProvince",
         "summary": "Create a new province",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Province" }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "The province has been successfully created.",
@@ -926,6 +934,14 @@
         "operationId": "createSex",
         "summary": "Create a new sex",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Sex" }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "The sex has been successfully created.",
@@ -1086,6 +1102,14 @@
         "operationId": "createRace",
         "summary": "Create a new race",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Race" }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "The race has been successfully created.",
@@ -1246,6 +1270,14 @@
         "operationId": "createCoat",
         "summary": "Create a new coat",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Coat" }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "The coat has been successfully created.",
@@ -1406,6 +1438,14 @@
         "operationId": "createSpecies",
         "summary": "Create a new species",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Species" }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "The species has been successfully created.",
@@ -2069,46 +2109,6 @@
         "tags": ["Batch"]
       }
     },
-    "/api/batch/find_all/paging": {
-      "get": {
-        "operationId": "findAllPagingBatch",
-        "summary": "Get all batchs with pagination",
-        "parameters": [
-          {
-            "name": "filter",
-            "required": false,
-            "in": "query",
-            "schema": { "type": "string" }
-          },
-          {
-            "name": "page",
-            "required": false,
-            "in": "query",
-            "schema": { "type": "number" }
-          },
-          {
-            "name": "pageSize",
-            "required": false,
-            "in": "query",
-            "schema": { "type": "number" }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Return all batchs paginated.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/Batch" }
-                }
-              }
-            }
-          }
-        },
-        "tags": ["Batch"]
-      }
-    },
     "/api/productType/save": {
       "post": {
         "operationId": "createProductType",
@@ -2749,9 +2749,20 @@
           "nom": { "type": "string" },
           "dep": { "type": "number" },
           "cp": { "type": "string" },
-          "ran": { "type": "number" }
+          "ran": { "type": "number" },
+          "deleted": { "type": "boolean" },
+          "active": { "type": "boolean" }
         },
-        "required": ["_id", "id", "nom", "dep", "cp", "ran"]
+        "required": [
+          "_id",
+          "id",
+          "nom",
+          "dep",
+          "cp",
+          "ran",
+          "deleted",
+          "active"
+        ]
       },
       "Province": {
         "type": "object",
@@ -2760,9 +2771,11 @@
           "id": { "type": "number" },
           "nom": { "type": "string" },
           "Ctel": { "type": "string" },
-          "ran": { "type": "number" }
+          "ran": { "type": "number" },
+          "deleted": { "type": "boolean" },
+          "active": { "type": "boolean" }
         },
-        "required": ["_id", "id", "nom", "Ctel", "ran"]
+        "required": ["_id", "id", "nom", "Ctel", "ran", "deleted", "active"]
       },
       "Pet": {
         "type": "object",
@@ -2827,9 +2840,11 @@
         "properties": {
           "_id": { "type": "string" },
           "ids": { "type": "number" },
-          "value": { "type": "string" }
+          "value": { "type": "string" },
+          "deleted": { "type": "boolean" },
+          "active": { "type": "boolean" }
         },
-        "required": ["_id", "ids", "value"]
+        "required": ["_id", "ids", "value", "deleted", "active"]
       },
       "Race": {
         "type": "object",
@@ -2840,18 +2855,32 @@
           "esp": { "type": "number" },
           "ori": { "type": "string" },
           "des": { "type": "string" },
-          "ran": { "type": "number" }
+          "ran": { "type": "number" },
+          "deleted": { "type": "boolean" },
+          "active": { "type": "boolean" }
         },
-        "required": ["_id", "id", "nom", "esp", "ori", "des", "ran"]
+        "required": [
+          "_id",
+          "id",
+          "nom",
+          "esp",
+          "ori",
+          "des",
+          "ran",
+          "deleted",
+          "active"
+        ]
       },
       "Coat": {
         "type": "object",
         "properties": {
           "_id": { "type": "string" },
           "id": { "type": "number" },
-          "nom": { "type": "string" }
+          "nom": { "type": "string" },
+          "deleted": { "type": "boolean" },
+          "active": { "type": "boolean" }
         },
-        "required": ["_id", "id", "nom"]
+        "required": ["_id", "id", "nom", "deleted", "active"]
       },
       "Species": {
         "type": "object",
@@ -2860,9 +2889,11 @@
           "id": { "type": "number" },
           "nom": { "type": "string" },
           "ali": { "type": "number" },
-          "icon": { "type": "string" }
+          "icon": { "type": "string" },
+          "deleted": { "type": "boolean" },
+          "active": { "type": "boolean" }
         },
-        "required": ["_id", "id", "nom", "ali", "icon"]
+        "required": ["_id", "id", "nom", "ali", "icon", "deleted", "active"]
       },
       "PetHistory": {
         "type": "object",
@@ -2955,10 +2986,11 @@
           "_id": { "type": "string" },
           "id": { "type": "number" },
           "name": { "type": "string" },
+          "icon": { "type": "string" },
           "active": { "type": "boolean" },
           "deleted": { "type": "boolean" }
         },
-        "required": ["_id", "id", "name", "active", "deleted"]
+        "required": ["_id", "id", "name", "icon", "active", "deleted"]
       },
       "StoreProvider": {
         "type": "object",
@@ -2968,9 +3000,18 @@
           "name": { "type": "string" },
           "deleted": { "type": "boolean" },
           "active": { "type": "boolean" },
-          "phoneNumber": { "type": "string" }
+          "phone_number": { "type": "string" },
+          "address": { "type": "string" }
         },
-        "required": ["_id", "id", "name", "deleted", "active", "phoneNumber"]
+        "required": [
+          "_id",
+          "id",
+          "name",
+          "deleted",
+          "active",
+          "phone_number",
+          "address"
+        ]
       },
       "UnityType": {
         "type": "object",

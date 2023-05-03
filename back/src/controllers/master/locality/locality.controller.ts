@@ -84,7 +84,7 @@ export class LocalityController {
   @Patch('update/:id')
   @ApiBody({ type: Locality })
   update(@Param('id') id: string, @Body() locality: Locality) {
-    return this.localityService.update(+id, locality);
+    return this.localityService.update(id, locality);
   }
 
   @ApiOperation({

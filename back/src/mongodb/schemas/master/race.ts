@@ -20,6 +20,8 @@ export interface IRace extends Document {
   ori: string;
   des: string;
   ran: number;
+  deleted: boolean;
+  active: boolean;
 }
 
 export class Race {
@@ -43,15 +45,22 @@ export class Race {
 
   @ApiProperty()
   ran: number;
+
+  @ApiProperty()
+  deleted: boolean;
+
+  @ApiProperty()
+  active: boolean;
 }
 
 // Creacion de clase sexo a traves de la interfaz
 export const RaceSchema = new Schema<IRace>({
-  _id: { type: String, required: true },
   id: { type: Number, required: true },
   nom: { type: String, required: true },
   esp: { type: Number, required: false },
   ori: { type: String, required: false },
   des: { type: String, required: false },
-  ran: { type: Number, required: true },
+  ran: { type: Number, required: false },
+  deleted: { type: Boolean, required: false, default: false },
+  active: { type: Boolean, required: false, default: true },
 });

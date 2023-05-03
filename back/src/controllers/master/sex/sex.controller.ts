@@ -38,6 +38,7 @@ export class SexController {
     type: Sex,
   })
   @ApiBadRequestResponse({ description: 'The request body is invalid.' })
+  @ApiBody({ type: Sex })
   create(@Body() sex: ISex) {
     return this.sexService.create(sex);
   }
@@ -82,7 +83,7 @@ export class SexController {
   @Patch('update/:id')
   @ApiBody({ type: Sex })
   update(@Param('id') id: string, @Body() sex: Sex) {
-    return this.sexService.update(+id, sex);
+    return this.sexService.update(id, sex);
   }
 
   @ApiOperation({

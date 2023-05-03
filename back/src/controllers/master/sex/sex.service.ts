@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ISex, Sex } from 'src/mongodb/schemas/master/sex';
+import { countValues, findAllPaging } from './sex-repository';
 
 @Injectable()
 export class SexService {
@@ -21,7 +22,7 @@ export class SexService {
     return await this.sexModel.findOne({ _id: id });
   }
 
-  async update(id: number, sex: Sex) {
+  async update(id: string, sex: Sex) {
     const filter = { _id: id };
     const updateData = { $set: sex };
     return await this.sexModel.updateOne(filter, updateData);
@@ -48,15 +49,17 @@ export class SexService {
     }
 
     // Get and count the results
-    const results = [];
+    const results = await this.sexModel.aggregate(
+      findAllPaging(regex, offset, pageSize),
+    );
 
-    const count_values = [];
+    const count_values = (await this.sexModel.aggregate(countValues())) as any;
 
     return {
       data: results,
       pagina_actual: page,
-      total_paginas: Math.ceil(count_values.length / pageSize),
-      total_resultados: count_values.length,
+      total_paginas: Math.ceil(count_values[0]?.length / pageSize),
+      total_resultados: count_values[0]?.length,
     };
   }
 }

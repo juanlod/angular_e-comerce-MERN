@@ -33,32 +33,26 @@ export class LocalityService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createLocality()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  private createLocality$Response(params?: {}): Observable<
-    StrictHttpResponse<Locality>
-  > {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      LocalityService.CreateLocalityPath,
-      'post'
-    );
+  createLocality$Response(params: {
+    body: Locality
+  }): Observable<StrictHttpResponse<Locality>> {
+
+    const rb = new RequestBuilder(this.rootUrl, LocalityService.CreateLocalityPath, 'post');
     if (params) {
+      rb.body(params.body, 'application/json');
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Locality>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Locality>;
+      })
+    );
   }
 
   /**
@@ -69,9 +63,12 @@ export class LocalityService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createLocality$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createLocality(params?: {}): Observable<Locality> {
+  createLocality(params: {
+    body: Locality
+  }): Observable<Locality> {
+
     return this.createLocality$Response(params).pipe(
       map((r: StrictHttpResponse<Locality>) => r.body as Locality)
     );
@@ -92,30 +89,22 @@ export class LocalityService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  private findAllLocality$Response(params?: {}): Observable<
-    StrictHttpResponse<Array<Locality>>
-  > {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      LocalityService.FindAllLocalityPath,
-      'get'
-    );
+  findAllLocality$Response(params?: {
+  }): Observable<StrictHttpResponse<Array<Locality>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, LocalityService.FindAllLocalityPath, 'get');
     if (params) {
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Array<Locality>>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Locality>>;
+      })
+    );
   }
 
   /**
@@ -128,7 +117,9 @@ export class LocalityService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllLocality(params?: {}): Observable<Array<Locality>> {
+  findAllLocality(params?: {
+  }): Observable<Array<Locality>> {
+
     return this.findAllLocality$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Locality>>) => r.body as Array<Locality>)
     );
@@ -137,7 +128,7 @@ export class LocalityService extends BaseService {
   /**
    * Path part for operation findOneLocality
    */
-  static readonly FindOneLocalityPath = '/api/locality/{id}';
+  static readonly FindOneLocalityPath = '/api/locality/find_one/{id}';
 
   /**
    * Retrieve a locality by ID.
@@ -149,31 +140,24 @@ export class LocalityService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  private findOneLocality$Response(params: {
+  findOneLocality$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<Locality>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      LocalityService.FindOneLocalityPath,
-      'get'
-    );
+
+    const rb = new RequestBuilder(this.rootUrl, LocalityService.FindOneLocalityPath, 'get');
     if (params) {
       rb.path('id', params.id, {});
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Locality>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Locality>;
+      })
+    );
   }
 
   /**
@@ -186,8 +170,68 @@ export class LocalityService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findOneLocality(params: { id: string }): Observable<Locality> {
+  findOneLocality(params: {
+    id: string;
+  }): Observable<Locality> {
+
     return this.findOneLocality$Response(params).pipe(
+      map((r: StrictHttpResponse<Locality>) => r.body as Locality)
+    );
+  }
+
+  /**
+   * Path part for operation updateLocality
+   */
+  static readonly UpdateLocalityPath = '/api/locality/update/{id}';
+
+  /**
+   * Update a locality by ID.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `updateLocality()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateLocality$Response(params: {
+    id: string;
+    body: Locality
+  }): Observable<StrictHttpResponse<Locality>> {
+
+    const rb = new RequestBuilder(this.rootUrl, LocalityService.UpdateLocalityPath, 'patch');
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Locality>;
+      })
+    );
+  }
+
+  /**
+   * Update a locality by ID.
+   *
+   *
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `updateLocality$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateLocality(params: {
+    id: string;
+    body: Locality
+  }): Observable<Locality> {
+
+    return this.updateLocality$Response(params).pipe(
       map((r: StrictHttpResponse<Locality>) => r.body as Locality)
     );
   }
@@ -195,7 +239,7 @@ export class LocalityService extends BaseService {
   /**
    * Path part for operation removeLocality
    */
-  static readonly RemoveLocalityPath = '/api/locality/{id}';
+  static readonly RemoveLocalityPath = '/api/locality/delete/{id}';
 
   /**
    * Remove a locality by ID.
@@ -207,33 +251,24 @@ export class LocalityService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  private removeLocality$Response(params: {
+  removeLocality$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      LocalityService.RemoveLocalityPath,
-      'delete'
-    );
+
+    const rb = new RequestBuilder(this.rootUrl, LocalityService.RemoveLocalityPath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'text',
-          accept: '*/*',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return (r as HttpResponse<any>).clone({
-            body: undefined,
-          }) as StrictHttpResponse<void>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
   }
 
   /**
@@ -246,74 +281,19 @@ export class LocalityService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  removeLocality(params: { id: string }): Observable<void> {
+  removeLocality(params: {
+    id: string;
+  }): Observable<void> {
+
     return this.removeLocality$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 
   /**
-   * Path part for operation updateLocality
-   */
-  static readonly UpdateLocalityPath = '/api/locality/{id}';
-
-  /**
-   * Update a locality by ID.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateLocality()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  private updateLocality$Response(params: {
-    id: string;
-  }): Observable<StrictHttpResponse<Locality>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      LocalityService.UpdateLocalityPath,
-      'patch'
-    );
-    if (params) {
-      rb.path('id', params.id, {});
-    }
-
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Locality>;
-        })
-      );
-  }
-
-  /**
-   * Update a locality by ID.
-   *
-   *
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `updateLocality$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  updateLocality(params: { id: string }): Observable<Locality> {
-    return this.updateLocality$Response(params).pipe(
-      map((r: StrictHttpResponse<Locality>) => r.body as Locality)
-    );
-  }
-
-  /**
    * Path part for operation findAllPagingLocality
    */
-  static readonly FindAllPagingLocalityPath = '/api/locality';
+  static readonly FindAllPagingLocalityPath = '/api/locality/find_all/paging';
 
   /**
    * Get all localities with pagination.
@@ -325,35 +305,28 @@ export class LocalityService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  private findAllPagingLocality$Response(params?: {
+  findAllPagingLocality$Response(params?: {
     filter?: string;
     page?: number;
     pageSize?: number;
   }): Observable<StrictHttpResponse<Array<Locality>>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      LocalityService.FindAllPagingLocalityPath,
-      'get'
-    );
+
+    const rb = new RequestBuilder(this.rootUrl, LocalityService.FindAllPagingLocalityPath, 'get');
     if (params) {
       rb.query('filter', params.filter, {});
       rb.query('page', params.page, {});
       rb.query('pageSize', params.pageSize, {});
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Array<Locality>>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Locality>>;
+      })
+    );
   }
 
   /**
@@ -371,6 +344,7 @@ export class LocalityService extends BaseService {
     page?: number;
     pageSize?: number;
   }): Observable<Array<Locality>> {
+
     return this.findAllPagingLocality$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Locality>>) => r.body as Array<Locality>)
     );

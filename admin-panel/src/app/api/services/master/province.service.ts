@@ -33,32 +33,26 @@ export class ProvinceService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createProvince()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  private createProvince$Response(params?: {}): Observable<
-    StrictHttpResponse<Province>
-  > {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ProvinceService.CreateProvincePath,
-      'post'
-    );
+  createProvince$Response(params: {
+    body: Province
+  }): Observable<StrictHttpResponse<Province>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ProvinceService.CreateProvincePath, 'post');
     if (params) {
+      rb.body(params.body, 'application/json');
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Province>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Province>;
+      })
+    );
   }
 
   /**
@@ -69,9 +63,12 @@ export class ProvinceService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createProvince$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createProvince(params?: {}): Observable<Province> {
+  createProvince(params: {
+    body: Province
+  }): Observable<Province> {
+
     return this.createProvince$Response(params).pipe(
       map((r: StrictHttpResponse<Province>) => r.body as Province)
     );
@@ -92,30 +89,22 @@ export class ProvinceService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  private findAllProvince$Response(params?: {}): Observable<
-    StrictHttpResponse<Array<Province>>
-  > {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ProvinceService.FindAllProvincePath,
-      'get'
-    );
+  findAllProvince$Response(params?: {
+  }): Observable<StrictHttpResponse<Array<Province>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, ProvinceService.FindAllProvincePath, 'get');
     if (params) {
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Array<Province>>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Province>>;
+      })
+    );
   }
 
   /**
@@ -128,7 +117,9 @@ export class ProvinceService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllProvince(params?: {}): Observable<Array<Province>> {
+  findAllProvince(params?: {
+  }): Observable<Array<Province>> {
+
     return this.findAllProvince$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Province>>) => r.body as Array<Province>)
     );
@@ -149,31 +140,24 @@ export class ProvinceService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  private findOneProvince$Response(params: {
+  findOneProvince$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<Province>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ProvinceService.FindOneProvincePath,
-      'get'
-    );
+
+    const rb = new RequestBuilder(this.rootUrl, ProvinceService.FindOneProvincePath, 'get');
     if (params) {
       rb.path('id', params.id, {});
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Province>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Province>;
+      })
+    );
   }
 
   /**
@@ -186,7 +170,10 @@ export class ProvinceService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findOneProvince(params: { id: string }): Observable<Province> {
+  findOneProvince(params: {
+    id: string;
+  }): Observable<Province> {
+
     return this.findOneProvince$Response(params).pipe(
       map((r: StrictHttpResponse<Province>) => r.body as Province)
     );
@@ -205,33 +192,28 @@ export class ProvinceService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `updateProvince()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  private updateProvince$Response(params: {
+  updateProvince$Response(params: {
     id: string;
+    body: Province
   }): Observable<StrictHttpResponse<Province>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ProvinceService.UpdateProvincePath,
-      'patch'
-    );
+
+    const rb = new RequestBuilder(this.rootUrl, ProvinceService.UpdateProvincePath, 'patch');
     if (params) {
       rb.path('id', params.id, {});
+      rb.body(params.body, 'application/json');
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Province>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Province>;
+      })
+    );
   }
 
   /**
@@ -242,9 +224,13 @@ export class ProvinceService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `updateProvince$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateProvince(params: { id: string }): Observable<Province> {
+  updateProvince(params: {
+    id: string;
+    body: Province
+  }): Observable<Province> {
+
     return this.updateProvince$Response(params).pipe(
       map((r: StrictHttpResponse<Province>) => r.body as Province)
     );
@@ -265,33 +251,24 @@ export class ProvinceService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  private removeProvince$Response(params: {
+  removeProvince$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<void>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ProvinceService.RemoveProvincePath,
-      'delete'
-    );
+
+    const rb = new RequestBuilder(this.rootUrl, ProvinceService.RemoveProvincePath, 'delete');
     if (params) {
       rb.path('id', params.id, {});
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'text',
-          accept: '*/*',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return (r as HttpResponse<any>).clone({
-            body: undefined,
-          }) as StrictHttpResponse<void>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
   }
 
   /**
@@ -304,7 +281,10 @@ export class ProvinceService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  removeProvince(params: { id: string }): Observable<void> {
+  removeProvince(params: {
+    id: string;
+  }): Observable<void> {
+
     return this.removeProvince$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
@@ -325,35 +305,28 @@ export class ProvinceService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  private findAllPagingProvince$Response(params?: {
+  findAllPagingProvince$Response(params?: {
     filter?: string;
     page?: number;
     pageSize?: number;
   }): Observable<StrictHttpResponse<Array<Province>>> {
-    const rb = new RequestBuilder(
-      this.rootUrl,
-      ProvinceService.FindAllPagingProvincePath,
-      'get'
-    );
+
+    const rb = new RequestBuilder(this.rootUrl, ProvinceService.FindAllPagingProvincePath, 'get');
     if (params) {
       rb.query('filter', params.filter, {});
       rb.query('page', params.page, {});
       rb.query('pageSize', params.pageSize, {});
     }
 
-    return this.http
-      .request(
-        rb.build({
-          responseType: 'json',
-          accept: 'application/json',
-        })
-      )
-      .pipe(
-        filter((r: any) => r instanceof HttpResponse),
-        map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Array<Province>>;
-        })
-      );
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<Province>>;
+      })
+    );
   }
 
   /**
@@ -371,8 +344,10 @@ export class ProvinceService extends BaseService {
     page?: number;
     pageSize?: number;
   }): Observable<Array<Province>> {
+
     return this.findAllPagingProvince$Response(params).pipe(
       map((r: StrictHttpResponse<Array<Province>>) => r.body as Array<Province>)
     );
   }
+
 }

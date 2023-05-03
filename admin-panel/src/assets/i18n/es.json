@@ -251,6 +251,35 @@
   "UNITY_TYPES.UPDATE.MESSAGE.OK": "Tipo de unidad actualizado correctamente",
   "UNITY_TYPES.UPDATE.MESSAGE.ERROR": "Ha sucedido un error al actualizar el tipo de unidad",
 
+
+  "PROVINCE.LIST.TITLE" : "Provincias",
+  "PROVINCE.LIST.TITLE.BREADCRUMB" : "Provincias",
+  "PROVINCE.LIST.TABLE.NAME": "Nombre",
+  "PROVINCE.LIST.TABLE.PHONE_PREFIX": "Prefijo telefónico",
+  "PROVINCE.LIST.TABLE.ACTIVE": "Activo",
+  "PROVINCE.FORM.TITLE.NEW": "Nueva provincia",
+  "PROVINCE.FORM.BREADCRUMB.NEW": "Nueva provincia",
+  "PROVINCE.FORM.NAME": "Nombre",
+  "PROVINCE.FORM.PHONE_PREFIX": "Prefijo telefónico",
+  "PROVINCE.FORM.NAME.MANDATORY": "El nombre es obligatorio",
+  "PROVINCE.FORM.TITLE.EDIT": "Editar provincia",
+  "PROVINCE.FORM.BREADCRUMB.EDIT" : "Editar provincia",
+  "PROVINCE.SAVE.MESSAGE.INFO": "Guardando provincia...",
+  "PROVINCE.SAVE.MESSAGE.OK": "Provincia guardada correctamente",
+  "PROVINCE.SAVE.MESSAGE.ERROR": "Ha sucedido un error al guardar la provincia",
+  "PROVINCE.UPDATE.MESSAGE.INFO": "Actualizando provincia...",
+  "PROVINCE.UPDATE.MESSAGE.OK": "Provincia actualizada correctamente",
+  "PROVINCE.UPDATE.MESSAGE.ERROR": "Ha sucedido un error al actualizar la provincia",
+
+
+
+
+
+
+
+
+
+
   "DELETE.CONFIRMATION_MESSAGE": "¿Está seguro que desea eliminar el registro?",
   "DELETE.MESSAGE.OK": "Registro eliminado correctamente",
   "DELETE.MESSAGE.ERROR": "Ha sucedido un error al eliminar el registro",

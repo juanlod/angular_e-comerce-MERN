@@ -1,6 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { IProvince, Province } from 'src/mongodb/schemas/master/province';
+import {
+  countValues,
+  findAllPaging,
+  getLastByIdPipeline,
+} from './province-repository';
 
 @Injectable()
 export class ProvinceService {
@@ -10,6 +15,11 @@ export class ProvinceService {
   ) {}
 
   async create(province: Province): Promise<any> {
+    const id = (
+      await this.provinceModel.aggregate(getLastByIdPipeline()).exec()
+    )[0].id;
+    province.id = id ? id + 1 : 1;
+    console.log(province)
     return await this.provinceModel.create(province);
   }
 
@@ -21,7 +31,7 @@ export class ProvinceService {
     return await this.provinceModel.findOne({ _id: id });
   }
 
-  async update(id: number, province: Province) {
+  async update(id: string, province: Province) {
     const filter = { _id: id };
     const updateData = { $set: province };
     return await this.provinceModel.updateOne(filter, updateData);
@@ -48,15 +58,19 @@ export class ProvinceService {
     }
 
     // Get and count the results
-    const results = [];
+    const results = await this.provinceModel.aggregate(
+      findAllPaging(regex, offset, pageSize),
+    );
 
-    const count_values = [];
+    const count_values = (await this.provinceModel.aggregate(
+      countValues(),
+    )) as any;
 
     return {
       data: results,
       pagina_actual: page,
-      total_paginas: Math.ceil(count_values.length / pageSize),
-      total_resultados: count_values.length,
+      total_paginas: Math.ceil(count_values[0]?.length / pageSize),
+      total_resultados: count_values[0]?.length,
     };
   }
 }

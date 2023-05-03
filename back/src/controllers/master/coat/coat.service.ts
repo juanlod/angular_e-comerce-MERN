@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ICoat, Coat } from 'src/mongodb/schemas/master/coat';
+import { countValues, findAllPaging } from './coat-repository';
 
 @Injectable()
 export class CoatService {
@@ -48,15 +49,17 @@ export class CoatService {
     }
 
     // Get and count the results
-    const results = [];
+    const results = await this.coatModel.aggregate(
+      findAllPaging(regex, offset, pageSize),
+    );
 
-    const count_values = [];
+    const count_values = (await this.coatModel.aggregate(countValues())) as any;
 
     return {
       data: results,
       pagina_actual: page,
-      total_paginas: Math.ceil(count_values.length / pageSize),
-      total_resultados: count_values.length,
+      total_paginas: Math.ceil(count_values[0]?.length / pageSize),
+      total_resultados: count_values[0]?.length,
     };
   }
 }

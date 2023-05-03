@@ -38,7 +38,8 @@ export class ProvinceController {
     type: Province,
   })
   @ApiBadRequestResponse({ description: 'The request body is invalid.' })
-  create(@Body() province: IProvince) {
+  @ApiBody({ type: Province })
+  create(@Body() province: Province) {
     return this.provinceService.create(province);
   }
 
@@ -82,7 +83,7 @@ export class ProvinceController {
   @Patch('update/:id')
   @ApiBody({ type: Province })
   update(@Param('id') id: string, @Body() province: Province) {
-    return this.provinceService.update(+id, province);
+    return this.provinceService.update(id, province);
   }
 
   @ApiOperation({

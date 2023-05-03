@@ -258,6 +258,32 @@
   "UNITY_TYPES.UPDATE.MESSAGE.ERROR": "Ocorreu un erro ó actualizar o tipo de unidade",
 
 
+  "PROVINCE.LIST.TITLE" : "Provincias",
+  "PROVINCE.LIST.TITLE.BREADCRUMB" : "Provincias",
+  "PROVINCE.LIST.TABLE.NAME": "Nome",
+  "PROVINCE.LIST.TABLE.PHONE_PREFIX": "Prefixo telefónico",
+  "PROVINCE.LIST.TABLE.ACTIVE": "Activo",
+  "PROVINCE.FORM.TITLE.NEW": "Nova provincia",
+  "PROVINCE.FORM.BREADCRUMB.NEW": "Nova provincia",
+  "PROVINCE.FORM.NAME": "Nome",
+  "PROVINCE.FORM.PHONE_PREFIX": "Prefixo telefónico",
+  "PROVINCE.FORM.NAME.MANDATORY": "O nome é obrigatorio",
+  "PROVINCE.FORM.TITLE.EDIT": "Editar provincia",
+  "PROVINCE.FORM.BREADCRUMB.EDIT" : "Editar provincia",
+  "PROVINCE.SAVE.MESSAGE.INFO": "Gardando provincia...",
+  "PROVINCE.SAVE.MESSAGE.OK": "Provincia gardada correctamente",
+  "PROVINCE.SAVE.MESSAGE.ERROR": "Ocorreu un erro ó gardar a provincia",
+  "PROVINCE.UPDATE.MESSAGE.INFO": "Actualizando a provincia...",
+  "PROVINCE.UPDATE.MESSAGE.OK": "Provincia actualizada correctamente",
+  "PROVINCE.UPDATE.MESSAGE.ERROR": "Ocorreu un erro ó actualizar a provincia",
+
+
+
+
+
+
+
+
 
   "DELETE.CONFIRMATION_MESSAGE" : "¿Está seguro que desexa eliminar o rexistro?",
   "DELETE.MESSAGE.OK" : "Rexistro eliminado correctamente",

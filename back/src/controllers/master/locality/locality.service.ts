@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ILocality, Locality } from 'src/mongodb/schemas/master/locality';
+import { countValues, findAllPaging } from './locality-repository';
 
 @Injectable()
 export class LocalityService {
@@ -21,7 +22,7 @@ export class LocalityService {
     return await this.localityModel.findOne({ _id: id });
   }
 
-  async update(id: number, locality: Locality) {
+  async update(id: string, locality: Locality) {
     const filter = { _id: id };
     const updateData = { $set: locality };
     return await this.localityModel.updateOne(filter, updateData);
@@ -48,15 +49,19 @@ export class LocalityService {
     }
 
     // Get and count the results
-    const results = [];
+    const results = await this.localityModel.aggregate(
+      findAllPaging(regex, offset, pageSize),
+    );
 
-    const count_values = [];
+    const count_values = (await this.localityModel.aggregate(
+      countValues(),
+    )) as any;
 
     return {
       data: results,
       pagina_actual: page,
-      total_paginas: Math.ceil(count_values.length / pageSize),
-      total_resultados: count_values.length,
+      total_paginas: Math.ceil(count_values[0]?.length / pageSize),
+      total_resultados: count_values[0]?.length,
     };
   }
 }

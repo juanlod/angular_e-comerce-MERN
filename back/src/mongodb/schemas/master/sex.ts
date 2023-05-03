@@ -16,6 +16,8 @@ export interface ISex extends Document {
   _id: string;
   ids: number;
   value: string;
+  deleted: boolean;
+  active: boolean;
 }
 
 export class Sex {
@@ -27,6 +29,12 @@ export class Sex {
 
   @ApiProperty()
   value: string;
+
+  @ApiProperty()
+  deleted: boolean;
+
+  @ApiProperty()
+  active: boolean;
 }
 
 // Creacion de clase sexo a traves de la interfaz
@@ -34,4 +42,6 @@ export const SexSchema = new Schema<ISex>({
   _id: { type: String, required: true },
   ids: { type: Number, required: true },
   value: { type: String, required: true },
+  deleted: { type: Boolean, required: false, default: false },
+  active: { type: Boolean, required: false, default: true },
 });

@@ -18,6 +18,7 @@ import { ClinicConfigurationComponent } from './pages/configuration/clinic/clini
 import { StoreConfigurationComponent } from './pages/configuration/store/store-configuration/store-configuration.component';
 import { ProductTypesComponent } from './pages/configuration/store/product-types/product-types/product-types.component';
 import { UnityTypesComponent } from './pages/configuration/store/unity-types/unity-types/unity-types.component';
+import { ProvinceComponent } from './pages/configuration/clinic/provinces/provinces/provinces.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -59,6 +60,7 @@ const routes: Routes = [
         path: 'configuration',
         children:[
           { path: 'clinic', component: ClinicConfigurationComponent },
+          { path: 'clinic/provinces', component: ProvinceComponent },
           { path: 'store', component: StoreConfigurationComponent },
           { path: 'store/providers', component: ProveedoresComponent },
           { path: 'store/product_types', component: ProductTypesComponent },

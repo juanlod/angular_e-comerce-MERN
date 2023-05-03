@@ -38,6 +38,7 @@ export class RaceController {
     type: Race,
   })
   @ApiBadRequestResponse({ description: 'The request body is invalid.' })
+  @ApiBody({ type: Race })
   create(@Body() race: IRace) {
     return this.raceService.create(race);
   }
@@ -82,7 +83,7 @@ export class RaceController {
   @Patch('update/:id')
   @ApiBody({ type: Race })
   update(@Param('id') id: string, @Body() race: Race) {
-    return this.raceService.update(+id, race);
+    return this.raceService.update(id, race);
   }
 
   @ApiOperation({

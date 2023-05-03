@@ -8,4 +8,6 @@ export interface Race {
   nom: string;
   ori: string;
   ran: number;
+  deleted: boolean;
+  active: boolean;
 }

@@ -9,11 +9,13 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { MaterialModule } from 'src/app/material.module';
 import { NgZorroModule } from 'src/app/ng-zorro.module';
 import { TranslationModule } from 'src/app/translation.module';
+import { ProvinceComponent } from './provinces/provinces/provinces.component';
+import { ProvincesFormComponent } from './provinces/provinces-form/provinces-form.component';
 
 
 
 @NgModule({
-  declarations: [ClinicConfigurationComponent],
+  declarations: [ClinicConfigurationComponent, ProvinceComponent, ProvincesFormComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

@@ -13,6 +13,8 @@ export interface ISpecies extends Document {
   nom: string;
   ali: number;
   icon: string;
+  deleted: boolean;
+  active: boolean;
 }
 
 export class Species {
@@ -30,6 +32,12 @@ export class Species {
 
   @ApiProperty()
   icon: string;
+
+  @ApiProperty()
+  deleted: boolean;
+
+  @ApiProperty()
+  active: boolean;
 }
 
 // Creacion de clase sexo a traves de la interfaz
@@ -39,4 +47,6 @@ export const SpeciesSchema = new Schema<ISpecies>({
   nom: { type: String, required: true },
   ali: { type: Number, required: true },
   icon: { type: String, required: false },
+  deleted: { type: Boolean, required: false, default: false },
+  active: { type: Boolean, required: false, default: true },
 });

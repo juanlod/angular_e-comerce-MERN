@@ -6,4 +6,6 @@ export class Province {
   id: number;
   nom: string;
   ran: number;
+  deleted: boolean;
+  active: boolean;
 }

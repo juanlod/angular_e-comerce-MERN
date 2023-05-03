@@ -38,7 +38,8 @@ export class CoatController {
     type: Coat,
   })
   @ApiBadRequestResponse({ description: 'The request body is invalid.' })
-  create(@Body() coat: ICoat) {
+  @ApiBody({ type: Coat })
+  create(@Body() coat: Coat) {
     return this.coatService.create(coat);
   }
 

@@ -256,14 +256,37 @@
   "UNITY_TYPES.UPDATE.MESSAGE.OK": "Unit type updated successfully",
   "UNITY_TYPES.UPDATE.MESSAGE.ERROR": "An error occurred while updating the unit type",
 
-  "DELETE.CONFIRMATION_MESSAGE" : "Are you sure you want to delete the record?",
-  "DELETE.MESSAGE.OK" : "Record deleted successfully",
-  "DELETE.MESSAGE.ERROR" : "An error occurred while deleting the record",
+  "PROVINCE.LIST.TITLE": "Provinces",
+  "PROVINCE.LIST.TITLE.BREADCRUMB": "Provinces",
+  "PROVINCE.LIST.TABLE.NAME": "Name",
+  "PROVINCE.LIST.TABLE.PHONE_PREFIX": "Phone prefix",
+  "PROVINCE.LIST.TABLE.ACTIVE": "Active",
+  "PROVINCE.FORM.TITLE.NEW": "New province",
+  "PROVINCE.FORM.BREADCRUMB.NEW": "New province",
+  "PROVINCE.FORM.NAME": "Name",
+  "PROVINCE.FORM.PHONE_PREFIX": "Phone prefix",
+  "PROVINCE.FORM.NAME.MANDATORY": "Name is mandatory",
+  "PROVINCE.FORM.TITLE.EDIT": "Edit province",
+  "PROVINCE.FORM.BREADCRUMB.EDIT": "Edit province",
+  "PROVINCE.SAVE.MESSAGE.INFO": "Saving province...",
+  "PROVINCE.SAVE.MESSAGE.OK": "Province saved successfully",
+  "PROVINCE.SAVE.MESSAGE.ERROR": "An error occurred while saving the province",
+  "PROVINCE.UPDATE.MESSAGE.INFO": "Updating province...",
+  "PROVINCE.UPDATE.MESSAGE.OK": "Province updated successfully",
+  "PROVINCE.UPDATE.MESSAGE.ERROR": "An error occurred while updating the province",
+
+
+
+
+
+  "DELETE.CONFIRMATION_MESSAGE": "Are you sure you want to delete the record?",
+  "DELETE.MESSAGE.OK": "Record deleted successfully",
+  "DELETE.MESSAGE.ERROR": "An error occurred while deleting the record",
   "DELETE.CONFIRM_BUTTON": "Delete",
   "DELETE.CANCEL_BUTTON": "Cancel",
 
-  "ACTIVE.TEXT" : "Active",
-  "INACTIVE.TEXT" : "Inactive",
+  "ACTIVE.TEXT": "Active",
+  "INACTIVE.TEXT": "Inactive",
   "TABLE.ACTION": "Actions",
 
   "BUTTON.SAVE": "Save",
