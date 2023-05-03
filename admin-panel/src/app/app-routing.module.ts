@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminGuard } from './guards/admin.guard';
-import { InicioComponent } from './components/inicio/inicio.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteComponent } from './pages/clinic/clientes/cliente/cliente.component';
 import { ClienteFormComponent } from './pages/clinic/clientes/cliente-form/cliente-form.component';
@@ -10,16 +10,20 @@ import { ClientDetailComponent } from './pages/clinic/clientes/client-detail/cli
 import { PetFormComponent } from './pages/clinic/pets/pet-form/pet-form.component';
 import { PetDetailComponent } from './pages/clinic/pets/pet-detail/pet-detail.component';
 import { ProductosComponent } from './pages/inventario/productos-component/productos/productos.component';
-import { ProveedoresFormComponent } from './pages/inventario/proveedores-components/proveedores-form/proveedores-form.component';
-import { ProveedoresComponent } from './pages/inventario/proveedores-components/proveedores/proveedores.component';
+import { ProveedoresFormComponent } from './pages/configuration/store/store-providers/proveedores-form/proveedores-form.component';
+import { ProveedoresComponent } from './pages/configuration/store/store-providers/proveedores/proveedores.component';
 import { ProductosFormComponent } from './pages/inventario/productos-component/productos-form/productos-form.component';
 import { ProductosDetailComponent } from './pages/inventario/productos-component/productos-detail/productos-detail.component';
+import { ClinicConfigurationComponent } from './pages/configuration/clinic/clinic-configuration/clinic-configuration.component';
+import { StoreConfigurationComponent } from './pages/configuration/store/store-configuration/store-configuration.component';
+import { ProductTypesComponent } from './pages/configuration/store/product-types/product-types/product-types.component';
+import { UnityTypesComponent } from './pages/configuration/store/unity-types/unity-types/unity-types.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: 'dashboard',
-    component: InicioComponent,
+    component: HomeComponent,
     canActivate: [AdminGuard],
     data: {
       roles: ['admin'],
@@ -49,9 +53,16 @@ const routes: Routes = [
           { path: 'products/form', component: ProductosFormComponent },
           { path: 'products/form/:id', component: ProductosFormComponent },
           { path: 'products/detail/:id', component: ProductosDetailComponent },
-          { path: 'providers', component: ProveedoresComponent },
-          { path: 'providers/form', component: ProveedoresFormComponent },
-          { path: 'providers/form/:id', component: ProveedoresFormComponent},
+        ]
+      },
+      {
+        path: 'configuration',
+        children:[
+          { path: 'clinic', component: ClinicConfigurationComponent },
+          { path: 'store', component: StoreConfigurationComponent },
+          { path: 'store/providers', component: ProveedoresComponent },
+          { path: 'store/product_types', component: ProductTypesComponent },
+          { path: 'store/unity_types', component: UnityTypesComponent },
         ]
       }
     ],

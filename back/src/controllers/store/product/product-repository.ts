@@ -39,30 +39,22 @@ export function findAllPagingProducts(regex, offset, pageSize): any {
   ];
 }
 
-export function countValues(regex): any {
+export function countValues(): any {
   return [
     {
-      $lookup: {
-        localField: 'products.typeProductId',
-        from: 'product_types',
-        foreignField: 'id',
-        as: 'product_types',
-      },
-    },
-    {
-      $unwind: {
-        path: '$product_types',
-        preserveNullAndEmptyArrays: true,
-      },
-    },
-    {
       $match: {
-        name: regex,
+        id: {
+          $ne: null,
+        },
+        deleted: false,
       },
     },
     {
-      $project: {
-        product_types_docs: 0,
+      $group: {
+        _id: null,
+        length: {
+          $sum: 1,
+        },
       },
     },
   ];

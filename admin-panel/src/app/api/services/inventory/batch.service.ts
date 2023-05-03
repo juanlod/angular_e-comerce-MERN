@@ -94,7 +94,7 @@ export class BatchService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllBatch$Response(params?: {
+  private findAllBatch$Response(params?: {
   }): Observable<StrictHttpResponse<Array<Batch>>> {
 
     const rb = new RequestBuilder(this.rootUrl, BatchService.FindAllBatchPath, 'get');
@@ -145,7 +145,7 @@ export class BatchService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findOneBatch$Response(params: {
+  private findOneBatch$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<Batch>> {
 
@@ -199,7 +199,7 @@ export class BatchService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateBatch$Response(params: {
+  private updateBatch$Response(params: {
     id: string;
     body: Batch
   }): Observable<StrictHttpResponse<Batch>> {
@@ -256,7 +256,7 @@ export class BatchService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  removeBatch$Response(params: {
+  private removeBatch$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<void>> {
 
@@ -310,7 +310,7 @@ export class BatchService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllPagingBatch$Response(params?: {
+  private findAllPagingBatch$Response(params?: {
     filter?: string;
     page?: number;
     pageSize?: number;

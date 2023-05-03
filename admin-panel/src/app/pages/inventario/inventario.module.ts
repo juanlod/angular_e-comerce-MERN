@@ -4,7 +4,7 @@ import { ProductosComponent } from './productos-component/productos/productos.co
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ProveedoresFormComponent } from './proveedores-components/proveedores-form/proveedores-form.component';
+import { ProveedoresFormComponent } from '../configuration/store/store-providers/proveedores-form/proveedores-form.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { LoteComponent } from './productos-component/lote-form-component/lote-form-component';
 import { ProductosFormComponent } from './productos-component/productos-form/productos-form.component';
@@ -15,7 +15,7 @@ import { NgZorroModule } from 'src/app/ng-zorro.module';
 import { TranslationModule } from 'src/app/translation.module';
 import { ToastrModule } from 'ngx-toastr';
 import { ProductosDetailComponent } from './productos-component/productos-detail/productos-detail.component';
-import { ProveedoresComponent } from './proveedores-components/proveedores/proveedores.component';
+import { ProveedoresComponent } from '../configuration/store/store-providers/proveedores/proveedores.component';
 
 @NgModule({
   declarations: [

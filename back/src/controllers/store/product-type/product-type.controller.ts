@@ -82,7 +82,7 @@ export class ProductTypeController {
   @Patch('update/:id')
   @ApiBody({ type: ProductType })
   update(@Param('id') id: string, @Body() productType: ProductType) {
-    return this.productTypeService.update(+id, productType);
+    return this.productTypeService.update(id, productType);
   }
 
   @ApiOperation({

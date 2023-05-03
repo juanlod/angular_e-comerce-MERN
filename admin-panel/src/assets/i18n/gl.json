@@ -4,7 +4,9 @@
   "SIDEBAR.CLINIC.CLIENTS.TITLE": "Clientes e mascotas",
   "SIDEBAR.INVENTORY.TITLE": "Inventario",
   "SIDEBAR.INVENTORY.PRODUCTS.TITLE": "Produtos",
+  "SIDEBAR.INVENTORY.PROVIDERS.TITLE": "Proveedores",
   "SIDEBAR.CONFIGURATION.TITLE": "Configuración",
+  "SIDEBAR.CONFIGURATION.PRODUCT_TYPE.TITLE": "Tipos de produtos",
 
   "CLIENTS.ROUTE": "Clientes",
   "CLIENTS.LIST.TITLE": "Listado de clientes e mascotas",
@@ -143,6 +145,8 @@
 
   "BATCH.FORM.TITLE.NEW": "Novo lote",
   "BATCH.FORM.BREADCRUMB.NEW": "Novo lote",
+  "BATCH.FORM.TITLE.EDIT": "Editar lote",
+  "BATCH.FORM.BREADCRUMB.EDIT": "Editar lote",
   "BATCH.FORM.NUMBER": "Número de lote",
   "BATCH.FORM.NUMBER.MANDATORY": "O número de lote é obrigatorio",
   "BATCH.FORM.DELIVERY_NOTE": "Albarán",
@@ -181,5 +185,92 @@
   "PROVIDERS.FORM.PHONE_NUMBER": "Teléfono",
   "PROVIDERS.FORM.ADDRESS": "Enderezo",
 
-  "BUTTON.SAVE": "Gardar"
+  "PROVIDERS.SAVE.MESSAGE.INFO": "Gardando proveedor...",
+  "PROVIDERS.SAVE.MESSAGE.ERROR": "Ocorreu un erro ó gardar o proveedor",
+  "PROVIDERS.SAVE.MESSAGE.OK": "Proveedor gardado correctamente",
+
+  "PROVIDERS.UPDATE.MESSAGE.INFO": "Actualizando proveedor...",
+  "PROVIDERS.UPDATE.MESSAGE.ERROR": "Ocorreu un erro ó actualizar o proveedor",
+  "PROVIDERS.UPDATE.MESSAGE.OK": "Proveedor actualizado correctamente",
+
+  "CONFIGURATION.CLIENT": "Configuración relacionada co cliente",
+  "CONFIGURATION.CLIENT.PROVINCES": "Provincias",
+  "CONFIGURATION.CLIENT.PROVINCES.DESCRIPTION": "Sección de configuración de provincias dispoñibles na aplicación",
+  "CONFIGURATION.CLIENT.LOCALITIES": "Localidades",
+  "CONFIGURATION.CLIENT.LOCALITIES.DESCRIPTION": "Sección de configuración de localidades dispoñibles na aplicación",
+
+  "CONFIGURATION.PET": "Configuración relacionada cos pacientes",
+  "CONFIGURATION.PET.SPECIES": "Especies",
+  "CONFIGURATION.PET.SPECIES.DESCRIPTION": "Sección de configuración de especies dispoñibles na aplicación",
+  "CONFIGURATION.PET.RACE": "Razas",
+  "CONFIGURATION.PET.RACE.DESCRIPTION": "Sección de configuración de razas dispoñibles na aplicación",
+  "CONFIGURATION.PET.COAT": "Pelaxes",
+  "CONFIGURATION.PET.COAT.DESCRIPTION": "Sección de configuración de pelaxes dispoñibles na aplicación",
+  "CONFIGURATION.PET.SEX": "Sexos",
+  "CONFIGURATION.PET.SEX.DESCRIPTION": "Sección de configuración de sexos dispoñibles na aplicación",
+
+  "CONFIGURATION.INVENTORY": "Configuración relacionada co inventario",
+  "CONFIGURATION.INVENTORY.PROVIDERS": "Proveedores",
+  "CONFIGURATION.INVENTORY.PROVIDERS.DESCRIPTION": "Sección de configuración de proveedores dispoñibles na aplicación",
+  "CONFIGURATION.INVENTORY.PRODUCT_TYPE": "Tipos de produtos",
+  "CONFIGURATION.INVENTORY.PRODUCT_TYPE.DESCRIPTION": "Sección de configuración de tipos de produtos dispoñibles na aplicación",
+  "CONFIGURATION.INVENTORY.UNITY_TYPE": "Tipos de unidades dos produtos",
+  "CONFIGURATION.INVENTORY.UNITY_TYPE.DESCRIPTION": "Sección de configuración de tipos de unidades dos produtos dispoñibles na aplicación",
+
+  "PRODUCT_TYPE.LIST.TITLE": "Tipos de produtos",
+  "PRODUCT_TYPE.LIST.TITLE.BREADCRUMB": "Tipos de produtos",
+  "PRODUCT_TYPE.LIST.TABLE.NAME": "Nome",
+  "PRODUCT_TYPE.LIST.TABLE.ICON": "Icono",
+  "PRODUCT_TYPE.LIST.TABLE.ACTIVE": "Activo",
+  "PRODUCT_TYPES.FORM.TITLE.NEW": "Novo tipo de produto",
+  "PRODUCT_TYPES.LIST.TITLE.BREADCRUMB": "Tipos de produtos",
+  "PRODUCT_TYPES.FORM.BREADCRUMB.NEW": "Novo tipo de produto",
+  "PRODUCT_TYPES.FORM.NAME" : "Nome",
+  "PRODUCT_TYPES.FORM.NAME.MANDATORY" : "O nome é obrigatorio",
+  "PRODUCT_TYPES.FORM.TITLE.EDIT" : "Editar produto",
+  "PRODUCT_TYPES.FORM.BREADCRUMB.EDIT" : "Editar produto",
+  "PRODUCT_TYPES.FORM.ICON" : "Icono",
+  "PRODUCT_TYPES.FORM.ICON.PREVIEW" : "Previsualización do icono",
+
+  "PRODUCT_TYPES.SAVE.MESSAGE.INFO": "Gardando tipo de produto...",
+  "PRODUCT_TYPES.SAVE.MESSAGE.OK": "Tipo de produto gardado correctamente",
+  "PRODUCT_TYPES.SAVE.MESSAGE.ERROR": "Ocorreu un erro ó gardar o tipo de produto",
+  "PRODUCT_TYPES.UPDATE.MESSAGE.INFO": "Actualizando tipo de produto...",
+  "PRODUCT_TYPES.UPDATE.MESSAGE.OK": "Tipo de produto actualizado correctamente",
+  "PRODUCT_TYPES.UPDATE.MESSAGE.ERROR": "Ocorreu un erro ó actualizar o tipo de produto",
+
+  "UNITY_TYPES.LIST.TITLE" : "Tipos de unidades",
+  "UNITY_TYPES.LIST.TITLE.BREADCRUMB" : "Tipos de unidades",
+  "UNITY_TYPES.LIST.TABLE.NAME" : "Nome",
+  "UNITY_TYPES.LIST.TABLE.ACTIVE": "Activo",
+  "UNITY_TYPES.FORM.TITLE.NEW": "Nova unidade",
+  "UNITY_TYPES.FORM.BREADCRUMB.NEW": "Nova unidade",
+  "UNITY_TYPES.FORM.NAME": "Nome",
+  "UNITY_TYPES.FORM.NAME.MANDATORY": "O nome é obrigatorio",
+  "UNITY_TYPES.FORM.TITLE.EDIT": "Editar unidade",
+  "UNITY_TYPES.FORM.BREADCRUMB.EDIT": "Editar unidade",
+
+  "UNITY_TYPES.SAVE.MESSAGE.INFO": "Gardando tipo de unidade...",
+  "UNITY_TYPES.SAVE.MESSAGE.OK": "Tipo de unidade gardado correctamente",
+  "UNITY_TYPES.SAVE.MESSAGE.ERROR": "Ocorreu un erro ó gardar o tipo de unidade",
+  "UNITY_TYPES.UPDATE.MESSAGE.INFO": "Actualizando tipo de unidade...",
+  "UNITY_TYPES.UPDATE.MESSAGE.OK": "Tipo de unidade actualizado correctamente",
+  "UNITY_TYPES.UPDATE.MESSAGE.ERROR": "Ocorreu un erro ó actualizar o tipo de unidade",
+
+
+
+  "DELETE.CONFIRMATION_MESSAGE" : "¿Está seguro que desexa eliminar o rexistro?",
+  "DELETE.MESSAGE.OK" : "Rexistro eliminado correctamente",
+  "DELETE.MESSAGE.ERROR" : "Ocorreu un erro o eliminar o rexistro",
+  "DELETE.CONFIRM_BUTTON": "Eliminar",
+  "DELETE.CANCEL_BUTTON": "Cancelar",
+
+  "TABLE.ACTION": "Accións",
+
+  "ACTIVE.TEXT" : "Activo",
+  "INACTIVE.TEXT" : "Inactivo",
+
+  "BUTTON.SAVE": "Gardar",
+  "BUTTON.GO": "Ir"
+
 }

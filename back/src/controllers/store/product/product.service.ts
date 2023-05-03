@@ -72,13 +72,13 @@ export class ProductService {
       findAllPagingProducts(regex, offset, pageSize),
     );
 
-    const count_values = await this.productModel.aggregate(countValues(regex));
+    const count_values = await this.productModel.aggregate(countValues());
 
     return {
       data: results,
       pagina_actual: page,
-      total_paginas: Math.ceil(count_values.length / +pageSize),
-      total_resultados: count_values.length,
+      total_paginas: Math.ceil(count_values[0]?.length / +pageSize),
+      total_resultados: count_values[0]?.length,
     };
   }
 }

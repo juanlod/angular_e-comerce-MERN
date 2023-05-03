@@ -26,7 +26,7 @@ export class StoreProviderService {
   }
 
   findAll() {
-    return this.storeProviderModel.find();
+    return this.storeProviderModel.find({ deleted: false });
   }
 
   findOne(id: string): Promise<StoreProvider> {
@@ -60,20 +60,17 @@ export class StoreProviderService {
     }
 
     // Get and count the results
-    // Get and count the results
     const results = await this.storeProviderModel.aggregate(
       findAllPaging(regex, offset, pageSize),
     );
 
-    const count_values = await this.storeProviderModel.aggregate(
-      countValues(regex),
-    );
+    const count_values = await this.storeProviderModel.aggregate(countValues());
 
     return {
       data: results,
       pagina_actual: page,
-      total_paginas: Math.ceil(count_values.length / pageSize),
-      total_resultados: count_values.length,
+      total_paginas: Math.ceil(count_values[0]?.length / pageSize),
+      total_resultados: count_values[0]?.length,
     };
   }
 }

@@ -8,6 +8,7 @@ const Schema = mongoose.Schema;
 export interface IProductType {
   id: number;
   name: string;
+  icon: string;
   active: boolean;
   deleted: boolean;
 }
@@ -15,8 +16,9 @@ export interface IProductType {
 export const ProductTypeSchema = new Schema<IProductType>({
   id: { type: Number, required: true },
   name: { type: String, required: true },
-  active: { type: Boolean, required: true },
-  deleted: { type: Boolean, required: true },
+  icon: { type: String, required: false },
+  active: { type: Boolean, required: false, default: true },
+  deleted: { type: Boolean, required: false, default: false },
 });
 
 export class ProductType {
@@ -28,6 +30,9 @@ export class ProductType {
 
   @ApiProperty()
   name: string;
+
+  @ApiProperty()
+  icon: string;
 
   @ApiProperty()
   active: boolean;

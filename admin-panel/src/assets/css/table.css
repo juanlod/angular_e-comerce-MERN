@@ -42,3 +42,7 @@
 .clickable:hover {
   color: #44ADFF !important;
 }
+
+.delete-icon {
+  font-size: 18px;
+}

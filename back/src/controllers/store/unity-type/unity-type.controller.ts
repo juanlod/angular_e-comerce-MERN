@@ -82,7 +82,7 @@ export class UnityTypeController {
   @Patch('update/:id')
   @ApiBody({ type: UnityType })
   update(@Param('id') id: string, @Body() unityType: UnityType) {
-    return this.unityTypeService.update(+id, unityType);
+    return this.unityTypeService.update(id, unityType);
   }
 
   @ApiOperation({

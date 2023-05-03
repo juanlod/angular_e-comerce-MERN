@@ -96,25 +96,4 @@ export class BatchController {
   remove(@Param('id') id: string) {
     return this.batchService.remove(+id);
   }
-
-  @Get('find_all/paging')
-  @ApiOperation({
-    summary: 'Get all batchs with pagination',
-    operationId: 'findAllPagingBatch',
-  })
-  @ApiQuery({ name: 'filter', required: false })
-  @ApiQuery({ name: 'page', required: false })
-  @ApiQuery({ name: 'pageSize', required: false })
-  @ApiResponse({
-    status: 200,
-    description: 'Return all batchs paginated.',
-    type: [Batch],
-  })
-  findAllPaging(
-    @Query('filter') filter?: string,
-    @Query('page') page?: number,
-    @Query('pageSize') pageSize?: number,
-  ) {
-    return this.batchService.findAllPaging(filter, page, pageSize);
-  }
 }

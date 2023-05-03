@@ -37,7 +37,7 @@ export class StoreProviderService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createStoreProvider$Response(params: {
+  private createStoreProvider$Response(params: {
     body: StoreProvider
   }): Observable<StrictHttpResponse<StoreProvider>> {
 
@@ -91,7 +91,7 @@ export class StoreProviderService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllStoreProvider$Response(params?: {
+  private findAllStoreProvider$Response(params?: {
   }): Observable<StrictHttpResponse<Array<StoreProvider>>> {
 
     const rb = new RequestBuilder(this.rootUrl, StoreProviderService.FindAllStoreProviderPath, 'get');
@@ -142,7 +142,7 @@ export class StoreProviderService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findOneStoreProvider$Response(params: {
+  private findOneStoreProvider$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<StoreProvider>> {
 
@@ -196,7 +196,7 @@ export class StoreProviderService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateStoreProvider$Response(params: {
+  private updateStoreProvider$Response(params: {
     id: string;
     body: StoreProvider
   }): Observable<StrictHttpResponse<StoreProvider>> {
@@ -307,7 +307,7 @@ export class StoreProviderService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllPagingStoreProvider$Response(params?: {
+  private findAllPagingStoreProvider$Response(params?: {
     filter?: string;
     page?: number;
     pageSize?: number;

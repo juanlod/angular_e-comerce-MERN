@@ -4,7 +4,9 @@
   "SIDEBAR.CLINIC.CLIENTS.TITLE": "Clientes y mascotas",
   "SIDEBAR.INVENTORY.TITLE": "Inventario",
   "SIDEBAR.INVENTORY.PRODUCTS.TITLE": "Productos",
+  "SIDEBAR.INVENTORY.PROVIDERS.TITLE": "Proveedores",
   "SIDEBAR.CONFIGURATION.TITLE": "Configuración",
+  "SIDEBAR.CONFIGURATION.PRODUCT_TYPE.TITLE": "Tipos de productos",
 
   "CLIENTS.ROUTE": "Clientes",
   "CLIENTS.LIST.TITLE": "Listado de clientes y mascotas",
@@ -48,14 +50,13 @@
   "CLIENT.DETAIL.PET.LEGEND": "Mascotas",
   "CLIENT.DETAIL.DEBT.LEGEND": "Deudas",
 
-  "CLIENT.SAVE.MESSAGE.OK" : "Cliente guardado correctamente",
-  "CLIENT.SAVE.MESSAGE.INFO" : "Guardando cliente...",
-  "CLIENT.SAVE.MESSAGE.ERROR" : "Ha sucedido un error al guardar el cliente",
+  "CLIENT.SAVE.MESSAGE.OK": "Cliente guardado correctamente",
+  "CLIENT.SAVE.MESSAGE.INFO": "Guardando cliente...",
+  "CLIENT.SAVE.MESSAGE.ERROR": "Ha sucedido un error al guardar el cliente",
 
-  "CLIENT.UPDATE.MESSAGE.OK" : "Cliente actualizado correctamente",
-  "CLIENT.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
-  "CLIENT.UPDATE.MESSAGE.ERROR" : "Ha sucedido un error al actualizar el cliente",
-
+  "CLIENT.UPDATE.MESSAGE.OK": "Cliente actualizado correctamente",
+  "CLIENT.UPDATE.MESSAGE.INFO": "Actualizando cliente...",
+  "CLIENT.UPDATE.MESSAGE.ERROR": "Ha sucedido un error al actualizar el cliente",
 
   "PET.FORM.TITLE.NEW": "Nuevo paciente",
   "PET.FORM.BREADCRUMB.NEW": "Nuevo paciente",
@@ -96,15 +97,13 @@
   "PET.DETAIL.HOSPITALIZATION": "Hospitalización",
   "PET.DETAIL.ALERTS": "Alertas",
 
+  "PET.SAVE.MESSAGE.OK": "Paciente guardado correctamente",
+  "PET.SAVE.MESSAGE.INFO": "Guardando paciente...",
+  "PET.SAVE.MESSAGE.ERROR": "Ha sucedido un error al guardar el paciente",
 
-  "PET.SAVE.MESSAGE.OK" : "Paciente guardado correctamente",
-  "PET.SAVE.MESSAGE.INFO" : "Guardando paciente...",
-  "PET.SAVE.MESSAGE.ERROR" : "Ha sucedido un error al guardar el paciente",
-
-  "PET.UPDATE.MESSAGE.OK" : "Paciente actualizado correctamente",
-  "PET.UPDATE.MESSAGE.INFO" : "Actualizando cliente...",
-  "PET.UPDATE.MESSAGE.ERROR" : "Ha sucedido un error al actualizar el paciente",
-
+  "PET.UPDATE.MESSAGE.OK": "Paciente actualizado correctamente",
+  "PET.UPDATE.MESSAGE.INFO": "Actualizando cliente...",
+  "PET.UPDATE.MESSAGE.ERROR": "Ha sucedido un error al actualizar el paciente",
 
   "PRODUCTS.LIST.TITLE": "Listado de productos",
   "PRODUCTS.LIST.TITLE.BREADCRUMB": "Listado de productos",
@@ -136,7 +135,6 @@
   "PRODUCTS.UPDATE.MESSAGE.INFO": "Actualizando producto...",
   "PRODUCTS.UPDATE.MESSAGE.ERROR": "Ha sucedido un error al actualizar el producto",
 
-
   "PRODUCTS.DETAIL.TITLE": "Ficha del producto",
   "PRODUCTS.DETAIL.BREADCRUMB": "Ficha del producto",
   "PRODUCTS.DETAIL.NAME": "Nombre",
@@ -148,6 +146,8 @@
 
   "BATCH.FORM.TITLE.NEW": "Nuevo lote",
   "BATCH.FORM.BREADCRUMB.NEW": "Nuevo lote",
+  "BATCH.FORM.TITLE.EDIT": "Editar lote",
+  "BATCH.FORM.BREADCRUMB.EDIT": "Editar lote",
   "BATCH.FORM.NUMBER": "Número de lote",
   "BATCH.FORM.NUMBER.MANDATORY": "El número de lote es obligatorio",
   "BATCH.FORM.DELIVERY_NOTE": "Albarán",
@@ -164,5 +164,103 @@
   "BATCH.LIST.TABLE.TOTAL_QUANTITY": "Cantidad disponible",
   "BATCH.LIST.TABLE.OBSERVATIONS": "Observaciones",
 
-  "BUTTON.SAVE" : "Guardar"
+  "PROVIDERS.LIST.TITLE": "Listado de proveedores",
+  "PROVIDERS.LIST.TITLE.BREADCRUMB": "Listado de proveedores",
+  "PROVIDERS.LIST.TABLE.NAME": "Nombre",
+  "PROVIDERS.LIST.TABLE.ADDRESS": "Dirección",
+  "PROVIDERS.LIST.TABLE.PHONE": "Teléfono",
+
+  "PROVIDERS.FORM.TITLE.NEW": "Nuevo proveedor",
+  "PROVIDERS.FORM.BREADCRUMB.NEW": "Nuevo proveedor",
+  "PROVIDERS.FORM.NAME": "Nome",
+  "PROVIDERS.FORM.TITLE.EDIT": "Editar proveedor",
+  "PROVIDERS.FORM.BREADCRUMB.EDIT": "Editar proveedor",
+  "PROVIDERS.FORM.NAME.MANDATORY": "El nombre es obligatorio",
+  "PROVIDERS.FORM.PHONE_NUMBER": "Teléfono",
+  "PROVIDERS.FORM.ADDRESS": "Dirección",
+
+  "PROVIDERS.SAVE.MESSAGE.INFO": "Guardando proveedor...",
+  "PROVIDERS.SAVE.MESSAGE.ERROR": "Ha sucedido un error al guardar el proveedor",
+  "PROVIDERS.SAVE.MESSAGE.OK": "Proveedor guardado correctamente",
+
+  "PROVIDERS.UPDATE.MESSAGE.INFO": "Actualizando proveedor...",
+  "PROVIDERS.UPDATE.MESSAGE.ERROR": "Ha sucedido un error al actualizar el proveedor",
+  "PROVIDERS.UPDATE.MESSAGE.OK": "Proveedor actualizado correctamente",
+
+  "CONFIGURATION.CLIENT": "Configuración relacionada con el cliente",
+  "CONFIGURATION.CLIENT.PROVINCES": "Provincias",
+  "CONFIGURATION.CLIENT.PROVINCES.DESCRIPTION": "Sección de configuración de provincias disponibles en la aplicación",
+  "CONFIGURATION.CLIENT.LOCALITIES": "Localidades",
+  "CONFIGURATION.CLIENT.LOCALITIES.DESCRIPTION": "Sección de configuración de localidades disponibles en la aplicación",
+
+  "CONFIGURATION.PET": "Configuración relacionada con los pacientes",
+  "CONFIGURATION.PET.SPECIES": "Especies",
+  "CONFIGURATION.PET.SPECIES.DESCRIPTION": "Sección de configuración de especies disponibles en la aplicación",
+  "CONFIGURATION.PET.RACE": "Razas",
+  "CONFIGURATION.PET.RACE.DESCRIPTION": "Sección de configuración de razas disponibles en la aplicación",
+  "CONFIGURATION.PET.COAT": "Pelajes",
+  "CONFIGURATION.PET.COAT.DESCRIPTION": "Sección de configuración de pelajes disponibles en la aplicación",
+  "CONFIGURATION.PET.SEX": "Sexos",
+  "CONFIGURATION.PET.SEX.DESCRIPTION": "Sección de configuración de sexos disponibles en la aplicación",
+
+  "CONFIGURATION.INVENTORY": "Configuración relacionada con el inventario",
+  "CONFIGURATION.INVENTORY.PROVIDERS": "Proveedores",
+  "CONFIGURATION.INVENTORY.PROVIDERS.DESCRIPTION": "Sección de configuración de proveedores disponibles en la aplicación",
+  "CONFIGURATION.INVENTORY.PRODUCT_TYPE": "Tipos de productos",
+  "CONFIGURATION.INVENTORY.PRODUCT_TYPE.DESCRIPTION": "Sección de configuración de tipos de productos disponibles en la aplicación",
+  "CONFIGURATION.INVENTORY.UNITY_TYPE": "Unidades dos productos",
+  "CONFIGURATION.INVENTORY.UNITY_TYPE.DESCRIPTION": "Sección de configuración de unidades dos productos disponibles en la aplicación",
+
+  "PRODUCT_TYPE.LIST.TITLE": "Tipos de productos",
+  "PRODUCT_TYPE.LIST.TITLE.BREADCRUMB": "Tipos de productos",
+  "PRODUCT_TYPE.LIST.TABLE.NAME": "Nome",
+  "PRODUCT_TYPE.LIST.TABLE.ICON": "Icono",
+  "PRODUCT_TYPE.LIST.TABLE.ACTIVE": "Activo",
+  "PRODUCT_TYPES.FORM.TITLE.NEW": "Novo tipo de producto",
+  "PRODUCT_TYPES.LIST.TITLE.BREADCRUMB": "Tipos de productos",
+  "PRODUCT_TYPES.FORM.BREADCRUMB.NEW": "Novo tipo de producto",
+  "PRODUCT_TYPES.FORM.NAME": "Nome",
+  "PRODUCT_TYPES.FORM.NAME.MANDATORY": "El nombre é obrigatorio",
+  "PRODUCT_TYPES.FORM.TITLE.EDIT": "Editar producto",
+  "PRODUCT_TYPES.FORM.BREADCRUMB.EDIT": "Editar producto",
+  "PRODUCT_TYPES.FORM.ICON": "Icono",
+  "PRODUCT_TYPES.FORM.ICON.PREVIEW": "Previsualización do icono",
+
+  "PRODUCT_TYPES.SAVE.MESSAGE.INFO": "Guardando tipo de producto...",
+  "PRODUCT_TYPES.SAVE.MESSAGE.OK": "Tipo de producto guardado correctamente",
+  "PRODUCT_TYPES.SAVE.MESSAGE.ERROR": "Ha sucedido un error al guardar el tipo de producto",
+  "PRODUCT_TYPES.UPDATE.MESSAGE.INFO": "Actualizando tipo de producto...",
+  "PRODUCT_TYPES.UPDATE.MESSAGE.OK": "Tipo de producto actualizado correctamente",
+  "PRODUCT_TYPES.UPDATE.MESSAGE.ERROR": "Ha sucedido un error al actualizar el tipo de producto",
+
+  "UNITY_TYPES.LIST.TITLE": "Tipos de unidades",
+  "UNITY_TYPES.LIST.TITLE.BREADCRUMB": "Tipos de unidades",
+  "UNITY_TYPES.LIST.TABLE.NAME": "Nombre",
+  "UNITY_TYPES.LIST.TABLE.ACTIVE": "Activo",
+  "UNITY_TYPES.FORM.TITLE.NEW": "Nueva unidade",
+  "UNITY_TYPES.FORM.BREADCRUMB.NEW": "Nueva unidade",
+  "UNITY_TYPES.FORM.NAME": "Nombre",
+  "UNITY_TYPES.FORM.NAME.MANDATORY": "El nombre es obligatorio",
+  "UNITY_TYPES.FORM.TITLE.EDIT": "Editar unidad",
+  "UNITY_TYPES.FORM.BREADCRUMB.EDIT": "Editar unidad",
+
+  "UNITY_TYPES.SAVE.MESSAGE.INFO": "Guardando tipo de unidad...",
+  "UNITY_TYPES.SAVE.MESSAGE.OK": "Tipo de unidad guardado correctamente",
+  "UNITY_TYPES.SAVE.MESSAGE.ERROR": "Ha sucedido un error al guardar el tipo de unidad",
+  "UNITY_TYPES.UPDATE.MESSAGE.INFO": "Actualizando tipo de unidade...",
+  "UNITY_TYPES.UPDATE.MESSAGE.OK": "Tipo de unidad actualizado correctamente",
+  "UNITY_TYPES.UPDATE.MESSAGE.ERROR": "Ha sucedido un error al actualizar el tipo de unidad",
+
+  "DELETE.CONFIRMATION_MESSAGE": "¿Está seguro que desea eliminar el registro?",
+  "DELETE.MESSAGE.OK": "Registro eliminado correctamente",
+  "DELETE.MESSAGE.ERROR": "Ha sucedido un error al eliminar el registro",
+  "DELETE.CONFIRM_BUTTON": "Eliminar",
+  "DELETE.CANCEL_BUTTON": "Cancelar",
+
+  "ACTIVE.TEXT": "Activo",
+  "INACTIVE.TEXT": "Inactivo",
+  "TABLE.ACTION": "Acciones",
+
+  "BUTTON.SAVE": "Guardar",
+  "BUTTON.GO": "Ir"
 }

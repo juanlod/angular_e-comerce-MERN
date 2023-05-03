@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface ProductType {
+export class ProductType {
   _id: string;
   active: boolean;
   deleted: boolean;

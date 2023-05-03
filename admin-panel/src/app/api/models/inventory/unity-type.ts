@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface UnityType {
+export class UnityType {
   '_id': string;
   active: boolean;
   deleted: boolean;

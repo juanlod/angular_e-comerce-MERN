@@ -69,10 +69,12 @@ export class ProductosFormComponent implements OnInit {
    */
   async saveProduct(): Promise<void> {
     this.submitted = true;
-    this.notificationService.showInfo('PRODUCTS.UPDATE.MESSAGE.INFO');
+
     if (!this.product.name) {
       return;
     }
+
+    this.notificationService.showInfo('PRODUCTS.UPDATE.MESSAGE.INFO');
     const result = await lastValueFrom(
       this.productoService.createProduct({ body: this.product })
     ).catch((error) => {

@@ -36,7 +36,7 @@ export class ProductService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createProduct$Response(params: {
+  private createProduct$Response(params: {
     body: Product
   }): Observable<StrictHttpResponse<Product>> {
 
@@ -90,7 +90,7 @@ export class ProductService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllProduct$Response(params?: {
+  private findAllProduct$Response(params?: {
   }): Observable<StrictHttpResponse<Array<Product>>> {
 
     const rb = new RequestBuilder(this.rootUrl, ProductService.FindAllProductPath, 'get');
@@ -141,7 +141,7 @@ export class ProductService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findOneProduct$Response(params: {
+  private findOneProduct$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<Product>> {
 
@@ -195,7 +195,7 @@ export class ProductService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateProduct$Response(params: {
+  private updateProduct$Response(params: {
     id: string;
     body: Product
   }): Observable<StrictHttpResponse<Product>> {
@@ -252,7 +252,7 @@ export class ProductService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  removeProduct$Response(params: {
+  private removeProduct$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<void>> {
 
@@ -306,7 +306,7 @@ export class ProductService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllPagingProduct$Response(params?: {
+  private findAllPagingProduct$Response(params?: {
     filter?: string;
     page?: number;
     pageSize?: number;

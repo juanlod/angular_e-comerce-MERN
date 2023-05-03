@@ -4,6 +4,7 @@ export function findAllPaging(regex, offset, pageSize): any {
     {
       $match: {
         name: regex,
+        deleted: false,
       },
     },
     {
@@ -20,11 +21,22 @@ export function findAllPaging(regex, offset, pageSize): any {
   ];
 }
 
-export function countValues(regex): any {
+export function countValues(): any {
   return [
     {
       $match: {
-        name: regex,
+        id: {
+          $ne: null,
+        },
+        deleted: false,
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        length: {
+          $sum: 1,
+        },
       },
     },
   ];

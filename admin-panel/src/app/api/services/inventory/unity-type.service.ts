@@ -14,10 +14,7 @@ import { StrictHttpResponse } from '../../strict-http-response';
   providedIn: 'root',
 })
 export class UnityTypeService extends BaseService {
-  constructor(
-    config: ApiConfiguration,
-    http: HttpClient
-  ) {
+  constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
 
@@ -36,24 +33,31 @@ export class UnityTypeService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createUnityType$Response(params: {
-    body: UnityType
+  private createUnityType$Response(params: {
+    body: UnityType;
   }): Observable<StrictHttpResponse<UnityType>> {
-
-    const rb = new RequestBuilder(this.rootUrl, UnityTypeService.CreateUnityTypePath, 'post');
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      UnityTypeService.CreateUnityTypePath,
+      'post'
+    );
     if (params) {
       rb.body(params.body, 'application/json');
     }
 
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<UnityType>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<UnityType>;
+        })
+      );
   }
 
   /**
@@ -66,10 +70,7 @@ export class UnityTypeService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createUnityType(params: {
-    body: UnityType
-  }): Observable<UnityType> {
-
+  createUnityType(params: { body: UnityType }): Observable<UnityType> {
     return this.createUnityType$Response(params).pipe(
       map((r: StrictHttpResponse<UnityType>) => r.body as UnityType)
     );
@@ -90,22 +91,30 @@ export class UnityTypeService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllUnityType$Response(params?: {
-  }): Observable<StrictHttpResponse<Array<UnityType>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, UnityTypeService.FindAllUnityTypePath, 'get');
+  private findAllUnityType$Response(params?: {}): Observable<
+    StrictHttpResponse<Array<UnityType>>
+  > {
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      UnityTypeService.FindAllUnityTypePath,
+      'get'
+    );
     if (params) {
     }
 
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<UnityType>>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<Array<UnityType>>;
+        })
+      );
   }
 
   /**
@@ -118,11 +127,11 @@ export class UnityTypeService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllUnityType(params?: {
-  }): Observable<Array<UnityType>> {
-
+  findAllUnityType(params?: {}): Observable<Array<UnityType>> {
     return this.findAllUnityType$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<UnityType>>) => r.body as Array<UnityType>)
+      map(
+        (r: StrictHttpResponse<Array<UnityType>>) => r.body as Array<UnityType>
+      )
     );
   }
 
@@ -141,24 +150,31 @@ export class UnityTypeService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findOneUnityType$Response(params: {
+  private findOneUnityType$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<UnityType>> {
-
-    const rb = new RequestBuilder(this.rootUrl, UnityTypeService.FindOneUnityTypePath, 'get');
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      UnityTypeService.FindOneUnityTypePath,
+      'get'
+    );
     if (params) {
       rb.path('id', params.id, {});
     }
 
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<UnityType>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<UnityType>;
+        })
+      );
   }
 
   /**
@@ -171,10 +187,7 @@ export class UnityTypeService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findOneUnityType(params: {
-    id: string;
-  }): Observable<UnityType> {
-
+  findOneUnityType(params: { id: string }): Observable<UnityType> {
     return this.findOneUnityType$Response(params).pipe(
       map((r: StrictHttpResponse<UnityType>) => r.body as UnityType)
     );
@@ -195,26 +208,33 @@ export class UnityTypeService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateUnityType$Response(params: {
+  private updateUnityType$Response(params: {
     id: string;
-    body: UnityType
+    body: UnityType;
   }): Observable<StrictHttpResponse<UnityType>> {
-
-    const rb = new RequestBuilder(this.rootUrl, UnityTypeService.UpdateUnityTypePath, 'patch');
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      UnityTypeService.UpdateUnityTypePath,
+      'patch'
+    );
     if (params) {
       rb.path('id', params.id, {});
       rb.body(params.body, 'application/json');
     }
 
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<UnityType>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<UnityType>;
+        })
+      );
   }
 
   /**
@@ -229,9 +249,8 @@ export class UnityTypeService extends BaseService {
    */
   updateUnityType(params: {
     id: string;
-    body: UnityType
+    body: UnityType;
   }): Observable<UnityType> {
-
     return this.updateUnityType$Response(params).pipe(
       map((r: StrictHttpResponse<UnityType>) => r.body as UnityType)
     );
@@ -252,24 +271,33 @@ export class UnityTypeService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  removeUnityType$Response(params: {
+  private removeUnityType$Response(params: {
     id: string;
   }): Observable<StrictHttpResponse<void>> {
-
-    const rb = new RequestBuilder(this.rootUrl, UnityTypeService.RemoveUnityTypePath, 'delete');
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      UnityTypeService.RemoveUnityTypePath,
+      'delete'
+    );
     if (params) {
       rb.path('id', params.id, {});
     }
 
-    return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'text',
+          accept: '*/*',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return (r as HttpResponse<any>).clone({
+            body: undefined,
+          }) as StrictHttpResponse<void>;
+        })
+      );
   }
 
   /**
@@ -282,10 +310,7 @@ export class UnityTypeService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  removeUnityType(params: {
-    id: string;
-  }): Observable<void> {
-
+  removeUnityType(params: { id: string }): Observable<void> {
     return this.removeUnityType$Response(params).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
@@ -306,28 +331,35 @@ export class UnityTypeService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllPagingUnityType$Response(params?: {
+  private findAllPagingUnityType$Response(params?: {
     filter?: string;
     page?: number;
     pageSize?: number;
   }): Observable<StrictHttpResponse<Array<UnityType>>> {
-
-    const rb = new RequestBuilder(this.rootUrl, UnityTypeService.FindAllPagingUnityTypePath, 'get');
+    const rb = new RequestBuilder(
+      this.rootUrl,
+      UnityTypeService.FindAllPagingUnityTypePath,
+      'get'
+    );
     if (params) {
       rb.query('filter', params.filter, {});
       rb.query('page', params.page, {});
       rb.query('pageSize', params.pageSize, {});
     }
 
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Array<UnityType>>;
-      })
-    );
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<Array<UnityType>>;
+        })
+      );
   }
 
   /**
@@ -345,10 +377,10 @@ export class UnityTypeService extends BaseService {
     page?: number;
     pageSize?: number;
   }): Observable<Array<UnityType>> {
-
     return this.findAllPagingUnityType$Response(params).pipe(
-      map((r: StrictHttpResponse<Array<UnityType>>) => r.body as Array<UnityType>)
+      map(
+        (r: StrictHttpResponse<Array<UnityType>>) => r.body as Array<UnityType>
+      )
     );
   }
-
 }

@@ -11,8 +11,8 @@ export interface IStoreProvider extends Document {
   id: number;
   address: string;
   name: string;
-  active: number;
-  deleted: number;
+  active: boolean;
+  deleted: boolean;
   phone_number: string;
 }
 
@@ -44,7 +44,7 @@ export const StoreProviderSchema = new Schema<IStoreProvider>({
   id: { type: Number, required: true },
   address: { type: String, required: false },
   name: { type: String, required: false },
-  active: { type: Number, required: false },
-  deleted: { type: Number, required: false },
+  active: { type: Boolean, required: false, default: true },
+  deleted: { type: Boolean, required: false, default: false },
   phone_number: { type: String, required: false },
 });

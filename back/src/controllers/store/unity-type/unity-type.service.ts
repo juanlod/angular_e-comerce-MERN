@@ -1,6 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { IUnityType, UnityType } from 'src/mongodb/schemas/store/unity-type';
+import {
+  countValues,
+  findAllPaging,
+  getLastByIdPipeline,
+} from './unity-type-repository';
 
 @Injectable()
 export class UnityTypeService {
@@ -10,18 +15,22 @@ export class UnityTypeService {
   ) {}
 
   async create(unityType: UnityType): Promise<any> {
+    const id = (
+      await this.unityTypeModel.aggregate(getLastByIdPipeline()).exec()
+    )[0].id;
+    unityType.id = id ? id + 1 : 1;
     return await this.unityTypeModel.create(unityType);
   }
 
   findAll() {
-    return this.unityTypeModel.find();
+    return this.unityTypeModel.find({ deleted: false });
   }
 
   findOne(id: string): Promise<UnityType> {
     return this.unityTypeModel.findOne({ _id: id });
   }
 
-  async update(id: number, unityType: UnityType) {
+  async update(id: string, unityType: UnityType) {
     const filter = { _id: id };
     const updateData = { $set: unityType };
     return await this.unityTypeModel.updateOne(filter, updateData);
@@ -48,15 +57,19 @@ export class UnityTypeService {
     }
 
     // Get and count the results
-    const results = [];
+    const results = await this.unityTypeModel.aggregate(
+      findAllPaging(regex, offset, pageSize),
+    );
 
-    const count_values = [];
+    const count_values = (await this.unityTypeModel.aggregate(
+      countValues(),
+    )) as any;
 
     return {
       data: results,
       pagina_actual: page,
-      total_paginas: Math.ceil(count_values.length / pageSize),
-      total_resultados: count_values.length,
+      total_paginas: Math.ceil(count_values[0]?.length / pageSize),
+      total_resultados: count_values[0]?.length,
     };
   }
 }

@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-
 /**
  * Interfaz de sexo. Necesario para implementacion
  */
@@ -12,8 +11,8 @@ export interface IUnityType extends Document {
   _id: string;
   id: number;
   name: string;
-  deleted: number;
-  active: number;
+  deleted: boolean;
+  active: boolean;
 }
 
 export class UnityType {
@@ -37,6 +36,6 @@ export class UnityType {
 export const UnityTypeSchema = new Schema<IUnityType>({
   id: { type: Number, required: true },
   name: { type: String, required: true },
-  deleted: { type: Number, required: true },
-  active: { type: Number, required: true },
+  deleted: { type: Boolean, required: false, default: false },
+  active: { type: Boolean, required: false, default: true },
 });
