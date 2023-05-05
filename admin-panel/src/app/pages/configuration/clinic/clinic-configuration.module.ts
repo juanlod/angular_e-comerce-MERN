@@ -11,11 +11,33 @@ import { NgZorroModule } from 'src/app/ng-zorro.module';
 import { TranslationModule } from 'src/app/translation.module';
 import { ProvinceComponent } from './provinces/provinces/provinces.component';
 import { ProvincesFormComponent } from './provinces/provinces-form/provinces-form.component';
-
-
+import { LocalityFormComponent } from './localities/localities-form/localities-form.component';
+import { LocalityComponent } from './localities/localities/localities.component';
+import { RacesFormComponent } from './races/races-form/races-form.component';
+import { RaceComponent } from './races/races/races.component';
+import { SpeciesFormComponent } from './species/species-form/species-form.component';
+import { SpeciesComponent } from './species/species/species.component';
+import { CoatComponent } from './coats/coats/coats.component';
+import { CoatsFormComponent } from './coats/coats-form/coats-form.component';
+import { SexComponent } from './sexes/sexes/sexes.component';
+import { SexFormComponent } from './sexes/coats-form/sexes-form.component';
 
 @NgModule({
-  declarations: [ClinicConfigurationComponent, ProvinceComponent, ProvincesFormComponent],
+  declarations: [
+    ClinicConfigurationComponent,
+    ProvinceComponent,
+    ProvincesFormComponent,
+    LocalityFormComponent,
+    LocalityComponent,
+    SpeciesComponent,
+    SpeciesFormComponent,
+    RaceComponent,
+    RacesFormComponent,
+    CoatComponent,
+    CoatsFormComponent,
+    SexComponent,
+    SexFormComponent
+  ],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -27,7 +49,7 @@ import { ProvincesFormComponent } from './provinces/provinces-form/provinces-for
     TranslationModule,
     AppRoutingModule,
     FontAwesomeModule,
-    ToastrModule
-  ]
+    ToastrModule,
+  ],
 })
-export class ClinicConfigurationModule { }
+export class ClinicConfigurationModule {}

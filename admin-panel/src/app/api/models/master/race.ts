@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface Race {
+export class Race {
   '_id': string;
   des: string;
   esp: number;

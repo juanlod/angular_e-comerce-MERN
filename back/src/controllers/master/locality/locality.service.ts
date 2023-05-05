@@ -1,7 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ILocality, Locality } from 'src/mongodb/schemas/master/locality';
-import { countValues, findAllPaging } from './locality-repository';
+import {
+  countValues,
+  findAllPaging,
+  getLastByIdPipeline,
+} from './locality-repository';
 
 @Injectable()
 export class LocalityService {
@@ -11,6 +15,10 @@ export class LocalityService {
   ) {}
 
   async create(locality: Locality): Promise<any> {
+    const id = (
+      await this.localityModel.aggregate(getLastByIdPipeline()).exec()
+    )[0].id;
+    locality.id = id ? id + 1 : 1;
     return await this.localityModel.create(locality);
   }
 

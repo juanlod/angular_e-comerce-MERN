@@ -1,7 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ICoat, Coat } from 'src/mongodb/schemas/master/coat';
-import { countValues, findAllPaging } from './coat-repository';
+import {
+  countValues,
+  findAllPaging,
+  getLastByIdPipeline,
+} from './coat-repository';
 
 @Injectable()
 export class CoatService {
@@ -11,6 +15,9 @@ export class CoatService {
   ) {}
 
   async create(coat: Coat): Promise<any> {
+    const id = (await this.coatModel.aggregate(getLastByIdPipeline()).exec())[0]
+      .id;
+    coat.id = id ? id + 1 : 1;
     return await this.coatModel.create(coat);
   }
 
@@ -22,7 +29,7 @@ export class CoatService {
     return await this.coatModel.findOne({ _id: id });
   }
 
-  async update(id: number, coat: Coat) {
+  async update(id: string, coat: Coat) {
     const filter = { _id: id };
     const updateData = { $set: coat };
     return await this.coatModel.updateOne(filter, updateData);

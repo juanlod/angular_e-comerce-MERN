@@ -35,13 +35,15 @@ export class SexService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createSex()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createSex$Response(params?: {
+  createSex$Response(params: {
+    body: Sex
   }): Observable<StrictHttpResponse<Sex>> {
 
     const rb = new RequestBuilder(this.rootUrl, SexService.CreateSexPath, 'post');
     if (params) {
+      rb.body(params.body, 'application/json');
     }
 
     return this.http.request(rb.build({
@@ -63,9 +65,10 @@ export class SexService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createSex$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createSex(params?: {
+  createSex(params: {
+    body: Sex
   }): Observable<Sex> {
 
     return this.createSex$Response(params).pipe(

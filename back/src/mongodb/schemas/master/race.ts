@@ -3,14 +3,9 @@ import { ApiProperty } from '@nestjs/swagger';
 import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
-// 0 - NULL
-// 1 - MACHO
-// 2 - HEMBRA
-// 3 - MACHO CASTRADO
-// 4 - HEMBRA CASTRADA
 
 /**
- * Interfaz de sexo. Necesario para implementacion
+ * Interfaz. Necesario para implementacion
  */
 export interface IRace extends Document {
   _id: string;
@@ -31,16 +26,16 @@ export class Race {
   @ApiProperty()
   id: number;
 
-  @ApiProperty()
+  @ApiProperty({ description: 'Name' })
   nom: string;
 
   @ApiProperty()
   esp: number;
 
-  @ApiProperty()
+  @ApiProperty({ description: 'Origin' })
   ori: string;
 
-  @ApiProperty()
+  @ApiProperty({ description: 'Description' })
   des: string;
 
   @ApiProperty()

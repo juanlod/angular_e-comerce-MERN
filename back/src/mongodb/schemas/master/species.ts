@@ -42,10 +42,9 @@ export class Species {
 
 // Creacion de clase sexo a traves de la interfaz
 export const SpeciesSchema = new Schema<ISpecies>({
-  _id: { type: String, required: true },
   id: { type: Number, required: true },
   nom: { type: String, required: true },
-  ali: { type: Number, required: true },
+  ali: { type: Number, required: false },
   icon: { type: String, required: false },
   deleted: { type: Boolean, required: false, default: false },
   active: { type: Boolean, required: false, default: true },

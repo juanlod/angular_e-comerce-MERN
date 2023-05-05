@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface Sex {
+export class Sex {
   '_id': string;
   ids: number;
   value: string;

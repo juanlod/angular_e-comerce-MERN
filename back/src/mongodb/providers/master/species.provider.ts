@@ -1,11 +1,11 @@
 import mongoose, { Connection } from 'mongoose';
-import { SexSchema } from 'src/mongodb/schemas/master/sex';
+import { SpeciesSchema } from 'src/mongodb/schemas/master/species';
 
 export const speciesProviders = [
   {
     provide: 'SPECIES_MODEL',
     useFactory: (connection: Connection) =>
-      connection.model('species', SexSchema),
+      connection.model('species', SpeciesSchema),
     inject: ['DATABASE_CONNECTION'],
   },
 ];

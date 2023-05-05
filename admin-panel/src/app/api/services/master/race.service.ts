@@ -35,13 +35,15 @@ export class RaceService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `createRace()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createRace$Response(params?: {
+  private createRace$Response(params: {
+    body: Race
   }): Observable<StrictHttpResponse<Race>> {
 
     const rb = new RequestBuilder(this.rootUrl, RaceService.CreateRacePath, 'post');
     if (params) {
+      rb.body(params.body, 'application/json');
     }
 
     return this.http.request(rb.build({
@@ -63,9 +65,10 @@ export class RaceService extends BaseService {
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `createRace$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createRace(params?: {
+  createRace(params: {
+    body: Race
   }): Observable<Race> {
 
     return this.createRace$Response(params).pipe(

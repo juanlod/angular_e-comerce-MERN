@@ -1,7 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ISpecies, Species } from 'src/mongodb/schemas/master/species';
-import { countValues, findAllPaging } from './species-repository';
+import {
+  countValues,
+  findAllPaging,
+  getLastByIdPipeline,
+} from './species-repository';
 
 @Injectable()
 export class SpeciesService {
@@ -11,6 +15,10 @@ export class SpeciesService {
   ) {}
 
   async create(species: Species): Promise<Species> {
+    const id = (
+      await this.speciesModel.aggregate(getLastByIdPipeline()).exec()
+    )[0].id;
+    species.id = id ? id + 1 : 1;
     return await this.speciesModel.create(species);
   }
 

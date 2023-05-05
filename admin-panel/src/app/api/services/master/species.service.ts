@@ -21,57 +21,59 @@ export class SpeciesService extends BaseService {
   ) {
     super(config, http);
   }
-
-  /**
+/**
    * Path part for operation createSpecies
    */
-  static readonly CreateSpeciesPath = '/api/species/save';
+static readonly CreateSpeciesPath = '/api/species/save';
 
-  /**
-   * Create a new species.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `createSpecies()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  createSpecies$Response(params?: {
-  }): Observable<StrictHttpResponse<Species>> {
+/**
+ * Create a new species.
+ *
+ *
+ *
+ * This method provides access to the full `HttpResponse`, allowing access to response headers.
+ * To access only the response body, use `createSpecies()` instead.
+ *
+ * This method sends `application/json` and handles request body of type `application/json`.
+ */
+private createSpecies$Response(params: {
+  body: Species
+}): Observable<StrictHttpResponse<Species>> {
 
-    const rb = new RequestBuilder(this.rootUrl, SpeciesService.CreateSpeciesPath, 'post');
-    if (params) {
-    }
-
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<Species>;
-      })
-    );
+  const rb = new RequestBuilder(this.rootUrl, SpeciesService.CreateSpeciesPath, 'post');
+  if (params) {
+    rb.body(params.body, 'application/json');
   }
 
-  /**
-   * Create a new species.
-   *
-   *
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `createSpecies$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  createSpecies(params?: {
-  }): Observable<Species> {
+  return this.http.request(rb.build({
+    responseType: 'json',
+    accept: 'application/json'
+  })).pipe(
+    filter((r: any) => r instanceof HttpResponse),
+    map((r: HttpResponse<any>) => {
+      return r as StrictHttpResponse<Species>;
+    })
+  );
+}
 
-    return this.createSpecies$Response(params).pipe(
-      map((r: StrictHttpResponse<Species>) => r.body as Species)
-    );
-  }
+/**
+ * Create a new species.
+ *
+ *
+ *
+ * This method provides access to only to the response body.
+ * To access the full response (for headers, for example), `createSpecies$Response()` instead.
+ *
+ * This method sends `application/json` and handles request body of type `application/json`.
+ */
+createSpecies(params: {
+  body: Species
+}): Observable<Species> {
+
+  return this.createSpecies$Response(params).pipe(
+    map((r: StrictHttpResponse<Species>) => r.body as Species)
+  );
+}
 
   /**
    * Path part for operation findAllSpecies

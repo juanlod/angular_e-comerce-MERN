@@ -1,7 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { IRace, Race } from 'src/mongodb/schemas/master/race';
-import { countValues, findAllPaging } from './race-repository';
+import {
+  countValues,
+  findAllPaging,
+  getLastByIdPipeline,
+} from './race-repository';
 
 @Injectable()
 export class RaceService {
@@ -11,6 +15,10 @@ export class RaceService {
   ) {}
 
   async create(race: Race): Promise<any> {
+    const id = (await this.raceModel.aggregate(getLastByIdPipeline()).exec())[0]
+      .id;
+    race.id = id ? id + 1 : 1;
+    console.log(id);
     return await this.raceModel.create(race);
   }
 

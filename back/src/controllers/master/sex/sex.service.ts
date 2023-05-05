@@ -1,7 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ISex, Sex } from 'src/mongodb/schemas/master/sex';
-import { countValues, findAllPaging } from './sex-repository';
+import {
+  countValues,
+  findAllPaging,
+  getLastByIdPipeline,
+} from './sex-repository';
 
 @Injectable()
 export class SexService {
@@ -11,6 +15,9 @@ export class SexService {
   ) {}
 
   async create(sex: Sex): Promise<any> {
+    const id = (await this.sexModel.aggregate(getLastByIdPipeline()).exec())[0]
+      .ids;
+    sex.ids = id ? id + 1 : 1;
     return await this.sexModel.create(sex);
   }
 

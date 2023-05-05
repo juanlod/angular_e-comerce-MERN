@@ -64,8 +64,6 @@ export class ProvinceComponent implements OnInit {
       this.loading = false;
     })) as any;
 
-    console.log(response)
-
     if (response) {
       this.provinces = response.data;
       this.totalResults = response.total_resultados;

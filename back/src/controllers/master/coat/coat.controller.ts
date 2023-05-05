@@ -83,7 +83,7 @@ export class CoatController {
   @Patch('update/:id')
   @ApiBody({ type: Coat })
   update(@Param('id') id: string, @Body() coat: Coat) {
-    return this.coatService.update(+id, coat);
+    return this.coatService.update(id, coat);
   }
 
   @ApiOperation({

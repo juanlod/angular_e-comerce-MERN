@@ -19,7 +19,6 @@ export class ProvinceService {
       await this.provinceModel.aggregate(getLastByIdPipeline()).exec()
     )[0].id;
     province.id = id ? id + 1 : 1;
-    console.log(province)
     return await this.provinceModel.create(province);
   }
 

@@ -61,14 +61,14 @@ export function getLastByIdPipeline(): any {
     {
       $group: {
         _id: {},
-        'MAX(id)': {
+        'MAX(ids)': {
           $max: '$ids',
         },
       },
     },
     {
       $project: {
-        id: '$MAX(id)',
+        ids: '$MAX(ids)',
         _id: 0,
       },
     },

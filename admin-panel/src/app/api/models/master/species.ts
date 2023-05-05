@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface Species {
+export class Species {
   '_id': string;
   ali: number;
   id: number;

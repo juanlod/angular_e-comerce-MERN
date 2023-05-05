@@ -123,33 +123,14 @@ export function getLastPetIdPipeline(): any {
     {
       $group: {
         _id: {},
-        'MAX(idm)': {
-          $max: '$idm',
+        'MAX(id)': {
+          $max: '$id',
         },
       },
     },
     {
       $project: {
-        idc: '$MAX(idm)',
-        _id: 0,
-      },
-    },
-  ];
-}
-
-export function findAllByClientId(idc: number): any {
-  return [
-    {
-      $group: {
-        _id: {},
-        'MAX(idc)': {
-          $max: '$idm',
-        },
-      },
-    },
-    {
-      $project: {
-        idc: '$MAX(idm)',
+        idc: '$MAX(id)',
         _id: 0,
       },
     },

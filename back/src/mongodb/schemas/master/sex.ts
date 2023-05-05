@@ -39,7 +39,6 @@ export class Sex {
 
 // Creacion de clase sexo a traves de la interfaz
 export const SexSchema = new Schema<ISex>({
-  _id: { type: String, required: true },
   ids: { type: Number, required: true },
   value: { type: String, required: true },
   deleted: { type: Boolean, required: false, default: false },

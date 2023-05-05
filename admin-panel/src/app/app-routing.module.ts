@@ -19,6 +19,11 @@ import { StoreConfigurationComponent } from './pages/configuration/store/store-c
 import { ProductTypesComponent } from './pages/configuration/store/product-types/product-types/product-types.component';
 import { UnityTypesComponent } from './pages/configuration/store/unity-types/unity-types/unity-types.component';
 import { ProvinceComponent } from './pages/configuration/clinic/provinces/provinces/provinces.component';
+import { LocalityComponent } from './pages/configuration/clinic/localities/localities/localities.component';
+import { SpeciesComponent } from './pages/configuration/clinic/species/species/species.component';
+import { RaceComponent } from './pages/configuration/clinic/races/races/races.component';
+import { CoatComponent } from './pages/configuration/clinic/coats/coats/coats.component';
+import { SexComponent } from './pages/configuration/clinic/sexes/sexes/sexes.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -61,6 +66,11 @@ const routes: Routes = [
         children:[
           { path: 'clinic', component: ClinicConfigurationComponent },
           { path: 'clinic/provinces', component: ProvinceComponent },
+          { path: 'clinic/localities', component: LocalityComponent },
+          { path: 'clinic/species', component: SpeciesComponent },
+          { path: 'clinic/races', component: RaceComponent },
+          { path: 'clinic/coats', component: CoatComponent },
+          { path: 'clinic/sexes', component: SexComponent },
           { path: 'store', component: StoreConfigurationComponent },
           { path: 'store/providers', component: ProveedoresComponent },
           { path: 'store/product_types', component: ProductTypesComponent },
