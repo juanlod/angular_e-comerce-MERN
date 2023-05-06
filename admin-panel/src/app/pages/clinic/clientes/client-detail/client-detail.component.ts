@@ -77,6 +77,7 @@ export class ClientDetailComponent
     this.client = await lastValueFrom(
       this.clientService.findOneClient({ id: id })
     );
+
     if (this.client) {
       this.client.feci = Utils.transformDate(
         this.client.feci,
@@ -96,9 +97,14 @@ export class ClientDetailComponent
     this.isPetVisible = true;
   }
 
+  showDebtModal(): void {
+    this.isDebtVisible = true;
+  }
+
   handleCancel(): void {
     this.isVisible = false;
     this.isPetVisible = false;
+    this.isDebtVisible = false;
   }
 
   getPetSex(id: number) {
@@ -168,5 +174,18 @@ export class ClientDetailComponent
     // Update the pet list saved in the pet form modal
     this.client = client;
     this.isVisible = false;
+  }
+
+  /**
+
+   * Suscribe to update client in client form component
+   * @param client
+   */
+  onUpdateDebt(debt: any) {
+    // Update the pet list saved in the pet form modal
+    this.isDebtVisible = false;
+    if (!debt._id) {
+      this.client.debts.push(debt);
+    }
   }
 }

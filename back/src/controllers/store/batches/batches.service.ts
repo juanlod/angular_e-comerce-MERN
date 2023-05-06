@@ -14,7 +14,7 @@ export class BatchService {
   async create(batch: Batch): Promise<Batch> {
     const id = (
       await this.batchModel.aggregate(getLastByIdPipeline()).exec()
-    )[0].id;
+    )[0]?.id;
     batch.id = id ? id + 1 : 1;
 
     return await this.batchModel.create(batch);

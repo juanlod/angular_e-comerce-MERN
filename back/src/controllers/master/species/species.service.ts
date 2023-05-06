@@ -17,7 +17,7 @@ export class SpeciesService {
   async create(species: Species): Promise<Species> {
     const id = (
       await this.speciesModel.aggregate(getLastByIdPipeline()).exec()
-    )[0].id;
+    )[0]?.id;
     species.id = id ? id + 1 : 1;
     return await this.speciesModel.create(species);
   }

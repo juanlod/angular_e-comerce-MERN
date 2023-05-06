@@ -155,10 +155,8 @@
                   <a (click)="petDetail(pet._id)">{{ pet.nom }}</a>
                 </td>
                 <td>
-                  <span nz-tooltip *ngIf="getPetSpecieIcon(pet.esp)"
-                    [nzTooltipTitle]="getPetSpecie(pet.esp)" nzTooltipPlacement="top"
-                    [nzTooltipArrowPointAtCenter]="true"
-                    class="pet-icon fa-solid"
+                  <span nz-tooltip *ngIf="getPetSpecieIcon(pet.esp)" [nzTooltipTitle]="getPetSpecie(pet.esp)"
+                    nzTooltipPlacement="top" [nzTooltipArrowPointAtCenter]="true" class="pet-icon fa-solid"
                     [ngClass]="getPetSpecieIcon(pet.esp)"></span>
                   <span *ngIf="!getPetSpecieIcon(pet.esp)">{{ getPetSpecie(pet.esp)}}</span>
                 </td>
@@ -175,7 +173,7 @@
         </nz-table>
 
         <!-- SEARCH DROPDOWN -->
-        <nz-dropdown-menu  #menu="nzDropdownMenu">
+        <nz-dropdown-menu #menu="nzDropdownMenu">
           <div class="ant-table-filter-dropdown">
             <div class="search-box">
               <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
@@ -221,7 +219,7 @@
             <span class="card-icon" nz-icon nzType="dollar" nzTheme="outline"></span>
           </div>
           <!-- EDIT BUTTON  -->
-          <a class="edit-button">
+          <a class="edit-button" (click)="showDebtModal()">
             <i class="bi bi-plus-circle"></i>
           </a>
         </div>
@@ -230,19 +228,37 @@
         <nz-empty *ngIf="!client.debts ||  client.debts?.length == 0"></nz-empty>
 
         <!-- LIST FORMAT -->
-        <nz-list *ngIf="client?.debts?.length > 0" nzItemLayout="vertical">
-          <nz-list-item *ngFor="let pet of client.mascotas">
-            <nz-list-item-meta>
-              <nz-list-item-meta-description>
-
-
-              </nz-list-item-meta-description>
-              <nz-list-item-meta-description>
-
-              </nz-list-item-meta-description>
-            </nz-list-item-meta>
-          </nz-list-item>
-        </nz-list>
+        <!-- TABLE FORMAT -->
+        <nz-table #basicTable nzShowSizeChanger [nzData]="client.debts" [nzFrontPagination]="true" [nzLoading]="loading"
+          nzTableLayout="fixed">
+          <thead>
+            <tr>
+              <th nzCustomFilter>{{ 'DEBT.LIST.TICKET_NUMBER' | translate }}  </th>
+              <th>{{ 'DEBT.LIST.QUANTITY' | translate}} </th>
+              <th>{{ 'DEBT.LIST.DEBT_DATE' | translate }}</th>
+              <th>{{ 'DEBT.LIST.PAID' | translate }}</th>
+              <th>{{ 'DEBT.LIST.PAID_DATE' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let debt of basicTable.data">
+              <tr>
+                <td>
+                  {{debt.ticketNumber }}
+                </td>
+                <td>
+                  {{debt.quantity}}
+                </td>
+                <td>{{debt.debtDate | date: 'dd-MM-yyyy'}}</td>
+                <td>
+                  <nz-tag *ngIf="debt.paid"  [nzColor]="'#45A745'">{{ 'DEBT.PAID' | translate }}</nz-tag>
+                  <nz-tag *ngIf="!debt.paid" [nzColor]="'#DC3545'">{{ 'DEBT.PENDING' | translate }}</nz-tag>
+                </td>
+                <td>{{debt.paidDate | date: 'dd-MM-yyyy' }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
       </nz-skeleton>
     </nz-card>
   </nz-col>
@@ -253,7 +269,7 @@
   [nzWidth]="'70%'" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()">
 </nz-modal>
 <ng-template #modalContent>
-  <app-cliente-form [client]="client" [isDetail]="true"  (clientEmmiter)="onUpdateClient($event)" ></app-cliente-form>
+  <app-cliente-form [client]="client" [isDetail]="true" (clientEmmiter)="onUpdateClient($event)"></app-cliente-form>
 </ng-template>
 
 
@@ -262,5 +278,13 @@
   [nzWidth]="'70%'" [(nzVisible)]="isPetVisible" (nzOnCancel)="handleCancel()">
 </nz-modal>
 <ng-template #petModalContent>
-  <app-pet-form [client]="client"  (updateClient)="onUpdatePetClient($event)"  [isDetail]="true"></app-pet-form>
+  <app-pet-form [client]="client" (updateClient)="onUpdatePetClient($event)" [isDetail]="true"></app-pet-form>
+</ng-template>
+
+<!-- DEBT FORM MODAL -->
+<nz-modal *ngIf="client" [nzContent]="debtModalContent" [nzStyle]="{ top: '20px' }" [nzMaskClosable]="false"
+  [nzFooter]="null" [nzWidth]="'70%'" [(nzVisible)]="isDebtVisible" (nzOnCancel)="handleCancel()">
+</nz-modal>
+<ng-template #debtModalContent>
+  <app-debts-form [client]="client" (debtEvent)="onUpdateDebt($event)"></app-debts-form>
 </ng-template>

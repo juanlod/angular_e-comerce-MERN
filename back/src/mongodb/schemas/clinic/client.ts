@@ -34,27 +34,28 @@ export interface IClient extends Document {
   codp2: string;
   Identif: string;
   mascotas: mongoose.Schema.Types.ObjectId[];
+  debts: mongoose.Schema.Types.ObjectId[];
   lopd: boolean;
   password: string;
 }
 
 export class Client {
-  @ApiProperty({description:'mongo id'})
+  @ApiProperty({ description: 'mongo id' })
   _id: string;
 
-  @ApiProperty({description:'sql id'})
+  @ApiProperty({ description: 'sql id' })
   idc: number;
 
-  @ApiProperty({description:'full description'})
+  @ApiProperty({ description: 'full description' })
   ayn: string;
-  
-  @ApiProperty({description:'address'})
+
+  @ApiProperty({ description: 'address' })
   dir: string;
 
-  @ApiProperty({description:'postal code'})
+  @ApiProperty({ description: 'postal code' })
   codp: string;
 
-  @ApiProperty({description:'mongo id'})
+  @ApiProperty({ description: 'mongo id' })
   codt: string;
 
   @ApiProperty()
@@ -63,16 +64,16 @@ export class Client {
   @ApiProperty()
   telC: string;
 
-  @ApiProperty({description:'email'})
+  @ApiProperty({ description: 'email' })
   email: string;
 
-  @ApiProperty({description:'client observations'})
+  @ApiProperty({ description: 'client observations' })
   obs: string;
 
   @ApiProperty()
   mark: number;
 
-  @ApiProperty({description:'register date'})
+  @ApiProperty({ description: 'register date' })
   feci: Date;
 
   @ApiProperty()
@@ -81,47 +82,52 @@ export class Client {
   @ApiProperty()
   motuv: string;
 
-  @ApiProperty({description:'indicates if the client have debt'})
+  @ApiProperty({ description: 'indicates if the client have debt' })
   deuda: boolean;
 
-  @ApiProperty({description:'Indicates if the client is dangerous'})
+  @ApiProperty({ description: 'Indicates if the client is dangerous' })
   problematico: boolean;
 
-  @ApiProperty({description:'debt quantity'})
+  @ApiProperty({ description: 'debt quantity' })
   cantidadDeuda: string;
 
   @ApiProperty()
   obra: number;
 
-  @ApiProperty({description:'locality id reference'})
+  @ApiProperty({ description: 'locality id reference' })
   Loc: number;
 
-  @ApiProperty({description:'province id reference'})
+  @ApiProperty({ description: 'province id reference' })
   Dep: number;
 
-  @ApiProperty({description:'phone'})
+  @ApiProperty({ description: 'phone' })
   tel2: string;
 
-  @ApiProperty({description:'movile phone'})
+  @ApiProperty({ description: 'movile phone' })
   telC2: string;
 
   @ApiProperty()
   codt2: string;
 
-  @ApiProperty({description:'postal code'})
+  @ApiProperty({ description: 'postal code' })
   codp2: string;
 
-  @ApiProperty({description:'country identification number'})
+  @ApiProperty({ description: 'country identification number' })
   Identif: string;
 
-  @ApiProperty({description:'list of pets'})
+  @ApiProperty({ description: 'list of pets' })
   mascotas: mongoose.Schema.Types.ObjectId[];
 
-  @ApiProperty({description:'Indicates if the client has writed lopd document'})
+  @ApiProperty({
+    description: 'Indicates if the client has writed lopd document',
+  })
   lopd: boolean;
 
-  @ApiProperty({description:'password'})
+  @ApiProperty({ description: 'password' })
   password: string;
+
+  @ApiProperty({ description: 'list of debts' })
+  debts: mongoose.Schema.Types.ObjectId[];
 }
 
 // Creacion de clase cliente a traves de la interfaz
@@ -136,10 +142,10 @@ export const ClientSchema = new Schema<IClient>({
   email: { type: String, required: false },
   obs: { type: String, required: false },
   mark: { type: Number, required: false },
-  feci: { type: Date, required: false, default: new Date },
+  feci: { type: Date, required: false, default: new Date() },
   fecu: { type: Date, required: false },
   motuv: { type: String, required: false },
-  deuda: { type: Boolean, required: false }, 
+  deuda: { type: Boolean, required: false },
   problematico: { type: Boolean, required: false },
   cantidadDeuda: { type: String, required: false },
   obra: { type: Number, required: false },
@@ -152,6 +158,13 @@ export const ClientSchema = new Schema<IClient>({
   Identif: { type: String, required: false },
   mascotas: [
     { type: mongoose.Schema.Types.ObjectId, ref: 'mascotas', required: false },
+  ],
+  debts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'client_debts',
+      required: false,
+    },
   ],
   lopd: { type: Boolean, required: false },
   password: { type: String, required: false },

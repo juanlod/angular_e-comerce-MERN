@@ -10,13 +10,15 @@ import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PetModule } from '../pets/pet.module';
+import { DebtFormComponent } from './debts-form/debts-form.component';
 
 
 @NgModule({
   declarations: [
     ClienteComponent,
     ClienteFormComponent,
-    ClientDetailComponent
+    ClientDetailComponent,
+    DebtFormComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { PetModule } from '../pets/pet.module';
     TranslationModule,
     AppRoutingModule,
     FontAwesomeModule,
-    PetModule
+    PetModule,
+
   ],
   exports: [
     ClienteFormComponent

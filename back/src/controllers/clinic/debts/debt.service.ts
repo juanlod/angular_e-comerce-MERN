@@ -1,43 +1,47 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { ILocality, Locality } from 'src/mongodb/schemas/master/locality';
+
 import {
   countValues,
   findAllPaging,
   getLastByIdPipeline,
-} from './locality-repository';
+} from './debt-repository';
+import { IDebt, Debt } from 'src/mongodb/schemas/clinic/debts';
 
 @Injectable()
-export class LocalityService {
+export class DebtService {
   constructor(
-    @Inject('LOCALITY_MODEL')
-    private localityModel: Model<ILocality>,
+    @Inject('DEBT_MODEL')
+    private debtModel: Model<IDebt>,
   ) {}
 
-  async create(locality: Locality): Promise<any> {
-    const id = (
-      await this.localityModel.aggregate(getLastByIdPipeline()).exec()
-    )[0]?.id;
-    locality.id = id ? id + 1 : 1;
-    return await this.localityModel.create(locality);
+  async create(debt: Debt): Promise<any> {
+    const id = (await this.debtModel.aggregate(getLastByIdPipeline()).exec())[0]
+      ?.id;
+    debt.id = id ? id + 1 : 1;
+    return await this.debtModel.create(debt);
   }
 
   findAll() {
-    return this.localityModel.find();
+    return this.debtModel.find();
+  }
+
+  findAllByClientId(id: number): Promise<any> {
+    return this.debtModel.find({ clientId: id });
   }
 
   async findOne(id: number): Promise<any> {
-    return await this.localityModel.findOne({ _id: id });
+    return await this.debtModel.findOne({ _id: id });
   }
 
-  async update(id: string, locality: Locality) {
+  async update(id: string, debt: Debt) {
     const filter = { _id: id };
-    const updateData = { $set: locality };
-    return await this.localityModel.updateOne(filter, updateData);
+    const updateData = { $set: debt };
+    return await this.debtModel.updateOne(filter, updateData);
   }
 
   async remove(id: number) {
-    return await this.localityModel.deleteOne({ _id: id });
+    return await this.debtModel.deleteOne({ _id: id });
   }
 
   async findAllPaging(filter?: string, page?: number, pageSize?: number) {
@@ -57,13 +61,11 @@ export class LocalityService {
     }
 
     // Get and count the results
-    const results = await this.localityModel.aggregate(
+    const results = await this.debtModel.aggregate(
       findAllPaging(regex, offset, pageSize),
     );
 
-    const count_values = (await this.localityModel.aggregate(
-      countValues(),
-    )) as any;
+    const count_values = (await this.debtModel.aggregate(countValues())) as any;
 
     return {
       data: results,

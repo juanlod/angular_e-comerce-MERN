@@ -20,7 +20,7 @@ export class ProductTypeService {
   async create(productType: ProductType): Promise<any> {
     const id = (
       await this.productTypeModel.aggregate(getLastByIdPipeline()).exec()
-    )[0].id;
+    )[0]?.id;
     productType.id = id ? id + 1 : 1;
     return await this.productTypeModel.create(productType);
   }

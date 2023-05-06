@@ -19,7 +19,7 @@ import { ProductTypeModule } from './controllers/store/product-type/product-type
 import { ProductModule } from './controllers/store/product/product.module';
 import { StoreProviderModule } from './controllers/store/store-provider/store-provider.module';
 import { UnityTypeModule } from './controllers/store/unity-type/unity-type.module';
-
+import { DebtModule } from './controllers/clinic/debts/debt.module';
 
 @Module({
   imports: [
@@ -39,6 +39,7 @@ import { UnityTypeModule } from './controllers/store/unity-type/unity-type.modul
     ProductTypeModule,
     StoreProviderModule,
     UnityTypeModule,
+    DebtModule,
     JwtModule.register({
       secret: environment.secret, // reemplaza esto con tu propia clave secreta
       signOptions: { expiresIn: '7d' }, // cambia según tus necesidades

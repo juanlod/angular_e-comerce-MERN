@@ -2618,6 +2618,174 @@
         },
         "tags": ["UnityType"]
       }
+    },
+    "/api/debt/save": {
+      "post": {
+        "operationId": "createDebt",
+        "summary": "Create a new debt",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Debt" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The debt has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Debt" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." }
+        },
+        "tags": ["Debt"]
+      }
+    },
+    "/api/debt/find_all": {
+      "get": {
+        "operationId": "findAllDebt",
+        "summary": "Retrieve a list of all debts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Retrieved all debts successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Debt" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Debt"]
+      }
+    },
+    "/api/debt/find_one/{id}": {
+      "get": {
+        "operationId": "findOneDebt",
+        "summary": "Retrieve a debt by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved debt successfully.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Debt" }
+              }
+            }
+          },
+          "404": { "description": "Debt not found." }
+        },
+        "tags": ["Debt"]
+      }
+    },
+    "/api/debt/update/{id}": {
+      "patch": {
+        "operationId": "updateDebt",
+        "summary": "Update a debt by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Debt" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The debt has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Debt" }
+              }
+            }
+          },
+          "400": { "description": "The request body is invalid." },
+          "404": { "description": "debt not found." }
+        },
+        "tags": ["Debt"]
+      }
+    },
+    "/api/debt/delete/{id}": {
+      "delete": {
+        "operationId": "removeDebt",
+        "summary": "Remove a debt by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "The debt has been successfully removed." },
+          "404": { "description": "debt not found." }
+        },
+        "tags": ["Debt"]
+      }
+    },
+    "/api/debt/find_all/paging": {
+      "get": {
+        "operationId": "findAllPagingDebt",
+        "summary": "Get all debts with pagination",
+        "parameters": [
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all debts paginated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Debt" }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Debt"]
+      }
     }
   },
   "info": { "title": "", "description": "", "version": "1.0.0", "contact": {} },
@@ -2851,10 +3019,10 @@
         "properties": {
           "_id": { "type": "string" },
           "id": { "type": "number" },
-          "nom": { "type": "string" },
+          "nom": { "type": "string", "description": "Name" },
           "esp": { "type": "number" },
-          "ori": { "type": "string" },
-          "des": { "type": "string" },
+          "ori": { "type": "string", "description": "Origin" },
+          "des": { "type": "string", "description": "Description" },
           "ran": { "type": "number" },
           "deleted": { "type": "boolean" },
           "active": { "type": "boolean" }
@@ -3023,6 +3191,18 @@
           "active": { "type": "boolean" }
         },
         "required": ["_id", "id", "name", "deleted", "active"]
+      },
+      "Debt": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "id": { "type": "number" },
+          "clientId": { "type": "number" },
+          "ticketNumber": { "type": "string" },
+          "deleted": { "type": "boolean" },
+          "paid": { "type": "boolean" }
+        },
+        "required": ["_id", "id", "clientId", "ticketNumber", "deleted", "paid"]
       }
     }
   }

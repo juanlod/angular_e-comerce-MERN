@@ -44,7 +44,7 @@ export class ProductTypesFormComponent implements OnInit {
   /**
    * Guarda y actualiza un productType
    */
-  async saveProvider(): Promise<void> {
+  async save(): Promise<void> {
     this.submitted = true;
 
     if (!this.productTypeEdit.name) {
@@ -62,7 +62,7 @@ export class ProductTypesFormComponent implements OnInit {
     }
   }
 
-  async updateProvider(): Promise<void> {
+  async update(): Promise<void> {
     // Actualiza un productType
 
     this.notificationService.showInfo('PRODUCT_TYPES.UPDATE.MESSAGE.INFO');

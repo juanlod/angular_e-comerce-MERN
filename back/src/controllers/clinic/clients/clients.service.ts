@@ -8,6 +8,7 @@ import { Model } from 'mongoose';
 import { Client, IClient } from 'src/mongodb/schemas/clinic/client';
 import { PetService } from '../pets/pets.service';
 import * as bcrypt from 'bcrypt';
+import { DebtService } from '../debts/debt.service';
 
 @Injectable()
 export class ClientsService {
@@ -17,6 +18,7 @@ export class ClientsService {
     @Inject('CLIENT_MODEL')
     private clientModel: Model<IClient>,
     private petService: PetService,
+    private debtService: DebtService,
   ) {}
 
   /**
@@ -45,7 +47,7 @@ export class ClientsService {
   async create(client: Client): Promise<Client> {
     const idc = (
       await this.clientModel.aggregate(getLastClientIdPipeline()).exec()
-    )[0].idc;
+    )[0]?.idc;
     client.idc = idc ? idc + 1 : 1;
     client.password = await bcrypt.hash('12345678', 10);
     return this.clientModel.create(client);
@@ -103,6 +105,7 @@ export class ClientsService {
   async findOne(id: string): Promise<Client> {
     const client = await this.clientModel.findOne({ _id: id }).exec();
     client.mascotas = await this.petService.findAllByClientId(client.idc);
+    client.debts = await this.debtService.findAllByClientId(client.idc);
     return client;
   }
 

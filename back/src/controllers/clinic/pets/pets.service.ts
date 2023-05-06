@@ -25,7 +25,7 @@ export class PetService {
   async create(pet: Pet): Promise<any> {
     const idm = (
       await this.petModel.aggregate(getLastPetIdPipeline()).exec()
-    )[0].idc;
+    )[0]?.id;
     pet.idm = idm ? idm + 1 : 1;
     return this.petModel.create(pet);
   }

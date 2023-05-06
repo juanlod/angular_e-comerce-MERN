@@ -14,8 +14,14 @@ import { productProviders } from './providers/store/product.provider';
 import { batchesProviders } from './providers/store/batches.provider';
 import { unityTypeProviders } from './providers/store/unity-type.provider';
 import { productTypeProviders } from './providers/store/product-type.provider';
+import { debtProviders } from './providers/clinic/debt.provider';
 
-const clinicProviders = [...userProviders, ...clientProviders, ...petProviders];
+const clinicProviders = [
+  ...userProviders,
+  ...clientProviders,
+  ...petProviders,
+  ...debtProviders,
+];
 
 const masterProviders = [
   ...localityProviders,

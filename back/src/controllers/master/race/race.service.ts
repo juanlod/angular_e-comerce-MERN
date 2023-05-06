@@ -16,7 +16,7 @@ export class RaceService {
 
   async create(race: Race): Promise<any> {
     const id = (await this.raceModel.aggregate(getLastByIdPipeline()).exec())[0]
-      .id;
+      ?.id;
     race.id = id ? id + 1 : 1;
     console.log(id);
     return await this.raceModel.create(race);

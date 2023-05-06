@@ -17,7 +17,7 @@ export class ProvinceService {
   async create(province: Province): Promise<any> {
     const id = (
       await this.provinceModel.aggregate(getLastByIdPipeline()).exec()
-    )[0].id;
+    )[0]?.id;
     province.id = id ? id + 1 : 1;
     return await this.provinceModel.create(province);
   }

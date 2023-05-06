@@ -59,7 +59,7 @@ export class LoteComponent implements OnInit {
     this.filter = event.target.value;
   }
 
-  async saveBatch(): Promise<void> {
+  async save(): Promise<void> {
     this.submitted = true;
 
     if (!this.batchEdit.number) {
@@ -83,7 +83,7 @@ export class LoteComponent implements OnInit {
   }
 
 
-  async updateBatch() {
+  async update() {
     this.notificationService.showInfo('BATCH.UPDATE.MESSAGE.INFO');
 
     const result = await lastValueFrom(

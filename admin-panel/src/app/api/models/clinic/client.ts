@@ -1,5 +1,6 @@
 /* tslint:disable */
 
+import { Debt } from './debt';
 import { Pet } from './pet';
 
 /* eslint-disable */
@@ -114,5 +115,5 @@ export class Client {
   /**
    * Client debts
    */
-  debts: Array<any>;
+  debts: Array<Debt>;
 }

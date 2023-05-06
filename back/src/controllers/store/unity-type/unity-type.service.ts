@@ -17,7 +17,7 @@ export class UnityTypeService {
   async create(unityType: UnityType): Promise<any> {
     const id = (
       await this.unityTypeModel.aggregate(getLastByIdPipeline()).exec()
-    )[0].id;
+    )[0]?.id;
     unityType.id = id ? id + 1 : 1;
     return await this.unityTypeModel.create(unityType);
   }

@@ -16,7 +16,7 @@ export class CoatService {
 
   async create(coat: Coat): Promise<any> {
     const id = (await this.coatModel.aggregate(getLastByIdPipeline()).exec())[0]
-      .id;
+      ?.id;
     coat.id = id ? id + 1 : 1;
     return await this.coatModel.create(coat);
   }
