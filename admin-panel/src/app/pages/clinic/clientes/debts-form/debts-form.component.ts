@@ -14,6 +14,7 @@ import { lastValueFrom } from 'rxjs';
 import { Debt } from 'src/app/api/models/clinic/debt';
 import { DebtService } from 'src/app/api/services/clinic/debt.service';
 import { Client } from 'src/app/api/models/clinic/client';
+import { Utils } from 'src/app/utils';
 
 
 
@@ -40,6 +41,18 @@ export class DebtFormComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.debtEdit = Object.assign({}, this.debt);
+    if (this.debtEdit._id) {
+      this.debtEdit.debtDate = Utils.transformDate(
+        this.debtEdit.debtDate,
+        'yyyy-MM-dd',
+        'en-US'
+      );
+      this.debtEdit.paidDate = Utils.transformDate(
+        this.debtEdit.paidDate,
+        'yyyy-MM-dd',
+        'en-US'
+      );
+    }
   }
 
   /**
@@ -52,7 +65,6 @@ export class DebtFormComponent implements OnInit {
       return;
     }
 
-    console.log(this.client)
     this.debtEdit.clientId = this.client.idc;
 
     this.notificationService.showInfo('DEBT.SAVE.MESSAGE.INFO');
@@ -68,7 +80,10 @@ export class DebtFormComponent implements OnInit {
   }
 
   async updateDebt(): Promise<void> {
-    // Actualiza un debt
+    // Update a debt
+    if (this.debtEdit.paid && !this.debtEdit.paidDate) {
+      this.debtEdit.paidDate = Utils.getActualDate();
+    }
 
     this.notificationService.showInfo('DEBT.UPDATE.MESSAGE.INFO');
     const result = await lastValueFrom(

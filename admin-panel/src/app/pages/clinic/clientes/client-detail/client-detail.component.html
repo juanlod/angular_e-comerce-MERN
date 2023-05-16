@@ -213,7 +213,7 @@
       <nz-skeleton [nzActive]="true" [nzLoading]="loading" [nzAvatar]="{ size: 'large' }">
 
         <div class="legend">
-          <legend>{{ 'CLIENT.DETAIL.DEBT.LEGEND' | translate}}</legend>
+          <legend>{{ 'CLIENT.DETAIL.DEBT.LEGEND' | translate}} <span *ngIf="client?.debts?.length > 0">({{ totalDebts | currency: 'EUR': true: '1.2-2':'es_ES' }})</span></legend>
           <!-- TOP PET ICON -->
           <div>
             <span class="card-icon" nz-icon nzType="dollar" nzTheme="outline"></span>
@@ -235,8 +235,8 @@
             <tr>
               <th nzCustomFilter>{{ 'DEBT.LIST.TICKET_NUMBER' | translate }}  </th>
               <th>{{ 'DEBT.LIST.QUANTITY' | translate}} </th>
+              <th>{{ 'DEBT.LIST.STATE' | translate }}</th>
               <th>{{ 'DEBT.LIST.DEBT_DATE' | translate }}</th>
-              <th>{{ 'DEBT.LIST.PAID' | translate }}</th>
               <th>{{ 'DEBT.LIST.PAID_DATE' | translate }}</th>
             </tr>
           </thead>
@@ -244,16 +244,16 @@
             <ng-container *ngFor="let debt of basicTable.data">
               <tr>
                 <td>
-                  {{debt.ticketNumber }}
+                  <a (click)="showDebtModal(debt)">{{debt.ticketNumber }}</a>
                 </td>
                 <td>
-                  {{debt.quantity}}
+                  {{ debt.quantity | currency: 'EUR': true: '1.2-2':'es_ES' }}
                 </td>
-                <td>{{debt.debtDate | date: 'dd-MM-yyyy'}}</td>
                 <td>
                   <nz-tag *ngIf="debt.paid"  [nzColor]="'#45A745'">{{ 'DEBT.PAID' | translate }}</nz-tag>
                   <nz-tag *ngIf="!debt.paid" [nzColor]="'#DC3545'">{{ 'DEBT.PENDING' | translate }}</nz-tag>
                 </td>
+                <td>{{debt.debtDate | date: 'dd-MM-yyyy'}}</td>
                 <td>{{debt.paidDate | date: 'dd-MM-yyyy' }}</td>
               </tr>
             </ng-container>
@@ -286,5 +286,5 @@
   [nzFooter]="null" [nzWidth]="'70%'" [(nzVisible)]="isDebtVisible" (nzOnCancel)="handleCancel()">
 </nz-modal>
 <ng-template #debtModalContent>
-  <app-debts-form [client]="client" (debtEvent)="onUpdateDebt($event)"></app-debts-form>
+  <app-debts-form [client]="client" [debt]="selectedDebt" (debtEvent)="onUpdateDebt($event)"></app-debts-form>
 </ng-template>

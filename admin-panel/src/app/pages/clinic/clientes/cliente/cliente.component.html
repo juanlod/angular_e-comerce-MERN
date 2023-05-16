@@ -24,7 +24,7 @@
 <nz-table zWidth="100%" #basicTable nzShowSizeChanger [nzData]="clientes"  nzSize="middle"
   [nzFrontPagination]="false" [nzLoading]="loading"
   [nzTotal]="totalResults" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
-  (nzQueryParams)="onQueryParamsChange($event)" nzTableLayout="fixed">
+  (nzQueryParams)="onQueryParamsChange($event)" nzTableLayout="auto">
   <thead>
     <tr>
       <th nzWidth="5%"></th>
@@ -79,7 +79,9 @@
         <td zWidth="15%">
           <span class="table-icon warning" *ngIf="cliente.problematico" nz-icon nzType="warning" nzTheme="outline"></span>
           <nz-divider *ngIf="client.problematico" nzType="vertical"></nz-divider>
-          <span class="table-icon dollar" *ngIf="cliente.deuda" nz-icon nzType="dollar" nzTheme="outline"></span>
+          <span  *ngIf="cliente?.debts?.length > 0" nz-tooltip [nzTooltipTitle]="countDebts(cliente.debts)" nzTooltipPlacement="top" class="table-icon dollar"  nz-icon nzType="dollar" nzTheme="outline">
+
+          </span>
         </td>
       </tr>
       <!-- CLIENT PETS -->

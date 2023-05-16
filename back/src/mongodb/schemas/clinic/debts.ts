@@ -54,7 +54,7 @@ export const DebtSchema = new Schema<IDebt>({
   debtDate: {
     type: String,
     required: false,
-    default: `${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`,
+    default: getActualDate(),
   },
   paidDate: {
     type: String,
@@ -64,3 +64,12 @@ export const DebtSchema = new Schema<IDebt>({
   deleted: { type: Boolean, required: false, default: false },
   paid: { type: Boolean, required: false, default: false },
 });
+
+function getActualDate() {
+  const actualDate = new Date();
+  const year = actualDate.getFullYear();
+  const month = String(actualDate.getMonth() + 1).padStart(2, '0');
+  const day = String(actualDate.getDate()).padStart(2, '0');
+
+  return `${year}/${month}/${day}`;
+}

@@ -23,7 +23,7 @@
 
 
       <div class="column-2">
-        <!-- NAME -->
+        <!-- TICKET -->
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="ticketNumber">{{'DEBT.FORM.TICKET_NUMBER' | translate}}&nbsp;<span
               class="error">*</span></nz-form-label>
@@ -46,19 +46,39 @@
 
       </div>
 
+
+      <div class="column-2">
+        <!-- DEBT DATE -->
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzFor="debtDate">{{ 'DEBT.FORM.DEBT_DATE' | translate}}</nz-form-label>
+          <nz-form-control [nzSpan]="15">
+            <input nz-input name="debtDate" type="date" id="debtDate" [(ngModel)]="debtEdit.debtDate">
+          </nz-form-control>
+        </nz-form-item>
+        <!--  -->
+        <nz-form-item>
+        </nz-form-item>
+      </div>
+
       <div class="column-2" *ngIf="debtEdit.id">
 
-        <!-- ACTIVE -->
+        <!-- PAID -->
         <nz-form-item>
-          <nz-form-label [nzSpan]="7" nzFor="active">{{ 'ACTIVE.TEXT' | translate}}</nz-form-label>
+          <nz-form-label [nzSpan]="7" nzFor="paid">{{ 'DEBT.PAID' | translate}}</nz-form-label>
           <nz-form-control [nzSpan]="15">
-            <nz-switch name="active" id="active" [(ngModel)]="debtEdit.paid"></nz-switch>
+            <nz-switch name="paid" id="paid" [(ngModel)]="debtEdit.paid"></nz-switch>
           </nz-form-control>
         </nz-form-item>
 
+        <!-- PAID DATE -->
         <nz-form-item>
+          <ng-container *ngIf="debtEdit.paid">
+            <nz-form-label [nzSpan]="7" nzFor="paidDate">{{ 'DEBT.FORM.PAID_DATE' | translate}}</nz-form-label>
+            <nz-form-control [nzSpan]="15">
+              <input nz-input name="paidDate" type="date" id="paidDate" [(ngModel)]="debtEdit.paidDate">
+            </nz-form-control>
+          </ng-container>
         </nz-form-item>
-
       </div>
 
 

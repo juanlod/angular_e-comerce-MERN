@@ -10,6 +10,7 @@ import { Coat } from 'src/app/api/models/master/coat';
 import { Race } from 'src/app/api/models/master/race';
 import { Sex } from 'src/app/api/models/master/sex';
 import { Species } from 'src/app/api/models/master/species';
+import { Debt } from 'src/app/api/models/clinic/debt';
 
 @Component({
   selector: 'app-client-detail',
@@ -34,6 +35,9 @@ export class ClientDetailComponent
 
   isPetVisible = false;
   isDebtVisible = false;
+  totalDebts: number = 0;
+  selectedDebt: Debt;
+  locale: string;
 
   constructor(
     clientService: ClientsService,
@@ -52,6 +56,10 @@ export class ClientDetailComponent
   }
 
   async ngAfterViewInit(): Promise<void> {
+    this.locale = localStorage.getItem('lang')
+      ? localStorage.getItem('lang')
+      : 'es';
+
     const [petsSex, petsRace, petsSpecies, petsCoat] = await Promise.all([
       this.masterCacheService.getSex(),
       this.masterCacheService.getRace(),
@@ -86,6 +94,14 @@ export class ClientDetailComponent
       );
       this.loading = false;
       this.listOfDisplayData = [...this.client?.mascotas];
+
+      if (this.client.debts) {
+        this.client.debts.forEach((debt) => {
+          if (!debt.paid) {
+            this.totalDebts += debt.quantity;
+          }
+        });
+      }
     }
   }
 
@@ -97,8 +113,9 @@ export class ClientDetailComponent
     this.isPetVisible = true;
   }
 
-  showDebtModal(): void {
+  showDebtModal(debt?: Debt): void {
     this.isDebtVisible = true;
+    this.selectedDebt = debt ? debt : new Debt();
   }
 
   handleCancel(): void {
@@ -181,11 +198,10 @@ export class ClientDetailComponent
    * Suscribe to update client in client form component
    * @param client
    */
-  onUpdateDebt(debt: any) {
+  async onUpdateDebt(debt: any) {
     // Update the pet list saved in the pet form modal
     this.isDebtVisible = false;
-    if (!debt._id) {
-      this.client.debts.push(debt);
-    }
+    this.totalDebts = 0;
+    await this.getClient(this.client._id);
   }
 }
