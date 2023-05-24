@@ -28,6 +28,27 @@ mat-form-field {
   margin-bottom: 1rem;
 }
 
+input {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 11px;
+  color: #000000d9;
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  transition: all .3s;
+  display: inline-flex;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
 .mat-card {
   height: 100%;
   margin: 0px;
@@ -35,11 +56,12 @@ mat-form-field {
 }
 
 .floating {
-  transform: translateY(-100%) scale(0.75) translateX(-15px);
+  transform: translateY(-100%) scale(0.75) translateX(-5px);
 }
 .mat-form-field-label-wrapper {
   transform: translateY(-50%);
 }
+
 
 
 @media screen and (max-width: 600px) {

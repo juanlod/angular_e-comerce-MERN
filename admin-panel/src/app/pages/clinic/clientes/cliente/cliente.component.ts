@@ -228,7 +228,6 @@ export class ClienteComponent implements OnInit {
 
   countDebts(debts: any[]) {
 
-    console.log(debts)
     if (debts) {
       let value = 0;
       debts.forEach((debt) => {

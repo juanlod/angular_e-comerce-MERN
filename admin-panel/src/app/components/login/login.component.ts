@@ -23,11 +23,12 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('loginImage') loginImage!: ElementRef;
 
-  currentImage: string = "url('assets/image/login/2.png')";
+  currentImage: string = "url('assets/image/login/1.png')";
   images: string[] = [
-    'url(assets/image/login/1.png)',
+    'url(assets/image/login/2.png)',
     'url(assets/image/login/3.png)',
     'url(assets/image/login/4.png)',
+    'url(assets/image/login/5.png)',
   ];
 
   constructor(
@@ -77,7 +78,6 @@ export class LoginComponent implements OnInit {
    */
   async login() {
     // Enviamos la peticion al backend
-    console.log(this.user)
     let response = (await lastValueFrom(
       this.userService.loginUser({ body: this.user })
     ).catch((error) => {
@@ -88,8 +88,11 @@ export class LoginComponent implements OnInit {
     if (response) {
       localStorage.setItem('token', response.token);
       localStorage.setItem('id', response.user._id);
+      this.notificationService.showSuccess('USER.LOGIN.OK');
       this.router.navigate(['dashboard']);
     }
+
+
   }
 
   togglePassword() {

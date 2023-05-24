@@ -138,26 +138,6 @@
       </div>
 
       <div class="column-2">
-        <!-- DEUDA -->
-        <nz-form-item>
-          <nz-form-label [nzSpan]="7" nzFor="deuda">{{ 'CLIENTS.FORM.DEBT' | translate  }}</nz-form-label>
-          <nz-form-control [nzSpan]="15">
-            <nz-switch name="deuda" id="deuda" [(ngModel)]="client.deuda"></nz-switch>
-          </nz-form-control>
-        </nz-form-item>
-
-        <!-- CANTIDAD DEUDA -->
-        <nz-form-item>
-          <ng-container *ngIf="client.deuda">
-            <nz-form-label [nzSpan]="7" nzFor="cantidadDeuda">{{ 'CLIENTS.FORM.DEBT_QUANTITY' | translate }}</nz-form-label>
-            <nz-form-control [nzSpan]="15">
-              <input nz-input name="cantidadDeuda" type="text" id="cantidadDeuda" [(ngModel)]="client.cantidadDeuda">
-            </nz-form-control>
-          </ng-container>
-        </nz-form-item>
-      </div>
-
-      <div class="column-2">
         <!-- PROBLEMATICO -->
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzFor="problematico">{{ 'CLIENTS.FORM.PROBLEMATIC' | translate}}</nz-form-label>

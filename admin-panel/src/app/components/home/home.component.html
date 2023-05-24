@@ -15,7 +15,7 @@
           [nzTitle]="submenuTitle">
           <ng-template #submenuTitle>
             <span><i class="icon" [ngClass]="menu?.icon"></i></span>
-            <span class="title">{{ menu?.title | translate }}</span>
+            <span *ngIf="!isCollapsed" class="title">{{ menu?.title | translate }}</span>
           </ng-template>
           <ul>
             <li *ngFor="let child of menu?.children" nz-menu-item [nzMatchRouter]="true">
@@ -30,7 +30,7 @@
           <a [routerLink]="menu?.link">
             <!-- <span nz-icon nzType="{{menu?.icon}}"></span> -->
             <span class="icon" ngClass="{{menu?.icon}}"></span>
-            <span class="title">{{menu?.title | translate}}</span>
+            <span *ngIf="!isCollapsed" class="title">{{menu?.title | translate}}</span>
           </a>
         </li>
       </ng-container>

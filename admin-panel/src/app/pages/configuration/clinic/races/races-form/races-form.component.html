@@ -48,7 +48,7 @@
           <nz-form-label [nzSpan]="7" nzFor="esp">{{ 'PET.FORM.SPECIES' | translate }}</nz-form-label>
           <nz-form-control [nzSpan]="15">
             <nz-select nzShowSearch nzAllowClear nzPlaceHolder="{{ 'PET.FORM.SPECIES.PLACEHOLDER' | translate }}"
-              [(ngModel)]="race.esp" name="esp">
+              [(ngModel)]="raceEdit.esp" name="esp">
               <nz-option *ngFor="let option of species" [nzLabel]="option.nom" [nzValue]="option.id"></nz-option>
             </nz-select>
           </nz-form-control>

@@ -29,12 +29,12 @@ export class UserService {
     const result = await this.userModel.findOne({ email: email });
 
     if (!result) {
-      throw new BadRequestException('Usuario o contraseña incorrectos');
+      throw new BadRequestException('USER.LOGIN.PASSWORD.INCORRECT');
     }
 
     const isPasswordCorrect = await bcrypt.compare(password, result.password);
     if (!isPasswordCorrect) {
-      throw new BadRequestException('Usuario o contraseña incorrectos');
+      throw new BadRequestException('USER.LOGIN.PASSWORD.INCORRECT');
     }
 
     const token = await this.createToken(result);
@@ -58,10 +58,10 @@ export class UserService {
         const reg = await this.userModel.create(user);
         return { data: reg };
       } else {
-        throw new BadRequestException('Debe especificar una contraseña');
+        throw new BadRequestException('USER.CREATE.PASSWORD.MANDATORY');
       }
     } else {
-      throw new BadRequestException('El correo ya existe');
+      throw new BadRequestException('USER.CREATE.EMAIL.EXISTS');
     }
   }
 

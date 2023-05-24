@@ -1,4 +1,11 @@
 {
+  "USER.LOGIN.OK" :"Inicio de sesión realizado correctamente",
+  "USER.LOGIN.MAIL" :"Introduce tu correo",
+  "USER.LOGIN.PASSWORD" :"Introduce tu contraseña",
+  "USER.LOGIN.MAIL.LABEL": "Correo",
+  "USER.LOGIN.PASSWORD.LABEL" : "Contraseña",
+  "USER.LOGIN.PASSWORD.INCORRECT" :"Usuario o contraseña incorrectos",
+
   "SIDEBAR.INIT.TITLE": "Inicio",
   "SIDEBAR.CLINIC.TITLE": "Clínica",
   "SIDEBAR.CLINIC.CLIENTS.TITLE": "Clientes y mascotas",
@@ -208,8 +215,8 @@
   "CONFIGURATION.INVENTORY.PROVIDERS.DESCRIPTION": "Sección de configuración de proveedores disponibles en la aplicación",
   "CONFIGURATION.INVENTORY.PRODUCT_TYPE": "Tipos de productos",
   "CONFIGURATION.INVENTORY.PRODUCT_TYPE.DESCRIPTION": "Sección de configuración de tipos de productos disponibles en la aplicación",
-  "CONFIGURATION.INVENTORY.UNITY_TYPE": "Unidades dos productos",
-  "CONFIGURATION.INVENTORY.UNITY_TYPE.DESCRIPTION": "Sección de configuración de unidades dos productos disponibles en la aplicación",
+  "CONFIGURATION.INVENTORY.UNITY_TYPE": "Unidades de los productos",
+  "CONFIGURATION.INVENTORY.UNITY_TYPE.DESCRIPTION": "Sección de configuración de unidades de los productos disponibles en la aplicación",
 
   "PRODUCT_TYPE.LIST.TITLE": "Tipos de productos",
   "PRODUCT_TYPE.LIST.TITLE.BREADCRUMB": "Tipos de productos",
@@ -336,8 +343,8 @@
   "COAT.LIST.TABLE.ACTIVE": "Activo",
   "COAT.FORM.TITLE.NEW": "Nuevo pelaje",
   "COAT.FORM.BREADCRUMB.NEW": "Nuevo pelaje",
-  "COAT.FORM.NAME": "Nombre",
-  "COAT.FORM.NAME.MANDATORY": "El nombre es obligatorio",
+  "COAT.FORM.NAME": "Descripción",
+  "COAT.FORM.NAME.MANDATORY": "La descripción es obligatoria",
   "COAT.FORM.TITLE.EDIT": "Editar pelaje",
   "COAT.FORM.BREADCRUMB.EDIT": "Editar pelaje",
   "COAT.SAVE.MESSAGE.INFO": "Guardando pelaje...",

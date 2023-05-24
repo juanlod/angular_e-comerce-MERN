@@ -14,4 +14,8 @@ export class Product {
   unityTypeId: number;
   showStore: boolean;
   batches: Batch[];
+  description: string;
+  price: number;
+  finalPrice: number;
+  taxTypeId: number;
 }

@@ -1,4 +1,11 @@
 {
+  "USER.LOGIN.OK" :"Login successfully",
+  "USER.LOGIN.MAIL" :"Put your mail",
+  "USER.LOGIN.PASSWORD" :"Put your password",
+  "USER.LOGIN.MAIL.LABEL": "Email",
+  "USER.LOGIN.PASSWORD.LABEL" : "Password",
+  "USER.LOGIN.PASSWORD.INCORRECT" :"Incorrect username or password",
+
   "SIDEBAR.INIT.TITLE": "Home",
   "SIDEBAR.CLINIC.TITLE": "Clinic",
   "SIDEBAR.CLINIC.CLIENTS.TITLE": "Clients and pets",
@@ -341,8 +348,8 @@
   "COAT.LIST.TABLE.ACTIVE": "Active",
   "COAT.FORM.TITLE.NEW": "New coat",
   "COAT.FORM.BREADCRUMB.NEW": "New coat",
-  "COAT.FORM.NAME": "Name",
-  "COAT.FORM.NAME.MANDATORY": "Name is mandatory",
+  "COAT.FORM.NAME": "Description",
+  "COAT.FORM.NAME.MANDATORY": "Description is mandatory",
   "COAT.FORM.TITLE.EDIT": "Edit coat",
   "COAT.FORM.BREADCRUMB.EDIT": "Edit coat",
   "COAT.SAVE.MESSAGE.INFO": "Saving coat...",

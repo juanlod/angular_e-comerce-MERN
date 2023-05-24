@@ -28,14 +28,13 @@
     <form nz-form (submit)="!coatEdit._id ? saveProvider() : updateProvider()">
 
 
-      <div class="column-2">
+      <div class="obs">
         <!-- NAME -->
         <nz-form-item>
-          <nz-form-label [nzSpan]="7" nzFor="nom">{{'COAT.FORM.NAME' | translate}}&nbsp;<span
-              class="error">*</span></nz-form-label>
-          <nz-form-control [nzSpan]="15">
+          <nz-form-label [nzSpan]="3" nzFor="nom">{{'COAT.FORM.NAME' | translate}}&nbsp;<span class="error">*</span></nz-form-label>
+          <nz-form-control [nzSpan]="20">
             <div nzFlex nzFlex="auto">
-              <input nz-input name="nom" type="text" id="nom" [(ngModel)]="coatEdit.nom">
+              <textarea nz-input name="nom" id="nom" [(ngModel)]="coatEdit.nom"></textarea>
               <div nzStatus="error" *ngIf="submitted && !coatEdit.nom">
                 <small class="error">{{ 'COAT.FORM.NAME.MANDATORY' | translate }}</small>
               </div>
@@ -43,21 +42,17 @@
           </nz-form-control>
         </nz-form-item>
 
-        <nz-form-item>
-        </nz-form-item>
+
       </div>
 
-      <div class="column-2" *ngIf="coatEdit.id">
+      <div *ngIf="coatEdit.id">
 
         <!-- ACTIVE -->
         <nz-form-item>
-          <nz-form-label [nzSpan]="7" nzFor="active">{{ 'ACTIVE.TEXT' | translate}}</nz-form-label>
+          <nz-form-label [nzSpan]="3" nzFor="active">{{ 'ACTIVE.TEXT' | translate}}</nz-form-label>
           <nz-form-control [nzSpan]="15">
             <nz-switch name="active" id="active" [(ngModel)]="coatEdit.active"></nz-switch>
           </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
         </nz-form-item>
 
       </div>

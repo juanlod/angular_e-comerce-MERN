@@ -224,9 +224,6 @@
           </a>
         </div>
 
-        <!-- SHOW IF PET LIST IS EMPTY -->
-        <nz-empty *ngIf="!client.debts ||  client.debts?.length == 0"></nz-empty>
-
         <!-- LIST FORMAT -->
         <!-- TABLE FORMAT -->
         <nz-table #basicTable nzShowSizeChanger [nzData]="client.debts" [nzFrontPagination]="true" [nzLoading]="loading"

@@ -1,4 +1,11 @@
 {
+  "USER.LOGIN.OK" :"Inicio de sesión realizado correctamente",
+  "USER.LOGIN.MAIL" :"Introduce o teu correo",
+  "USER.LOGIN.PASSWORD" :"Introduce o teu contrasinal",
+  "USER.LOGIN.MAIL.LABEL": "Correo",
+  "USER.LOGIN.PASSWORD.LABEL" : "Contrasinal",
+  "USER.LOGIN.PASSWORD.INCORRECT" :"Usuario ou contrasinal incorrectos",
+
   "SIDEBAR.INIT.TITLE": "Inicio",
   "SIDEBAR.CLINIC.TITLE": "Clinica",
   "SIDEBAR.CLINIC.CLIENTS.TITLE": "Clientes e mascotas",
@@ -231,6 +238,7 @@
   "PRODUCT_TYPES.FORM.BREADCRUMB.EDIT": "Editar produto",
   "PRODUCT_TYPES.FORM.ICON": "Icono",
   "PRODUCT_TYPES.FORM.ICON.PREVIEW": "Vista previa do icono",
+  "PRODUCTS.FORM.SHOW_IN_STORE": "¿Vender online?",
 
   "PRODUCT_TYPES.SAVE.MESSAGE.INFO": "Gardando tipo de produto...",
   "PRODUCT_TYPES.SAVE.MESSAGE.OK": "Tipo de produto gardado correctamente",
@@ -342,8 +350,8 @@
   "COAT.LIST.TABLE.ACTIVE": "Activo",
   "COAT.FORM.TITLE.NEW": "Nova pelaxe",
   "COAT.FORM.BREADCRUMB.NEW": "Nova pelaxe",
-  "COAT.FORM.NAME": "Nome",
-  "COAT.FORM.NAME.MANDATORY": "O nome é obrigatorio",
+  "COAT.FORM.NAME": "Descrición",
+  "COAT.FORM.NAME.MANDATORY": "A descrición é obrigatoria",
   "COAT.FORM.TITLE.EDIT": "Editar pelaxe",
   "COAT.FORM.BREADCRUMB.EDIT": "Editar pelaxe",
   "COAT.SAVE.MESSAGE.INFO": "Gardando pelaxe...",

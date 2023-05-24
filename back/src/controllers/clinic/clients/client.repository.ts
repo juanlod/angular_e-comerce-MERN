@@ -32,7 +32,7 @@ export function getClientListPipeline(
         {
           $match: {
             ayn: regex,
-            'mascotas.nom': regex,
+            mascotas: { $elemMatch: { nom: regex, delete: false } },
           },
         },
         {
@@ -67,7 +67,10 @@ export function getClientListPipeline(
         },
         {
           $match: {
-            $or: [{ ayn: regex }, { mascotas: { $elemMatch: { nom: regex } } }],
+            $or: [
+              { ayn: regex },
+              { mascotas: { $elemMatch: { nom: regex, delete: false } } },
+            ],
           },
         },
         {
@@ -105,7 +108,7 @@ export function countValues(regex, wordsLength): any {
         {
           $match: {
             ayn: regex,
-            'mascotas.nom': regex,
+            mascotas: { $elemMatch: { nom: regex, delete: false } },
           },
         },
         {
@@ -170,6 +173,7 @@ export function findById(id: string): any {
     {
       $match: {
         idc: parseInt(id),
+        mascotas: { $elemMatch: { delete: false } },
       },
     },
   ];

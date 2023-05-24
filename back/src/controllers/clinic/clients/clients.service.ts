@@ -89,7 +89,6 @@ export class ClientsService {
       .aggregate(countValues(regex, words.length))
       .exec();
 
-      console.log(results);
     return {
       data: results,
       pagina_actual: page,
